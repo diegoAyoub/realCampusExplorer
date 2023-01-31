@@ -18,16 +18,24 @@ export enum InsightDatasetKind {
 // 	avg: string | number,
 // 	pass: string | number,
 // 	fail: string | number,
-export class InsightData implements InsightDataset { // SHOULD I BE IMPLEMENTING OR EXTENDING LOOK AT LISTDATASET
-	public id: string;
-	public kind: InsightDatasetKind;
-	public numRows: number;
-	public data: InsightDatasetSection[] | null; // @todo: maybe make it any[] so that can use prefixjson
-	constructor(id: string, kind: InsightDatasetKind, numRows: number, dataset: InsightDatasetSection[]) {
-		this.id = id;
-		this.kind = kind;
-		this.numRows = numRows;
-		this.data = null;
+export class InsightData {
+	public metaData: InsightDataset;
+	public data: any[] | null; // @todo: maybe make it any[] so that can use prefixjson or nah?
+	constructor(id: string, kind: InsightDatasetKind, numRows: number, data?: any[]) {
+		this.metaData = {} as InsightDataset;
+		this.metaData.id = id;
+		this.metaData.kind = kind;
+		this.metaData.numRows = numRows;
+		if(typeof data !== "undefined") {
+			this.data = data;
+		} else {
+			this.data = null;
+		}
+	}
+	public addNumRows(numRows: number) {
+		this.metaData.numRows = numRows;
+	};
+	public addDataset(dataset: InsightDatasetSection[]) {
 		this.data = dataset;
 	}
 }

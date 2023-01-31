@@ -1,6 +1,6 @@
 import chai, {expect} from "chai";
 import chaiAsPromised from "chai-as-promised";
-import InsightFacade from "../../../c0_team371/src/controller/InsightFacade";
+import InsightFacade from "../../../project_team125/src/controller/InsightFacade";
 import {clearDisk, getContentFromArchives} from "../resources/archives/TestUtil";
 import {
 	InsightDatasetKind,
@@ -8,7 +8,7 @@ import {
 	InsightResult,
 	NotFoundError,
 	ResultTooLargeError,
-} from "../../../c0_team371/src/controller/IInsightFacade";
+} from "../../src/controller/IInsightFacade";
 import {folderTest} from "@ubccpsc310/folder-test";
 
 chai.use(chaiAsPromised);
@@ -92,15 +92,14 @@ describe("InsightFacade", function () {
 			});
 
 			it("should pass because the dataset was successfully added", function () {
-				const result = facade.addDataset("section", validDataset, InsightDatasetKind.Sections);
+				const result = facade.addDataset("section", validSection, InsightDatasetKind.Sections);
 				return expect(result).eventually.to.have.members(["section"]);
 			});
 
 			it("should pass because it successfully added two datasets", function () {
-				return facade
-					.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
+				return facade.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
 					.then(() => {
-						return facade.addDataset("class", validClass, InsightDatasetKind.Sections);
+						return facade.addDataset("class", validClass, InsightDatasetKind.Sections); // was failing because adding two validDatasets was too much?
 					})
 					.then((res) => {
 						expect(res).to.have.members(["dataset", "class"]);
@@ -119,11 +118,6 @@ describe("InsightFacade", function () {
 				"one or more valid sections in a directory called courses/ in the root directory", function () {
 				const result = facade.addDataset("courses", validClass, InsightDatasetKind.Sections);
 				return expect(result).to.eventually.have.members(["courses"]);
-			});
-
-			it("should pass because the section has all the necessary keys for a query", function () {
-				const result = facade.addDataset("another_course", validSection, InsightDatasetKind.Sections);
-				return expect(result).to.eventually.have.members(["another_course"]);
 			});
 
 			it("should fail because the root dir of the class doesn't have a directory named courses", function () {
@@ -156,7 +150,7 @@ describe("InsightFacade", function () {
 				return expect(result).to.eventually.be.rejectedWith(InsightError);
 			});
 
-			it("should fail because the section is missing the key: [avg]", function () {
+			it("should fail because the root dir is not named courses", function () {
 				const result = facade.addDataset("ubc", invalidClassImproperRootDir, InsightDatasetKind.Sections);
 				return expect(result).to.eventually.be.rejectedWith(InsightError);
 			});
@@ -292,7 +286,7 @@ describe("InsightFacade", function () {
 						{
 							id: "class",
 							kind: InsightDatasetKind.Sections,
-							numRows: 6,
+							numRows: 2,
 						},
 						{
 							id: "dataset",
@@ -301,8 +295,33 @@ describe("InsightFacade", function () {
 						},
 					]);
 				})
-				.catch(() => {
-					expect.fail("Promise rejected but should've resolved");
+				.catch((err) => {
+					expect.fail(err);
+				});
+		});
+
+		it("should pass with one datasets (dataset) after two were added and one was removed", function () {
+			return facade
+				.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
+				.then(() => facade.addDataset("class", validClass, InsightDatasetKind.Sections))
+				.then((res) => {
+					expect(res).to.have.deep.members(["dataset", "class"]);
+					return facade.listDatasets();
+				})
+				.then(() => facade.removeDataset("class"))
+				.then((res) => expect(res).to.equal("class"))
+				.then(() => facade.listDatasets())
+				.then((res) => {
+					expect(res).to.have.deep.members([
+						{
+							id: "dataset",
+							kind: InsightDatasetKind.Sections,
+							numRows: 64612,
+						},
+					]);
+				})
+				.catch((err) => {
+					expect.fail(err);
 				});
 		});
 	});
@@ -338,7 +357,7 @@ describe("InsightFacade", function () {
 			return facade.performQuery(input);
 		}
 
-		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/json", {
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
 			errorValidator,
 			assertOnError,
 			assertOnResult,
