@@ -9,6 +9,101 @@ export enum InsightDatasetKind {
 	Rooms = "rooms",
 }
 
+// id: number,
+// 	course: string | number,
+// 	title: string,
+// 	professor: string,
+// 	subject: string,
+// 	year: string | number,
+// 	avg: string | number,
+// 	pass: string | number,
+// 	fail: string | number,
+export class InsightData {
+	public metaData: InsightDataset;
+	public data: any[] | null; // @todo: maybe make it any[] so that can use prefixjson or nah?
+	constructor(id: string, kind: InsightDatasetKind, numRows: number, data?: any[]) {
+		this.metaData = {} as InsightDataset;
+		this.metaData.id = id;
+		this.metaData.kind = kind;
+		this.metaData.numRows = numRows;
+		if(typeof data !== "undefined") {
+			this.data = data;
+		} else {
+			this.data = null;
+		}
+	}
+	public addNumRows(numRows: number) {
+		this.metaData.numRows = numRows;
+	};
+	public addDataset(dataset: InsightDatasetSection[]) {
+		this.data = dataset;
+	}
+}
+export class InsightDatasetSection {
+	// public datasetID: string;
+	public uuid: string;
+	public id: string;
+	public title: string;
+	public instructor: string;
+	public dept: string;
+	public year: string;
+	public avg: string;
+	public pass: string;
+	public fail: string;
+	public audit: string;
+	constructor(
+		// datasetID: string,
+		id: string,
+		course: string,
+		title: string,
+		professor: string,
+		subject: string,
+		year: string,
+		avg: string,
+		pass: string,
+		fail: string,
+		audit: string) {
+		// this.datasetID = datasetID;
+		this.uuid = id;
+		this.id = course;
+		this.title = title;
+		this.instructor = professor;
+		this.dept = subject;
+		this.year = year;
+		this.avg = avg;
+		this.pass = pass;
+		this.fail = fail;
+		this.audit = audit;
+
+	}
+
+	public prefixJSON(datasetID: string): any {
+		let keyUUID = datasetID + "_" + "uuid";
+		let keyCourse = datasetID + "_" + "id";
+		let keyTitle = datasetID + "_" + "title";
+		let keyProfessor = datasetID + "_" + "instructor";
+		let keySubject = datasetID + "_" + "dept";
+		let keyYear = datasetID + "_" + "year";
+		let keyAvg = datasetID + "_" + "avg";
+		let keyPass = datasetID + "_" + "pass";
+		let keyFail = datasetID + "_" + "fail";
+		let keyAudit = datasetID + "_" + "audit";
+
+		return {
+			[keyUUID]: this.uuid,
+			[keyCourse]: this.id,
+			[keyTitle]: this.title,
+			[keyProfessor]: this.instructor,
+			[keySubject]: this.dept,
+			[keyYear]: this.year,
+			[keyAvg]: this.avg,
+			[keyPass]: this.pass,
+			[keyFail]: this.fail,
+			[keyAudit]: this.audit,
+		};
+	}
+}
+
 export interface InsightDataset {
 	id: string;
 	kind: InsightDatasetKind;
