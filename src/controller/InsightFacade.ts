@@ -66,12 +66,25 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.reject(new InsightError(err));
 			});
 	}
+	/**
+	 * Checks that the InsightKind is one that is currently supported
+	 * REQUIRES: kind be an enum from InsightDatasetKind
+	 * MODIFIES: None
+	 * EFFECTS: Returns a Promise that resolves with void if it's supported, otherwise returns
+	 * a Promise that rejects with an InsightError
+	 **/
 	public isValidInsightKind(kind: InsightDatasetKind): Promise<void> {
 		if(kind === InsightDatasetKind.Sections) {
 			return Promise.resolve();
 		}
 		return Promise.reject(new InsightError("There is currently no support for that kind of dataset."));
 	}
+	/**
+	 * Gets the IDs of the datasets that are currently added to this.
+	 * REQUIRES: None
+	 * MODIFIES: None
+	 * EFFECTS: Returns an array of the IDs that are currently added to this
+	 **/
 	public getAddedIds(): string[] {
 		let addedIDs = [];
 		for(const dataset of this.insightDataList) {
@@ -79,6 +92,13 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return addedIDs;
 	}
+
+	/**
+	 * Checks that an ID is valid. An ID is invalid if it contains an underscore, if it's blank, or if it is composed
+	 * entirely of whitespace characters.
+	 * MODIFIES: None
+	 * EFFECTS: Returns an array of the IDs that are currently added to this
+	 **/
 	public isValidId(id: string): Promise<string> {
 		if (id.trim().length === 0) { // blank id or id is all whitespace
 			return Promise.reject(new InsightError("The ID must contain non white space characters"));
@@ -87,6 +107,13 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.resolve("");
 	}
+	/**
+	 * Verifies that a section object is valid. A valid section is one that has all the required keys: ( "id",
+	 * "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit")
+	 * REQUIRES: None
+	 * MODIFIES: None
+	 * EFFECTS: Returns true if the object is valid and false otherwise.
+	 **/
 	public isValidSection(section: any): boolean {
 		let isValid = true;
 		for(const requiredKey of REQUIRED_SECTION_KEYS) {
@@ -95,6 +122,13 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return isValid;
 	}
+	/**
+	 * Read a file that contains a stringified version of an object and parses it into an InsightDatasetSection
+	 * REQUIRES: the string to be a valid object that contains a "results" key
+	 * MODIFIES: this.section (maybe change this later)
+	 * EFFECTS: Returns a promise that rejects if an error is encountered, otherwise returns a resolved promise.
+	 * Valid sections found in the object under the results key are added to this.section.
+	 **/
 	public parseClasses(classes: any): Promise<void> {
 		try {
 			for(const AClass of classes) {
@@ -130,8 +164,15 @@ export default class InsightFacade implements IInsightFacade {
 			return Promise.reject(new InsightError("There was a problem parsing the json"));
 		}
 	}
-	public isIdExist(id: string) {
-		for(const dataset of this.insightDataList) { // id already exists
+	/**
+	 * Returns a boolean indicating whether the inputted id is one that corresponds to a dataset that's already
+	 * been added.
+	 * REQUIRES: None
+	 * MODIFIES: None
+	 * EFFECTS: Returns true if the id exists and false otherwise.
+	 **/
+	public isIdExist(id: string): boolean {
+		for(const dataset of this.insightDataList) {
 			if (dataset.metaData.id === id) {
 				return true;
 			}
@@ -176,7 +217,13 @@ export default class InsightFacade implements IInsightFacade {
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		return Promise.reject("Not implemented.");
 	}
-
+	/**
+	 * Reads from disk a json file of InsightData objects
+	 * REQUIRES: memory to have persisted data
+	 * MODIFIES: this
+	 * EFFECTS: returns a Promise that rejects with an error if an error is encountered, otherwise returns a resolved
+	 * promise.
+	 **/
 	public readLocal(): Promise<void> {
 		return fs.readJson(PATH_TO_ROOT_DATA)
 			.then((fileContent: any) => {
@@ -207,7 +254,7 @@ export default class InsightFacade implements IInsightFacade {
 				}
 				return Promise.resolve();
 			})
-			.catch((err: Error) => console.log(err));
+			.catch((err: Error) => Promise.reject(new Error("There was a problem reading local")));
 	}
 
 
