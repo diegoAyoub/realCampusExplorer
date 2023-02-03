@@ -32,12 +32,12 @@ export class InsightData {
 			this.data = null;
 		}
 	}
-	public addNumRows(numRows: number) {
-		this.metaData.numRows = numRows;
-	};
-	public addDataset(dataset: InsightDatasetSection[]) {
-		this.data = dataset;
-	}
+	// public addNumRows(numRows: number) {
+	// 	this.metaData.numRows = numRows;
+	// };
+	// public addDataset(dataset: InsightDatasetSection[]) {
+	// 	this.data = dataset;
+	// }
 }
 export class InsightDatasetSection {
 	// public datasetID: string;
