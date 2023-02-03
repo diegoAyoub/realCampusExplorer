@@ -12,9 +12,9 @@ import * as zip from "jszip";
 import JSZip from "jszip";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-const PATH_TO_ROOT_DATA = "../../../data/data.json"; // USE THIS WHEN RUNNING WITH MAIN
+// const PATH_TO_ROOT_DATA = "../../../data/data.json"; // USE THIS WHEN RUNNING WITH MAIN
 const DATA = "pair.zip";
-// const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
+const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
 const REQUIRED_SECTION_KEYS = ["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
 
 /**
