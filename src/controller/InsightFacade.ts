@@ -12,9 +12,9 @@ import * as zip from "jszip";
 import JSZip from "jszip";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-// const PATH_TO_ROOT_DATA = "../../../data/data.json"; // USE THIS WHEN RUNNING WITH MAIN
+const PATH_TO_ROOT_DATA = "../../../data/data.json"; // USE THIS WHEN RUNNING WITH MAIN
 const DATA = "pair.zip";
-const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
+// const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
 const REQUIRED_SECTION_KEYS = ["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
 
 /**
@@ -28,12 +28,6 @@ export default class InsightFacade implements IInsightFacade {
 	constructor() {
 		console.log("InsightFacadeImpl::init()");
 	}
-	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
-	// make it so that we can read from a file and parse it into InsightData[]
-	// ADDRESS THE GIT BOT IMPLICIT ANY: WHATEVER MSG
-	// MAKE IT WORK WITH LOCAL TESTS.
-	// RELATIVE PATH WITH DIST FOLDER
-	// ask about asyncronony in the proj seems like most of the stuff i'm doing is syncronous and test was failing cuz it took too long.
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		this.sections = [];
@@ -123,13 +117,13 @@ export default class InsightFacade implements IInsightFacade {
 		return isValid;
 	}
 	/**
-	 * Read a file that contains a stringified version of an object and parses it into an InsightDatasetSection
+	 * Reads a stringified version of an object (i.e. "{"avg": 50}") and parses it into an InsightDatasetSection
 	 * REQUIRES: the string to be a valid object that contains a "results" key
 	 * MODIFIES: this.section (maybe change this later)
 	 * EFFECTS: Returns a promise that rejects if an error is encountered, otherwise returns a resolved promise.
 	 * Valid sections found in the object under the results key are added to this.section.
 	 **/
-	public parseClasses(classes: any): Promise<void> {
+	public parseClasses(classes: any[]): Promise<void> {
 		try {
 			for(const AClass of classes) {
 				try {
@@ -259,15 +253,15 @@ export default class InsightFacade implements IInsightFacade {
 
 
 }
-//
-let facade = new InsightFacade();
-const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + DATA).toString("base64");
-facade.listDatasets()
-	.then((addedDatasets) =>{
-		console.log(addedDatasets);
-		return facade.readLocal();
-	})
-	.then(() => facade.listDatasets());
+
+// let facade = new InsightFacade();
+// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "valid_section.zip").toString("base64");
+// facade.listDatasets()
+// 	.then((addedDatasets) =>{
+// 		console.log(addedDatasets);
+// 		return facade.readLocal();
+// 	})
+// 	.then(() => facade.listDatasets())
 // 	.then((content) => console.log(content))
 // 	.catch((err) => console.log(err));
-//
+
