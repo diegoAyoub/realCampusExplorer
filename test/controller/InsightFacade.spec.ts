@@ -274,7 +274,7 @@ describe("InsightFacade", function () {
 
 		it("should pass with two datasets (dataset and class) because those two were added", function () {
 			return facade
-				.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
+				.addDataset("dataset", validSection, InsightDatasetKind.Sections)
 				.then(() => {
 					return facade.addDataset("class", validClass, InsightDatasetKind.Sections);
 				})
@@ -292,7 +292,7 @@ describe("InsightFacade", function () {
 						{
 							id: "dataset",
 							kind: InsightDatasetKind.Sections,
-							numRows: 64612,
+							numRows: 1,
 						},
 					]);
 				})
@@ -304,7 +304,7 @@ describe("InsightFacade", function () {
 		it("should pass with one datasets (dataset) after two were added and one was removed", function () {
 			return facade
 				.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
-				.then(() => facade.addDataset("class", validClass, InsightDatasetKind.Sections))
+				.then(() => facade.addDataset("class", validDataset, InsightDatasetKind.Sections))
 				.then((res: string[]) => {
 					expect(res).to.have.deep.members(["dataset", "class"]);
 					return facade.listDatasets();
