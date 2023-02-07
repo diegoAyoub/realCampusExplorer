@@ -3,6 +3,7 @@ import chaiAsPromised from "chai-as-promised";
 import InsightFacade from "../../../project_team125/src/controller/InsightFacade";
 import {clearDisk, getContentFromArchives} from "../resources/archives/TestUtil";
 import {
+	InsightDataset,
 	InsightDatasetKind,
 	InsightError,
 	InsightResult,
@@ -83,7 +84,7 @@ describe("InsightFacade", function () {
 						return facade.addDataset("cpsc", validDataset, InsightDatasetKind.Sections);
 					})
 					.then(() => expect.fail("Promise was resolved but should've failed"))
-					.catch((err) => expect(err).to.be.instanceOf(InsightError));
+					.catch((err: Error) => expect(err).to.be.instanceOf(InsightError));
 			});
 
 			it("should pass because the id is valid", function () {
@@ -102,7 +103,7 @@ describe("InsightFacade", function () {
 					.then(() => {
 						return facade.addDataset("class", validClass, InsightDatasetKind.Sections);
 					})
-					.then((res) => {
+					.then((res: string[]) => {
 						expect(res).to.have.members(["dataset", "class"]);
 					})
 					.catch(() => expect.fail());
@@ -188,7 +189,7 @@ describe("InsightFacade", function () {
 				.then(() => {
 					return facade.removeDataset("ubc");
 				})
-				.then((result) => {
+				.then((result: string) => {
 					expect(result).to.equal("ubc");
 				})
 				.catch(() => expect.fail("Promise should have resolved but was rejected instead"));
@@ -245,7 +246,7 @@ describe("InsightFacade", function () {
 				.then(() => {
 					return facade.listDatasets();
 				})
-				.then((datasets) => {
+				.then((datasets: InsightDataset[]) => {
 					expect(datasets).to.have.deep.members([
 						{
 							id: "ubc",
@@ -265,11 +266,11 @@ describe("InsightFacade", function () {
 				.then(() => {
 					return facade.removeDataset("dataset");
 				})
-				.then((res) => {
+				.then((res: string) => {
 					expect(res).to.equal("dataset");
 					return facade.listDatasets();
 				})
-				.then((datasets) => {
+				.then((datasets: InsightDataset[]) => {
 					expect(datasets).to.have.length(0);
 				})
 				.catch(() => {
@@ -283,11 +284,11 @@ describe("InsightFacade", function () {
 				.then(() => {
 					return facade.addDataset("class", validClass, InsightDatasetKind.Sections);
 				})
-				.then((res) => {
+				.then((res: string[]) => {
 					expect(res).to.have.deep.members(["dataset", "class"]);
 					return facade.listDatasets();
 				})
-				.then((res) => {
+				.then((res: InsightDataset[]) => {
 					expect(res).to.have.deep.members([
 						{
 							id: "class",
