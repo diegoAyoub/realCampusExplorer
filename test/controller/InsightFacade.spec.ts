@@ -1,6 +1,6 @@
 import chai, {expect} from "chai";
 import chaiAsPromised from "chai-as-promised";
-import InsightFacade from "../../../project_team125/src/controller/InsightFacade";
+import InsightFacade from "../../src/controller/InsightFacade";
 import {clearDisk, getContentFromArchives} from "../resources/archives/TestUtil";
 import {
 	InsightDataset,
@@ -9,7 +9,7 @@ import {
 	InsightResult,
 	NotFoundError,
 	ResultTooLargeError,
-} from "../../../project_team125/src/controller/IInsightFacade";
+} from "../../src/controller/IInsightFacade";
 import {folderTest} from "@ubccpsc310/folder-test";
 
 chai.use(chaiAsPromised);
