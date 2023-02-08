@@ -7,24 +7,25 @@ import {
 	InsightError,
 	InsightResult, NotFoundError
 } from "./IInsightFacade";
+// import queryEngine from "./queryEngine";
+import {QueryEngine} from "./QueryEngine";
 import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
-
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 // const PATH_TO_ROOT_DATA = "../../../data/data.json"; // USE THIS WHEN RUNNING WITH MAIN
 const DATA = "pair.zip";
 const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
 const REQUIRED_SECTION_KEYS = ["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
-
+const COMPARATORLOGIC = ["AND","OR", "LT","GT","EQ","IS","NOT"];
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
- *
  */
 export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	public sections: InsightDatasetSection[] = []; // move this to local and have parseClasses return it instead?
+	private queryEng: any;
 	constructor() {
 		console.log("InsightFacadeImpl::init()");
 	}
@@ -215,7 +216,45 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(addedDatasets);
 	}
 	public performQuery(query: unknown): Promise<InsightResult[]> {
-		return Promise.reject("Not implemented.");
+
+       	let inputQuery = query as any; //	try any also
+
+		this.queryEng = new QueryEngine(this.insightDataList,inputQuery);
+
+		if(this.queryEng.validateQuery()){
+			// query is valid lets get to work
+			this.handleWhere(inputQuery);
+		} else{
+			//	query is not valid
+			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
+		}
+
+		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
+	}
+
+    /*	handle where block from query*/
+	private handleWhere(whereBlock: any): Promise<string> {
+
+    	return Promise.resolve("YER");
+	}
+	public findDataset(id: string): Promise<InsightData> {
+
+		for(const dataset of this.insightDataList) {
+			if (dataset.metaData.id === id) {
+				let currentDataset: InsightData = dataset;
+				return Promise.resolve(currentDataset);
+			}
+		}
+		return Promise.reject(new InsightError("Matching ID not found"));
+	}
+	private filter(dataID: string, conditionCol: string, operator: string, dataset: InsightData): Promise<string> {
+		let sections = dataset["data"];
+
+    	return Promise.resolve("success");
+	}
+    /*	handle options block from query*/
+	private handleOptions(options: JSON): string{
+    	return "";
 	}
 	/**
 	 * Reads from disk a json file of InsightData objects
@@ -256,18 +295,5 @@ export default class InsightFacade implements IInsightFacade {
 			})
 			.catch((err: Error) => Promise.reject(new Error("There was a problem reading local")));
 	}
-
-
 }
-//
-let facade = new InsightFacade();
-const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + DATA).toString("base64");
-facade.listDatasets()
-	.then((addedDatasets) =>{
-		console.log(addedDatasets);
-		return facade.readLocal();
-	})
-	.then(() => facade.listDatasets());
-// 	.then((content) => console.log(content))
-// 	.catch((err) => console.log(err));
-//
+
