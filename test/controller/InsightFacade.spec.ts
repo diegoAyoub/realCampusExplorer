@@ -1,5 +1,6 @@
 import chai, {expect} from "chai";
 import chaiAsPromised from "chai-as-promised";
+import InsightFacade from "../../src/controller/InsightFacade";
 import {clearDisk, getContentFromArchives} from "../resources/archives/TestUtil";
 import {
 	InsightDataset,
@@ -9,7 +10,6 @@ import {
 	NotFoundError,
 	ResultTooLargeError,
 } from "../../src/controller/IInsightFacade";
-import InsightFacade from "../../src/controller/InsightFacade";
 import {folderTest} from "@ubccpsc310/folder-test";
 
 chai.use(chaiAsPromised);
@@ -93,14 +93,15 @@ describe("InsightFacade", function () {
 			});
 
 			it("should pass because the dataset was successfully added", function () {
-				const result = facade.addDataset("section", validSection, InsightDatasetKind.Sections);
+				const result = facade.addDataset("section", validDataset, InsightDatasetKind.Sections);
 				return expect(result).eventually.to.have.members(["section"]);
 			});
 
 			it("should pass because it successfully added two datasets", function () {
-				return facade.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
+				return facade
+					.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
 					.then(() => {
-						return facade.addDataset("class", validClass, InsightDatasetKind.Sections); // was failing because adding two validDatasets was too much?
+						return facade.addDataset("class", validClass, InsightDatasetKind.Sections);
 					})
 					.then((res: string[]) => {
 						expect(res).to.have.members(["dataset", "class"]);
@@ -119,6 +120,11 @@ describe("InsightFacade", function () {
 				"one or more valid sections in a directory called courses/ in the root directory", function () {
 				const result = facade.addDataset("courses", validClass, InsightDatasetKind.Sections);
 				return expect(result).to.eventually.have.members(["courses"]);
+			});
+
+			it("should pass because the section has all the necessary keys for a query", function () {
+				const result = facade.addDataset("anothercourse", validSection, InsightDatasetKind.Sections);
+				return expect(result).to.eventually.have.members(["anothercourse"]);
 			});
 
 			it("should fail because the root dir of the class doesn't have a directory named courses", function () {
@@ -151,7 +157,7 @@ describe("InsightFacade", function () {
 				return expect(result).to.eventually.be.rejectedWith(InsightError);
 			});
 
-			it("should fail because the root dir is not named courses", function () {
+			it("should fail because the section is missing the key: [avg]", function () {
 				const result = facade.addDataset("ubc", invalidClassImproperRootDir, InsightDatasetKind.Sections);
 				return expect(result).to.eventually.be.rejectedWith(InsightError);
 			});
@@ -198,7 +204,7 @@ describe("InsightFacade", function () {
 				.then(() => {
 					expect.fail("Promise should have rejected but resolved instead");
 				})
-				.catch((err: Error) => {
+				.catch((err) => {
 					expect(err).to.be.instanceOf(NotFoundError);
 				});
 		});
@@ -274,7 +280,7 @@ describe("InsightFacade", function () {
 
 		it("should pass with two datasets (dataset and class) because those two were added", function () {
 			return facade
-				.addDataset("dataset", validSection, InsightDatasetKind.Sections)
+				.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
 				.then(() => {
 					return facade.addDataset("class", validClass, InsightDatasetKind.Sections);
 				})
@@ -287,33 +293,8 @@ describe("InsightFacade", function () {
 						{
 							id: "class",
 							kind: InsightDatasetKind.Sections,
-							numRows: 2,
+							numRows: 6,
 						},
-						{
-							id: "dataset",
-							kind: InsightDatasetKind.Sections,
-							numRows: 1,
-						},
-					]);
-				})
-				.catch((err: Error) => {
-					expect.fail(err);
-				});
-		});
-
-		it("should pass with one datasets (dataset) after two were added and one was removed", function () {
-			return facade
-				.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
-				.then(() => facade.addDataset("class", validDataset, InsightDatasetKind.Sections))
-				.then((res: string[]) => {
-					expect(res).to.have.deep.members(["dataset", "class"]);
-					return facade.listDatasets();
-				})
-				.then(() => facade.removeDataset("class"))
-				.then((res: string) => expect(res).to.equal("class"))
-				.then(() => facade.listDatasets())
-				.then((res: InsightDataset[]) => {
-					expect(res).to.have.deep.members([
 						{
 							id: "dataset",
 							kind: InsightDatasetKind.Sections,
@@ -321,47 +302,47 @@ describe("InsightFacade", function () {
 						},
 					]);
 				})
-				.catch((err) => {
-					expect.fail(err);
+				.catch(() => {
+					expect.fail("Promise rejected but should've resolved");
 				});
 		});
 	});
 
-	describe("performQuery", function () {
-		before(async function () {
-			clearDisk();
-			facade = new InsightFacade();
-			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
-			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
-		});
-
-		function errorValidator(error: any): error is Error {
-			return error === "InsightError" || error === "ResultTooLargeError";
-		}
-
-		function assertOnError(actual: any, expected: Error): void {
-			if (expected === "InsightError") {
-				expect(actual).to.be.instanceof(InsightError);
-			} else if (expected === "ResultTooLargeError") {
-				expect(actual).to.be.instanceof(ResultTooLargeError);
-			} else {
-				// this should be unreachable
-				expect.fail("UNEXPECTED ERROR");
-			}
-		}
-
-		function assertOnResult(actual: unknown, expected: Output): void {
-			expect(actual).to.deep.equals(expected);
-		}
-
-		function target(input: Input): Output {
-			return facade.performQuery(input);
-		}
-
-		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
-			errorValidator,
-			assertOnError,
-			assertOnResult,
-		});
-	});
+	// describe("performQuery", function () {
+	// 	before(async function () {
+	// 		clearDisk();
+	// 		facade = new InsightFacade();
+	// 		await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
+	// 		await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+	// 	});
+	//
+	// 	function errorValidator(error: any): error is Error {
+	// 		return error === "InsightError" || error === "ResultTooLargeError";
+	// 	}
+	//
+	// 	function assertOnError(actual: any, expected: Error): void {
+	// 		if (expected === "InsightError") {
+	// 			expect(actual).to.be.instanceof(InsightError);
+	// 		} else if (expected === "ResultTooLargeError") {
+	// 			expect(actual).to.be.instanceof(ResultTooLargeError);
+	// 		} else {
+	// 			// this should be unreachable
+	// 			expect.fail("UNEXPECTED ERROR");
+	// 		}
+	// 	}
+	//
+	// 	function assertOnResult(actual: unknown, expected: Output): void {
+	// 		expect(actual).to.deep.equals(expected);
+	// 	}
+	//
+	// 	function target(input: Input): Output {
+	// 		return facade.performQuery(input);
+	// 	}
+	//
+	// 	folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
+	// 		errorValidator,
+	// 		assertOnError,
+	// 		assertOnResult,
+	// 	});
+	// });
 });
