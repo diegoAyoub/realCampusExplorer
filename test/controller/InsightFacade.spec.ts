@@ -98,7 +98,8 @@ describe("InsightFacade", function () {
 			});
 
 			it("should pass because it successfully added two datasets", function () {
-				return facade.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
+				return facade
+					.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
 					.then(() => {
 						return facade.addDataset("class", validClass, InsightDatasetKind.Sections); // was failing because adding two validDatasets was too much?
 					})
@@ -115,11 +116,14 @@ describe("InsightFacade", function () {
 				return expect(result).to.eventually.have.members(["course"]);
 			});
 
-			it("should pass because the class (from the content argument) is a JSON formatted file that contain " +
-				"one or more valid sections in a directory called courses/ in the root directory", function () {
-				const result = facade.addDataset("courses", validClass, InsightDatasetKind.Sections);
-				return expect(result).to.eventually.have.members(["courses"]);
-			});
+			it(
+				"should pass because the class (from the content argument) is a JSON formatted file that contain " +
+					"one or more valid sections in a directory called courses/ in the root directory",
+				function () {
+					const result = facade.addDataset("courses", validClass, InsightDatasetKind.Sections);
+					return expect(result).to.eventually.have.members(["courses"]);
+				}
+			);
 
 			it("should fail because the root dir of the class doesn't have a directory named courses", function () {
 				const result = facade.addDataset("ubc", invalidClassImproperRootDir, InsightDatasetKind.Sections);
@@ -158,11 +162,10 @@ describe("InsightFacade", function () {
 		});
 
 		describe("Kind argument tests", function () {
-			it("should reject because the kind(from the kind argument) is room which is not supported yet",
-				function () {
-					const result = facade.addDataset("ubc", validDataset, InsightDatasetKind.Rooms);
-					return expect(result).to.eventually.be.rejectedWith(InsightError);
-				});
+			it("should reject because the kind(from the kind argument) is room, it is not supported yet", function () {
+				const result = facade.addDataset("ubc", validDataset, InsightDatasetKind.Rooms);
+				return expect(result).to.eventually.be.rejectedWith(InsightError);
+			});
 
 			it("should pass because the kind(from the kind argument) is section which is supported", function () {
 				const result = facade.addDataset("ubc", validDataset, InsightDatasetKind.Sections);
