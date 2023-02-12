@@ -1,14 +1,7 @@
 import {
-	IInsightFacade,
-	InsightData,
-	InsightDataset,
-	InsightDatasetKind,
-	InsightDatasetSection,
-	InsightError,
-	InsightResult,
+	IInsightFacade, InsightData, InsightDataset, InsightDatasetKind, InsightDatasetSection, InsightError, InsightResult,
 	NotFoundError,
 } from "./IInsightFacade";
-// import queryEngine from "./queryEngine";
 import {QueryEngine} from "./QueryEngine";
 import * as fs from "fs-extra";
 import * as zip from "jszip";
@@ -61,7 +54,6 @@ export default class InsightFacade implements IInsightFacade {
 				}
 			})
 			.catch((err) => {
-				// console.log(err);
 				return Promise.reject(new InsightError(err));
 			});
 	}
@@ -91,7 +83,6 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return addedIDs;
 	}
-
 	/**
 	 * Checks that an ID is valid. An ID is invalid if it contains an underscore, if it's blank, or if it is composed
 	 * entirely of whitespace characters.
@@ -141,17 +132,8 @@ export default class InsightFacade implements IInsightFacade {
 							if (this.isValidSection(section)) {
 								this.sections.push(
 									new InsightDatasetSection(
-										// id,
-										section.id,
-										section.Course,
-										section.Title,
-										section.Professor,
-										section.Subject,
-										section.Year,
-										section.Avg,
-										section.Pass,
-										section.Fail,
-										section.Audit
+										section.id, section.Course, section.Title, section.Professor, section.Subject,
+										section.Year, section.Avg, section.Pass, section.Fail, section.Audit
 									)
 								);
 							}
@@ -226,10 +208,8 @@ export default class InsightFacade implements IInsightFacade {
 			//	query is not valid
 			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 		}
-
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
-
 	/*	handle where block from query*/
 	private handleWhere(whereBlock: any): Promise<string> {
 		return Promise.resolve("YER");
@@ -242,11 +222,6 @@ export default class InsightFacade implements IInsightFacade {
 			}
 		}
 		return Promise.reject(new InsightError("Matching ID not found"));
-	}
-	private filter(dataID: string, conditionCol: string, operator: string, dataset: InsightData): Promise<string> {
-		let sections = dataset["data"];
-
-		return Promise.resolve("success");
 	}
 	/*	handle options block from query*/
 	private handleOptions(options: JSON): string {
@@ -270,24 +245,16 @@ export default class InsightFacade implements IInsightFacade {
 						// console.log(content.data);
 						insightDataSections.push(
 							new InsightDatasetSection(
-								persistedSection.id,
-								persistedSection.course,
-								persistedSection.title,
-								persistedSection.professor,
-								persistedSection.subject,
-								persistedSection.year,
-								persistedSection.avg,
-								persistedSection.pass,
-								persistedSection.fail,
+								persistedSection.id, persistedSection.course, persistedSection.title,
+								persistedSection.professor, persistedSection.subject, persistedSection.year,
+								persistedSection.avg, persistedSection.pass, persistedSection.fail,
 								persistedSection.audit
 							)
 						);
 					}
 					this.insightDataList.push(
 						new InsightData(
-							insightData.metaData.id,
-							insightData.metaData.kind,
-							insightData.metaData.numRows,
+							insightData.metaData.id, insightData.metaData.kind, insightData.metaData.numRows,
 							insightDataSections
 						)
 					);
