@@ -77,7 +77,7 @@ export class InsightDatasetSection {
 
 	}
 
-	public prefixJSON(datasetID: string): any {
+	public prefixJSON(datasetID: string): InsightResult {
 		let keyUUID = datasetID + "_" + "uuid";
 		let keyCourse = datasetID + "_" + "id";
 		let keyTitle = datasetID + "_" + "title";

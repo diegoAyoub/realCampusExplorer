@@ -1,10 +1,10 @@
 {
-	"title": "Complex Query: fail due to improper Logic (AND)",
+	"title": "complex query should fail 3 conditions in and has 2 keys",
 	"input": {
 		"WHERE": {
 			"OR": [
 				{
-					"ANDD": [
+					"AND": [
 						{
 							"GT": {
 								"sections_avg": 90
@@ -14,6 +14,18 @@
 							"IS": {
 								"sections_dept": "adhe"
 							}
+						},
+						{
+							"AND": [
+								{
+									"LT": {
+										"sections_fail": 40
+									},
+									"GT": {
+										"sections_audit": 2
+									}
+								}
+							]
 						}
 					]
 				},
@@ -30,7 +42,7 @@
 				"sections_id",
 				"sections_avg"
 			],
-			"ORDER": "ubc_avg"
+			"ORDER": "sections_avg"
 		}
 	},
 	"errorExpected": true,
