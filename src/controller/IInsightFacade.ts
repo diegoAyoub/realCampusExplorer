@@ -21,16 +21,12 @@ export enum InsightDatasetKind {
 export class InsightData {
 	public metaData: InsightDataset;
 	public data: InsightDatasetSection[]; // @todo: maybe make it any[] so that can use prefixjson or nah?
-	constructor(id: string, kind: InsightDatasetKind, numRows: number, data?: any[]) {
+	constructor(id: string, kind: InsightDatasetKind, numRows: number, data: InsightDatasetSection[]) {
 		this.metaData = {} as InsightDataset;
 		this.metaData.id = id;
 		this.metaData.kind = kind;
 		this.metaData.numRows = numRows;
-		if (typeof data !== "undefined") {
-			this.data = data;
-		} else {
-			this.data = [];
-		}
+		this.data = data;
 	}
 	// public addNumRows(numRows: number) {
 	// 	this.metaData.numRows = numRows;
@@ -102,7 +98,6 @@ export class InsightDatasetSection {
     		[keyAudit]: this.audit,
     	};
 	}
-
 }
 
 export interface InsightDataset {

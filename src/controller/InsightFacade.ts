@@ -1,17 +1,27 @@
-import {IInsightFacade, InsightData, InsightDataset, InsightDatasetKind, InsightDatasetSection, InsightError,
+import {
+	IInsightFacade,
+	InsightData,
+	InsightDataset,
+	InsightDatasetKind,
+	InsightDatasetSection,
+	InsightError,
 	InsightResult,
-	NotFoundError,
+	NotFoundError
 } from "./IInsightFacade";
 import {QueryEngine} from "./QueryEngine";
 import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
+import {parseClasses} from "./Parser";
+
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-// const PATH_TO_ROOT_DATA = "../../../data/data.json"; // USE THIS WHEN RUNNING WITH MAIN
 const DATA = "pair.zip";
+// const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
 const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
-const REQUIRED_SECTION_KEYS = ["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
+export const REQUIRED_SECTION_KEYS =
+	["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
 const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
+
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -22,29 +32,34 @@ export default class InsightFacade implements IInsightFacade {
 	private queryEng: any;
 	constructor() {
 		console.log("InsightFacadeImpl::init()");
+		// readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
-
+	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
+	// make it so that we can read from a file and parse it into InsightData[]
+	// ADDRESS THE GIT BOT IMPLICIT ANY: WHATEVER MSG
+	// MAKE IT WORK WITH LOCAL TESTS.
+	// RELATIVE PATH WITH DIST FOLDER
+	// ask about asyncronony in the proj seems like most of the stuff i'm doing is syncronous and test was failing cuz it took too long.
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		this.sections = [];
 		return this.isValidInsightKind(kind) //
 			.then(() => this.isValidId(id))
-			.then(() => (this.isIdExist(id) ? Promise.reject("The ID already exists") : Promise.resolve()))
-			.then(() => zip.loadAsync(content, {base64: true}))
+			.then(() => this.isIdExist(id) ? Promise.reject("The ID already exists") : Promise.resolve())
+			.then(() =>  zip.loadAsync(content, {base64: true}))
 			.then((base64Data: JSZip) => {
 				base64Data.folder("courses")?.forEach((relativePath, file) => {
 					asyncJobs.push(file.async("string"));
 				});
 			})
-			.then(() => Promise.all(asyncJobs).then((classes) => this.parseClasses(classes)))
+			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, this.sections)))
 			.then(() => {
 				try {
 					if (this.sections.length !== 0) {
 						this.insightDataList.push(new InsightData(id, kind, this.sections.length, this.sections));
-						return fs
-							.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
-							.then(() => Promise.resolve(this.getAddedIds()))
-							.catch(() => Promise.reject(new InsightError("There was an error writing to disk")));
+						return fs.outputJson(PATH_TO_ROOT_DATA,  this.insightDataList)
+							.then(() =>  Promise.resolve(this.getAddedIds()))
+							.catch(() =>  Promise.reject(new InsightError("There was an error writing to disk")));
 					}
 					return Promise.reject(new InsightError("No sections were found in the inputted file"));
 				} catch (Exception) {
@@ -97,64 +112,6 @@ export default class InsightFacade implements IInsightFacade {
 			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
 		return Promise.resolve("");
-	}
-	/**
-	 * Verifies that a section object is valid. A valid section is one that has all the required keys: ( "id",
-	 * "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit")
-	 * REQUIRES: None
-	 * MODIFIES: None
-	 * EFFECTS: Returns true if the object is valid and false otherwise.
-	 **/
-	public isValidSection(section: any): boolean {
-		let isValid = true;
-		for (const requiredKey of REQUIRED_SECTION_KEYS) {
-			isValid = isValid && Object.prototype.hasOwnProperty.call(section, requiredKey);
-		}
-		return isValid;
-	}
-	/**
-	 * Read a file that contains a stringified version of an object and parses it into an InsightDatasetSection
-	 * REQUIRES: the string to be a valid object that contains a "results" key
-	 * MODIFIES: this.section (maybe change this later)
-	 * EFFECTS: Returns a promise that rejects if an error is encountered, otherwise returns a resolved promise.
-	 * Valid sections found in the object under the results key are added to this.section.
-	 **/
-	public parseClasses(classes: any): Promise<void> {
-		try {
-			for (const AClass of classes) {
-				try {
-					let classObject = JSON.parse(AClass);
-					if (classObject.result.length !== 0) {
-						// for the ones with results key that maps to empty
-						// Promise.reject(new InsightError("There are no valid sections"));
-						for (const section of classObject.result) {
-							if (this.isValidSection(section)) {
-								this.sections.push(
-									new InsightDatasetSection(
-										section.id,
-										section.Course,
-										section.Title,
-										section.Professor,
-										section.Subject,
-										section.Year,
-										section.Avg,
-										section.Pass,
-										section.Fail,
-										section.Audit
-									)
-								);
-							}
-						}
-					}
-				} catch (Error) {
-					// sometimes classes arg has an element that is filled with null characters mostly found in
-					// cases where validClass or validSection i.e. custom file I made with one section or one class
-				}
-			}
-			return Promise.resolve();
-		} catch (Exception) {
-			return Promise.reject(new InsightError("There was a problem parsing the json"));
-		}
 	}
 	/**
 	 * Returns a boolean indicating whether the inputted id is one that corresponds to a dataset that's already
@@ -212,8 +169,12 @@ export default class InsightFacade implements IInsightFacade {
 		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.validateQuery()) {
-			return this.queryEng.doQuery(query);
+			console.log("yep its valid");
+			let queryResult = this.queryEng.doQuery(query);
+			console.log("queryresults = " + queryResult.length);
+			return queryResult;
 		} else {
+			console.log("yep its nah its invalid");
 			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 		}
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
@@ -228,51 +189,55 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.reject(new InsightError("Matching ID not found"));
 	}
-	/**
-	 * Reads from disk a json file of InsightData objects
-	 * REQUIRES: memory to have persisted data
-	 * MODIFIES: this
-	 * EFFECTS: returns a Promise that rejects with an error if an error is encountered, otherwise returns a resolved
-	 * promise.
-	 **/
-	public readLocal(): Promise<void> {
-		return fs.readJson(PATH_TO_ROOT_DATA)
-			.then((fileContent: any) => {
-				let insightDataSections: InsightDatasetSection[];
-				for (const insightData of fileContent) {
-					insightDataSections = [];
-					for (const persistedSection of insightData.data) {
-						// console.log(content.data);
-						insightDataSections.push(
-							new InsightDatasetSection(
-								persistedSection.id,
-								persistedSection.course,
-								persistedSection.title,
-								persistedSection.professor,
-								persistedSection.subject,
-								persistedSection.year,
-								persistedSection.avg,
-								persistedSection.pass,
-								persistedSection.fail,
-								persistedSection.audit
-							)
-						);
-					}
-					this.insightDataList.push(
-						new InsightData(
-							insightData.metaData.id,
-							insightData.metaData.kind,
-							insightData.metaData.numRows,
-							insightDataSections
-						)
-					);
-				}
-				return Promise.resolve();
-			})
-			.catch((err: Error) => {
-				console.log(err);
-				return Promise.reject(new Error("There was a problem reading local"));
-			});
-	}
 }
+
+// let facade = new InsightFacade();
+// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
+//
+// facade.addDataset("sections", validDataset, InsightDatasetKind.Sections)
+// 	.then(() => facade.listDatasets())
+// 	.then((addedDatasets) =>{
+// 		// console.log(facade.insightDataList);
+// 		console.log("hey");
+// 		console.log(addedDatasets);
+// 		// return facade.readLocal();
+// 		return Promise.resolve();
+// 	})
+// 	.then(() => {
+// 		return facade.performQuery({
+// 			WHERE: {
+// 				OR: [
+// 					{
+// 						AND: [
+// 							{
+// 								GT: {
+// 									sections_pass: 500
+// 								}
+// 							},
+// 							{
+// 								IS: {
+// 									sections_instructor: ""
+// 								}
+// 							}
+// 						]
+// 					},
+// 					{
+// 						EQ: {
+// 							sections_avg: 95
+// 						}
+// 					}
+// 				]
+// 			},
+// 			OPTIONS: {
+// 				COLUMNS: [
+// 					"sections_pass",
+// 					"sections_id",
+// 					"sections_uuid"
+// 				],
+// 				ORDER: "sections_uuid"
+// 			}
+// 		});
+// 	})
+// 	.then((results) => console.log(results))
+// 	.catch((err) => console.log(err));
 

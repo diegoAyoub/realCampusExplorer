@@ -30,12 +30,16 @@ export class QueryEngineHelper {
 		// this.init();
 	}
 	//	filters columns and orders them if required. Returns an insightResult Array.
-	private init(): InsightResult[] {
+	public getFormattedResult(): InsightResult[] {
 
 		let result: InsightResult[] = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));
+		// console.log("HAS LENGTH = " + result.length);
+		console.log(typeof this.filteredSections[0]["uuid"]);
+		console.log(this.filteredSections[0]["uuid"]);
 		if(this.orderBy !== ""){
-			let x = result[0]["sections_avg"];
+			// let x = result[0]["sections_avg"];
 			result.sort((a, b) => {
+
 				if(a[this.orderBy] > b[this.orderBy]) {
 					return 1;
 				}
@@ -45,12 +49,14 @@ export class QueryEngineHelper {
 				return 0;
 			});
 		}
-		// for(const section of this.filteredSections){
-		// 	//	add only wanted columns to insightResult array
-		// 	for(const col of this.wantedColumns){
-		// 		//	section.
-		// 	}
-		// }
+		for(let section of result){
+			for(let key in section) {
+				if(!this.wantedColumns.includes(key)) {
+					delete section[key];
+				}
+			}
+		}
+		console.log("HAS LENGTH = " + result.length);
 		return result;
 	}
 
@@ -82,7 +88,7 @@ export class QueryEngineHelper {
 		let keyAudit = datasetID + "_" + "audit";
 
 		return {
-			[keyUUID]: section.uuid,
+			[keyUUID]: String(section.uuid),
 			[keyCourse]: section.id,
 			[keyTitle]: section.title,
 			[keyProfessor]: section.instructor,
