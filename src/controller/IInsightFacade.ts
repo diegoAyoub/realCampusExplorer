@@ -77,31 +77,32 @@ export class InsightDatasetSection {
 		this.audit = audit;
 	}
 
-	public prefixJSON(datasetID: string): any {
-		let keyUUID = datasetID + "_" + "uuid";
-		let keyCourse = datasetID + "_" + "id";
-		let keyTitle = datasetID + "_" + "title";
-		let keyProfessor = datasetID + "_" + "instructor";
-		let keySubject = datasetID + "_" + "dept";
-		let keyYear = datasetID + "_" + "year";
-		let keyAvg = datasetID + "_" + "avg";
-		let keyPass = datasetID + "_" + "pass";
-		let keyFail = datasetID + "_" + "fail";
-		let keyAudit = datasetID + "_" + "audit";
+	public prefixJSON(datasetID: string): InsightResult {
+    	let keyUUID = datasetID + "_" + "uuid";
+    	let keyCourse = datasetID + "_" + "id";
+    	let keyTitle = datasetID + "_" + "title";
+    	let keyProfessor = datasetID + "_" + "instructor";
+    	let keySubject = datasetID + "_" + "dept";
+    	let keyYear = datasetID + "_" + "year";
+    	let keyAvg = datasetID + "_" + "avg";
+    	let keyPass = datasetID + "_" + "pass";
+    	let keyFail = datasetID + "_" + "fail";
+    	let keyAudit = datasetID + "_" + "audit";
 
-		return {
-			[keyUUID]: this.uuid,
-			[keyCourse]: this.id,
-			[keyTitle]: this.title,
-			[keyProfessor]: this.instructor,
-			[keySubject]: this.dept,
-			[keyYear]: this.year,
-			[keyAvg]: this.avg,
-			[keyPass]: this.pass,
-			[keyFail]: this.fail,
-			[keyAudit]: this.audit,
-		};
+    	return {
+    		[keyUUID]: this.uuid,
+    		[keyCourse]: this.id,
+    		[keyTitle]: this.title,
+    		[keyProfessor]: this.instructor,
+    		[keySubject]: this.dept,
+    		[keyYear]: this.year,
+    		[keyAvg]: this.avg,
+    		[keyPass]: this.pass,
+    		[keyFail]: this.fail,
+    		[keyAudit]: this.audit,
+    	};
 	}
+
 }
 
 export interface InsightDataset {

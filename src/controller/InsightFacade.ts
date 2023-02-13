@@ -216,6 +216,7 @@ export default class InsightFacade implements IInsightFacade {
 	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
 		let result: InsightDatasetSection[] = [];
+		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.validateQuery()) {
 			result = this.queryEng.handleFilter(query);

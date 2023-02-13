@@ -9,11 +9,11 @@ import {
 	InsightResult,
 	NotFoundError,
 } from "./IInsightFacade";
-
 import * as InFa from "./InsightFacade";
 import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
+import {QueryEngineHelper} from "./QueryEngineHelper";
 
 const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
@@ -26,17 +26,13 @@ let IS = "IS";
 let LT = "LT";
 let EQ = "EQ";
 let GT = "GT";
-//	QUERY STUFF
-let WHERE = "WHERE";
-let OPTIONS = "OPTIONS";
-let ORDER = "ORDER";
-let COLUMNS = "COLUMNS";
 
 export class QueryEngine {
 	public dataset: InsightData[];
 	public queryJson: any;
 	public qryID: string = "";
 	public datasetSections: InsightDatasetSection[] = [];
+	public helper: any;
 
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
@@ -57,7 +53,6 @@ export class QueryEngine {
 			let keyArr = keys[0].split("_");
 			let col = keyArr[1];
 			let value = inBlock[keys[0]];
-
 			return this.handleMComparator(LT, col, value, query[LT]);
 		} else if (Object.prototype.hasOwnProperty.call(query, GT)) {
 			let inBlock = query[GT];
@@ -203,8 +198,7 @@ export class QueryEngine {
 				results.push(section); // @todo can i replace with ... section??
 			}
 		}
-		// remove duplicates by making it a set?
-		let uniqueSections = new Set(results);
+		let uniqueSections = new Set(results); // remove duplicates by making it a set?
 		results = [...uniqueSections];
 		return results;
 	}
@@ -219,12 +213,11 @@ export class QueryEngine {
 		for (const section of subResult) {
 			index = results.indexOf(section);
 			if (index !== -1) {
-				results.splice(index, 1);
+				results.splice(index, 1); //	add a check for length
 			} else {
 				console.log("INTERNAL ERROR: handleNot");
 			}
 		}
-
 		return results;
 	}
 	public handleMComparator(comparator: string, col: string, value: string, query: any): InsightDatasetSection[] {
@@ -237,7 +230,6 @@ export class QueryEngine {
 						filteredList.push(currClass);
 					}
 				}
-				break;
 			}
 			case "LT": {
 				for (const currClass of sections) {
@@ -245,7 +237,6 @@ export class QueryEngine {
 						filteredList.push(currClass);
 					}
 				}
-				break;
 			}
 			case "EQ": {
 				for (const currClass of sections) {
@@ -253,7 +244,6 @@ export class QueryEngine {
 						filteredList.push(currClass);
 					}
 				}
-				break;
 			}
 		}
 		return filteredList;
