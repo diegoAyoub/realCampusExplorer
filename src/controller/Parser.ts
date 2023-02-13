@@ -1,5 +1,7 @@
 import {InsightDatasetSection, InsightError} from "./IInsightFacade";
 import {REQUIRED_SECTION_KEYS} from "./InsightFacade";
+const REQUIRED_DATASET_SECTION_KEYS =
+	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 
 /**
  * Reads a stringified version of an object (i.e. "{"avg": 50}") and converts it to an InsightDatasetSection
@@ -53,8 +55,15 @@ export function parseClasses(classes: any, sections: InsightDatasetSection[]): P
 export function isValidSection(section: any): boolean {
 	let isValid = true;
 	for(const requiredKey of REQUIRED_SECTION_KEYS) {
-		isValid = isValid &&
-			Object.prototype.hasOwnProperty.call(section,requiredKey);
+		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey);
+	}
+	return isValid;
+}
+
+export function isValidDatasetSection(section: any): boolean {
+	let isValid = true;
+	for(const requiredKey of REQUIRED_DATASET_SECTION_KEYS) {
+		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey.toLowerCase());
 	}
 	return isValid;
 }

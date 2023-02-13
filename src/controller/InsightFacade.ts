@@ -8,31 +8,38 @@ import {
 	InsightResult,
 	NotFoundError
 } from "./IInsightFacade";
+import {QueryEngine} from "./QueryEngine";
 import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
-import {readLocal} from "./DiskUtil";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
-const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
-// const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
+// const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
+const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
 export const REQUIRED_SECTION_KEYS =
 	["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
+const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
 
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
- *
  */
 export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
-	public sections: InsightDatasetSection[] = []; // `move this to local and have parseClasses return it instead?
+	public sections: InsightDatasetSection[] = []; // move this to local and have parseClasses return it instead?
+	private queryEng: any;
 	constructor() {
 		console.log("InsightFacadeImpl::init()");
-		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		// readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
+	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
+	// make it so that we can read from a file and parse it into InsightData[]
+	// ADDRESS THE GIT BOT IMPLICIT ANY: WHATEVER MSG
+	// MAKE IT WORK WITH LOCAL TESTS.
+	// RELATIVE PATH WITH DIST FOLDER
+	// ask about asyncronony in the proj seems like most of the stuff i'm doing is syncronous and test was failing cuz it took too long.
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		this.sections = [];
@@ -48,20 +55,19 @@ export default class InsightFacade implements IInsightFacade {
 			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, this.sections)))
 			.then(() => {
 				try {
-					if(this.sections.length !== 0) {
+					if (this.sections.length !== 0) {
 						this.insightDataList.push(new InsightData(id, kind, this.sections.length, this.sections));
 						return fs.outputJson(PATH_TO_ROOT_DATA,  this.insightDataList)
 							.then(() =>  Promise.resolve(this.getAddedIds()))
 							.catch(() =>  Promise.reject(new InsightError("There was an error writing to disk")));
 					}
 					return Promise.reject(new InsightError("No sections were found in the inputted file"));
-				} catch(Exception) {
+				} catch (Exception) {
 					// console.log(Exception);
 					return Promise.reject("An error occurred while writing to to disk");
 				}
 			})
 			.catch((err) => {
-				// console.log(err);
 				return Promise.reject(new InsightError(err));
 			});
 	}
@@ -73,7 +79,7 @@ export default class InsightFacade implements IInsightFacade {
 	 * a Promise that rejects with an InsightError
 	 **/
 	public isValidInsightKind(kind: InsightDatasetKind): Promise<void> {
-		if(kind === InsightDatasetKind.Sections) {
+		if (kind === InsightDatasetKind.Sections) {
 			return Promise.resolve();
 		}
 		return Promise.reject(new InsightError("There is currently no support for that kind of dataset."));
@@ -86,12 +92,11 @@ export default class InsightFacade implements IInsightFacade {
 	 **/
 	public getAddedIds(): string[] {
 		let addedIDs = [];
-		for(const dataset of this.insightDataList) {
+		for (const dataset of this.insightDataList) {
 			addedIDs.push(dataset.metaData.id);
 		}
 		return addedIDs;
 	}
-
 	/**
 	 * Checks that an ID is valid. An ID is invalid if it contains an underscore, if it's blank, or if it is composed
 	 * entirely of whitespace characters.
@@ -99,10 +104,12 @@ export default class InsightFacade implements IInsightFacade {
 	 * EFFECTS: Returns an array of the IDs that are currently added to this
 	 **/
 	public isValidId(id: string): Promise<string> {
-		if (id.trim().length === 0) { // blank id or id is all whitespace
+		if (id.trim().length === 0) {
+			// blank id or id is all whitespace
 			return Promise.reject(new InsightError("The ID must contain non white space characters"));
-		} else if(id.includes("_")) { // id has an underscore
-			return Promise.reject(new InsightError("The ID can't contain any underscores \"_\""));
+		} else if (id.includes("_")) {
+			// id has an underscore
+			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
 		return Promise.resolve("");
 	}
@@ -114,7 +121,7 @@ export default class InsightFacade implements IInsightFacade {
 	 * EFFECTS: Returns true if the id exists and false otherwise.
 	 **/
 	public isIdExist(id: string): boolean {
-		for(const dataset of this.insightDataList) {
+		for (const dataset of this.insightDataList) {
 			if (dataset.metaData.id === id) {
 				return true;
 			}
@@ -124,19 +131,20 @@ export default class InsightFacade implements IInsightFacade {
 
 	public removeDataset(id: string): Promise<string> {
 		return this.isValidId(id)
-			.then(() =>  {
-				if(this.isIdExist(id)) {
+			.then(() => {
+				if (this.isIdExist(id)) {
 					return Promise.resolve(id);
 				}
 				return Promise.reject(new NotFoundError("Can't remove the ID because it's not added"));
 			})
 			.then(() => {
-				for(const index in this.insightDataList) {
-					if(this.insightDataList[index].metaData.id === id) {
+				for (const index in this.insightDataList) {
+					if (this.insightDataList[index].metaData.id === id) {
 						this.insightDataList.splice(Number(index), 1);
-						return fs.outputJson(PATH_TO_ROOT_DATA,  this.insightDataList)
-							.then(() =>  Promise.resolve(id))
-							.catch(() =>  {
+						return fs
+							.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
+							.then(() => Promise.resolve(id))
+							.catch(() => {
 								return Promise.reject(new InsightError("Error updating disk to reflect removal"));
 							});
 					}
@@ -148,34 +156,88 @@ export default class InsightFacade implements IInsightFacade {
 			});
 	}
 
-
 	public listDatasets(): Promise<InsightDataset[]> {
 		let addedDatasets: InsightDataset[] = [];
-		for(const insightData of this.insightDataList) {
+		for (const insightData of this.insightDataList) {
 			addedDatasets.push(insightData.metaData);
 		}
 		return Promise.resolve(addedDatasets);
 	}
-	public performQuery(query: unknown): Promise<InsightResult[]> {
-		return Promise.reject("Not implemented.");
+	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
+		let query = inputQuery as any; //	try any also
+		let result: InsightDatasetSection[] = [];
+		//	let testin: InsightResult[] = [new InsightResult()]
+		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
+		if (this.queryEng.validateQuery()) {
+			console.log("yep its valid");
+			let queryResult = this.queryEng.doQuery(query);
+			console.log("queryresults = " + queryResult.length);
+			return queryResult;
+		} else {
+			console.log("yep its nah its invalid");
+			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
+		}
+		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
+	}
+
+	public findDataset(id: string): Promise<InsightData> {
+		for (const dataset of this.insightDataList) {
+			if (dataset.metaData.id === id) {
+				let currentDataset: InsightData = dataset;
+				return Promise.resolve(currentDataset);
+			}
+		}
+		return Promise.reject(new InsightError("Matching ID not found"));
 	}
 }
 
-let facade = new InsightFacade();
+// let facade = new InsightFacade();
 // const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
-const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
-const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "valid_section.zip").toString("base64");
-facade.listDatasets()
-	.then((addedDatasets) =>{
-		// console.log(facade.insightDataList);
-		console.log("hey");
-		console.log(addedDatasets);
-		// return facade.readLocal();
-		return Promise.resolve();
-	})
-	// .then(() => facade.listDatasets())
-	// .then((content) => console.log(content))
-	// .then(() => facade.addDataset("dataset1", validSection, InsightDatasetKind.Sections))
-	// .then(() => facade.addDataset("dataset2", validClass, InsightDatasetKind.Sections))
-	.catch((err) => console.log(err));
+//
+// facade.addDataset("sections", validDataset, InsightDatasetKind.Sections)
+// 	.then(() => facade.listDatasets())
+// 	.then((addedDatasets) =>{
+// 		// console.log(facade.insightDataList);
+// 		console.log("hey");
+// 		console.log(addedDatasets);
+// 		// return facade.readLocal();
+// 		return Promise.resolve();
+// 	})
+// 	.then(() => {
+// 		return facade.performQuery({
+// 			WHERE: {
+// 				OR: [
+// 					{
+// 						AND: [
+// 							{
+// 								GT: {
+// 									sections_pass: 500
+// 								}
+// 							},
+// 							{
+// 								IS: {
+// 									sections_instructor: ""
+// 								}
+// 							}
+// 						]
+// 					},
+// 					{
+// 						EQ: {
+// 							sections_avg: 95
+// 						}
+// 					}
+// 				]
+// 			},
+// 			OPTIONS: {
+// 				COLUMNS: [
+// 					"sections_pass",
+// 					"sections_id",
+// 					"sections_uuid"
+// 				],
+// 				ORDER: "sections_uuid"
+// 			}
+// 		});
+// 	})
+// 	.then((results) => console.log(results))
+// 	.catch((err) => console.log(err));
 

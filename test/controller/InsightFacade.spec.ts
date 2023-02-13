@@ -34,7 +34,7 @@ describe("InsightFacade", function () {
 	let validDataset: string;
 	let invalidDatasetNotZip: string;
 	let invalidDatasetNoValidSection: string;
-
+	console.log("insight faced tests");
 	before(function () {
 		validSection = getContentFromArchives("valid_section.zip");
 		invalidSectionMissingQueryKeyAvg = getContentFromArchives("invalid_section_missing_query_key_avg.zip");
@@ -44,7 +44,7 @@ describe("InsightFacade", function () {
 		invalidClassNoValidSections = getContentFromArchives("invalid_class_no_valid_sections.zip");
 		invalidClassNotJsonFile = getContentFromArchives("invalid_class_not_json_file.zip");
 		invalidClassResultKeyError = getContentFromArchives("invalid_class_result_key_error.zip");
-
+		console.log("we made it here");
 		validDataset = getContentFromArchives("pair.zip");
 		invalidDatasetNotZip = getContentFromArchives("invalid_dataset_not_zip.txt");
 		invalidDatasetNoValidSection = getContentFromArchives("invalid_dataset_no_valid_section.zip");
@@ -116,11 +116,14 @@ describe("InsightFacade", function () {
 				return expect(result).to.eventually.have.members(["course"]);
 			});
 
-			it("should pass because the class (from the content argument) is a JSON formatted file that contain " +
-				"one or more valid sections in a directory called courses/ in the root directory", function () {
-				const result = facade.addDataset("courses", validClass, InsightDatasetKind.Sections);
-				return expect(result).to.eventually.have.members(["courses"]);
-			});
+			it(
+				"should pass because the class (from the content argument) is a JSON formatted file that contain " +
+					"one or more valid sections in a directory called courses/ in the root directory",
+				function () {
+					const result = facade.addDataset("courses", validClass, InsightDatasetKind.Sections);
+					return expect(result).to.eventually.have.members(["courses"]);
+				}
+			);
 
 			it("should pass because the section has all the necessary keys for a query", function () {
 				const result = facade.addDataset("anothercourse", validSection, InsightDatasetKind.Sections);
@@ -164,11 +167,10 @@ describe("InsightFacade", function () {
 		});
 
 		describe("Kind argument tests", function () {
-			it("should reject because the kind(from the kind argument) is room which is not supported yet",
-				function () {
-					const result = facade.addDataset("ubc", validDataset, InsightDatasetKind.Rooms);
-					return expect(result).to.eventually.be.rejectedWith(InsightError);
-				});
+			it("should reject because the kind(from the kind argument) is room, it is not supported yet", function () {
+				const result = facade.addDataset("ubc", validDataset, InsightDatasetKind.Rooms);
+				return expect(result).to.eventually.be.rejectedWith(InsightError);
+			});
 
 			it("should pass because the kind(from the kind argument) is section which is supported", function () {
 				const result = facade.addDataset("ubc", validDataset, InsightDatasetKind.Sections);
@@ -308,41 +310,41 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	// describe("performQuery", function () {
-	// 	before(async function () {
-	// 		clearDisk();
-	// 		facade = new InsightFacade();
-	// 		await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
-	// 		await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
-	// 	});
-	//
-	// 	function errorValidator(error: any): error is Error {
-	// 		return error === "InsightError" || error === "ResultTooLargeError";
-	// 	}
-	//
-	// 	function assertOnError(actual: any, expected: Error): void {
-	// 		if (expected === "InsightError") {
-	// 			expect(actual).to.be.instanceof(InsightError);
-	// 		} else if (expected === "ResultTooLargeError") {
-	// 			expect(actual).to.be.instanceof(ResultTooLargeError);
-	// 		} else {
-	// 			// this should be unreachable
-	// 			expect.fail("UNEXPECTED ERROR");
-	// 		}
-	// 	}
-	//
-	// 	function assertOnResult(actual: unknown, expected: Output): void {
-	// 		expect(actual).to.deep.equals(expected);
-	// 	}
-	//
-	// 	function target(input: Input): Output {
-	// 		return facade.performQuery(input);
-	// 	}
-	//
-	// 	folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
-	// 		errorValidator,
-	// 		assertOnError,
-	// 		assertOnResult,
-	// 	});
-	// });
+	describe("performQuery", function () {
+		before(async function () {
+			clearDisk();
+			facade = new InsightFacade();
+			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
+			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+		});
+
+		function errorValidator(error: any): error is Error {
+			return error === "InsightError" || error === "ResultTooLargeError";
+		}
+
+		function assertOnError(actual: any, expected: Error): void {
+			if (expected === "InsightError") {
+				expect(actual).to.be.instanceof(InsightError);
+			} else if (expected === "ResultTooLargeError") {
+				expect(actual).to.be.instanceof(ResultTooLargeError);
+			} else {
+				// this should be unreachable
+				expect.fail("UNEXPECTED ERROR");
+			}
+		}
+
+		function assertOnResult(actual: unknown, expected: Output): void {
+			expect(actual).to.deep.equals(expected);
+		}
+
+		function target(input: Input): Output {
+			return facade.performQuery(input);
+		}
+
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
+			errorValidator,
+			assertOnError,
+			assertOnResult,
+		});
+	});
 });

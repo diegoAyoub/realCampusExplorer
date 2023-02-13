@@ -8,7 +8,7 @@
  **/
 import * as fs from "fs-extra";
 import {InsightData, InsightDatasetSection} from "./IInsightFacade";
-import {isValidSection} from "./Parser";
+import {isValidDatasetSection} from "./Parser";
 
 export function readLocal(path: string, insightDataList: InsightData[]): void {
 	let fileContent = fs.readJSONSync(path);
@@ -17,7 +17,7 @@ export function readLocal(path: string, insightDataList: InsightData[]): void {
 		insightDataSections = [];
 		for (const persistedSection of insightData.data) {
 			// console.log(persistedSection); CHECK FOR DUPLICATE ID IN INSIGHTDATA
-			if(isValidSection(persistedSection)){
+			if(isValidDatasetSection(persistedSection)){
 				insightDataSections.push(new InsightDatasetSection(
 					persistedSection.id,
 					persistedSection.course,
