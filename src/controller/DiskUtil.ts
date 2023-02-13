@@ -16,7 +16,7 @@ export function readLocal(path: string, insightDataList: InsightData[]): void {
 	for (const insightData of fileContent) {
 		insightDataSections = [];
 		for (const persistedSection of insightData.data) {
-			// console.log(persistedSection);
+			// console.log(persistedSection); CHECK FOR DUPLICATE ID IN INSIGHTDATA
 			if(isValidSection(persistedSection)){
 				insightDataSections.push(new InsightDatasetSection(
 					persistedSection.id,

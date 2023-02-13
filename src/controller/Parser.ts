@@ -2,7 +2,7 @@ import {InsightDatasetSection, InsightError} from "./IInsightFacade";
 import {REQUIRED_SECTION_KEYS} from "./InsightFacade";
 
 /**
- * Reads a stringified version of an object (i.e. "{"avg": 50}") and parses it into an InsightDatasetSection
+ * Reads a stringified version of an object (i.e. "{"avg": 50}") and converts it to an InsightDatasetSection
  * REQUIRES: the string to be a valid object that contains a "results" key
  * MODIFIES: this.section (maybe change this later)
  * EFFECTS: Returns a promise that rejects if an error is encountered, otherwise returns a resolved promise.

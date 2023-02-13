@@ -107,63 +107,6 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve("");
 	}
 	/**
-	 * Verifies that a section object is valid. A valid section is one that has all the required keys: ( "id",
-	 * "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit")
-	 * REQUIRES: None
-	 * MODIFIES: None
-	 * EFFECTS: Returns true if the object is valid and false otherwise.
-	 **/
-	// public isValidSection(section: any): boolean {
-	// 	let isValid = true;
-	// 	for(const requiredKey of REQUIRED_SECTION_KEYS) {
-	// 		isValid = isValid &&
-	// 			Object.prototype.hasOwnProperty.call(section,requiredKey);
-	// 	}
-	// 	return isValid;
-	// }
-	/**
-	 * Reads a stringified version of an object (i.e. "{"avg": 50}") and parses it into an InsightDatasetSection
-	 * REQUIRES: the string to be a valid object that contains a "results" key
-	 * MODIFIES: this.section (maybe change this later)
-	 * EFFECTS: Returns a promise that rejects if an error is encountered, otherwise returns a resolved promise.
-	 * Valid sections found in the object under the results key are added to this.section.
-	 **/
-	// public parseClasses(classes: any[]): Promise<void> {
-	// 	try {
-	// 		for(const AClass of classes) {
-	// 			try {
-	// 				let classObject = JSON.parse(AClass);
-	// 				if(classObject.result.length !== 0) { // for the ones with results key that maps to empty
-	// 					// Promise.reject(new InsightError("There are no valid sections"));
-	// 					for(const section of classObject.result) {
-	// 						if(this.isValidSection(section)) {
-	// 							this.sections.push(new InsightDatasetSection(
-	// 								// id,
-	// 								section.id,
-	// 								section.Course,
-	// 								section.Title,
-	// 								section.Professor,
-	// 								section.Subject,
-	// 								section.Year,
-	// 								section.Avg,
-	// 								section.Pass,
-	// 								section.Fail,
-	// 								section.Audit
-	// 							));
-	// 						}
-	// 					}
-	// 				}
-	// 			} catch(Error) {
-	// 				// sometimes classes arg has an element that is filled with null characters mostly found in
-	// 				// cases where validClass or validSection i.e. custom file I made with one section or one class
-	// 			}
-	// 		}
-	// 		return Promise.resolve();
-	// 	} catch (Exception) {
-	// 		return Promise.reject(new InsightError("There was a problem parsing the json"));
-	// 	}
-	// }
-	/**
 	 * Returns a boolean indicating whether the inputted id is one that corresponds to a dataset that's already
 	 * been added.
 	 * REQUIRES: None
@@ -216,47 +159,6 @@ export default class InsightFacade implements IInsightFacade {
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		return Promise.reject("Not implemented.");
 	}
-	/**
-	 * Reads from disk a json file of InsightData objects
-	 * REQUIRES: memory to have persisted data
-	 * MODIFIES: this
-	 * EFFECTS: returns a Promise that rejects with an error if an error is encountered, otherwise returns a resolved
-	 * promise.
-	 **/
-// 	public readLocal(): Promise<void> {
-// 		return fs.readJson(PATH_TO_ROOT_DATA)
-// 			.then((fileContent: any) => {
-// 				let insightDataSections: InsightDatasetSection[];
-// 				for (const insightData of fileContent) {
-// 					insightDataSections = [];
-// 					for (const persistedSection of insightData.data) {
-// 						// console.log(content.data);
-// 						insightDataSections.push(new InsightDatasetSection(
-// 							persistedSection.id,
-// 							persistedSection.course,
-// 							persistedSection.title,
-// 							persistedSection.professor,
-// 							persistedSection.subject,
-// 							persistedSection.year,
-// 							persistedSection.avg,
-// 							persistedSection.pass,
-// 							persistedSection.fail,
-// 							persistedSection.audit
-// 						));
-// 					}
-// 					this.insightDataList.push(new InsightData(
-// 						insightData.metaData.id,
-// 						insightData.metaData.kind,
-// 						insightData.metaData.numRows,
-// 						insightDataSections
-// 					));
-// 				}
-// 				return Promise.resolve();
-// 			})
-// 			.catch((err: Error) => Promise.reject(new Error("There was a problem reading local")));
-// 	}
-//
-//
 }
 
 let facade = new InsightFacade();
