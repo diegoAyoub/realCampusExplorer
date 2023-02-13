@@ -1,5 +1,11 @@
 import {
-	IInsightFacade, InsightData, InsightDataset, InsightDatasetKind, InsightDatasetSection, InsightError, InsightResult,
+	IInsightFacade,
+	InsightData,
+	InsightDataset,
+	InsightDatasetKind,
+	InsightDatasetSection,
+	InsightError,
+	InsightResult,
 	NotFoundError,
 } from "./IInsightFacade";
 import {QueryEngine} from "./QueryEngine";
@@ -132,8 +138,16 @@ export default class InsightFacade implements IInsightFacade {
 							if (this.isValidSection(section)) {
 								this.sections.push(
 									new InsightDatasetSection(
-										section.id, section.Course, section.Title, section.Professor, section.Subject,
-										section.Year, section.Avg, section.Pass, section.Fail, section.Audit
+										section.id,
+										section.Course,
+										section.Title,
+										section.Professor,
+										section.Subject,
+										section.Year,
+										section.Avg,
+										section.Pass,
+										section.Fail,
+										section.Audit
 									)
 								);
 							}
@@ -199,21 +213,18 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.resolve(addedDatasets);
 	}
-	public performQuery(query: unknown): Promise<InsightResult[]> {
-		let inputQuery = query as any; //	try any also
+	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
+		let query = inputQuery as any; //	try any also
+		let result: InsightDatasetSection[] = [];
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.validateQuery()) {
-			this.handleWhere(inputQuery);
+			result = this.queryEng.handleFilter(query);
 		} else {
-			//	query is not valid
 			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 		}
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
-	/*	handle where block from query*/
-	private handleWhere(whereBlock: any): Promise<string> {
-		return Promise.resolve("YER");
-	}
+
 	public findDataset(id: string): Promise<InsightData> {
 		for (const dataset of this.insightDataList) {
 			if (dataset.metaData.id === id) {
@@ -222,10 +233,6 @@ export default class InsightFacade implements IInsightFacade {
 			}
 		}
 		return Promise.reject(new InsightError("Matching ID not found"));
-	}
-	/*	handle options block from query*/
-	private handleOptions(options: JSON): string {
-		return "";
 	}
 	/**
 	 * Reads from disk a json file of InsightData objects
@@ -245,16 +252,24 @@ export default class InsightFacade implements IInsightFacade {
 						// console.log(content.data);
 						insightDataSections.push(
 							new InsightDatasetSection(
-								persistedSection.id, persistedSection.course, persistedSection.title,
-								persistedSection.professor, persistedSection.subject, persistedSection.year,
-								persistedSection.avg, persistedSection.pass, persistedSection.fail,
+								persistedSection.id,
+								persistedSection.course,
+								persistedSection.title,
+								persistedSection.professor,
+								persistedSection.subject,
+								persistedSection.year,
+								persistedSection.avg,
+								persistedSection.pass,
+								persistedSection.fail,
 								persistedSection.audit
 							)
 						);
 					}
 					this.insightDataList.push(
 						new InsightData(
-							insightData.metaData.id, insightData.metaData.kind, insightData.metaData.numRows,
+							insightData.metaData.id,
+							insightData.metaData.kind,
+							insightData.metaData.numRows,
 							insightDataSections
 						)
 					);

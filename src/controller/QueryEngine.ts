@@ -16,7 +16,7 @@ import * as zip from "jszip";
 import JSZip from "jszip";
 
 const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
-
+const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 //	RECURSION
 let NOT = "NOT";
 let AND = "AND";
@@ -103,8 +103,10 @@ export class QueryEngine {
 		if (!isOptions) {
 			return false; //	Promise.reject(new InsightError("Invalid query lang: OPTIONS"));
 		}
-		// validateWhere();
-		return true;
+		if (this.validateWhere(this.queryJson["WHERE"])) {
+			return true;
+		}
+		return false;
 	}
 	// Recursion through where sub block, explores each layer of camparators until section ID and column is found. Then
 	//	returns true if valid. false otherwise
@@ -123,14 +125,55 @@ export class QueryEngine {
 				let conditionCol: string = keyArr[1];
 
 				if (!this.isIdExist(queryID) || !this.isValidId(queryID)) {
+					// validID returns string and not boolean
 					return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
 				}
-				//	ELSE
 			}
 		}
 		return true;
 	}
-
+	public validateOptions(optionBlock: any): boolean {
+		let optionKeys = Object.keys(optionBlock);
+		let columnKeys: string[] = [];
+		let wantedColArr: string[] = [];
+		if (optionKeys.length === 1) {
+			if (optionKeys[0] === "COLUMNS") {
+				columnKeys = optionBlock["COLUMNS"];
+				for (const colKey of columnKeys) {
+					let arr = colKey.split("_");
+					let col = arr[0];
+					let setID = arr[1];
+					if (COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length <= 2) {
+						wantedColArr.push(col);
+					} else {
+						return false;
+					}
+				}
+				return true;
+			}
+		} else if (optionKeys.length === 2) {
+			if (optionKeys[0] === "COLUMNS" && optionKeys[1] === "ORDER") {
+				columnKeys = optionBlock["COLUMNS"];
+				for (const colKey of columnKeys) {
+					let arr = colKey.split("_");
+					let col = arr[0];
+					let setID = arr[1];
+					if (COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length <= 2) {
+						wantedColArr.push(col);
+					} else {
+						return false;
+					}
+				}
+				let tempArr = optionBlock["ORDER"].split("_");
+				let orderCol = tempArr[1];
+				let orderID = tempArr[0];
+				if (tempArr.length <= 2 && COLUMN_NAMES.includes(orderCol) && orderID === this.qryID) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	public handleAnd(query: any): InsightDatasetSection[] {
 		// Everything in the AND will return an insightdataset section. If an insightdataset section exists in all
 		// the InsightDatasetSection[], then it satisfies the conditions listed in the and.
@@ -170,9 +213,8 @@ export class QueryEngine {
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[] = [];
 		for (const operator in query) {
-			subResult.push(...this.handleFilter(operator));
+			subResult.push(...this.handleFilter(operator)); //	does this actually work!?
 		}
-
 		let index: number;
 		for (const section of subResult) {
 			index = results.indexOf(section);
@@ -190,7 +232,6 @@ export class QueryEngine {
 		let sections: InsightDatasetSection[] = this.dataset[0].data;
 		switch (comparator) {
 			case "GT": {
-				//	do something
 				for (const currClass of sections) {
 					if (this.getColVal(currClass, col) > value) {
 						filteredList.push(currClass);
@@ -215,45 +256,15 @@ export class QueryEngine {
 				break;
 			}
 		}
-		// return Promise.resolve("");
 		return filteredList;
 	}
 
 	public getColVal(section: any, colName: string): string | number {
-		switch (colName) {
-			case "uuid": {
-				return section["uuid"];
-			}
-			case "id": {
-				return section["id"];
-			}
-			case "title": {
-				return section["title"];
-			}
-			case "instructor": {
-				return section["instructor"];
-			}
-			case "dept": {
-				return section["dept"];
-			}
-			case "year": {
-				return section["year"];
-			}
-			case "avg": {
-				return section["avg"];
-			}
-			case "pass": {
-				return section["pass"];
-			}
-			case "fail": {
-				return section["fail"];
-			}
-			case "audit": {
-				return section["audit"];
-			}
-			// @TODO might need a default case sending back an error here
+		if (COLUMN_NAMES.includes(colName)) {
+			return section[colName];
 		}
-		return "cmon now";
+		console.log("ERROR: Invalid Column Name");
+		return "ERROR";
 	}
 
 	public isIdExist(id: string): boolean {
