@@ -33,10 +33,21 @@ export class QueryEngine {
 	public qryID: string = "";
 	public datasetSections: InsightDatasetSection[] = [];
 	public helper: any;
+	public orderKey: string;
+	public selectedColumns: string[];
 
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
 		this.queryJson = qryJson as any;
+		this.helper = null;
+		this.selectedColumns = [];
+		this.orderKey = "";
+	}
+	public doQuery(query: any) {
+		let results: InsightDatasetSection[] = this.handleFilter(query["WHERE"]);
+		console.log(results);
+		this.helper = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
+		return this.helper.init();
 	}
 
 	public handleFilter(query: any): InsightDatasetSection[] {
@@ -98,7 +109,7 @@ export class QueryEngine {
 		if (!isOptions) {
 			return false; //	Promise.reject(new InsightError("Invalid query lang: OPTIONS"));
 		}
-		if (this.validateWhere(this.queryJson["WHERE"])) {
+		if (this.validateWhere(this.queryJson["WHERE"]) && this.validateOptions(this.queryJson["OPTIONS"])) {
 			return true;
 		}
 		return false;
@@ -111,14 +122,14 @@ export class QueryEngine {
 			let whereKey: string = key;
 			let whereVal = whereBlock[key] as any;
 			if (COMPARATORLOGIC.includes(whereKey)) {
-				return this.validateWhere(whereKey);
+				return this.validateWhere(whereVal);
 			} else {
 				conditionVal = whereVal;
 				//	GET ID
 				let keyArr = whereKey.split("_");
 				let queryID: string = keyArr[0];
 				let conditionCol: string = keyArr[1];
-
+				this.qryID = queryID;
 				if (!this.isIdExist(queryID) || !this.isValidId(queryID)) {
 					// validID returns string and not boolean
 					return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
@@ -139,11 +150,12 @@ export class QueryEngine {
 					let col = arr[0];
 					let setID = arr[1];
 					if (COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length <= 2) {
-						wantedColArr.push(col);
+						wantedColArr.push(colKey);
 					} else {
 						return false;
 					}
 				}
+				this.selectedColumns = wantedColArr;
 				return true;
 			}
 		} else if (optionKeys.length === 2) {
@@ -151,10 +163,10 @@ export class QueryEngine {
 				columnKeys = optionBlock["COLUMNS"];
 				for (const colKey of columnKeys) {
 					let arr = colKey.split("_");
-					let col = arr[0];
-					let setID = arr[1];
+					let col = arr[1];
+					let setID = arr[0];
 					if (COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length <= 2) {
-						wantedColArr.push(col);
+						wantedColArr.push(colKey);
 					} else {
 						return false;
 					}
@@ -163,6 +175,8 @@ export class QueryEngine {
 				let orderCol = tempArr[1];
 				let orderID = tempArr[0];
 				if (tempArr.length <= 2 && COLUMN_NAMES.includes(orderCol) && orderID === this.qryID) {
+					this.orderKey = optionBlock["ORDER"];
+					this.selectedColumns = wantedColArr;
 					return true;
 				}
 			}
@@ -230,6 +244,7 @@ export class QueryEngine {
 						filteredList.push(currClass);
 					}
 				}
+				break;
 			}
 			case "LT": {
 				for (const currClass of sections) {
@@ -237,6 +252,7 @@ export class QueryEngine {
 						filteredList.push(currClass);
 					}
 				}
+				break;
 			}
 			case "EQ": {
 				for (const currClass of sections) {
@@ -244,6 +260,7 @@ export class QueryEngine {
 						filteredList.push(currClass);
 					}
 				}
+				break;
 			}
 		}
 		return filteredList;
@@ -267,7 +284,7 @@ export class QueryEngine {
 		return false;
 	}
 
-	public isValidId(id: string): Promise<string> {
+	public isValidId(id: string): Promise<boolean> {
 		if (id.trim().length === 0) {
 			// blank id or id is all whitespace
 			return Promise.reject(new InsightError("The ID must contain non white space characters"));
@@ -275,6 +292,6 @@ export class QueryEngine {
 			// id has an underscore
 			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
-		return Promise.resolve("");
+		return Promise.resolve(true);
 	}
 }

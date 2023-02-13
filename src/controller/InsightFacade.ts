@@ -1,10 +1,4 @@
-import {
-	IInsightFacade,
-	InsightData,
-	InsightDataset,
-	InsightDatasetKind,
-	InsightDatasetSection,
-	InsightError,
+import {IInsightFacade, InsightData, InsightDataset, InsightDatasetKind, InsightDatasetSection, InsightError,
 	InsightResult,
 	NotFoundError,
 } from "./IInsightFacade";
@@ -30,7 +24,6 @@ export default class InsightFacade implements IInsightFacade {
 		console.log("InsightFacadeImpl::init()");
 	}
 
-	// ask about asyncronony in the proj seems like most of the stuff i'm doing is syncronous and test was failing cuz it took too long.
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		this.sections = [];
@@ -219,7 +212,7 @@ export default class InsightFacade implements IInsightFacade {
 		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.validateQuery()) {
-			result = this.queryEng.handleFilter(query);
+			return this.queryEng.doQuery(query);
 		} else {
 			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 		}
@@ -243,8 +236,7 @@ export default class InsightFacade implements IInsightFacade {
 	 * promise.
 	 **/
 	public readLocal(): Promise<void> {
-		return fs
-			.readJson(PATH_TO_ROOT_DATA)
+		return fs.readJson(PATH_TO_ROOT_DATA)
 			.then((fileContent: any) => {
 				let insightDataSections: InsightDatasetSection[];
 				for (const insightData of fileContent) {
@@ -277,6 +269,10 @@ export default class InsightFacade implements IInsightFacade {
 				}
 				return Promise.resolve();
 			})
-			.catch((err: Error) => Promise.reject(new Error("There was a problem reading local")));
+			.catch((err: Error) => {
+				console.log(err);
+				return Promise.reject(new Error("There was a problem reading local"));
+			});
 	}
 }
+

@@ -27,43 +27,49 @@ export class QueryEngineHelper {
 		this.orderBy = OrderCol;
 		this.wantedColumns = wantedColArr;
 		this.filteredSections = filteredSections;
-
-		this.init();
+		// this.init();
 	}
-
 	//	filters columns and orders them if required. Returns an insightResult Array.
 	private init(): InsightResult[] {
 
-		let result: InsightResult[] = [];
+		let result: InsightResult[] = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));
 		if(this.orderBy !== ""){
-			this.filteredSections.sort(this.compareFnValues);
+			let x = result[0]["sections_avg"];
+			result.sort((a, b) => {
+				if(a[this.orderBy] > b[this.orderBy]) {
+					return 1;
+				}
+				if(a[this.orderBy] < b[this.orderBy]) {
+					return -1;
+				}
+				return 0;
+			});
 		}
-
-		for(const section of this.filteredSections){
-			//	add only wanted columns to insightResult array
-			for(const col of this.wantedColumns){
-				//	section.
-			}
-		}
-
+		// for(const section of this.filteredSections){
+		// 	//	add only wanted columns to insightResult array
+		// 	for(const col of this.wantedColumns){
+		// 		//	section.
+		// 	}
+		// }
 		return result;
 	}
 
-	private compareFnValues(a: InsightDatasetSection, b: InsightDatasetSection): number {
+	private compareFnValues(a: InsightResult, b: InsightResult): number {
 
-// 		if(a.(this.orderBy) > b.(this.orderBy)) {
-// 			return 1;
-// 		}
-// 		if(a.(this.orderBy) < b.(this.orderBy)) {
-// 			return -1;
-// 		}
-//
-// 		return 0;
-		return 1;
+		if(a[this.orderBy] > b[this.orderBy]) {
+			return 1;
+		}
+		if(a[this.orderBy] < b[this.orderBy]) {
+			return -1;
+		}
+		return 0;
 	}
 
+	// private getResults() {
+	// 	let results = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));
+	// }
 
-/*	public prefixJSON(datasetID: string, dataSection): InsightResult {
+	public prefixJSON(datasetID: string, section: InsightDatasetSection): InsightResult {
 		let keyUUID = datasetID + "_" + "uuid";
 		let keyCourse = datasetID + "_" + "id";
 		let keyTitle = datasetID + "_" + "title";
@@ -76,16 +82,16 @@ export class QueryEngineHelper {
 		let keyAudit = datasetID + "_" + "audit";
 
 		return {
-			[keyUUID]: this.uuid,
-			[keyCourse]: this.id,
-			[keyTitle]: this.title,
-			[keyProfessor]: this.instructor,
-			[keySubject]: this.dept,
-			[keyYear]: this.year,
-			[keyAvg]: this.avg,
-			[keyPass]: this.pass,
-			[keyFail]: this.fail,
-			[keyAudit]: this.audit,
+			[keyUUID]: section.uuid,
+			[keyCourse]: section.id,
+			[keyTitle]: section.title,
+			[keyProfessor]: section.instructor,
+			[keySubject]: section.dept,
+			[keyYear]: section.year,
+			[keyAvg]: section.avg,
+			[keyPass]: section.pass,
+			[keyFail]: section.fail,
+			[keyAudit]: section.audit,
 		};
-	}*/
+	}
 }
