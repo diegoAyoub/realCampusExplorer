@@ -1,4 +1,4 @@
-//	This file will have a lot of the query helper functions, this file is essentially the query engine //
+//	This  file will have a lot of the query helper functions, this file is essentially the query engine //
 import {
 	IInsightFacade,
 	InsightData,
