@@ -1,4 +1,3 @@
-//	This  file will have a lot of the query helper functions, this file is essentially the query engine //
 import {
 	IInsightFacade,
 	InsightData,
@@ -10,9 +9,7 @@ import {
 	NotFoundError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
-
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-
 //	RECURSION
 let NOT = "NOT";
 let AND = "AND";
@@ -45,9 +42,13 @@ export class QueryEngine {
 		this.selectedColumns = [];
 		this.orderKey = "";
 	}
-	public doQuery(query: any) {
+	public doQuery(query: any): InsightResult[] {
 		let results: InsightDatasetSection[] = this.handleFilter(query[WHERE]);
 		console.log(results.length);
+		if(results.length > 5000){
+			//	return error. waiting until we are done querying is a lazy way to do it. we should check throughout to
+			//	reduce runtime and not filter 1935548 results just to discard them after
+		}
 		this.helper = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
 		return this.helper.getFormattedResult();
 	}
@@ -174,9 +175,7 @@ export class QueryEngine {
 		let results: InsightDatasetSection[] = [];
 		let subResult: InsightDatasetSection[] = [];
 		for (const operator of query) {
-			//	console.log("handleAnd waiting for subresult");
 			subResult = this.handleFilter(operator);
-			//	console.log("handleAnd subresults obtained");
 			if (results.length === 0) {
 				results = subResult; //	results needs to be initialized to something
 			} else {

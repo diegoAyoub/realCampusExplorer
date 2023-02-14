@@ -172,9 +172,9 @@ export default class InsightFacade implements IInsightFacade {
 			console.log("yep its valid");
 			let queryResult = this.queryEng.doQuery(query);
 			console.log("queryresults = " + queryResult.length);
-			return queryResult;
+			return Promise.resolve(queryResult);
 		} else {
-			console.log("yep its nah its invalid");
+			console.log("query could not be validated its invalid");
 			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 		}
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));

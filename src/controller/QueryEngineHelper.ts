@@ -34,17 +34,27 @@ export class QueryEngineHelper {
 
 		let result: InsightResult[] = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));
 		// console.log("HAS LENGTH = " + result.length);
-		console.log(typeof this.filteredSections[0]["uuid"]);
-		console.log(this.filteredSections[0]["uuid"]);
+		//	console.log(typeof this.filteredSections[0]["uuid"]);
+		//	console.log(this.filteredSections[0]["uuid"]);
 		if(this.orderBy !== ""){
 			// let x = result[0]["sections_avg"];
 			result.sort((a, b) => {
+				if (this.orderBy.split("_")[1] === "uuid"){
+					let tempOrder: number = parseInt(this.orderBy,10);
 
-				if(a[this.orderBy] > b[this.orderBy]) {
-					return 1;
-				}
-				if(a[this.orderBy] < b[this.orderBy]) {
-					return -1;
+					if(a[this.orderBy] > b[this.orderBy]) {
+						return 1;
+					}
+					if(a[this.orderBy] < b[this.orderBy]) {
+						return -1;
+					}
+				} else{
+					if(a[this.orderBy] > b[this.orderBy]) {
+						return 1;
+					}
+					if(a[this.orderBy] < b[this.orderBy]) {
+						return -1;
+					}
 				}
 				return 0;
 			});
