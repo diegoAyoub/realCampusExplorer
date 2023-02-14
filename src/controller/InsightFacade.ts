@@ -170,9 +170,7 @@ export default class InsightFacade implements IInsightFacade {
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.validateQuery()) {
 			console.log("yep its valid");
-			let queryResult = this.queryEng.doQuery(query);
-			console.log("queryresults = " + queryResult.length);
-			return queryResult;
+			 return this.queryEng.doQuery(query);
 		} else {
 			console.log("yep its nah its invalid");
 			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
@@ -206,23 +204,12 @@ export default class InsightFacade implements IInsightFacade {
 // 	.then(() => {
 // 		return facade.performQuery({
 // 			WHERE: {
-// 				OR: [
+// 				AND: [
 // 					{
-// 						AND: [
-// 							{
-// 								GT: {
-// 									sections_pass: 500
-// 								}
-// 							},
-// 							{
-// 								IS: {
-// 									sections_instructor: ""
-// 								}
-// 							}
-// 						]
+// 						AND: []
 // 					},
 // 					{
-// 						EQ: {
+// 						LT: {
 // 							sections_avg: 95
 // 						}
 // 					}
@@ -230,11 +217,11 @@ export default class InsightFacade implements IInsightFacade {
 // 			},
 // 			OPTIONS: {
 // 				COLUMNS: [
-// 					"sections_pass",
+// 					"sections_dept",
 // 					"sections_id",
-// 					"sections_uuid"
+// 					"sections_avg"
 // 				],
-// 				ORDER: "sections_uuid"
+// 				ORDER: "sections_avg"
 // 			}
 // 		});
 // 	})

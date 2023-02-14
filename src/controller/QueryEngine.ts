@@ -7,7 +7,7 @@ import {
 	InsightDatasetSection,
 	InsightError,
 	InsightResult,
-	NotFoundError,
+	NotFoundError, ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
 
@@ -34,22 +34,23 @@ export class QueryEngine {
 	public queryJson: any;
 	public qryID: string = "";
 	public datasetSections: InsightDatasetSection[] = [];
-	public helper: any;
 	public orderKey: string;
 	public selectedColumns: string[];
 
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
 		this.queryJson = qryJson as any;
-		this.helper = null;
 		this.selectedColumns = [];
 		this.orderKey = "";
 	}
-	public doQuery(query: any) {
+	public doQuery(query: any): Promise<InsightResult[]> {
 		let results: InsightDatasetSection[] = this.handleFilter(query[WHERE]);
-		console.log(results.length);
-		this.helper = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
-		return this.helper.getFormattedResult();
+		if(results.length > 5000) {
+			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
+		} else {
+			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
+			return Promise.resolve(resultFormatter.getFormattedResult());
+		}
 	}
 
 	public handleFilter(query: any): InsightDatasetSection[] {
@@ -93,7 +94,6 @@ export class QueryEngine {
 			if(this.validateOptions(this.queryJson[OPTIONS])) { // structured like this for debugging purposes
 				return true;
 			}
-			// return true;
 		}
 		return false;
 	}
@@ -102,15 +102,21 @@ export class QueryEngine {
 	public validateWhere(whereBlock: any): boolean {
 		let conditionVal: any;
 		let isValid = true;
+		if(Object.keys(whereBlock).length !== 1) {
+			return false;
+		}
 		for (let key in whereBlock) {
 			let whereKey: string = key;
 			let whereVal = whereBlock[key] as any;
-
 			if (COMPARATOR_LOGIC.includes(whereKey)) {
-				for(let filter of whereVal) {
-					isValid = isValid && this.validateWhere(filter);
+				if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats empty
+					for(let filter of whereVal) {
+						isValid = isValid && this.validateWhere(filter);
+					}
+				} else {
+					return false;
 				}
-			} else if (COMPARATOR.includes(whereKey)) { // maybe add nested for loop for AND and OR using OF
+			} else if (COMPARATOR.includes(whereKey)) {
 				 isValid = isValid && this.validateWhere(whereVal);
 			} else {
 				conditionVal = whereVal;
@@ -146,8 +152,10 @@ export class QueryEngine {
 				let tempArr = optionBlock[ORDER].split("_");
 				let orderCol = tempArr[1];
 				let orderID = tempArr[0];
-				if (tempArr.length <= 2 && COLUMN_NAMES.includes(orderCol) && orderID === this.qryID) {
-					this.orderKey = optionBlock[ORDER];
+				if (tempArr.length <= 2 && COLUMN_NAMES.includes(orderCol) &&
+					orderID === this.qryID && columnKeys.includes(optionBlock[ORDER])) {
+					// this.orderKey = optionBlock[ORDER];
+					// console.log(this.orderKey);
 					this.selectedColumns = filteredColumns;
 					return filteredColumns.length === columnKeys.length;
 				}
@@ -196,14 +204,16 @@ export class QueryEngine {
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
 			for (const section of subResult) {
-				results.push(section); // @todo can i replace with ... section??
+				if(!results.includes(section)) {
+					results.push(section); // @todo can i replace with ... section??
+				}
 			}
 		}
 		// let uniqueSections = new Set(results); // remove duplicates by making it a set?
 		// results = [...uniqueSections];
 		// const ids = results.map((section) => section["uuid"]);
 		// const filtered = results.filter(({id}, index) => !ids.includes(id, index + 1));
-		results = results.filter((section) => !subResult.includes(section));
+		// results = results.filter((section) => result.includes(section));
 		return results;
 	}
 
@@ -211,22 +221,14 @@ export class QueryEngine {
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[] = [];
 		for (const operator in query) {
-			subResult.push(...this.handleFilter(operator)); //	does this actually work!?
+			subResult = this.handleFilter(operator); //	does this actually work!?
 		}
-		let index: number;
-		for (const section of subResult) {
-			index = results.indexOf(section);
-			if (index !== -1) {
-				results.splice(index, 1); //	add a check for length
-			} else {
-				console.log("INTERNAL ERROR: handleNot");
-			}
-		}
+		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
 		return results;
 	}
 	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
 		let filteredList: InsightDatasetSection[] = [];
-		let sections: InsightDatasetSection[] = this.dataset[0].data; // @todo: change so that it matches datset ids iwth the one in the query
+		let sections: InsightDatasetSection[] = this.datasetSections;
 		let inBlock = query[comparator];
 		let keys = Object.keys(query[comparator]);
 		let keyArr = keys[0].split("_");
@@ -234,35 +236,19 @@ export class QueryEngine {
 		let value = inBlock[keys[0]];
 		switch (comparator) {
 			case GT: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) > value) {
-						filteredList.push(currClass);
-					}
-				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) > value);
 				break;
 			}
 			case LT: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) < value) {
-						filteredList.push(currClass);
-					}
-				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) < value);
 				break;
 			}
 			case EQ: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) === value) {
-						filteredList.push(currClass);
-					}
-				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
 			case IS: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) === value) {
-						filteredList.push(currClass);
-					}
-				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
 		}

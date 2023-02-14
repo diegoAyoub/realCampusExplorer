@@ -18,14 +18,15 @@ export function parseClasses(classes: any, sections: InsightDatasetSection[]): P
 				if(classObject.result.length !== 0) { // for the ones with results key that maps to empty
 					// Promise.reject(new InsightError("There are no valid sections"));
 					for(const section of classObject.result) {
+						let year = section.Section === "overall" ? 1900 : parseInt(section.Year, 10);
 						if(isValidSection(section)) {
 							sections.push(new InsightDatasetSection(
-								section.id,
+								section.id.toString(),
 								section.Course,
 								section.Title,
 								section.Professor,
 								section.Subject,
-								section.Year,
+								year,
 								section.Avg,
 								section.Pass,
 								section.Fail,

@@ -42,7 +42,7 @@ export class InsightDatasetSection {
 	public title: string;
 	public instructor: string;
 	public dept: string;
-	public year: string;
+	public year: number;
 	public avg: string;
 	public pass: string;
 	public fail: string;
@@ -54,7 +54,7 @@ export class InsightDatasetSection {
 		title: string,
 		professor: string,
 		subject: string,
-		year: string,
+		year: number,
 		avg: string,
 		pass: string,
 		fail: string,
