@@ -11,32 +11,45 @@ import {InsightData, InsightDatasetSection} from "./IInsightFacade";
 import {isValidDatasetSection} from "./Parser";
 
 export function readLocal(path: string, insightDataList: InsightData[]): void {
-	let fileContent = fs.readJSONSync(path);
-	let insightDataSections: InsightDatasetSection[];
-	for (const insightData of fileContent) {
-		insightDataSections = [];
-		for (const persistedSection of insightData.data) {
-			// console.log(persistedSection); CHECK FOR DUPLICATE ID IN INSIGHTDATA
-			if(isValidDatasetSection(persistedSection)){
-				insightDataSections.push(new InsightDatasetSection(
-					persistedSection.id,
-					persistedSection.course,
-					persistedSection.title,
-					persistedSection.professor,
-					persistedSection.subject,
-					persistedSection.year,
-					persistedSection.avg,
-					persistedSection.pass,
-					persistedSection.fail,
-					persistedSection.audit
+	try {
+		let fileContent = fs.readJSONSync(path);
+		let insightDataSections: InsightDatasetSection[];
+		for (const insightData of fileContent) {
+			insightDataSections = [];
+			if(!isDuplicatedDataset(insightDataList, insightData.metaData.id)) {
+				for (const persistedSection of insightData.data) {
+					if(isValidDatasetSection(persistedSection)){
+						insightDataSections.push(new InsightDatasetSection(
+							persistedSection.id,
+							persistedSection.course,
+							persistedSection.title,
+							persistedSection.professor,
+							persistedSection.subject,
+							persistedSection.year,
+							persistedSection.avg,
+							persistedSection.pass,
+							persistedSection.fail,
+							persistedSection.audit
+						));
+					}
+				}
+				insightDataList.push(new InsightData(
+					insightData.metaData.id,
+					insightData.metaData.kind,
+					insightData.metaData.numRows,
+					insightDataSections
 				));
 			}
 		}
-		insightDataList.push(new InsightData(
-			insightData.metaData.id,
-			insightData.metaData.kind,
-			insightData.metaData.numRows,
-			insightDataSections // ADD CHECK FOR DUPLICATED IDS.
-		));
+	} catch(Exception) {
+		console.log("There was a problem reading from disk." + Exception);
 	}
+}
+function isDuplicatedDataset(insightDataList: InsightData[], id: string): boolean {
+	for (const dataset of insightDataList) {
+		if (dataset.metaData.id === id) {
+			return true;
+		}
+	}
+	return false;
 }

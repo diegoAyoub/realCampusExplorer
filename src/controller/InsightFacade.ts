@@ -13,14 +13,12 @@ import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
+import {readLocal} from "./DiskUtil";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
 // const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
 const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
-export const REQUIRED_SECTION_KEYS =
-	["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
-const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
 
 /**
  * This is the main programmatic entry point for the project.
@@ -29,17 +27,12 @@ const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
 export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	public sections: InsightDatasetSection[] = []; // move this to local and have parseClasses return it instead?
-	private queryEng: any;
+	private queryEng: QueryEngine | null = null;
 	constructor() {
 		console.log("InsightFacadeImpl::init()");
-		// readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
-	// make it so that we can read from a file and parse it into InsightData[]
-	// ADDRESS THE GIT BOT IMPLICIT ANY: WHATEVER MSG
-	// MAKE IT WORK WITH LOCAL TESTS.
-	// RELATIVE PATH WITH DIST FOLDER
-	// ask about asyncronony in the proj seems like most of the stuff i'm doing is syncronous and test was failing cuz it took too long.
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		this.sections = [];
@@ -165,33 +158,23 @@ export default class InsightFacade implements IInsightFacade {
 	}
 	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
-		let result: InsightDatasetSection[] = [];
 		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.validateQuery()) {
 			console.log("yep its valid");
 			 return this.queryEng.doQuery(query);
-		} else {
-			console.log("yep its nah its invalid");
-			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 		}
+		console.log("yep its nah its invalid");
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
-	}
-
-	public findDataset(id: string): Promise<InsightData> {
-		for (const dataset of this.insightDataList) {
-			if (dataset.metaData.id === id) {
-				let currentDataset: InsightData = dataset;
-				return Promise.resolve(currentDataset);
-			}
-		}
-		return Promise.reject(new InsightError("Matching ID not found"));
 	}
 }
 
 // let facade = new InsightFacade();
-// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
-//
+// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "valid_section.zip").toString("base64");
+// facade.listDatasets()
+// 	.then((results) => console.log(results))
+// 	.then(() => facade.addDataset("randomid", validDataset, InsightDatasetKind.Sections));
+
 // facade.addDataset("sections", validDataset, InsightDatasetKind.Sections)
 // 	.then(() => facade.listDatasets())
 // 	.then((addedDatasets) =>{
