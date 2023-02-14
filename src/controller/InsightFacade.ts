@@ -26,7 +26,6 @@ const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
  */
 export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
-	public sections: InsightDatasetSection[] = []; // move this to local and have parseClasses return it instead?
 	private queryEng: QueryEngine | null = null;
 	constructor() {
 		console.log("InsightFacadeImpl::init()");
@@ -35,7 +34,7 @@ export default class InsightFacade implements IInsightFacade {
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
-		this.sections = [];
+		let sections: InsightDatasetSection[] = [];
 		return this.isValidInsightKind(kind) //
 			.then(() => this.isValidId(id))
 			.then(() => this.isIdExist(id) ? Promise.reject("The ID already exists") : Promise.resolve())
@@ -45,18 +44,17 @@ export default class InsightFacade implements IInsightFacade {
 					asyncJobs.push(file.async("string"));
 				});
 			})
-			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, this.sections)))
+			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, sections)))
 			.then(() => {
 				try {
-					if (this.sections.length !== 0) {
-						this.insightDataList.push(new InsightData(id, kind, this.sections.length, this.sections));
+					if (sections.length !== 0) {
+						this.insightDataList.push(new InsightData(id, kind, sections.length, sections));
 						return fs.outputJson(PATH_TO_ROOT_DATA,  this.insightDataList)
 							.then(() =>  Promise.resolve(this.getAddedIds()))
 							.catch(() =>  Promise.reject(new InsightError("There was an error writing to disk")));
 					}
 					return Promise.reject(new InsightError("No sections were found in the inputted file"));
 				} catch (Exception) {
-					// console.log(Exception);
 					return Promise.reject("An error occurred while writing to to disk");
 				}
 			})
@@ -97,11 +95,9 @@ export default class InsightFacade implements IInsightFacade {
 	 * EFFECTS: Returns an array of the IDs that are currently added to this
 	 **/
 	public isValidId(id: string): Promise<string> {
-		if (id.trim().length === 0) {
-			// blank id or id is all whitespace
+		if (id.trim().length === 0) { // blank id or id is all whitespace
 			return Promise.reject(new InsightError("The ID must contain non white space characters"));
-		} else if (id.includes("_")) {
-			// id has an underscore
+		} else if (id.includes("_")) { // id has an underscore
 			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
 		return Promise.resolve("");
@@ -160,7 +156,7 @@ export default class InsightFacade implements IInsightFacade {
 		let query = inputQuery as any; //	try any also
 		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
-		if (this.queryEng.validateQuery()) {
+		if (this.queryEng.isValidQuery()) {
 			console.log("yep its valid");
 			 return this.queryEng.doQuery(query);
 		}

@@ -101,7 +101,7 @@ describe("InsightFacade", function () {
 				return facade
 					.addDataset("dataset", validDataset, InsightDatasetKind.Sections)
 					.then(() => {
-						return facade.addDataset("class", validSection, InsightDatasetKind.Sections);
+						return facade.addDataset("class", validClass, InsightDatasetKind.Sections);
 					})
 					.then((res: string[]) => {
 						expect(res).to.have.members(["dataset", "class"]);

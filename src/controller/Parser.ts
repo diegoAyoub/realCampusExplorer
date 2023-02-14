@@ -1,7 +1,4 @@
 import {InsightDatasetSection, InsightError} from "./IInsightFacade";
-
-const REQUIRED_DATASET_SECTION_KEYS =
-	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 const REQUIRED_SECTION_KEYS =
 	["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
 /**
@@ -19,8 +16,8 @@ export function parseClasses(classes: any, sections: InsightDatasetSection[]): P
 				if(classObject.result.length !== 0) { // for the ones with results key that maps to empty
 					// Promise.reject(new InsightError("There are no valid sections"));
 					for(const section of classObject.result) {
-						let year = section.Section === "overall" ? 1900 : parseInt(section.Year, 10);
 						if(isValidSection(section)) {
+							let year = section.Section === "overall" ? 1900 : parseInt(section.Year, 10);
 							sections.push(new InsightDatasetSection(
 								section.id.toString(),
 								section.Course,
@@ -62,10 +59,3 @@ export function isValidSection(section: any): boolean {
 	return isValid;
 }
 
-export function isValidDatasetSection(section: any): boolean {
-	let isValid = true;
-	for(const requiredKey of REQUIRED_DATASET_SECTION_KEYS) {
-		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey.toLowerCase());
-	}
-	return isValid;
-}

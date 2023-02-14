@@ -9,23 +9,9 @@ import {
 import {QueryEngineHelper} from "./QueryEngineHelper";
 
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-
-//	RECURSION
-let NOT = "NOT";
-let AND = "AND";
-let OR = "OR";
-//	BASE CASE
-let IS = "IS";
-let LT = "LT";
-let EQ = "EQ";
-let GT = "GT";
-// idk
-let WHERE = "WHERE";
-let OPTIONS = "OPTIONS";
-let COLUMNS = "COLUMNS";
-let ORDER = "ORDER";
-const LOGIC = [AND, OR];
-const COMPARATOR = [LT, GT, EQ, IS, NOT];
+let NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
+let WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
+const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
 export class QueryEngine {
 	public dataset: InsightData[];
 	public queryJson: any;
@@ -70,15 +56,10 @@ export class QueryEngine {
 		return [];
 	}
 
-	public validateQuery(): boolean {
-		//	check if the query is in an input section like in the tests [TESTING PURPOSES ONLY I THINK] NOT NEEDED INPUT IS PART OF FOLDER-TEST
-		if (Object.prototype.hasOwnProperty.call(this.queryJson, "input")) {
-			this.queryJson = this.queryJson["input"];
-		}
-		//	check if there is a where block
+	public isValidQuery(): boolean {
 		let hasWhere: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, WHERE);
 		let hasOptions: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, OPTIONS);
-		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND
+		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
 			return false; //	Promise.reject(new InsightError("Invalid query lang: WHERE"));
 		}
 		return this.isValidWhere(this.queryJson[WHERE]) && this.isValidOptions(this.queryJson[OPTIONS]);
@@ -213,7 +194,7 @@ export class QueryEngine {
 				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
-			case IS: {
+			case IS: { // jk add special handler function for asterisk
 				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}

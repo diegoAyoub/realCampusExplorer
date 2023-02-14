@@ -8,8 +8,8 @@
  **/
 import * as fs from "fs-extra";
 import {InsightData, InsightDatasetSection} from "./IInsightFacade";
-import {isValidDatasetSection} from "./Parser";
-
+const REQUIRED_DATASET_SECTION_KEYS =
+	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 export function readLocal(path: string, insightDataList: InsightData[]): void {
 	try {
 		let fileContent = fs.readJSONSync(path);
@@ -52,4 +52,12 @@ function isDuplicatedDataset(insightDataList: InsightData[], id: string): boolea
 		}
 	}
 	return false;
+}
+
+function isValidDatasetSection(section: any): boolean {
+	let isValid = true;
+	for(const requiredKey of REQUIRED_DATASET_SECTION_KEYS) {
+		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey.toLowerCase());
+	}
+	return isValid;
 }
