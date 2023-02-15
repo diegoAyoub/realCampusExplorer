@@ -9,9 +9,12 @@ import {
 import {QueryEngineHelper} from "./QueryEngineHelper";
 
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-let NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
-let WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
+const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
+const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
 const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
+
+export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
+export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
 	public dataset: InsightData[];
 	public queryJson: any;
@@ -19,7 +22,6 @@ export class QueryEngine {
 	public datasetSections: InsightDatasetSection[] = [];
 	public orderKey: string;
 	public selectedColumns: string[];
-
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
 		this.queryJson = qryJson as any;
@@ -83,14 +85,17 @@ export class QueryEngine {
 					return false;
 				}
 			} else if (COMPARATOR.includes(whereKey)) {
-				 isValid = isValid && this.isValidWhere(whereVal);
+				isValid = isValid && this.isValidComparatorEntry(whereVal,key) && this.isValidWhere(whereVal);
 			} else {
 				//	GET ID
 				let keyArr = whereKey.split("_");
 				let queryID: string = keyArr[0];
 				let conditionCol: string = keyArr[1];
-				this.qryID = queryID;
-				if (!this.isIdExist(queryID) || !this.isValidId(queryID) || !COLUMN_NAMES.includes(conditionCol)) {
+				this.qryID = this.qryID === "" ? queryID : this.qryID;
+				if (!this.isIdExist(queryID) ||
+					!this.isValidId(queryID) ||
+					!COLUMN_NAMES.includes(conditionCol) ||
+					queryID !== this.qryID) {
 					// validID returns string and not boolean
 					return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
 				}
@@ -98,10 +103,20 @@ export class QueryEngine {
 		}
 		return isValid;
 	}
+
+	public isValidComparatorEntry(object: any, comparator: string): boolean {
+		let key = Object.keys(object)[0];
+		let field = key.split("_")[1];
+		let value = object[key];
+
+		return comparator === NOT ||
+			(COLUMN_NUMBERS.includes(field) && COLUMN_NUMBERS.includes(comparator) && typeof value === "number") ||
+			(COLUMN_STRINGS.includes(field) && COLUMN_STRINGS.includes(comparator) && typeof value === "string" &&
+				this.isValidWildCard(value));
+	}
 	public isValidOptions(optionBlock: any): boolean {
 		let optionKeys = Object.keys(optionBlock);
 		let columnKeys: string[] = [];
-		// let filteredColumns: string[] = [];
 
 		if (optionKeys.length === 1) {
 			if (optionKeys[0] === COLUMNS) {
@@ -114,13 +129,14 @@ export class QueryEngine {
 				columnKeys = optionBlock[COLUMNS];
 				this.selectedColumns = this.getColumns(columnKeys);
 				if (this.isValidKey(optionBlock[ORDER]) && columnKeys.includes(optionBlock[ORDER])) {
+					this.orderKey = optionBlock[ORDER];
 					return this.selectedColumns.length === columnKeys.length;
 				}
 			}
 		}
 		return false;
 	}
-	public isValidKey(key: string) {
+	public isValidKey(key: string): boolean {
 		let arr = key.split("_");
 		let setID = arr[0];
 		let col = arr[1];
@@ -144,7 +160,7 @@ export class QueryEngine {
 			if (results.length === 0) {
 				results = subResult;
 			} else {
-				results = results.filter((section) => subResult.includes(section));
+				results = subResult.filter((section) => results.includes(section));
 			}
 		}
 		return results;
@@ -194,15 +210,23 @@ export class QueryEngine {
 				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
-			case IS: { // jk add special handler function for asterisk
-				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
+			case IS: { // jk add special handler function for aster
+				if(value.includes("*")) {
+					if(this.isValidWildCard(value)) {
+						filteredList = sections.filter((section) => {
+							return this.isWildCardMatched(this.getColVal(section, col), value);
+						});
+					}
+				} else {
+					filteredList = sections.filter((section) => this.getColVal(section, col) === value);
+				}
 				break;
 			}
 		}
 		return filteredList;
 	}
 
-	public getColVal(section: any, colName: string): string | number {
+	public getColVal(section: any, colName: string): any {
 		if (COLUMN_NAMES.includes(colName)) {
 			return section[colName];
 		}
@@ -229,5 +253,32 @@ export class QueryEngine {
 			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
 		return Promise.resolve(true);
+	}
+	public isWildCardMatched(value: string, pattern: string) {
+		let wildArr = pattern.split("*");
+		if (wildArr.length === 2)	{
+			if(wildArr[0] === "" && wildArr[1] !== "") {
+				let substring = wildArr[1];
+				let stringToMatch = value.substring(value.length - substring.length, value.length);
+				return substring === stringToMatch;
+			} else if (wildArr[0] !== "" && wildArr[1] === "") {
+				let substring = wildArr[0];
+				let stringToMatch = value.substring(0, substring.length);
+				return substring === stringToMatch;
+			}
+		}
+		return false;
+	}
+
+	public isValidWildCard(pattern: string) { // we are considering no pattern to be a valid wildcard pattern
+		if(pattern.includes("*")) {
+			let wildArr = pattern.split("*");
+			if(wildArr.length > 2) {
+				return false;
+			} else if(wildArr[0] !== "" && wildArr[1] !== "") {
+				return false;
+			}
+		}
+		return true;
 	}
 }

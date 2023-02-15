@@ -1,5 +1,5 @@
 {
-	"title": "complex query should fail 3 conditions in and has 2 keys",
+	"title": "complex query nested Ands should return nothing",
 	"input": {
 		"WHERE": {
 			"OR": [
@@ -20,7 +20,9 @@
 								{
 									"LT": {
 										"sections_fail": 40
-									},
+									}
+								},
+								{
 									"GT": {
 										"sections_audit": 2
 									}
@@ -28,11 +30,6 @@
 							]
 						}
 					]
-				},
-				{
-					"EQ": {
-						"classes_avg": 95
-					}
 				}
 			]
 		},
@@ -45,6 +42,6 @@
 			"ORDER": "sections_avg"
 		}
 	},
-	"errorExpected": true,
-	"expected": "InsightError"
+	"errorExpected": false,
+	"expected": []
 }

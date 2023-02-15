@@ -2,6 +2,7 @@ import {
 	InsightDatasetSection,
 	InsightResult,
 } from "./IInsightFacade";
+import {COLUMN_NUMBERS, COLUMN_STRINGS} from "./QueryEngine";
 
 export class QueryEngineHelper {
 
@@ -21,15 +22,14 @@ export class QueryEngineHelper {
 	public getFormattedResult(): InsightResult[] {
 		let result: InsightResult[] = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));
 		if(this.orderBy !== ""){
-			result.sort((a, b) => {
-				if(a[this.orderBy] > b[this.orderBy]) {
-					return 1;
-				} else if (a[this.orderBy] < b[this.orderBy]) {
-					return -1;
-				} else {
-					return 0;
-				}
-			});
+			if(COLUMN_NUMBERS.includes(this.orderBy.split("_")[1])) {
+				result.sort((a, b) => (a[this.orderBy] as number) - (b[this.orderBy] as number));
+			}
+			if(COLUMN_STRINGS.includes(this.orderBy.split("_")[1])) {
+				result.sort((a, b) => {
+					return (a[this.orderBy] as string).localeCompare(b[this.orderBy] as string);
+				});
+			}
 		}
 		for(let section of result){
 			for(let key in section) {
@@ -40,17 +40,6 @@ export class QueryEngineHelper {
 		}
 		return result;
 	}
-
-	// private compareFnValues(a: InsightResult, b: InsightResult): number {
-	//
-	// 	if(a[this.orderBy] > b[this.orderBy]) {
-	// 		return 1;
-	// 	}
-	// 	if(a[this.orderBy] < b[this.orderBy]) {
-	// 		return -1;
-	// 	}
-	// 	return 0;
-	// }
 
 	public prefixJSON(datasetID: string, section: InsightDatasetSection): InsightResult {
 		let keyUUID = datasetID + "_" + "uuid";
