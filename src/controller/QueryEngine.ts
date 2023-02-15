@@ -12,6 +12,8 @@ const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg"
 let NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 let WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
 const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
+const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
+const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
 	public dataset: InsightData[];
 	public queryJson: any;
