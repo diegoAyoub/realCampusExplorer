@@ -1,5 +1,5 @@
 {
-	"title": "Complex Query: Logic comparison missing filter list",
+	"title": "Complex Query: Logic comarison missing filter list",
 	"input": {
 		"WHERE": {
 			"AND": [

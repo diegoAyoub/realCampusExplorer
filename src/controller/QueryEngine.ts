@@ -9,6 +9,9 @@ import {
 import {QueryEngineHelper} from "./QueryEngineHelper";
 
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
+const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept"];
+const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit"];
+
 let NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 let WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
 const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
@@ -21,7 +24,6 @@ export class QueryEngine {
 	public datasetSections: InsightDatasetSection[] = [];
 	public orderKey: string;
 	public selectedColumns: string[];
-
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
 		this.queryJson = qryJson as any;
@@ -92,6 +94,10 @@ export class QueryEngine {
 				let queryID: string = keyArr[0];
 				let conditionCol: string = keyArr[1];
 				this.qryID = queryID;
+				if(whereVal === 69 ) { // change this later
+
+
+				}
 				if (!this.isIdExist(queryID) || !this.isValidId(queryID) || !COLUMN_NAMES.includes(conditionCol)) {
 					// validID returns string and not boolean
 					return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
@@ -197,6 +203,41 @@ export class QueryEngine {
 				break;
 			}
 			case IS: { // jk add special handler function for asterisk
+				if(value.includes("*")){
+
+					let wildArr = value.split("*");
+					if (wildArr.length === 2)	{
+
+						if(wildArr[0] !== "" && wildArr[1] !== "") {
+							//	bad boy, asterisk in the middle
+							//	Promise.reject(new InsightError("love to see it"));
+						} else {
+							//	good boy, now lets find asterisk location
+							if(wildArr[0] === "" && wildArr[1] !== "") {
+							//	asterisk at the start
+								let strLenWild = wildArr[1].length;
+							//	let strLen = this.getColVal(section,col).length;
+// 							filteredList = sections.filter((section) =>
+// 							{this.getColVal(section, col).substring
+// 							(this.getColVal(section,col).length-strLenWild,this.getColVal(section,col).length)
+// 							=== wildArr[1]);
+
+							} else if (wildArr[0] !== "" && wildArr[1] === "") {
+							//	asterisk at the end
+								let strLen = wildArr[0].length;
+// 								filteredList = sections.filter((section) => this.getColVal(section, col).substring
+// 								(0,strLen) === wildArr[0]);
+							} else {
+							// its just an asterisk
+								filteredList = sections;
+
+							}
+						}
+					} else{
+						//	bad boy, more than 1 asterisk
+						//	Promise.reject(new InsightError("love to see it"));
+					}
+				}
 				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
@@ -204,7 +245,7 @@ export class QueryEngine {
 		return filteredList;
 	}
 
-	public getColVal(section: any, colName: string): string | number {
+	public getColVal(section: any, colName: string): any {
 		if (COLUMN_NAMES.includes(colName)) {
 			return section[colName];
 		}
