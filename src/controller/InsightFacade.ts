@@ -29,7 +29,7 @@ export default class InsightFacade implements IInsightFacade {
 	private queryEng: QueryEngine | null = null;
 	constructor() {
 		// console.log("InsightFacadeImpl::init()");
-		// readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
