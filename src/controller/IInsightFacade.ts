@@ -8,16 +8,6 @@ export enum InsightDatasetKind {
 	Sections = "sections",
 	Rooms = "rooms",
 }
-
-// id: number,
-// 	course: string | number,
-// 	title: string,
-// 	professor: string,
-// 	subject: string,
-// 	year: string | number,
-// 	avg: string | number,
-// 	pass: string | number,
-// 	fail: string | number,
 export class InsightData {
 	public metaData: InsightDataset;
 	public data: InsightDatasetSection[]; // @todo: maybe make it any[] so that can use prefixjson or nah?
@@ -28,12 +18,6 @@ export class InsightData {
 		this.metaData.numRows = numRows;
 		this.data = data;
 	}
-	// public addNumRows(numRows: number) {
-	// 	this.metaData.numRows = numRows;
-	// };
-	// public addDataset(dataset: InsightDatasetSection[]) {
-	// 	this.data = dataset;
-	// }
 }
 export class InsightDatasetSection {
 	// public datasetID: string;
@@ -42,7 +26,7 @@ export class InsightDatasetSection {
 	public title: string;
 	public instructor: string;
 	public dept: string;
-	public year: string;
+	public year: number;
 	public avg: string;
 	public pass: string;
 	public fail: string;
@@ -54,7 +38,7 @@ export class InsightDatasetSection {
 		title: string,
 		professor: string,
 		subject: string,
-		year: string,
+		year: number,
 		avg: string,
 		pass: string,
 		fail: string,

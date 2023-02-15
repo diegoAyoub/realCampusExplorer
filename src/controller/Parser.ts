@@ -1,8 +1,6 @@
 import {InsightDatasetSection, InsightError} from "./IInsightFacade";
-import {REQUIRED_SECTION_KEYS} from "./InsightFacade";
-const REQUIRED_DATASET_SECTION_KEYS =
-	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-
+const REQUIRED_SECTION_KEYS =
+	["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
 /**
  * Reads a stringified version of an object (i.e. "{"avg": 50}") and converts it to an InsightDatasetSection
  * REQUIRES: the string to be a valid object that contains a "results" key
@@ -19,13 +17,14 @@ export function parseClasses(classes: any, sections: InsightDatasetSection[]): P
 					// Promise.reject(new InsightError("There are no valid sections"));
 					for(const section of classObject.result) {
 						if(isValidSection(section)) {
+							let year = section.Section === "overall" ? 1900 : parseInt(section.Year, 10);
 							sections.push(new InsightDatasetSection(
-								section.id,
+								section.id.toString(),
 								section.Course,
 								section.Title,
 								section.Professor,
 								section.Subject,
-								section.Year,
+								year,
 								section.Avg,
 								section.Pass,
 								section.Fail,
@@ -55,15 +54,8 @@ export function parseClasses(classes: any, sections: InsightDatasetSection[]): P
 export function isValidSection(section: any): boolean {
 	let isValid = true;
 	for(const requiredKey of REQUIRED_SECTION_KEYS) {
-		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey);
+		isValid = isValid && Object.prototype.hasOwnProperty.call(section, requiredKey);
 	}
 	return isValid;
 }
 
-export function isValidDatasetSection(section: any): boolean {
-	let isValid = true;
-	for(const requiredKey of REQUIRED_DATASET_SECTION_KEYS) {
-		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey.toLowerCase());
-	}
-	return isValid;
-}

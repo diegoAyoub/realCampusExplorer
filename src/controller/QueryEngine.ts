@@ -1,56 +1,41 @@
+//	This file will have a lot of the query helper functions, this file is essentially the query engine //
 import {
-	IInsightFacade,
 	InsightData,
-	InsightDataset,
-	InsightDatasetKind,
 	InsightDatasetSection,
 	InsightError,
 	InsightResult,
-	NotFoundError,
+	ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
+
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-//	RECURSION
-let NOT = "NOT";
-let AND = "AND";
-let OR = "OR";
-//	BASE CASE
-let IS = "IS";
-let LT = "LT";
-let EQ = "EQ";
-let GT = "GT";
-// idk
-let WHERE = "WHERE";
-let OPTIONS = "OPTIONS";
-let COLUMNS = "COLUMNS";
-let ORDER = "ORDER";
-const COMPARATOR_LOGIC = [AND, OR];
-const COMPARATOR = [LT, GT, EQ, IS, NOT];
+const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept"];
+const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit"];
+
+let NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
+let WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
+const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
 export class QueryEngine {
 	public dataset: InsightData[];
 	public queryJson: any;
 	public qryID: string = "";
 	public datasetSections: InsightDatasetSection[] = [];
-	public helper: any;
 	public orderKey: string;
 	public selectedColumns: string[];
-
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
 		this.queryJson = qryJson as any;
-		this.helper = null;
 		this.selectedColumns = [];
 		this.orderKey = "";
 	}
-	public doQuery(query: any): InsightResult[] {
+	public doQuery(query: any): Promise<InsightResult[]> {
 		let results: InsightDatasetSection[] = this.handleFilter(query[WHERE]);
-		console.log(results.length);
-		if(results.length > 5000){
-			//	return error. waiting until we are done querying is a lazy way to do it. we should check throughout to
-			//	reduce runtime and not filter 1935548 results just to discard them after
+		if(results.length > 5000) {
+			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
+		} else {
+			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
+			return Promise.resolve(resultFormatter.getFormattedResult());
 		}
-		this.helper = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
-		return this.helper.getFormattedResult();
 	}
 
 	public handleFilter(query: any): InsightDatasetSection[] {
@@ -70,56 +55,47 @@ export class QueryEngine {
 		} else if (Object.prototype.hasOwnProperty.call(query, EQ)) {
 			return this.handleMComparator(EQ, query);
 		}
-		let emptyRet: InsightDatasetSection[] = [];
-		return emptyRet;
+		return [];
 	}
 
-	public validateQuery(): boolean {
-		//	check if the query is in an input section like in the tests [TESTING PURPOSES ONLY I THINK] NOT NEEDED INPUT IS PART OF FOLDER-TEST
-		if (Object.prototype.hasOwnProperty.call(this.queryJson, "input")) {
-			this.queryJson = this.queryJson["input"];
-		}
-		//	check if there is a where block
-		let isWhere: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, WHERE);
-		if (!isWhere) { // WHERE KEY NOT FOUND
+	public isValidQuery(): boolean {
+		let hasWhere: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, WHERE);
+		let hasOptions: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, OPTIONS);
+		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
 			return false; //	Promise.reject(new InsightError("Invalid query lang: WHERE"));
 		}
-		//	check if there is an options block or return error
-		let isOptions: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, OPTIONS);
-
-		if (!isOptions) { // OPTIONS KEY NOT FOUND
-			return false; //	Promise.reject(new InsightError("Invalid query lang: OPTIONS"));
-		}
-		if (this.validateWhere(this.queryJson[WHERE])) { // VALIDATE WHERE
-			if(this.validateOptions(this.queryJson[OPTIONS])) { // structured like this for debugging purposes
-				return true;
-			}
-			// return true;
-		}
-		return false;
+		return this.isValidWhere(this.queryJson[WHERE]) && this.isValidOptions(this.queryJson[OPTIONS]);
 	}
 	// Recursion through where sub block, explores each layer of camparators until section ID and column is found. Then
 	//	returns true if valid. false otherwise
-	public validateWhere(whereBlock: any): boolean {
-		let conditionVal: any;
+	public isValidWhere(whereBlock: any): boolean {
 		let isValid = true;
+		if(Object.keys(whereBlock).length !== 1) {
+			return false;
+		}
 		for (let key in whereBlock) {
 			let whereKey: string = key;
 			let whereVal = whereBlock[key] as any;
-
-			if (COMPARATOR_LOGIC.includes(whereKey)) {
-				for(let filter of whereVal) {
-					isValid = isValid && this.validateWhere(filter);
+			if (LOGIC.includes(whereKey)) {
+				if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats empty
+					for(let filter of whereVal) {
+						isValid = isValid && this.isValidWhere(filter);
+					}
+				} else {
+					return false;
 				}
-			} else if (COMPARATOR.includes(whereKey)) { // maybe add nested for loop for AND and OR using OF
-				 isValid = isValid && this.validateWhere(whereVal);
+			} else if (COMPARATOR.includes(whereKey)) {
+				 isValid = isValid && this.isValidWhere(whereVal);
 			} else {
-				conditionVal = whereVal;
 				//	GET ID
 				let keyArr = whereKey.split("_");
 				let queryID: string = keyArr[0];
 				let conditionCol: string = keyArr[1];
 				this.qryID = queryID;
+				if(whereVal === 69 ) { // change this later
+
+
+				}
 				if (!this.isIdExist(queryID) || !this.isValidId(queryID) || !COLUMN_NAMES.includes(conditionCol)) {
 					// validID returns string and not boolean
 					return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
@@ -128,41 +104,38 @@ export class QueryEngine {
 		}
 		return isValid;
 	}
-	public validateOptions(optionBlock: any): boolean {
+	public isValidOptions(optionBlock: any): boolean {
 		let optionKeys = Object.keys(optionBlock);
 		let columnKeys: string[] = [];
-		let filteredColumns: string[] = [];
+		// let filteredColumns: string[] = [];
 
 		if (optionKeys.length === 1) {
 			if (optionKeys[0] === COLUMNS) {
 				columnKeys = optionBlock[COLUMNS];
-				filteredColumns = this.getColumns(columnKeys);
-				this.selectedColumns = filteredColumns;
-				return filteredColumns.length === columnKeys.length;
+				this.selectedColumns = this.getColumns(columnKeys);
+				return this.selectedColumns.length === columnKeys.length;
 			}
 		} else if (optionKeys.length === 2) {
 			if (optionKeys[0] === COLUMNS && optionKeys[1] === ORDER) {
 				columnKeys = optionBlock[COLUMNS];
-				filteredColumns = this.getColumns(columnKeys);
-				let tempArr = optionBlock[ORDER].split("_");
-				let orderCol = tempArr[1];
-				let orderID = tempArr[0];
-				if (tempArr.length <= 2 && COLUMN_NAMES.includes(orderCol) && orderID === this.qryID) {
-					this.orderKey = optionBlock[ORDER];
-					this.selectedColumns = filteredColumns;
-					return filteredColumns.length === columnKeys.length;
+				this.selectedColumns = this.getColumns(columnKeys);
+				if (this.isValidKey(optionBlock[ORDER]) && columnKeys.includes(optionBlock[ORDER])) {
+					return this.selectedColumns.length === columnKeys.length;
 				}
 			}
 		}
 		return false;
 	}
+	public isValidKey(key: string) {
+		let arr = key.split("_");
+		let setID = arr[0];
+		let col = arr[1];
+		return COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length === 2;
+	}
 	public getColumns(columnsBlock: any): string[] {
 		let columns: string[] = [];
 		for (const colKey of columnsBlock) {
-			let arr = colKey.split("_");
-			let setID = arr[0];
-			let col = arr[1];
-			if (COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length <= 2) {
+			if (this.isValidKey(colKey)) {
 				columns.push(colKey);
 			}
 		}
@@ -170,22 +143,16 @@ export class QueryEngine {
 	}
 
 	public handleAnd(query: any): InsightDatasetSection[] {
-		// Everything in the AND will return an insightdataset section. If an insightdataset section exists in all
-		// the InsightDatasetSection[], then it satisfies the conditions listed in the and.
 		let results: InsightDatasetSection[] = [];
 		let subResult: InsightDatasetSection[] = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
 			if (results.length === 0) {
-				results = subResult; //	results needs to be initialized to something
+				results = subResult;
 			} else {
-				// results already has sections. If results has sections that are found in subResult then the AND conditions
-				// are satisfied (but does this find the overlap tho? double check) <--!
 				results = results.filter((section) => subResult.includes(section));
 			}
 		}
-		// const ids = results.map((section) => section["uuid"]);
-		// const filtered = results.filter(({id}, index) => !ids.includes(id, index + 1));
 		return results;
 	}
 
@@ -195,14 +162,11 @@ export class QueryEngine {
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
 			for (const section of subResult) {
-				results.push(section); // @todo can i replace with ... section??
+				if(!results.includes(section)) {
+					results.push(section);
+				}
 			}
 		}
-		// let uniqueSections = new Set(results); // remove duplicates by making it a set?
-		// results = [...uniqueSections];
-		// const ids = results.map((section) => section["uuid"]);
-		// const filtered = results.filter(({id}, index) => !ids.includes(id, index + 1));
-		results = results.filter((section) => !subResult.includes(section));
 		return results;
 	}
 
@@ -210,22 +174,14 @@ export class QueryEngine {
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[] = [];
 		for (const operator in query) {
-			subResult.push(...this.handleFilter(operator)); //	does this actually work!?
+			subResult = this.handleFilter(operator); //	does this actually work!?
 		}
-		let index: number;
-		for (const section of subResult) {
-			index = results.indexOf(section);
-			if (index !== -1) {
-				results.splice(index, 1); //	add a check for length
-			} else {
-				console.log("INTERNAL ERROR: handleNot");
-			}
-		}
+		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
 		return results;
 	}
 	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
 		let filteredList: InsightDatasetSection[] = [];
-		let sections: InsightDatasetSection[] = this.dataset[0].data; // @todo: change so that it matches datset ids iwth the one in the query
+		let sections: InsightDatasetSection[] = this.datasetSections;
 		let inBlock = query[comparator];
 		let keys = Object.keys(query[comparator]);
 		let keyArr = keys[0].split("_");
@@ -233,42 +189,61 @@ export class QueryEngine {
 		let value = inBlock[keys[0]];
 		switch (comparator) {
 			case GT: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) > value) {
-						filteredList.push(currClass);
-					}
-				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) > value);
 				break;
 			}
 			case LT: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) < value) {
-						filteredList.push(currClass);
-					}
-				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) < value);
 				break;
 			}
 			case EQ: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) === value) {
-						filteredList.push(currClass);
-					}
-				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
-			case IS: {
-				for (const currClass of sections) {
-					if (this.getColVal(currClass, col) === value) {
-						filteredList.push(currClass);
+			case IS: { // jk add special handler function for asterisk
+				if(value.includes("*")){
+
+					let wildArr = value.split("*");
+					if (wildArr.length === 2)	{
+
+						if(wildArr[0] !== "" && wildArr[1] !== "") {
+							//	bad boy, asterisk in the middle
+							//	Promise.reject(new InsightError("love to see it"));
+						} else {
+							//	good boy, now lets find asterisk location
+							if(wildArr[0] === "" && wildArr[1] !== "") {
+							//	asterisk at the start
+								let strLenWild = wildArr[1].length;
+							//	let strLen = this.getColVal(section,col).length;
+// 							filteredList = sections.filter((section) =>
+// 							{this.getColVal(section, col).substring
+// 							(this.getColVal(section,col).length-strLenWild,this.getColVal(section,col).length)
+// 							=== wildArr[1]);
+
+							} else if (wildArr[0] !== "" && wildArr[1] === "") {
+							//	asterisk at the end
+								let strLen = wildArr[0].length;
+// 								filteredList = sections.filter((section) => this.getColVal(section, col).substring
+// 								(0,strLen) === wildArr[0]);
+							} else {
+							// its just an asterisk
+								filteredList = sections;
+
+							}
+						}
+					} else{
+						//	bad boy, more than 1 asterisk
+						//	Promise.reject(new InsightError("love to see it"));
 					}
 				}
+				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
 		}
 		return filteredList;
 	}
 
-	public getColVal(section: any, colName: string): string | number {
+	public getColVal(section: any, colName: string): any {
 		if (COLUMN_NAMES.includes(colName)) {
 			return section[colName];
 		}

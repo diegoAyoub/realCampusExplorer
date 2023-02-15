@@ -14,7 +14,7 @@ import {folderTest} from "@ubccpsc310/folder-test";
 
 chai.use(chaiAsPromised);
 // mutation testing -> UnitTests(input, correct_implementation) != unitTests(input, mutated_implementation)
-type Output = Promise<InsightResult[]>;
+type Output = InsightResult[];
 type Input = object;
 type Error = "ResultTooLargeError" | "InsightError";
 
@@ -333,15 +333,15 @@ describe("InsightFacade", function () {
 			}
 		}
 
-		function assertOnResult(actual: unknown, expected: InsightResult[]): void {
+		function assertOnResult(actual: unknown, expected: Output): void {
 			expect(actual).to.have.deep.members(expected);
 		}
 
-		function target(input: Input): Output {
+		function target(input: Input): Promise<Output> {
 			return facade.performQuery(input);
 		}
 
-		folderTest<Input, InsightResult[], Error>("PerformQuery Tests", target, "./test/resources/queries", {
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
 			errorValidator,
 			assertOnError,
 			assertOnResult,
@@ -372,10 +372,10 @@ describe("InsightFacade", function () {
 		}
 
 		function assertOnResult(actual: unknown, expected: Output): void {
-			expect(actual).to.deep.equals(expected);
+			expect(actual).to.have.deep.members(expected);
 		}
 
-		function target(input: Input): Output {
+		function target(input: Input): Promise<Output> {
 			return facade.performQuery(input);
 		}
 

@@ -1,18 +1,7 @@
 import {
-	IInsightFacade,
-	InsightData,
-	InsightDataset,
-	InsightDatasetKind,
 	InsightDatasetSection,
-	InsightError,
 	InsightResult,
-	NotFoundError,
 } from "./IInsightFacade";
-import * as InFa from "./InsightFacade";
-import * as fs from "fs-extra";
-import * as zip from "jszip";
-import JSZip from "jszip";
-
 
 export class QueryEngineHelper {
 
@@ -27,36 +16,19 @@ export class QueryEngineHelper {
 		this.orderBy = OrderCol;
 		this.wantedColumns = wantedColArr;
 		this.filteredSections = filteredSections;
-		// this.init();
 	}
 	//	filters columns and orders them if required. Returns an insightResult Array.
 	public getFormattedResult(): InsightResult[] {
-
 		let result: InsightResult[] = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));
-		// console.log("HAS LENGTH = " + result.length);
-		//	console.log(typeof this.filteredSections[0]["uuid"]);
-		//	console.log(this.filteredSections[0]["uuid"]);
 		if(this.orderBy !== ""){
-			// let x = result[0]["sections_avg"];
 			result.sort((a, b) => {
-				if (this.orderBy.split("_")[1] === "uuid"){
-					let tempOrder: number = parseInt(this.orderBy,10);
-
-					if(a[this.orderBy] > b[this.orderBy]) {
-						return 1;
-					}
-					if(a[this.orderBy] < b[this.orderBy]) {
-						return -1;
-					}
-				} else{
-					if(a[this.orderBy] > b[this.orderBy]) {
-						return 1;
-					}
-					if(a[this.orderBy] < b[this.orderBy]) {
-						return -1;
-					}
+				if(a[this.orderBy] > b[this.orderBy]) {
+					return 1;
+				} else if (a[this.orderBy] < b[this.orderBy]) {
+					return -1;
+				} else {
+					return 0;
 				}
-				return 0;
 			});
 		}
 		for(let section of result){
@@ -66,23 +38,18 @@ export class QueryEngineHelper {
 				}
 			}
 		}
-		console.log("HAS LENGTH = " + result.length);
 		return result;
 	}
 
-	private compareFnValues(a: InsightResult, b: InsightResult): number {
-
-		if(a[this.orderBy] > b[this.orderBy]) {
-			return 1;
-		}
-		if(a[this.orderBy] < b[this.orderBy]) {
-			return -1;
-		}
-		return 0;
-	}
-
-	// private getResults() {
-	// 	let results = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));
+	// private compareFnValues(a: InsightResult, b: InsightResult): number {
+	//
+	// 	if(a[this.orderBy] > b[this.orderBy]) {
+	// 		return 1;
+	// 	}
+	// 	if(a[this.orderBy] < b[this.orderBy]) {
+	// 		return -1;
+	// 	}
+	// 	return 0;
 	// }
 
 	public prefixJSON(datasetID: string, section: InsightDatasetSection): InsightResult {
@@ -98,7 +65,7 @@ export class QueryEngineHelper {
 		let keyAudit = datasetID + "_" + "audit";
 
 		return {
-			[keyUUID]: String(section.uuid),
+			[keyUUID]: section.uuid,
 			[keyCourse]: section.id,
 			[keyTitle]: section.title,
 			[keyProfessor]: section.instructor,

@@ -13,14 +13,12 @@ import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
+import {readLocal} from "./DiskUtil";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
 // const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
 const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
-export const REQUIRED_SECTION_KEYS =
-	["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
-const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
 
 /**
  * This is the main programmatic entry point for the project.
@@ -28,21 +26,15 @@ const COMPARATORLOGIC = ["AND", "OR", "LT", "GT", "EQ", "IS", "NOT"];
  */
 export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
-	public sections: InsightDatasetSection[] = []; // move this to local and have parseClasses return it instead?
-	private queryEng: any;
+	private queryEng: QueryEngine | null = null;
 	constructor() {
 		console.log("InsightFacadeImpl::init()");
-		// readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
-	// make it so that we can read from a file and parse it into InsightData[]
-	// ADDRESS THE GIT BOT IMPLICIT ANY: WHATEVER MSG
-	// MAKE IT WORK WITH LOCAL TESTS.
-	// RELATIVE PATH WITH DIST FOLDER
-	// ask about asyncronony in the proj seems like most of the stuff i'm doing is syncronous and test was failing cuz it took too long.
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
-		this.sections = [];
+		let sections: InsightDatasetSection[] = [];
 		return this.isValidInsightKind(kind) //
 			.then(() => this.isValidId(id))
 			.then(() => this.isIdExist(id) ? Promise.reject("The ID already exists") : Promise.resolve())
@@ -52,18 +44,17 @@ export default class InsightFacade implements IInsightFacade {
 					asyncJobs.push(file.async("string"));
 				});
 			})
-			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, this.sections)))
+			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, sections)))
 			.then(() => {
 				try {
-					if (this.sections.length !== 0) {
-						this.insightDataList.push(new InsightData(id, kind, this.sections.length, this.sections));
+					if (sections.length !== 0) {
+						this.insightDataList.push(new InsightData(id, kind, sections.length, sections));
 						return fs.outputJson(PATH_TO_ROOT_DATA,  this.insightDataList)
 							.then(() =>  Promise.resolve(this.getAddedIds()))
 							.catch(() =>  Promise.reject(new InsightError("There was an error writing to disk")));
 					}
 					return Promise.reject(new InsightError("No sections were found in the inputted file"));
 				} catch (Exception) {
-					// console.log(Exception);
 					return Promise.reject("An error occurred while writing to to disk");
 				}
 			})
@@ -104,11 +95,9 @@ export default class InsightFacade implements IInsightFacade {
 	 * EFFECTS: Returns an array of the IDs that are currently added to this
 	 **/
 	public isValidId(id: string): Promise<string> {
-		if (id.trim().length === 0) {
-			// blank id or id is all whitespace
+		if (id.trim().length === 0) { // blank id or id is all whitespace
 			return Promise.reject(new InsightError("The ID must contain non white space characters"));
-		} else if (id.includes("_")) {
-			// id has an underscore
+		} else if (id.includes("_")) { // id has an underscore
 			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
 		return Promise.resolve("");
@@ -165,35 +154,23 @@ export default class InsightFacade implements IInsightFacade {
 	}
 	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
-		let result: InsightDatasetSection[] = [];
 		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
-		if (this.queryEng.validateQuery()) {
+		if (this.queryEng.isValidQuery()) {
 			console.log("yep its valid");
-			let queryResult = this.queryEng.doQuery(query);
-			console.log("queryresults = " + queryResult.length);
-			return Promise.resolve(queryResult);
-		} else {
-			console.log("query could not be validated its invalid");
-			return Promise.reject(new InsightError("Invalid query semantics/syntax"));
+			 return this.queryEng.doQuery(query);
 		}
+		console.log("yep its nah its invalid");
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
-	}
-
-	public findDataset(id: string): Promise<InsightData> {
-		for (const dataset of this.insightDataList) {
-			if (dataset.metaData.id === id) {
-				let currentDataset: InsightData = dataset;
-				return Promise.resolve(currentDataset);
-			}
-		}
-		return Promise.reject(new InsightError("Matching ID not found"));
 	}
 }
 
 // let facade = new InsightFacade();
-// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
-//
+// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "valid_section.zip").toString("base64");
+// facade.listDatasets()
+// 	.then((results) => console.log(results))
+// 	.then(() => facade.addDataset("randomid", validDataset, InsightDatasetKind.Sections));
+
 // facade.addDataset("sections", validDataset, InsightDatasetKind.Sections)
 // 	.then(() => facade.listDatasets())
 // 	.then((addedDatasets) =>{
@@ -206,23 +183,12 @@ export default class InsightFacade implements IInsightFacade {
 // 	.then(() => {
 // 		return facade.performQuery({
 // 			WHERE: {
-// 				OR: [
+// 				AND: [
 // 					{
-// 						AND: [
-// 							{
-// 								GT: {
-// 									sections_pass: 500
-// 								}
-// 							},
-// 							{
-// 								IS: {
-// 									sections_instructor: ""
-// 								}
-// 							}
-// 						]
+// 						AND: []
 // 					},
 // 					{
-// 						EQ: {
+// 						LT: {
 // 							sections_avg: 95
 // 						}
 // 					}
@@ -230,11 +196,11 @@ export default class InsightFacade implements IInsightFacade {
 // 			},
 // 			OPTIONS: {
 // 				COLUMNS: [
-// 					"sections_pass",
+// 					"sections_dept",
 // 					"sections_id",
-// 					"sections_uuid"
+// 					"sections_avg"
 // 				],
-// 				ORDER: "sections_uuid"
+// 				ORDER: "sections_avg"
 // 			}
 // 		});
 // 	})
