@@ -28,8 +28,8 @@ export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	private queryEng: QueryEngine | null = null;
 	constructor() {
-		console.log("InsightFacadeImpl::init()");
-		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		// console.log("InsightFacadeImpl::init()");
+		// readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -157,52 +157,43 @@ export default class InsightFacade implements IInsightFacade {
 		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.isValidQuery()) {
-			console.log("yep its valid");
+			// console.log("yep its valid");
 			 return this.queryEng.doQuery(query);
 		}
-		console.log("yep its nah its invalid");
+		// console.log("yep its nah its invalid");
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
-
+//
 // let facade = new InsightFacade();
-// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "valid_section.zip").toString("base64");
+// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
 // facade.listDatasets()
-// 	.then((results) => console.log(results))
-// 	.then(() => facade.addDataset("randomid", validDataset, InsightDatasetKind.Sections));
-
+// 	.then((results) => console.log(results));
 // facade.addDataset("sections", validDataset, InsightDatasetKind.Sections)
 // 	.then(() => facade.listDatasets())
 // 	.then((addedDatasets) =>{
-// 		// console.log(facade.insightDataList);
-// 		console.log("hey");
-// 		console.log(addedDatasets);
+// 		console.log(facade.insightDataList);
+// 		// console.log("hey");
 // 		// return facade.readLocal();
 // 		return Promise.resolve();
 // 	})
 // 	.then(() => {
-// 		return facade.performQuery({
-// 			WHERE: {
-// 				AND: [
-// 					{
-// 						AND: []
-// 					},
-// 					{
-// 						LT: {
-// 							sections_avg: 95
-// 						}
+// 		return facade.performQuery(
+// 			{
+// 				WHERE: {
+// 					IS: {
+// 						sections_dept: "c*c"
 // 					}
-// 				]
-// 			},
-// 			OPTIONS: {
-// 				COLUMNS: [
-// 					"sections_dept",
-// 					"sections_id",
-// 					"sections_avg"
-// 				],
-// 				ORDER: "sections_avg"
+// 				},
+// 				OPTIONS: {
+// 					COLUMNS: [
+// 						"sections_dept",
+// 						"sections_avg"
+// 					],
+// 					ORDER: "sections_avg"
+// 				}
 // 			}
-// 		});
+// 		);
 // 	})
 // 	.then((results) => console.log(results))
 // 	.catch((err) => console.log(err));
