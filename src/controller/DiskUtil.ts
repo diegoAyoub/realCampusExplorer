@@ -42,7 +42,7 @@ export function readLocal(path: string, insightDataList: InsightData[]): void {
 			}
 		}
 	} catch(Exception) {
-		console.log("There was a problem reading from disk." + Exception);
+		// console.log("There was a problem reading from disk." + Exception);
 	}
 }
 function isDuplicatedDataset(insightDataList: InsightData[], id: string): boolean {
