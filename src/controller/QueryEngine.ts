@@ -11,7 +11,7 @@ import {QueryEngineHelper} from "./QueryEngineHelper";
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
-const LOGIC = [AND, OR, NOT], COMPARATOR = [LT, GT, EQ, IS];
+const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
 
 export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
 export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
@@ -109,9 +109,10 @@ export class QueryEngine {
 		let field = key.split("_")[1];
 		let value = object[key];
 
-		return (COLUMN_NUMBERS.includes(field) && COLUMN_NUMBERS.includes(comparator) && typeof value === "number") ||
-			   (COLUMN_STRINGS.includes(field) && COLUMN_STRINGS.includes(comparator) && typeof value === "string" &&
-				   this.isValidWildCard(value));
+		return comparator === NOT ||
+			(COLUMN_NUMBERS.includes(field) && COLUMN_NUMBERS.includes(comparator) && typeof value === "number") ||
+			(COLUMN_STRINGS.includes(field) && COLUMN_STRINGS.includes(comparator) && typeof value === "string" &&
+				this.isValidWildCard(value));
 	}
 	public isValidOptions(optionBlock: any): boolean {
 		let optionKeys = Object.keys(optionBlock);

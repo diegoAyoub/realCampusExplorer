@@ -164,7 +164,7 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
-//
+
 // let facade = new InsightFacade();
 // const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
 // facade.listDatasets()
@@ -181,13 +181,34 @@ export default class InsightFacade implements IInsightFacade {
 // 		return facade.performQuery(
 // 			{
 // 				WHERE: {
-// 					IS: {
-// 						sections_dept: "c*c"
-// 					}
+// 					AND: [
+// 						{
+// 							NOT: {
+// 								AND: [
+// 									{
+// 										GT: {
+// 											sections_avg: 20
+// 										}
+// 									},
+// 									{
+// 										IS: {
+// 											sections_dept: "adhe"
+// 										}
+// 									}
+// 								]
+// 							}
+// 						},
+// 						{
+// 							IS: {
+// 								sections_dept: "cpsc"
+// 							}
+// 						}
+// 					]
 // 				},
 // 				OPTIONS: {
 // 					COLUMNS: [
 // 						"sections_dept",
+// 						"sections_id",
 // 						"sections_avg"
 // 					],
 // 					ORDER: "sections_avg"

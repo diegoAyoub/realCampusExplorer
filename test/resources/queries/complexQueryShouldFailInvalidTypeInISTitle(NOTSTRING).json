@@ -1,0 +1,19 @@
+{
+	"title": "complex query should fail invalid type in IS title (NOT STRING)",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_title": 5
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_avg"
+			],
+			"ORDER": "sections_dept"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,19 @@
+{
+	"title": "complex query should fail invalid type in LT (instructor)",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"sections_instructor": 1
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_avg"
+			],
+			"ORDER": "sections_dept"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
