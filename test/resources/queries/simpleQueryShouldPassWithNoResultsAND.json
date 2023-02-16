@@ -1,0 +1,38 @@
+{
+	"title": "Simple query should pass with no results AND",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"AND": [
+						{
+							"GT": {
+								"sections_avg": 90
+							}
+						},
+						{
+							"IS": {
+								"sections_dept": "cpsc"
+							}
+						}
+					]
+				},
+				{
+					"IS": {
+						"sections_id": "418"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_id",
+				"sections_avg"
+			],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": []
+}
