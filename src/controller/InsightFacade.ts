@@ -13,7 +13,6 @@ import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
-import {readLocal} from "./DiskUtil";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
@@ -29,7 +28,6 @@ export default class InsightFacade implements IInsightFacade {
 	private queryEng: QueryEngine | null = null;
 	constructor() {
 		// console.log("InsightFacadeImpl::init()");
-		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -167,9 +165,78 @@ export default class InsightFacade implements IInsightFacade {
 
 // let facade = new InsightFacade();
 // const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
+// const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
+// let query = {
+// 	WHERE: {
+// 		AND: [
+// 			{
+// 				AND: [
+// 					{
+// 						GT: {
+// 							sections_avg: 90
+// 						}
+// 					},
+// 					{
+// 						IS: {
+// 							sections_dept: "cpsc"
+// 						}
+// 					}
+// 				]
+// 			},
+// 			{
+// 				IS: {
+// 					sections_id: "418"
+// 				}
+// 			}
+// 		]
+// 	},
+// 	OPTIONS: {
+// 		COLUMNS: [
+// 			"sections_dept",
+// 			"sections_id",
+// 			"sections_avg"
+// 		],
+// 		ORDER: "sections_avg"
+// 	}
+// };
+//
+// let query2 = {
+// 	WHERE: {
+// 		AND: [
+// 			{
+// 				AND: [
+// 					{
+// 						GT: {
+// 							classes_avg: 90
+// 						}
+// 					},
+// 					{
+// 						IS: {
+// 							classes_dept: "cpsc"
+// 						}
+// 					}
+// 				]
+// 			},
+// 			{
+// 				IS: {
+// 					classes_id: "418"
+// 				}
+// 			}
+// 		]
+// 	},
+// 	OPTIONS: {
+// 		COLUMNS: [
+// 			"classes_dept",
+// 			"classes_id",
+// 			"classes_avg"
+// 		],
+// 		ORDER: "classes_avg"
+// 	}
+// };
 // facade.listDatasets()
 // 	.then((results) => console.log(results));
-// facade.addDataset("sections", validDataset, InsightDatasetKind.Sections)
+// facade.addDataset("classes", validClass, InsightDatasetKind.Sections)
+// 	.then(() => facade.addDataset("sections", validDataset, InsightDatasetKind.Sections))
 // 	.then(() => facade.listDatasets())
 // 	.then((addedDatasets) =>{
 // 		console.log(facade.insightDataList);
@@ -178,43 +245,7 @@ export default class InsightFacade implements IInsightFacade {
 // 		return Promise.resolve();
 // 	})
 // 	.then(() => {
-// 		return facade.performQuery(
-// 			{
-// 				WHERE: {
-// 					AND: [
-// 						{
-// 							NOT: {
-// 								AND: [
-// 									{
-// 										GT: {
-// 											sections_avg: 20
-// 										}
-// 									},
-// 									{
-// 										IS: {
-// 											sections_dept: "adhe"
-// 										}
-// 									}
-// 								]
-// 							}
-// 						},
-// 						{
-// 							IS: {
-// 								sections_dept: "cpsc"
-// 							}
-// 						}
-// 					]
-// 				},
-// 				OPTIONS: {
-// 					COLUMNS: [
-// 						"sections_dept",
-// 						"sections_id",
-// 						"sections_avg"
-// 					],
-// 					ORDER: "sections_avg"
-// 				}
-// 			}
-// 		);
+// 		return facade.performQuery(query2);
 // 	})
 // 	.then((results) => console.log(results))
 // 	.catch((err) => console.log(err));
