@@ -36,6 +36,8 @@ export class QueryEngine {
 			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
 			return Promise.resolve(resultFormatter.getFormattedResult());
 		}
+		// let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
+		// return Promise.resolve(resultFormatter.getFormattedResult());
 	}
 
 	public handleFilter(query: any): InsightDatasetSection[] {
@@ -55,7 +57,7 @@ export class QueryEngine {
 		} else if (Object.prototype.hasOwnProperty.call(query, EQ)) {
 			return this.handleMComparator(EQ, query);
 		}
-		return [];
+		return this.datasetSections;
 	}
 
 	public isValidQuery(): boolean {
@@ -64,7 +66,10 @@ export class QueryEngine {
 		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
 			return false; //	Promise.reject(new InsightError("Invalid query lang: WHERE"));
 		}
-		return this.isValidWhere(this.queryJson[WHERE]) && this.isValidOptions(this.queryJson[OPTIONS]);
+		let isValidWhere: boolean = this.isValidWhere(this.queryJson[WHERE]);
+		let isWhereEmpty: boolean = Object.keys(this.queryJson[WHERE]).length === 0;
+		let isValidOptions = this.isValidOptions(this.queryJson[OPTIONS]);
+		return (isWhereEmpty || isValidWhere) && isValidOptions;
 	}
 	// Recursion through where sub block, explores each layer of camparators until section ID and column is found. Then
 	//	returns true if valid. false otherwise
@@ -122,6 +127,7 @@ export class QueryEngine {
 			if (optionKeys[0] === COLUMNS) {
 				columnKeys = optionBlock[COLUMNS];
 				this.selectedColumns = this.getColumns(columnKeys);
+				this.isIdExist(this.qryID);
 				return this.selectedColumns.length === columnKeys.length;
 			}
 		} else if (optionKeys.length === 2) {
@@ -130,6 +136,7 @@ export class QueryEngine {
 				this.selectedColumns = this.getColumns(columnKeys);
 				if (this.isValidKey(optionBlock[ORDER]) && columnKeys.includes(optionBlock[ORDER])) {
 					this.orderKey = optionBlock[ORDER];
+					this.isIdExist(this.qryID);
 					return this.selectedColumns.length === columnKeys.length;
 				}
 			}
@@ -144,8 +151,11 @@ export class QueryEngine {
 	}
 	public getColumns(columnsBlock: any): string[] {
 		let columns: string[] = [];
+		let datasetId = "";
 		for (const colKey of columnsBlock) {
+			this.qryID = this.qryID === "" ? colKey.split("_")[0] : this.qryID;
 			if (this.isValidKey(colKey)) {
+				datasetId = colKey;
 				columns.push(colKey);
 			}
 		}
@@ -183,9 +193,7 @@ export class QueryEngine {
 	public handleNot(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[] = [];
-		for (const operator in query) {
-			subResult = this.handleFilter(operator); //	does this actually work!?
-		}
+		subResult = this.handleFilter(query); //	does this actually work!?
 		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
 		return results;
 	}
