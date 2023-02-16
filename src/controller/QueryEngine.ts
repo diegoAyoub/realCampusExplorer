@@ -167,7 +167,9 @@ export class QueryEngine {
 		let subResult: InsightDatasetSection[] = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			if (results.length === 0) {
+			if(subResult.length === 0) {
+				return subResult;
+			} else if (results.length === 0) {
 				results = subResult;
 			} else {
 				results = subResult.filter((section) => results.includes(section));
