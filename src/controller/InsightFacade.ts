@@ -13,6 +13,7 @@ import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
+import {readLocal} from "./DiskUtil";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
@@ -28,6 +29,7 @@ export default class InsightFacade implements IInsightFacade {
 	private queryEng: QueryEngine | null = null;
 	constructor() {
 		// console.log("InsightFacadeImpl::init()");
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -117,6 +119,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		return this.isValidId(id)
 			.then(() => {
 				if (this.isIdExist(id)) {
@@ -145,6 +148,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	public listDatasets(): Promise<InsightDataset[]> {
 		let addedDatasets: InsightDataset[] = [];
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		for (const insightData of this.insightDataList) {
 			addedDatasets.push(insightData.metaData);
 		}
@@ -152,7 +156,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
-		//	let testin: InsightResult[] = [new InsightResult()]
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
 		if (this.queryEng.isValidQuery()) {
 			// console.log("yep its valid");
