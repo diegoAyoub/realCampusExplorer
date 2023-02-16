@@ -1,0 +1,9885 @@
+{
+	"title": "ANDTwoKeysDiffColumnsShouldPass",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"sections_avg": 89
+					}
+				},
+				{
+					"LT": {
+						"sections_year": 2005
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_instructor",
+				"sections_uuid"
+			],
+			"ORDER": "sections_uuid"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "10017"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10226"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10232"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10236"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10240"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10270"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10274"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10282"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10290"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "10291"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "10327"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "10361"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "10367"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "10468"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "10580"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "10921"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "10931"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "10935"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "11051"
+		},
+		{
+			"sections_dept": "comm",
+			"sections_instructor": "",
+			"sections_uuid": "1115"
+		},
+		{
+			"sections_dept": "ccst",
+			"sections_instructor": "",
+			"sections_uuid": "11199"
+		},
+		{
+			"sections_dept": "caps",
+			"sections_instructor": "",
+			"sections_uuid": "11384"
+		},
+		{
+			"sections_dept": "caps",
+			"sections_instructor": "",
+			"sections_uuid": "11388"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "11596"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "11608"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "1162"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "11622"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "11632"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "11638"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "11655"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "11664"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "1171"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "11798"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "11806"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "11824"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11834"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11847"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11855"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11874"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11878"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11880"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11896"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "11902"
+		},
+		{
+			"sections_dept": "phrm",
+			"sections_instructor": "",
+			"sections_uuid": "12032"
+		},
+		{
+			"sections_dept": "phrm",
+			"sections_instructor": "",
+			"sections_uuid": "12034"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "12119"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "12121"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "12162"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "12164"
+		},
+		{
+			"sections_dept": "sans",
+			"sections_instructor": "",
+			"sections_uuid": "12166"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "1218"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "12399"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "12405"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "12424"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "12451"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "126"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "12608"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "12610"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "12636"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "12675"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "12681"
+		},
+		{
+			"sections_dept": "anat",
+			"sections_instructor": "",
+			"sections_uuid": "12693"
+		},
+		{
+			"sections_dept": "obst",
+			"sections_instructor": "",
+			"sections_uuid": "12705"
+		},
+		{
+			"sections_dept": "obst",
+			"sections_instructor": "",
+			"sections_uuid": "12707"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "12841"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "12860"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "13019"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "13027"
+		},
+		{
+			"sections_dept": "bafi",
+			"sections_instructor": "",
+			"sections_uuid": "13094"
+		},
+		{
+			"sections_dept": "bafi",
+			"sections_instructor": "",
+			"sections_uuid": "13100"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13116"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13118"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13120"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13122"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13124"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13127"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13131"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13135"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "13142"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_instructor": "",
+			"sections_uuid": "13242"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "13400"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "13419"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "13421"
+		},
+		{
+			"sections_dept": "arth",
+			"sections_instructor": "",
+			"sections_uuid": "13434"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "13445"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "1355"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "1377"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "1386"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "13925"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "13927"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "13931"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "13939"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "13943"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "14012"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "14055"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "14132"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "14142"
+		},
+		{
+			"sections_dept": "sans",
+			"sections_instructor": "",
+			"sections_uuid": "14279"
+		},
+		{
+			"sections_dept": "sans",
+			"sections_instructor": "",
+			"sections_uuid": "14281"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "14334"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "14335"
+		},
+		{
+			"sections_dept": "bioc",
+			"sections_instructor": "",
+			"sections_uuid": "14370"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "1451"
+		},
+		{
+			"sections_dept": "food",
+			"sections_instructor": "",
+			"sections_uuid": "14544"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "1473"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "14804"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "14986"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "14990"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "15046"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "1505"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "15058"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "15060"
+		},
+		{
+			"sections_dept": "onco",
+			"sections_instructor": "",
+			"sections_uuid": "15068"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "15199"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "15203"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "15214"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "15250"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15324"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15344"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15346"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15353"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15358"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15371"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15375"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15377"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "15388"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "15425"
+		},
+		{
+			"sections_dept": "grsj",
+			"sections_instructor": "",
+			"sections_uuid": "15489"
+		},
+		{
+			"sections_dept": "fopr",
+			"sections_instructor": "",
+			"sections_uuid": "15533"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "15576"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "1558"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "15585"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "15593"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "15600"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "15615"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "1562"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "15624"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "15626"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "1566"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "1572"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "1574"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "1584"
+		},
+		{
+			"sections_dept": "itst",
+			"sections_instructor": "",
+			"sections_uuid": "15840"
+		},
+		{
+			"sections_dept": "envr",
+			"sections_instructor": "",
+			"sections_uuid": "15851"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "15877"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "15897"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "1590"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "15907"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "15913"
+		},
+		{
+			"sections_dept": "fish",
+			"sections_instructor": "",
+			"sections_uuid": "15921"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "15942"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "15944"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "15958"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16381"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16385"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16390"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16395"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16400"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16406"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16408"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16410"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16415"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "16654"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "16668"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "16672"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "16691"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "16724"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "16731"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16957"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16968"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16973"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16979"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16981"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16984"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "16986"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "17246"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "17268"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "17272"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "17274"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "17285"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "17293"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "17380"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "17416"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "17441"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "17445"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "17498"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "17508"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "17517"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "17519"
+		},
+		{
+			"sections_dept": "ling",
+			"sections_instructor": "",
+			"sections_uuid": "17592"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "17638"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "17646"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "17648"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "178"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "17813"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "17839"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "18214"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "18231"
+		},
+		{
+			"sections_dept": "arch",
+			"sections_instructor": "",
+			"sections_uuid": "18316"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "1835"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "18381"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "18411"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "18467"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "18471"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "18493"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "18497"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "18501"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "18505"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "18529"
+		},
+		{
+			"sections_dept": "onco",
+			"sections_instructor": "",
+			"sections_uuid": "18531"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "18552"
+		},
+		{
+			"sections_dept": "adhe",
+			"sections_instructor": "",
+			"sections_uuid": "19184"
+		},
+		{
+			"sections_dept": "mtrl",
+			"sections_instructor": "",
+			"sections_uuid": "1921"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "19312"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "19491"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "19499"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "1969"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "19750"
+		},
+		{
+			"sections_dept": "bota",
+			"sections_instructor": "",
+			"sections_uuid": "19783"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "2027"
+		},
+		{
+			"sections_dept": "fish",
+			"sections_instructor": "",
+			"sections_uuid": "20291"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "20325"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "20335"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "20339"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "20703"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "20717"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "20949"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "21154"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "21170"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "21191"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "21193"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "21205"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "21206"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "21244"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "21322"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "21409"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "21545"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "21583"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "21597"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "21621"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "21625"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "21647"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "21701"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "21716"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "21739"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "21791"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "2193"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "2203"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "22068"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "22100"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "22235"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "22241"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "22243"
+		},
+		{
+			"sections_dept": "apsc",
+			"sections_instructor": "",
+			"sections_uuid": "22447"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "22748"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "22756"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "22758"
+		},
+		{
+			"sections_dept": "cons",
+			"sections_instructor": "",
+			"sections_uuid": "2286"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "22917"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "22919"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "2312"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "2316"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "2318"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "23180"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "2320"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "2322"
+		},
+		{
+			"sections_dept": "caps",
+			"sections_instructor": "",
+			"sections_uuid": "23379"
+		},
+		{
+			"sections_dept": "caps",
+			"sections_instructor": "",
+			"sections_uuid": "23387"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "2341"
+		},
+		{
+			"sections_dept": "arth",
+			"sections_instructor": "",
+			"sections_uuid": "23556"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "23713"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "23715"
+		},
+		{
+			"sections_dept": "rsot",
+			"sections_instructor": "",
+			"sections_uuid": "23816"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "23985"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "24147"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "24172"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "24176"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "24188"
+		},
+		{
+			"sections_dept": "larc",
+			"sections_instructor": "",
+			"sections_uuid": "24319"
+		},
+		{
+			"sections_dept": "onco",
+			"sections_instructor": "",
+			"sections_uuid": "24437"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "24446"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "24456"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "24472"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "24474"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "24480"
+		},
+		{
+			"sections_dept": "arth",
+			"sections_instructor": "",
+			"sections_uuid": "24842"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "2498"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "2500"
+		},
+		{
+			"sections_dept": "biof",
+			"sections_instructor": "",
+			"sections_uuid": "25145"
+		},
+		{
+			"sections_dept": "biof",
+			"sections_instructor": "",
+			"sections_uuid": "25147"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_instructor": "",
+			"sections_uuid": "25234"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "25248"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "25252"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "25262"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "25272"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25321"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25323"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25333"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25335"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25337"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25344"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25347"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25350"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25364"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "25366"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "2538"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "2549"
+		},
+		{
+			"sections_dept": "babs",
+			"sections_instructor": "",
+			"sections_uuid": "25529"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "2559"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "2566"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "25668"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "25709"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "25730"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "25732"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "25739"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "25741"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "25743"
+		},
+		{
+			"sections_dept": "name",
+			"sections_instructor": "",
+			"sections_uuid": "25767"
+		},
+		{
+			"sections_dept": "name",
+			"sections_instructor": "",
+			"sections_uuid": "25769"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "25831"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "25944"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "26205"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "26244"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "26261"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "26288"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "26304"
+		},
+		{
+			"sections_dept": "cons",
+			"sections_instructor": "",
+			"sections_uuid": "26317"
+		},
+		{
+			"sections_dept": "mtrl",
+			"sections_instructor": "",
+			"sections_uuid": "2668"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "26736"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "26738"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "26742"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "26773"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "26779"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "26786"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "26788"
+		},
+		{
+			"sections_dept": "surg",
+			"sections_instructor": "",
+			"sections_uuid": "26814"
+		},
+		{
+			"sections_dept": "russ",
+			"sections_instructor": "",
+			"sections_uuid": "26947"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "2697"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "2704"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "2707"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "27153"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "27172"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "27193"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27441"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27445"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27453"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27455"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27457"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27465"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27471"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27475"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27479"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27483"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27487"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27489"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27491"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27493"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27502"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27506"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "27509"
+		},
+		{
+			"sections_dept": "fipr",
+			"sections_instructor": "",
+			"sections_uuid": "27534"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "27619"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "27632"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "27652"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "27658"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "27660"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "27676"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "27682"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "27726"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "27761"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "27932"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "27987"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "28006"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "28014"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "28029"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2803"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28109"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28111"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28115"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28123"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28131"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28145"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2815"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28152"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "28158"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2833"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "28344"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "28348"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "28350"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "28352"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "28358"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2837"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2839"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2867"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2869"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "28750"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "28842"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "28878"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28911"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28913"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "2893"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28931"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28935"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28939"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28944"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28948"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28953"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28960"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28971"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28974"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28976"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28979"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28984"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28986"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28988"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28990"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "28996"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29014"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29019"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29022"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29029"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29035"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29221"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29223"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29226"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29237"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29247"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29250"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29252"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29254"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29256"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29261"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29264"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29272"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29277"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29282"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29284"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29287"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29290"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29297"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29305"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29312"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29318"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29321"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29323"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29325"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29329"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29331"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29333"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29336"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29339"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29344"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29349"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "29351"
+		},
+		{
+			"sections_dept": "spha",
+			"sections_instructor": "",
+			"sections_uuid": "29355"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "29416"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "29431"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "29445"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "29457"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "29958"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "29960"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "29966"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "29968"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "29972"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "29976"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "29987"
+		},
+		{
+			"sections_dept": "astr",
+			"sections_instructor": "",
+			"sections_uuid": "30116"
+		},
+		{
+			"sections_dept": "sts",
+			"sections_instructor": "",
+			"sections_uuid": "30126"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "30232"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "30370"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "30463"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "30510"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "30525"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30535"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30554"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30566"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3058"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30580"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30582"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30584"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30589"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "30591"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3060"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "30648"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "30654"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "30681"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "30683"
+		},
+		{
+			"sections_dept": "elec",
+			"sections_instructor": "",
+			"sections_uuid": "30854"
+		},
+		{
+			"sections_dept": "elec",
+			"sections_instructor": "",
+			"sections_uuid": "30862"
+		},
+		{
+			"sections_dept": "elec",
+			"sections_instructor": "",
+			"sections_uuid": "30873"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3096"
+		},
+		{
+			"sections_dept": "elec",
+			"sections_instructor": "",
+			"sections_uuid": "30966"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3104"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3117"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3119"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3123"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3127"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3129"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3131"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "31360"
+		},
+		{
+			"sections_dept": "aanb",
+			"sections_instructor": "",
+			"sections_uuid": "31380"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "3145"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3147"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3149"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "31514"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "31582"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "31593"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "31595"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3165"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3169"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3174"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "31743"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3176"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "31774"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3178"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3183"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3191"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3196"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "320"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "32013"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "32015"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "32019"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "32061"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "32067"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "32071"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "32075"
+		},
+		{
+			"sections_dept": "libe",
+			"sections_instructor": "",
+			"sections_uuid": "32083"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3211"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3214"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3216"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3218"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3229"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "32296"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3231"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "32310"
+		},
+		{
+			"sections_dept": "pers",
+			"sections_instructor": "",
+			"sections_uuid": "32358"
+		},
+		{
+			"sections_dept": "surg",
+			"sections_instructor": "",
+			"sections_uuid": "32360"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3239"
+		},
+		{
+			"sections_dept": "ceen",
+			"sections_instructor": "",
+			"sections_uuid": "32423"
+		},
+		{
+			"sections_dept": "apbi",
+			"sections_instructor": "",
+			"sections_uuid": "32434"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3246"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3248"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3251"
+		},
+		{
+			"sections_dept": "fipr",
+			"sections_instructor": "",
+			"sections_uuid": "32518"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "32549"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3260"
+		},
+		{
+			"sections_dept": "bioc",
+			"sections_instructor": "",
+			"sections_uuid": "32623"
+		},
+		{
+			"sections_dept": "name",
+			"sections_instructor": "",
+			"sections_uuid": "32632"
+		},
+		{
+			"sections_dept": "name",
+			"sections_instructor": "",
+			"sections_uuid": "32634"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "32654"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "32658"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3266"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "32668"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "32727"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "32729"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3274"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "32743"
+		},
+		{
+			"sections_dept": "itst",
+			"sections_instructor": "",
+			"sections_uuid": "32767"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3281"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "3285"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "32981"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "32983"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "32991"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "330"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "33014"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "33043"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "33069"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "33081"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "33094"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "3317"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "33360"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "33367"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "33375"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "33378"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "33645"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "33663"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "33671"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33687"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33692"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33702"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33715"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33717"
+		},
+		{
+			"sections_dept": "biof",
+			"sections_instructor": "",
+			"sections_uuid": "3372"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33725"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33729"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33731"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33739"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33743"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33745"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "33755"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33761"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33765"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33774"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33778"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33781"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33788"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33790"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33796"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33805"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "33811"
+		},
+		{
+			"sections_dept": "udes",
+			"sections_instructor": "",
+			"sections_uuid": "3382"
+		},
+		{
+			"sections_dept": "surg",
+			"sections_instructor": "",
+			"sections_uuid": "3384"
+		},
+		{
+			"sections_dept": "chil",
+			"sections_instructor": "",
+			"sections_uuid": "33937"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "3408"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34171"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34188"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34190"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34200"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34202"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34206"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34210"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34214"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34216"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34218"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34225"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34227"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "34240"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "34458"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "34479"
+		},
+		{
+			"sections_dept": "nrsc",
+			"sections_instructor": "",
+			"sections_uuid": "34846"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "34919"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "34955"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "34963"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "34977"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "35013"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "35028"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "35037"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "35040"
+		},
+		{
+			"sections_dept": "cnto",
+			"sections_instructor": "",
+			"sections_uuid": "35274"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "35340"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "35344"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "35346"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "35372"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "35375"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "35388"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "35560"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "35655"
+		},
+		{
+			"sections_dept": "geog",
+			"sections_instructor": "",
+			"sections_uuid": "3580"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35851"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35853"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35865"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35867"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35871"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35874"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35878"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35882"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35884"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35888"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35890"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35892"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35898"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35945"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35947"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35949"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35951"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35960"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35964"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35967"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35971"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35975"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35981"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35983"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35989"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "35991"
+		},
+		{
+			"sections_dept": "udes",
+			"sections_instructor": "",
+			"sections_uuid": "36033"
+		},
+		{
+			"sections_dept": "nrsc",
+			"sections_instructor": "",
+			"sections_uuid": "36039"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "36058"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "36413"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "36415"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "36432"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "36457"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "3663"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "36676"
+		},
+		{
+			"sections_dept": "atsc",
+			"sections_instructor": "",
+			"sections_uuid": "36747"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "36962"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "37005"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "37007"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "37009"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "37015"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "3707"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "37101"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "3712"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "3723"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "3730"
+		},
+		{
+			"sections_dept": "fipr",
+			"sections_instructor": "",
+			"sections_uuid": "37493"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "37654"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "37658"
+		},
+		{
+			"sections_dept": "cons",
+			"sections_instructor": "",
+			"sections_uuid": "37782"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "38098"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38118"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38124"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38127"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38136"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38139"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38142"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38144"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38146"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38149"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38151"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38153"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38155"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38161"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38170"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38175"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38177"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38180"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38188"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38192"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38195"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38197"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38200"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38202"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38204"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38206"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38208"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38216"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38223"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38225"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38229"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38239"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38245"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38253"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38258"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38262"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38264"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "38266"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "38483"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "38642"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "38646"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "38654"
+		},
+		{
+			"sections_dept": "bioc",
+			"sections_instructor": "",
+			"sections_uuid": "39348"
+		},
+		{
+			"sections_dept": "bioc",
+			"sections_instructor": "",
+			"sections_uuid": "39365"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "3962"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "39670"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "39672"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "39736"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "39819"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "39828"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "39832"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "39838"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "3984"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "39848"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "39856"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "39859"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "39861"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "3988"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "3996"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "4000"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "4006"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "4010"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "4012"
+		},
+		{
+			"sections_dept": "mtrl",
+			"sections_instructor": "",
+			"sections_uuid": "40129"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "4030"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "40327"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "40341"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "40347"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "40448"
+		},
+		{
+			"sections_dept": "fish",
+			"sections_instructor": "",
+			"sections_uuid": "4052"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "40692"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "40694"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "40721"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "40723"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "40736"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "41064"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "41296"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "41302"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "41306"
+		},
+		{
+			"sections_dept": "bota",
+			"sections_instructor": "",
+			"sections_uuid": "4135"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "41936"
+		},
+		{
+			"sections_dept": "russ",
+			"sections_instructor": "",
+			"sections_uuid": "42053"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "42216"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "42291"
+		},
+		{
+			"sections_dept": "germ",
+			"sections_instructor": "",
+			"sections_uuid": "42418"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "42435"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "42458"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "42629"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "42645"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "42734"
+		},
+		{
+			"sections_dept": "biof",
+			"sections_instructor": "",
+			"sections_uuid": "42738"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "43266"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "43272"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "43300"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "43302"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "43327"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "43337"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "43442"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "43452"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "43455"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "43490"
+		},
+		{
+			"sections_dept": "bmeg",
+			"sections_instructor": "",
+			"sections_uuid": "43502"
+		},
+		{
+			"sections_dept": "ital",
+			"sections_instructor": "",
+			"sections_uuid": "4352"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "43538"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "43542"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "43558"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "43597"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "43605"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "43623"
+		},
+		{
+			"sections_dept": "span",
+			"sections_instructor": "",
+			"sections_uuid": "43659"
+		},
+		{
+			"sections_dept": "libe",
+			"sections_instructor": "",
+			"sections_uuid": "43879"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "4395"
+		},
+		{
+			"sections_dept": "comm",
+			"sections_instructor": "",
+			"sections_uuid": "44252"
+		},
+		{
+			"sections_dept": "comm",
+			"sections_instructor": "",
+			"sections_uuid": "44337"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44371"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44373"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44375"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44383"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44385"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44387"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44391"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44394"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44398"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44400"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44403"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44417"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44421"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44427"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44431"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44443"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44789"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44791"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44797"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44799"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44801"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44809"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44813"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44815"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44817"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44823"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44831"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44839"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44841"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "44843"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "45105"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "45113"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "45165"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "45312"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "45318"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "45322"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "45326"
+		},
+		{
+			"sections_dept": "obst",
+			"sections_instructor": "",
+			"sections_uuid": "45389"
+		},
+		{
+			"sections_dept": "obst",
+			"sections_instructor": "",
+			"sections_uuid": "45391"
+		},
+		{
+			"sections_dept": "hunu",
+			"sections_instructor": "",
+			"sections_uuid": "45407"
+		},
+		{
+			"sections_dept": "ling",
+			"sections_instructor": "",
+			"sections_uuid": "45585"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "45616"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "45708"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "45712"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "45721"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "45723"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "45727"
+		},
+		{
+			"sections_dept": "ital",
+			"sections_instructor": "",
+			"sections_uuid": "45756"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45886"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45891"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45896"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45901"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45906"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45912"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45915"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "45918"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "4597"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "4607"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "46084"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "46088"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "46094"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "46096"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "4625"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "4629"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "4635"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "46359"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "46399"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "46414"
+		},
+		{
+			"sections_dept": "adhe",
+			"sections_instructor": "",
+			"sections_uuid": "46425"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "4649"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "4651"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "46539"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "46757"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "46763"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "46767"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "4721"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47213"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "4723"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47239"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47245"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47253"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47257"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47265"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47267"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "47271"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47361"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47388"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47390"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47394"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47396"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47406"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47426"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47428"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "47435"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "47447"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "47451"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "47461"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "47465"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "47469"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "47474"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "47594"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "47646"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "4768"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "4772"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "47728"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "47753"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "47756"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "47761"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "47763"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "47776"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "47782"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "4780"
+		},
+		{
+			"sections_dept": "hinu",
+			"sections_instructor": "",
+			"sections_uuid": "47835"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "47839"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "47845"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "47847"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "47849"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "47857"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "47938"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "47962"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "47966"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "4815"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "4831"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "4891"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "4901"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "49034"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "49039"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "49048"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "4910"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "49128"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "49136"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "4914"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "49150"
+		},
+		{
+			"sections_dept": "phil",
+			"sections_instructor": "",
+			"sections_uuid": "49284"
+		},
+		{
+			"sections_dept": "phil",
+			"sections_instructor": "",
+			"sections_uuid": "49288"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "49583"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "49616"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49633"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49635"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49641"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49643"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49645"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49649"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49652"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49656"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49658"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49664"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49670"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49678"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49681"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "49683"
+		},
+		{
+			"sections_dept": "mtrl",
+			"sections_instructor": "",
+			"sections_uuid": "49774"
+		},
+		{
+			"sections_dept": "arch",
+			"sections_instructor": "",
+			"sections_uuid": "4988"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "49957"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "49959"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "49967"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "500"
+		},
+		{
+			"sections_dept": "bota",
+			"sections_instructor": "",
+			"sections_uuid": "50075"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "50079"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "50308"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "50314"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "50338"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "50376"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "50380"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "50392"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "50433"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "50445"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "50454"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "50502"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "50570"
+		},
+		{
+			"sections_dept": "arth",
+			"sections_instructor": "",
+			"sections_uuid": "5073"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "50740"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "5076"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "50793"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "50796"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "508"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "50925"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50978"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50980"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50984"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50986"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50992"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50994"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50997"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "50999"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "510"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "51006"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "51009"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "51023"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "51025"
+		},
+		{
+			"sections_dept": "ital",
+			"sections_instructor": "",
+			"sections_uuid": "5106"
+		},
+		{
+			"sections_dept": "bota",
+			"sections_instructor": "",
+			"sections_uuid": "51135"
+		},
+		{
+			"sections_dept": "bmeg",
+			"sections_instructor": "",
+			"sections_uuid": "51414"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "51542"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "51546"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "51548"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "516"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "51756"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "51816"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "51831"
+		},
+		{
+			"sections_dept": "libe",
+			"sections_instructor": "",
+			"sections_uuid": "51836"
+		},
+		{
+			"sections_dept": "libe",
+			"sections_instructor": "",
+			"sections_uuid": "51838"
+		},
+		{
+			"sections_dept": "libe",
+			"sections_instructor": "",
+			"sections_uuid": "51841"
+		},
+		{
+			"sections_dept": "mtrl",
+			"sections_instructor": "",
+			"sections_uuid": "51945"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "520"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "52067"
+		},
+		{
+			"sections_dept": "hgse",
+			"sections_instructor": "",
+			"sections_uuid": "52200"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52356"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52401"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52411"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52413"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52417"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52439"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52457"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52459"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "52464"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "52646"
+		},
+		{
+			"sections_dept": "name",
+			"sections_instructor": "",
+			"sections_uuid": "52842"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "530"
+		},
+		{
+			"sections_dept": "surg",
+			"sections_instructor": "",
+			"sections_uuid": "53027"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "53367"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "5352"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "5358"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "5364"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "5366"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "5374"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "5380"
+		},
+		{
+			"sections_dept": "rsot",
+			"sections_instructor": "",
+			"sections_uuid": "53899"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "5400"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "54188"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "54204"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "54289"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "54325"
+		},
+		{
+			"sections_dept": "larc",
+			"sections_instructor": "",
+			"sections_uuid": "54450"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "54622"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "54634"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "54636"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "54648"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "54773"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "54812"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "54837"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "54849"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "54941"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "54951"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "54997"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "55007"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "55009"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "55025"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "55027"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "55031"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "55151"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "55191"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "55224"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "55241"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "55245"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "55338"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "55342"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "55352"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "55438"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "55440"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "55655"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "55663"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "55665"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "55671"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "55692"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "55694"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "55772"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "55791"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "55793"
+		},
+		{
+			"sections_dept": "path",
+			"sections_instructor": "",
+			"sections_uuid": "55800"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "56028"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "56345"
+		},
+		{
+			"sections_dept": "chil",
+			"sections_instructor": "",
+			"sections_uuid": "56390"
+		},
+		{
+			"sections_dept": "lfs",
+			"sections_instructor": "",
+			"sections_uuid": "56416"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "56522"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56528"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56532"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56538"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56540"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56551"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56556"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56558"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56563"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "56573"
+		},
+		{
+			"sections_dept": "soil",
+			"sections_instructor": "",
+			"sections_uuid": "56609"
+		},
+		{
+			"sections_dept": "soil",
+			"sections_instructor": "",
+			"sections_uuid": "56613"
+		},
+		{
+			"sections_dept": "soil",
+			"sections_instructor": "",
+			"sections_uuid": "56619"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "56892"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "5693"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "5697"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "5702"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "5709"
+		},
+		{
+			"sections_dept": "ling",
+			"sections_instructor": "",
+			"sections_uuid": "57441"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "57497"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "57510"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "57512"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "57520"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "57522"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "57534"
+		},
+		{
+			"sections_dept": "ling",
+			"sections_instructor": "",
+			"sections_uuid": "57652"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "581"
+		},
+		{
+			"sections_dept": "comm",
+			"sections_instructor": "",
+			"sections_uuid": "58117"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "5826"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "5834"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "5838"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "58458"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "5849"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "58497"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "58515"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "58519"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "58618"
+		},
+		{
+			"sections_dept": "phil",
+			"sections_instructor": "",
+			"sections_uuid": "58755"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "5882"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "58853"
+		},
+		{
+			"sections_dept": "gpp",
+			"sections_instructor": "",
+			"sections_uuid": "59043"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59086"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59095"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59097"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59099"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59105"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59107"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59112"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59126"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59138"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "59140"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "59204"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "59208"
+		},
+		{
+			"sections_dept": "nrsc",
+			"sections_instructor": "",
+			"sections_uuid": "59257"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59506"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59514"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59516"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59529"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59531"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59536"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59540"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "59550"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "59784"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "59790"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "59792"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "598"
+		},
+		{
+			"sections_dept": "fish",
+			"sections_instructor": "",
+			"sections_uuid": "59841"
+		},
+		{
+			"sections_dept": "fish",
+			"sections_instructor": "",
+			"sections_uuid": "59843"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "59855"
+		},
+		{
+			"sections_dept": "onco",
+			"sections_instructor": "",
+			"sections_uuid": "59880"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_instructor": "",
+			"sections_uuid": "60017"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "60072"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "60074"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "60086"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "60352"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "60360"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "6047"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "60512"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "60537"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "60551"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "60741"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "60761"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "60776"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "60932"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "60945"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "60967"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "60983"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "610"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "61180"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "61187"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "61189"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "612"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "61201"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "61312"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "61344"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "61354"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61369"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61389"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61391"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61395"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61397"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "614"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61404"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61407"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61410"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61419"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61421"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61426"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61428"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61434"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61439"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61441"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61445"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61453"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61472"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61476"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61479"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61482"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61487"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "61493"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61588"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61597"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61623"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61625"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61629"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61631"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61633"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "61653"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "61929"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "62008"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "62025"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "62045"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "62052"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "62054"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "6224"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "62256"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "62273"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "6230"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "62313"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "62315"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "62447"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "62457"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "62469"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "62475"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "62489"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "62491"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "62497"
+		},
+		{
+			"sections_dept": "rmes",
+			"sections_instructor": "",
+			"sections_uuid": "62581"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "6270"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6282"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6285"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6288"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6291"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6302"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6305"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6310"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6313"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6315"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6317"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6319"
+		},
+		{
+			"sections_dept": "bams",
+			"sections_instructor": "",
+			"sections_uuid": "63218"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6323"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "63291"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6330"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "63307"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "63311"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "63313"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "63326"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "63338"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6339"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "634"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "63433"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "63435"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6346"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6348"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6350"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "63561"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "63563"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "63574"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6366"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "63662"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "63687"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6375"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6377"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6393"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6397"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6405"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "64068"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "64070"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "64088"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "6411"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "64153"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "64199"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "64678"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "64690"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "64706"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "64723"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "64725"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "64729"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "64869"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "64938"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "64961"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "64963"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "64981"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "65020"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "65059"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65068"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65070"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65080"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65083"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65115"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65117"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65127"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "6513"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65130"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65133"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65138"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65140"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65154"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65160"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65162"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "65166"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "6540"
+		},
+		{
+			"sections_dept": "gsat",
+			"sections_instructor": "",
+			"sections_uuid": "6586"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "66059"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "66061"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "66161"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "66169"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "6625"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66403"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66414"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66443"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66445"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66447"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66451"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66457"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66465"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "66469"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "66517"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "66634"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "66648"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "66658"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "6684"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "6696"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "6703"
+		},
+		{
+			"sections_dept": "arth",
+			"sections_instructor": "",
+			"sections_uuid": "67233"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "67279"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "6729"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "6733"
+		},
+		{
+			"sections_dept": "chil",
+			"sections_instructor": "",
+			"sections_uuid": "67358"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "67366"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "67368"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "67371"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "6743"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "67762"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "67839"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "67935"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67947"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67960"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67975"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67985"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67987"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67991"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67993"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "67997"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "68003"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "68007"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "68011"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "68030"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "68032"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "68377"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "68486"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "68521"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "68619"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "68630"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "68650"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "68669"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "68706"
+		},
+		{
+			"sections_dept": "gsat",
+			"sections_instructor": "",
+			"sections_uuid": "68734"
+		},
+		{
+			"sections_dept": "fnh",
+			"sections_instructor": "",
+			"sections_uuid": "68775"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "69022"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "69036"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "69042"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "69075"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "69104"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "69122"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "69154"
+		},
+		{
+			"sections_dept": "dhyg",
+			"sections_instructor": "",
+			"sections_uuid": "69184"
+		},
+		{
+			"sections_dept": "ceen",
+			"sections_instructor": "",
+			"sections_uuid": "69186"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69221"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69223"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69227"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69229"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69235"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69237"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69240"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69244"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69252"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69254"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69257"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69268"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "69270"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "69334"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "69350"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "69393"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "69397"
+		},
+		{
+			"sections_dept": "cohr",
+			"sections_instructor": "",
+			"sections_uuid": "6945"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "69959"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "69979"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "69981"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "69983"
+		},
+		{
+			"sections_dept": "mrne",
+			"sections_instructor": "",
+			"sections_uuid": "69991"
+		},
+		{
+			"sections_dept": "astr",
+			"sections_instructor": "",
+			"sections_uuid": "70035"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "70194"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "70220"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "70236"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70436"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70445"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70449"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70465"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70472"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70477"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70491"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "70493"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "70678"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "70694"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "70698"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "70709"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "70937"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "70945"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "70947"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "70959"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "71112"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "71156"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "71172"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "7138"
+		},
+		{
+			"sections_dept": "comm",
+			"sections_instructor": "",
+			"sections_uuid": "71564"
+		},
+		{
+			"sections_dept": "onco",
+			"sections_instructor": "",
+			"sections_uuid": "71625"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "71703"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "71706"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "71747"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "71775"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "71781"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "72008"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "72012"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "72037"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "72152"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "72196"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "72211"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "72225"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "72283"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "72286"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "72425"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "72429"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "7243"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "72443"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "72468"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "72504"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "72516"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "72526"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "7255"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "72550"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "72677"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "72708"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "72710"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "72719"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "72721"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "72733"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "7276"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72775"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72785"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72792"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72794"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72820"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72841"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72871"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72873"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "72879"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73114"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73120"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73136"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73138"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73142"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73144"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73146"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73148"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73156"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73166"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73174"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73180"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73188"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "73194"
+		},
+		{
+			"sections_dept": "grsj",
+			"sections_instructor": "",
+			"sections_uuid": "73280"
+		},
+		{
+			"sections_dept": "bmeg",
+			"sections_instructor": "",
+			"sections_uuid": "73458"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73635"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73639"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73641"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73654"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73658"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73664"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73666"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "7367"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "73672"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "73777"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "73789"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "73797"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "73799"
+		},
+		{
+			"sections_dept": "port",
+			"sections_instructor": "",
+			"sections_uuid": "74021"
+		},
+		{
+			"sections_dept": "port",
+			"sections_instructor": "",
+			"sections_uuid": "74031"
+		},
+		{
+			"sections_dept": "arth",
+			"sections_instructor": "",
+			"sections_uuid": "74124"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "7423"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "74330"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "74406"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "74465"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "74477"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "74492"
+		},
+		{
+			"sections_dept": "surg",
+			"sections_instructor": "",
+			"sections_uuid": "74525"
+		},
+		{
+			"sections_dept": "gsat",
+			"sections_instructor": "",
+			"sections_uuid": "74546"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "74884"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "74888"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "74900"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "74927"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "74950"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "74952"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "74957"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "74959"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "74971"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "74977"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "75114"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "75152"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "75163"
+		},
+		{
+			"sections_dept": "fipr",
+			"sections_instructor": "",
+			"sections_uuid": "75177"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "75199"
+		},
+		{
+			"sections_dept": "chil",
+			"sections_instructor": "",
+			"sections_uuid": "75203"
+		},
+		{
+			"sections_dept": "cnrs",
+			"sections_instructor": "",
+			"sections_uuid": "7522"
+		},
+		{
+			"sections_dept": "fipr",
+			"sections_instructor": "",
+			"sections_uuid": "75224"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "75379"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "75399"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "75427"
+		},
+		{
+			"sections_dept": "eced",
+			"sections_instructor": "",
+			"sections_uuid": "7543"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "75472"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "75483"
+		},
+		{
+			"sections_dept": "fish",
+			"sections_instructor": "",
+			"sections_uuid": "75536"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75723"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75736"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75738"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75751"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75755"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75761"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75763"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75767"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75769"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75781"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "75787"
+		},
+		{
+			"sections_dept": "bmeg",
+			"sections_instructor": "",
+			"sections_uuid": "75920"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "76015"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76234"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76237"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76257"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76259"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76263"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76277"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76279"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76286"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76290"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76298"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76301"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76306"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76311"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76314"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76318"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76322"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76329"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76341"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76345"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76354"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76357"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76364"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "76368"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "76401"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "76408"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "76410"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "76416"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "76459"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "76475"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "76477"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "76485"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "76520"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "7671"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "7673"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "76733"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "76747"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "7677"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "76779"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "76781"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "76787"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "76811"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "76817"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "76819"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "76821"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "76823"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "76857"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "76901"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "76905"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "76911"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "77291"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "77299"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "77448"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "77471"
+		},
+		{
+			"sections_dept": "bioc",
+			"sections_instructor": "",
+			"sections_uuid": "77793"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "77805"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "77923"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "78038"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "78040"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "78042"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "78050"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78245"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78247"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78249"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78258"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78260"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78262"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78270"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78272"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "78503"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "78513"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "78517"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "78539"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "78575"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "78577"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78631"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78662"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78687"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78691"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78693"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78714"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78718"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78720"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78746"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "78755"
+		},
+		{
+			"sections_dept": "adhe",
+			"sections_instructor": "",
+			"sections_uuid": "78877"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "78955"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "79217"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "79227"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "79249"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "7933"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "7937"
+		},
+		{
+			"sections_dept": "chbe",
+			"sections_instructor": "",
+			"sections_uuid": "7949"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "79602"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "79673"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "79677"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "79959"
+		},
+		{
+			"sections_dept": "surg",
+			"sections_instructor": "",
+			"sections_uuid": "79976"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "80086"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "80143"
+		},
+		{
+			"sections_dept": "germ",
+			"sections_instructor": "",
+			"sections_uuid": "80302"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "8031"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "80501"
+		},
+		{
+			"sections_dept": "chil",
+			"sections_instructor": "",
+			"sections_uuid": "80545"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "80663"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "80667"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "80675"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "80683"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "80685"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "80734"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "80741"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "80757"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "80765"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "80768"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "80779"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "80789"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "80791"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "80793"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "80995"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "81006"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "81008"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "81010"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "81020"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "81295"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "81303"
+		},
+		{
+			"sections_dept": "pcth",
+			"sections_instructor": "",
+			"sections_uuid": "81313"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "81354"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "81983"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "81995"
+		},
+		{
+			"sections_dept": "sans",
+			"sections_instructor": "",
+			"sections_uuid": "81999"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "8216"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "8223"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "82243"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "82249"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "82263"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "82265"
+		},
+		{
+			"sections_dept": "biof",
+			"sections_instructor": "",
+			"sections_uuid": "8233"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "82356"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "82369"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "82376"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "82388"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "82391"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "82401"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "82403"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "82426"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "82454"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "82963"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "82967"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "83049"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "83051"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "83055"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "83086"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "83115"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "83123"
+		},
+		{
+			"sections_dept": "cics",
+			"sections_instructor": "",
+			"sections_uuid": "83263"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "83492"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "83496"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "83520"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "84213"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "84307"
+		},
+		{
+			"sections_dept": "onco",
+			"sections_instructor": "",
+			"sections_uuid": "84398"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "84530"
+		},
+		{
+			"sections_dept": "medg",
+			"sections_instructor": "",
+			"sections_uuid": "84544"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "84599"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "84611"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "84640"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "84672"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "84674"
+		},
+		{
+			"sections_dept": "ceen",
+			"sections_instructor": "",
+			"sections_uuid": "84718"
+		},
+		{
+			"sections_dept": "zool",
+			"sections_instructor": "",
+			"sections_uuid": "84780"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "84812"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "84840"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "84888"
+		},
+		{
+			"sections_dept": "civl",
+			"sections_instructor": "",
+			"sections_uuid": "84946"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "85006"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "85012"
+		},
+		{
+			"sections_dept": "adhe",
+			"sections_instructor": "",
+			"sections_uuid": "85075"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85082"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85084"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85086"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85088"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85090"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85092"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85094"
+		},
+		{
+			"sections_dept": "cell",
+			"sections_instructor": "",
+			"sections_uuid": "85098"
+		},
+		{
+			"sections_dept": "bmeg",
+			"sections_instructor": "",
+			"sections_uuid": "85191"
+		},
+		{
+			"sections_dept": "hist",
+			"sections_instructor": "",
+			"sections_uuid": "85560"
+		},
+		{
+			"sections_dept": "dent",
+			"sections_instructor": "",
+			"sections_uuid": "85575"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "85832"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "85834"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "85907"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "85913"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "85915"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "85924"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "85927"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "85949"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "85958"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "86024"
+		},
+		{
+			"sections_dept": "gsat",
+			"sections_instructor": "",
+			"sections_uuid": "86163"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "86427"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "86451"
+		},
+		{
+			"sections_dept": "eosc",
+			"sections_instructor": "",
+			"sections_uuid": "86469"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "86592"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "86657"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "86663"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86796"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86815"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86830"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86833"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86838"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86842"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86844"
+		},
+		{
+			"sections_dept": "kin",
+			"sections_instructor": "",
+			"sections_uuid": "86854"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86882"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86885"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86889"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86899"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86902"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86910"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86912"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86920"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86925"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86927"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86931"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86933"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86943"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86956"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86961"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86963"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86968"
+		},
+		{
+			"sections_dept": "epse",
+			"sections_instructor": "",
+			"sections_uuid": "86975"
+		},
+		{
+			"sections_dept": "rhsc",
+			"sections_instructor": "",
+			"sections_uuid": "87138"
+		},
+		{
+			"sections_dept": "food",
+			"sections_instructor": "",
+			"sections_uuid": "8716"
+		},
+		{
+			"sections_dept": "dani",
+			"sections_instructor": "",
+			"sections_uuid": "87228"
+		},
+		{
+			"sections_dept": "educ",
+			"sections_instructor": "",
+			"sections_uuid": "87257"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87602"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87625"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87639"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87659"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87679"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87683"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87687"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87689"
+		},
+		{
+			"sections_dept": "edcp",
+			"sections_instructor": "",
+			"sections_uuid": "87693"
+		},
+		{
+			"sections_dept": "bmeg",
+			"sections_instructor": "",
+			"sections_uuid": "87751"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "87774"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "87776"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "87780"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "87790"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "88046"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "88050"
+		},
+		{
+			"sections_dept": "midw",
+			"sections_instructor": "",
+			"sections_uuid": "88052"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88095"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88114"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88118"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88120"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88127"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88129"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88146"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88148"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88152"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "88154"
+		},
+		{
+			"sections_dept": "libr",
+			"sections_instructor": "",
+			"sections_uuid": "88479"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "88510"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "88512"
+		},
+		{
+			"sections_dept": "audi",
+			"sections_instructor": "",
+			"sections_uuid": "88514"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "88719"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "88720"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "88726"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "88766"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "88770"
+		},
+		{
+			"sections_dept": "caps",
+			"sections_instructor": "",
+			"sections_uuid": "88790"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "88820"
+		},
+		{
+			"sections_dept": "sowk",
+			"sections_instructor": "",
+			"sections_uuid": "88838"
+		},
+		{
+			"sections_dept": "adhe",
+			"sections_instructor": "",
+			"sections_uuid": "88898"
+		},
+		{
+			"sections_dept": "biol",
+			"sections_instructor": "",
+			"sections_uuid": "89120"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "89155"
+		},
+		{
+			"sections_dept": "plan",
+			"sections_instructor": "",
+			"sections_uuid": "89163"
+		},
+		{
+			"sections_dept": "bams",
+			"sections_instructor": "",
+			"sections_uuid": "89169"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "89374"
+		},
+		{
+			"sections_dept": "chem",
+			"sections_instructor": "",
+			"sections_uuid": "89376"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "89496"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "89512"
+		},
+		{
+			"sections_dept": "mine",
+			"sections_instructor": "",
+			"sections_uuid": "89529"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "89618"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "89830"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "89843"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "89845"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "89847"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "89849"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "89855"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "89886"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "89905"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "89924"
+		},
+		{
+			"sections_dept": "spph",
+			"sections_instructor": "",
+			"sections_uuid": "89936"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90185"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90197"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90201"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90203"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90205"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90207"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90209"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90211"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90219"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90221"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90223"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90227"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90231"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90233"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90235"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "90237"
+		},
+		{
+			"sections_dept": "anat",
+			"sections_instructor": "",
+			"sections_uuid": "90350"
+		},
+		{
+			"sections_dept": "anat",
+			"sections_instructor": "",
+			"sections_uuid": "90352"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "90604"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "90608"
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_instructor": "",
+			"sections_uuid": "90630"
+		},
+		{
+			"sections_dept": "span",
+			"sections_instructor": "",
+			"sections_uuid": "90830"
+		},
+		{
+			"sections_dept": "onco",
+			"sections_instructor": "",
+			"sections_uuid": "90862"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "91052"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "91054"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "91060"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "91074"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "91112"
+		},
+		{
+			"sections_dept": "econ",
+			"sections_instructor": "",
+			"sections_uuid": "91115"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "91124"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "91133"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "91143"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "91150"
+		},
+		{
+			"sections_dept": "cnps",
+			"sections_instructor": "",
+			"sections_uuid": "91161"
+		},
+		{
+			"sections_dept": "arth",
+			"sections_instructor": "",
+			"sections_uuid": "91350"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "9163"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "9176"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "9186"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "9198"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "92053"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "92084"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "92110"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "92115"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "92131"
+		},
+		{
+			"sections_dept": "lfs",
+			"sections_instructor": "",
+			"sections_uuid": "92181"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "92270"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "92315"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "92710"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "92712"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "92727"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "92748"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "92753"
+		},
+		{
+			"sections_dept": "crwr",
+			"sections_instructor": "",
+			"sections_uuid": "92883"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "93023"
+		},
+		{
+			"sections_dept": "thtr",
+			"sections_instructor": "",
+			"sections_uuid": "93069"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "93102"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "93106"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "93108"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "93116"
+		},
+		{
+			"sections_dept": "soil",
+			"sections_instructor": "",
+			"sections_uuid": "93155"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "93194"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "9331"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "9335"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93404"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93430"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93432"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93438"
+		},
+		{
+			"sections_dept": "phar",
+			"sections_instructor": "",
+			"sections_uuid": "9353"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "93677"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "93679"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "93687"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "93699"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "93701"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "93705"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93786"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93824"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93842"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93935"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "93964"
+		},
+		{
+			"sections_dept": "chil",
+			"sections_instructor": "",
+			"sections_uuid": "93988"
+		},
+		{
+			"sections_dept": "ccst",
+			"sections_instructor": "",
+			"sections_uuid": "94063"
+		},
+		{
+			"sections_dept": "isci",
+			"sections_instructor": "",
+			"sections_uuid": "94071"
+		},
+		{
+			"sections_dept": "punj",
+			"sections_instructor": "",
+			"sections_uuid": "94482"
+		},
+		{
+			"sections_dept": "phth",
+			"sections_instructor": "",
+			"sections_uuid": "94695"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "94848"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "94891"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "94901"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "94924"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "94928"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "94956"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "94980"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "94986"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "94996"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "95002"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "95006"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "95022"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "95029"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "95031"
+		},
+		{
+			"sections_dept": "edst",
+			"sections_instructor": "",
+			"sections_uuid": "95052"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "95073"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "9586"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "95913"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "95915"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "9592"
+		},
+		{
+			"sections_dept": "eece",
+			"sections_instructor": "",
+			"sections_uuid": "95921"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "9607"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96178"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96186"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96194"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96196"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96215"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96217"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96234"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96247"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96249"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96251"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96262"
+		},
+		{
+			"sections_dept": "nurs",
+			"sections_instructor": "",
+			"sections_uuid": "96267"
+		},
+		{
+			"sections_dept": "lled",
+			"sections_instructor": "",
+			"sections_uuid": "9638"
+		},
+		{
+			"sections_dept": "comm",
+			"sections_instructor": "",
+			"sections_uuid": "96715"
+		},
+		{
+			"sections_dept": "igen",
+			"sections_instructor": "",
+			"sections_uuid": "96769"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "96806"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "96817"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "96831"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "96834"
+		},
+		{
+			"sections_dept": "etec",
+			"sections_instructor": "",
+			"sections_uuid": "96837"
+		},
+		{
+			"sections_dept": "arst",
+			"sections_instructor": "",
+			"sections_uuid": "96981"
+		},
+		{
+			"sections_dept": "math",
+			"sections_instructor": "",
+			"sections_uuid": "97036"
+		},
+		{
+			"sections_dept": "micb",
+			"sections_instructor": "",
+			"sections_uuid": "9704"
+		},
+		{
+			"sections_dept": "larc",
+			"sections_instructor": "",
+			"sections_uuid": "97238"
+		},
+		{
+			"sections_dept": "bioc",
+			"sections_instructor": "",
+			"sections_uuid": "97287"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "97722"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "97740"
+		},
+		{
+			"sections_dept": "frst",
+			"sections_instructor": "",
+			"sections_uuid": "97744"
+		},
+		{
+			"sections_dept": "medi",
+			"sections_instructor": "",
+			"sections_uuid": "97818"
+		},
+		{
+			"sections_dept": "mrne",
+			"sections_instructor": "",
+			"sections_uuid": "97979"
+		},
+		{
+			"sections_dept": "psyc",
+			"sections_instructor": "",
+			"sections_uuid": "98270"
+		},
+		{
+			"sections_dept": "chil",
+			"sections_instructor": "",
+			"sections_uuid": "98397"
+		},
+		{
+			"sections_dept": "mech",
+			"sections_instructor": "",
+			"sections_uuid": "9846"
+		},
+		{
+			"sections_dept": "musc",
+			"sections_instructor": "",
+			"sections_uuid": "98513"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "98723"
+		},
+		{
+			"sections_dept": "phys",
+			"sections_instructor": "",
+			"sections_uuid": "98836"
+		},
+		{
+			"sections_dept": "obst",
+			"sections_instructor": "",
+			"sections_uuid": "98843"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "98886"
+		},
+		{
+			"sections_dept": "stat",
+			"sections_instructor": "",
+			"sections_uuid": "98898"
+		}
+	]
+}

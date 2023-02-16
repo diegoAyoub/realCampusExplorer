@@ -55,7 +55,7 @@ export class QueryEngine {
 		} else if (Object.prototype.hasOwnProperty.call(query, EQ)) {
 			return this.handleMComparator(EQ, query);
 		}
-		return [];
+		return [] ;
 	}
 
 	public isValidQuery(): boolean {
@@ -181,11 +181,16 @@ export class QueryEngine {
 	}
 
 	public handleNot(query: any): InsightDatasetSection[] {
+
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[] = [];
-		for (const operator in query) {
-			subResult = this.handleFilter(operator); //	does this actually work!?
+		let key = Object.keys(query);
+		console.log("keys: " + key);
+		if(key.length !== 1){
+			console.log("NOt has multiple elements inside");
 		}
+		subResult = this.handleFilter(query); //	does this actually work!?
+
 		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
 		return results;
 	}
