@@ -180,31 +180,7 @@ export default class InsightFacade implements IInsightFacade {
 // 	.then(() => {
 // 		return facade.performQuery(
 // 			{
-// 				WHERE: {
-// 					AND: [
-// 						{
-// 							NOT: {
-// 								AND: [
-// 									{
-// 										GT: {
-// 											sections_avg: 20
-// 										}
-// 									},
-// 									{
-// 										IS: {
-// 											sections_dept: "adhe"
-// 										}
-// 									}
-// 								]
-// 							}
-// 						},
-// 						{
-// 							IS: {
-// 								sections_dept: "cpsc"
-// 							}
-// 						}
-// 					]
-// 				},
+// 				WHERE: {},
 // 				OPTIONS: {
 // 					COLUMNS: [
 // 						"sections_dept",
