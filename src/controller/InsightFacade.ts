@@ -38,7 +38,7 @@ export default class InsightFacade implements IInsightFacade {
 		if(fs.existsSync(PATH_TO_ROOT_DATA) && fs.existsSync(PATH_TO_ROOT_DATA)) {
 			readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		} else {
-			fs.mkdirSync(PATH_TO_ROOT_DATA_FOLDER);
+			fs.ensureDirSync(PATH_TO_ROOT_DATA_FOLDER);
 		}
 	}
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
