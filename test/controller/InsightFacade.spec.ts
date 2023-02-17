@@ -95,8 +95,9 @@ describe("InsightFacade", function () {
 				return expect(result).eventually.to.have.members(["section"]);
 			});
 
-			it("should psas because", function() {
-				return facade.addDataset("section", validDataset, InsightDatasetKind.Sections)
+			it("should psas because", function () {
+				return facade
+					.addDataset("section", validDataset, InsightDatasetKind.Sections)
 					.then(() => facade.addDataset("section____hello_", validSection, InsightDatasetKind.Sections))
 					.catch(() => {
 						let newFacade = new InsightFacade();
@@ -171,8 +172,6 @@ describe("InsightFacade", function () {
 				const result = facade.addDataset("ubc", invalidClassImproperRootDir, InsightDatasetKind.Sections);
 				return expect(result).to.eventually.be.rejectedWith(InsightError);
 			});
-
-
 		});
 
 		describe("Kind argument tests", function () {
@@ -195,7 +194,8 @@ describe("InsightFacade", function () {
 		});
 
 		it("should pass because it removed the dataset with the given id", function () {
-			return facade.addDataset("ubc", validDataset, InsightDatasetKind.Sections)
+			return facade
+				.addDataset("ubc", validDataset, InsightDatasetKind.Sections)
 				.then(() => facade.addDataset("validSection", validSection, InsightDatasetKind.Sections))
 				.then(() => {
 					return facade.removeDataset("validSection");
@@ -240,7 +240,7 @@ describe("InsightFacade", function () {
 			return expect(result).to.eventually.be.rejectedWith(InsightError);
 		});
 
-		it("should pass with a dataset that has the stuff",  async function() {
+		it("should pass with a dataset that has the stuff", async function () {
 			let stringArrayResult = await facade.addDataset("1", validSection, InsightDatasetKind.Sections);
 			expect(stringArrayResult).to.have.length(1);
 			stringArrayResult = await facade.addDataset("2", validClass, InsightDatasetKind.Sections);
@@ -418,5 +418,4 @@ describe("InsightFacade", function () {
 	// 		assertOnResult,
 	// 	});
 	// });
-
 });

@@ -1,7 +1,7 @@
 import {
 	InsightData, InsightDatasetSection,
 	InsightResult,
-	ResultTooLargeError,
+	ResultTooLargeError, InsightError
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
 import {writeLocal} from "./DiskUtil";
@@ -30,7 +30,7 @@ export class QueryEngine {
 		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
 			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
-			return Promise.reject("Invalid Query");
+			return Promise.reject(new InsightError("Invalid Query"));
 		} else if(results.length > 5000) {
 			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
@@ -164,7 +164,9 @@ export class QueryEngine {
 	public handleAnd(query: any): InsightDatasetSection[] | null {
 		let results: InsightDatasetSection[] = [];
 		let subResult: InsightDatasetSection[] | null = [];
+		//	return null;
 		for (const operator of query) {
+
 			subResult = this.handleFilter(operator);
 			if(subResult === null || subResult === undefined) {
 				return null;

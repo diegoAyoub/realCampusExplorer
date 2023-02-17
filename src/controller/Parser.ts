@@ -1,6 +1,5 @@
 import {InsightDatasetSection, InsightError} from "./IInsightFacade";
-const REQUIRED_SECTION_KEYS =
-	["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
+const REQUIRED_SECTION_KEYS = ["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
 /**
  * Reads a stringified version of an object (i.e. "{"avg": 50}") and converts it to an InsightDatasetSection
  * REQUIRES: the string to be a valid object that contains a "results" key
@@ -10,30 +9,33 @@ const REQUIRED_SECTION_KEYS =
  **/
 export function parseClasses(classes: any, sections: InsightDatasetSection[]): Promise<void> {
 	try {
-		for(const AClass of classes) {
+		for (const AClass of classes) {
 			try {
 				let classObject = JSON.parse(AClass);
-				if(classObject.result.length !== 0) { // for the ones with results key that maps to empty
+				if (classObject.result.length !== 0) {
+					// for the ones with results key that maps to empty
 					// Promise.reject(new InsightError("There are no valid sections"));
-					for(const section of classObject.result) {
-						if(isValidSection(section)) {
+					for (const section of classObject.result) {
+						if (isValidSection(section)) {
 							let year = section.Section === "overall" ? 1900 : parseInt(section.Year, 10);
-							sections.push(new InsightDatasetSection(
-								section.id.toString(),
-								section.Course,
-								section.Title,
-								section.Professor,
-								section.Subject,
-								year,
-								section.Avg,
-								section.Pass,
-								section.Fail,
-								section.Audit
-							));
+							sections.push(
+								new InsightDatasetSection(
+									section.id.toString(),
+									section.Course,
+									section.Title,
+									section.Professor,
+									section.Subject,
+									year,
+									section.Avg,
+									section.Pass,
+									section.Fail,
+									section.Audit
+								)
+							);
 						}
 					}
 				}
-			} catch(Error) {
+			} catch (Error) {
 				// sometimes classes arg has an element that is filled with null characters mostly found in
 				// cases where validClass or validSection i.e. custom file I made with one section or one class
 			}
@@ -53,9 +55,8 @@ export function parseClasses(classes: any, sections: InsightDatasetSection[]): P
  **/
 export function isValidSection(section: any): boolean {
 	let isValid = true;
-	for(const requiredKey of REQUIRED_SECTION_KEYS) {
+	for (const requiredKey of REQUIRED_SECTION_KEYS) {
 		isValid = isValid && Object.prototype.hasOwnProperty.call(section, requiredKey);
 	}
 	return isValid;
 }
-
