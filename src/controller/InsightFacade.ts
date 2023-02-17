@@ -14,6 +14,7 @@ import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
 import {readLocal, writeLocal} from "./DiskUtil";
+let objectConstructor = ({}).constructor;
 
 export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
@@ -140,7 +141,6 @@ export default class InsightFacade implements IInsightFacade {
 						return fs.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
 							.then(() => Promise.resolve(id))
 							.catch(async () => {
-								await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 								return Promise.reject(new InsightError("Error updating disk to reflect removal"));
 							});
 					}
@@ -148,7 +148,6 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.resolve(id);
 			})
 			.catch(async (err) => {
-				// await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(err);
 			});
 	}
@@ -163,12 +162,12 @@ export default class InsightFacade implements IInsightFacade {
 	public async performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		if (inputQuery === null || inputQuery === undefined) {
 			return Promise.reject(new InsightError("The query doesn't exist"));
-		}
-		let query = inputQuery as any; //	try any also
-		this.queryEng = new QueryEngine(this.insightDataList, query);
-
-		if(this.queryEng.isValidQuery()) {
-			return this.queryEng.doQuery(query);
+		} else if (inputQuery.constructor === objectConstructor) {
+			let query = inputQuery as any; //	try any also
+			this.queryEng = new QueryEngine(this.insightDataList, query);
+			if(this.queryEng.isValidQuery()) {
+				return this.queryEng.doQuery(query);
+			}
 		}
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
@@ -178,37 +177,18 @@ export default class InsightFacade implements IInsightFacade {
 // let facade = new InsightFacade();
 // const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
 // const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
-// facade.addDataset("sections", validSection, InsightDatasetKind.Sections);
-// facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
-// let newFacade = new InsightFacade();
-// newFacade.listDatasets()
-// 	.then((results) => console.log(results));
-
-// facade.listDatasets()
+// facade.addDataset("sections", validSection, InsightDatasetKind.Sections)
 // 	.then(() => facade.listDatasets())
 // 	.then((addedDatasets) => {
-// 		console.log("THEY'RE BETTER BE SOMETHING THERE");
-// 		console.log(facade.insightDataList);
+// 		// console.log("THEY'RE BETTER BE SOMETHING THERE");
+// 		// console.log(facade.insightDataList);
 // 		return Promise.resolve();
 // 	})
-// 	.then(() => facade.performQuery({
-// 		WHERE: {
-// 			AND: [
-// 				{sections_dept: "cpsc"},
-// 				{sections_avg: 20},
-// 				{sections_fail: 1}
-// 			]
-// 		},
-// 		OPTIONS: {
-// 			COLUMNS: [
-// 				"sections_dept",
-// 				"sections_avg"
-// 			],
-// 			ORDER: "sections_avg"
-// 		}
-// 	}))
-// 	.catch((err) => console.log(err));
+// 	.then(() => facade.performQuery({WHERE: {
 //
+// 	}}))
+// 	.catch((err) => console.log(err));
+
 // facade.listDatasets()
 // 	.then((results) => console.log(results))
 // 	.then((results) => console.log(results))
@@ -216,4 +196,4 @@ export default class InsightFacade implements IInsightFacade {
 // 	.then((results) => console.log(results))
 // 	.then(() => facade.performQuery(null))
 // 	.catch((results) => console.log(results))
-// ;
+;
