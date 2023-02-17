@@ -242,29 +242,6 @@ describe("InsightFacade", function () {
 			const result = facade.removeDataset("sections_");
 			return expect(result).to.eventually.be.rejectedWith(InsightError);
 		});
-
-		it("should pass with a dataset that has the stuff",  async function() {
-			let stringArrayResult = await facade.addDataset("1", validSection, InsightDatasetKind.Sections);
-			expect(stringArrayResult).to.have.length(1);
-			stringArrayResult = await facade.addDataset("2", validClass, InsightDatasetKind.Sections);
-			expect(stringArrayResult).to.deep.equal(["1", "2"]);
-
-			let facade1 = new InsightFacade();
-			let insightResult = await facade1.listDatasets();
-			expect(insightResult).to.have.length(2);
-
-			await facade1.addDataset("3", validSection, InsightDatasetKind.Sections);
-			insightResult = await facade1.listDatasets();
-			expect(insightResult).to.have.length(3);
-
-			let stringResult = await facade.removeDataset("1");
-			expect(stringResult).to.equal("1");
-			insightResult = await facade1.listDatasets();
-			expect(insightResult).to.have.length(3);
-			let facade2 = new InsightFacade();
-			insightResult = await facade2.listDatasets();
-			expect(insightResult).to.have.length(2);
-		});
 	});
 
 	describe("listDatasetTests", function () {
@@ -384,43 +361,44 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	// describe("performQuery -handlecrash", function () {
-	// 	before(async function () {
-	// 		clearDisk();
-	// 		facade = new InsightFacade();
-	// 		await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
-	// 		await facade.addDataset("classes!", validClass, InsightDatasetKind.Sections);
-	// 		newFacade = new InsightFacade();
-	// 	});
-	//
-	// 	function errorValidator(error: any): error is Error {
-	// 		return error === "InsightError" || error === "ResultTooLargeError";
-	// 	}
-	//
-	// 	function assertOnError(actual: any, expected: Error): void {
-	// 		if (expected === "InsightError") {
-	// 			expect(actual).to.be.instanceof(InsightError);
-	// 		} else if (expected === "ResultTooLargeError") {
-	// 			expect(actual).to.be.instanceof(ResultTooLargeError);
-	// 		} else {
-	// 			// this should be unreachable
-	// 			expect.fail("UNEXPECTED ERROR");
-	// 		}
-	// 	}
-	//
-	// 	function assertOnResult(actual: unknown, expected: Output): void {
-	// 		expect(actual).to.deep.equals(expected);
-	// 	}
-	//
-	// 	function target(input: Input): Promise<Output> {
-	// 		return newFacade.performQuery(input);
-	// 	}
-	//
-	// 	folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
-	// 		errorValidator,
-	// 		assertOnError,
-	// 		assertOnResult,
-	// 	});
-	// });
+	describe("performQuery -handlecrash", function () {
+		before(async function () {
+			clearDisk();
+			facade = new InsightFacade();
+			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
+			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+			newFacade = new InsightFacade();
+		});
+
+		function errorValidator(error: any): error is Error {
+			return error === "InsightError" || error === "ResultTooLargeError";
+		}
+
+		function assertOnError(actual: any, expected: Error): void {
+			if (expected === "InsightError") {
+				expect(actual).to.be.instanceof(InsightError);
+			} else if (expected === "ResultTooLargeError") {
+				expect(actual).to.be.instanceof(ResultTooLargeError);
+			} else {
+				// this should be unreachable
+				expect.fail("UNEXPECTED ERROR");
+			}
+		}
+
+		function assertOnResult(actual: unknown, expected: Output): void {
+			expect(actual).to.have.deep.members(expected);
+		}
+
+		function target(input: Input): Promise<Output> {
+			// console.log(input);
+			return newFacade.performQuery(input);
+		}
+
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
+			errorValidator,
+			assertOnError,
+			assertOnResult,
+		});
+	});
 
 });

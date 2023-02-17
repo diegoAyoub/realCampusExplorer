@@ -84,7 +84,7 @@ export class QueryEngine {
 			if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
 				for(let comparator of whereVal) {
 					let whereKeys = Object.keys(comparator);
-					console.log(whereKeys);
+					// console.log(whereKeys);
 					let goodKey = true;
 					for(const aKey of whereKeys) {
 						goodKey = goodKey && (COMPARATOR.includes(aKey) || LOGIC.includes(aKey));

@@ -10,27 +10,29 @@ import * as fs from "fs-extra";
 import {InsightData, InsightDatasetSection, InsightError} from "./IInsightFacade";
 const REQUIRED_DATASET_SECTION_KEYS =
 	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-export function readLocal(path: string, insightDataList: InsightData[]): Promise<void> {
+export function readLocal(path: string, insightDataList: InsightData[]) {
 	try {
+		console.log(path);
 		let fileContent = fs.readJSONSync(path);
-		console.log(fileContent);
+		// console.log(fileContent);
 		let insightDataSections: InsightDatasetSection[];
 		for (const insightData of fileContent) {
 			insightDataSections = [];
 			if(!isDuplicatedDataset(insightDataList, insightData.metaData.id)) {
 				for (const persistedSection of insightData.data) {
+					// console.log(persistedSection);
 					if(isValidDatasetSection(persistedSection)){
 						insightDataSections.push(new InsightDatasetSection(
-							persistedSection.id,
-							persistedSection.course,
-							persistedSection.title,
-							persistedSection.professor,
-							persistedSection.subject,
-							persistedSection.year,
-							persistedSection.avg,
-							persistedSection.pass,
-							persistedSection.fail,
-							persistedSection.audit
+							persistedSection["uuid"],
+							persistedSection["id"],
+							persistedSection["title"],
+							persistedSection["instructor"],
+							persistedSection["dept"],
+							persistedSection["year"],
+							persistedSection["avg"],
+							persistedSection["pass"],
+							persistedSection["fail"],
+							persistedSection["audit"]
 						));
 					}
 				}
@@ -42,15 +44,15 @@ export function readLocal(path: string, insightDataList: InsightData[]): Promise
 				));
 			}
 		}
-		return Promise.resolve();
 	} catch(Exception) {
-		return Promise.reject(new InsightError("There was an error reading from disk"));
+		return ("There was an error reading from disk");
 	}
 }
 
 export function writeLocal(path: string, insightDataList: InsightData[]): Promise<void> {
 	try {
-		fs.outputJsonSync(path,  JSON.stringify(insightDataList));
+		// console.log(path);
+		fs.outputJsonSync(path, insightDataList);
 		return Promise.resolve();
 	} catch(Exception) {
 		return Promise.reject(new InsightError("There was a problem saving data to disk"));
