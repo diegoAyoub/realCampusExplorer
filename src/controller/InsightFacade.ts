@@ -19,8 +19,8 @@ export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
 
 // USE THIS WHEN RUNNING WITH MAIN
-//	export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
-//	export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+// export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+// export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
 
 // USE THIS WHEN RUNNING MOCHA
 export const PATH_TO_ROOT_DATA = "./data/data.json";
@@ -34,10 +34,7 @@ export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	private queryEng: QueryEngine | null = null;
 	constructor() {
-		console.log(fs.existsSync(PATH_TO_ROOT_DATA_FOLDER));
-		console.log(fs.existsSync(PATH_TO_ROOT_DATA));
-		if(fs.existsSync(PATH_TO_ROOT_DATA_FOLDER) && fs.existsSync(PATH_TO_ROOT_DATA)) {
-			console.log("file found!");
+		if(fs.existsSync(PATH_TO_ROOT_DATA) && fs.existsSync(PATH_TO_ROOT_DATA)) {
 			readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		} else {
 			fs.mkdirSync(PATH_TO_ROOT_DATA_FOLDER);
@@ -129,8 +126,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		return readLocal(PATH_TO_ROOT_DATA, this.insightDataList)
-			.then(() => this.isValidId(id))
+		return this.isValidId(id)
 			.then(() => {
 				if (this.isIdExist(id)) {
 					return Promise.resolve(id);
@@ -165,12 +161,13 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(addedDatasets);
 	}
 	public async performQuery(inputQuery: unknown): Promise<InsightResult[]> {
-		let query = inputQuery as any; //	try any also
-		console.log(typeof inputQuery);
-		this.queryEng = new QueryEngine(this.insightDataList, query);
 		if (inputQuery === null || inputQuery === undefined) {
 			return Promise.reject(new InsightError("The query doesn't exist"));
-		} else if(this.queryEng.isValidQuery()) {
+		}
+		let query = inputQuery as any; //	try any also
+		this.queryEng = new QueryEngine(this.insightDataList, query);
+
+		if(this.queryEng.isValidQuery()) {
 			return this.queryEng.doQuery(query);
 		}
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
@@ -181,9 +178,12 @@ export default class InsightFacade implements IInsightFacade {
 // let facade = new InsightFacade();
 // const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
 // const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
-// facade.listDatasets()
+// facade.addDataset("sections", validSection, InsightDatasetKind.Sections);
+// facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+// let newFacade = new InsightFacade();
+// newFacade.listDatasets()
 // 	.then((results) => console.log(results));
-//
+
 // facade.listDatasets()
 // 	.then(() => facade.listDatasets())
 // 	.then((addedDatasets) => {
@@ -208,7 +208,7 @@ export default class InsightFacade implements IInsightFacade {
 // 		}
 // 	}))
 // 	.catch((err) => console.log(err));
-
+//
 // facade.listDatasets()
 // 	.then((results) => console.log(results))
 // 	.then((results) => console.log(results))

@@ -1,7 +1,7 @@
 import {
 	InsightData, InsightDatasetSection,
 	InsightResult,
-	ResultTooLargeError, InsightError
+	ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
 import {writeLocal} from "./DiskUtil";
@@ -10,6 +10,7 @@ const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg"
 const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
 const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
+
 export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
 export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
@@ -29,7 +30,7 @@ export class QueryEngine {
 		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
 			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
-			return Promise.reject(new InsightError("Invalid Query"));
+			return Promise.reject("Invalid Query");
 		} else if(results.length > 5000) {
 			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
@@ -83,7 +84,7 @@ export class QueryEngine {
 			if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
 				for(let comparator of whereVal) {
 					let whereKeys = Object.keys(comparator);
-					//	console.log(whereKeys);
+					// console.log(whereKeys);
 					let goodKey = true;
 					for(const aKey of whereKeys) {
 						goodKey = goodKey && (COMPARATOR.includes(aKey) || LOGIC.includes(aKey));
@@ -166,9 +167,7 @@ export class QueryEngine {
 	public handleAnd(query: any): InsightDatasetSection[] | null {
 		let results: InsightDatasetSection[] = [];
 		let subResult: InsightDatasetSection[] | null = [];
-		//	return null;
 		for (const operator of query) {
-
 			subResult = this.handleFilter(operator);
 			if(subResult === null || subResult === undefined) {
 				return null;
