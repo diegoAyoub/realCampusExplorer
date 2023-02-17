@@ -24,6 +24,7 @@ type Error = "ResultTooLargeError" | "InsightError";
 
 describe("InsightFacade", function () {
 	let facade: InsightFacade;
+	let newFacade: InsightFacade;
 	let validSection: string;
 	let invalidSectionMissingQueryKeyAvg: string;
 	let validClass: string;
@@ -95,14 +96,16 @@ describe("InsightFacade", function () {
 				return expect(result).eventually.to.have.members(["section"]);
 			});
 
-			it("should psas because", function() {
-				return facade.addDataset("section", validDataset, InsightDatasetKind.Sections)
-					.then(() => facade.addDataset("section____hello_", validSection, InsightDatasetKind.Sections))
-					.catch(() => {
-						let newFacade = new InsightFacade();
-						return newFacade.listDatasets();
-					});
-			});
+			// it("should psas because", function() {
+			// 	return facade.addDataset("section", validDataset, InsightDatasetKind.Sections)
+			// 		.then(() => facade.addDataset("section____hello_", validSection, InsightDatasetKind.Sections))
+			// 		.catch(() => {
+			// 			// let newFacade = new InsightFacade(); // check that
+			// 			// facaade.addDataset("blah");
+			// 			// newFacade.performQuery(); // new facade should only have datasetid = section
+			// 			// return newFacade.listDatasets();
+			// 		});
+			// });
 
 			it("should pass because it successfully added two datasets", function () {
 				return facade
@@ -381,12 +384,13 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	// describe("performQuery -ORDERED", function () {
+	// describe("performQuery -handlecrash", function () {
 	// 	before(async function () {
 	// 		clearDisk();
 	// 		facade = new InsightFacade();
 	// 		await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
 	// 		await facade.addDataset("classes!", validClass, InsightDatasetKind.Sections);
+	// 		newFacade = new InsightFacade();
 	// 	});
 	//
 	// 	function errorValidator(error: any): error is Error {
@@ -409,7 +413,7 @@ describe("InsightFacade", function () {
 	// 	}
 	//
 	// 	function target(input: Input): Promise<Output> {
-	// 		return facade.performQuery(input);
+	// 		return newFacade.performQuery(input);
 	// 	}
 	//
 	// 	folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {

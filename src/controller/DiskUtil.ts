@@ -13,6 +13,7 @@ const REQUIRED_DATASET_SECTION_KEYS =
 export function readLocal(path: string, insightDataList: InsightData[]): Promise<void> {
 	try {
 		let fileContent = fs.readJSONSync(path);
+		console.log(fileContent);
 		let insightDataSections: InsightDatasetSection[];
 		for (const insightData of fileContent) {
 			insightDataSections = [];
@@ -49,7 +50,7 @@ export function readLocal(path: string, insightDataList: InsightData[]): Promise
 
 export function writeLocal(path: string, insightDataList: InsightData[]): Promise<void> {
 	try {
-		fs.outputJsonSync(path,  insightDataList);
+		fs.outputJsonSync(path,  JSON.stringify(insightDataList));
 		return Promise.resolve();
 	} catch(Exception) {
 		return Promise.reject(new InsightError("There was a problem saving data to disk"));
