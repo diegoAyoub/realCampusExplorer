@@ -1,5 +1,5 @@
 {
-	"title": "orderKeyNotInColumnsShouldFail",
+	"title": "andDiffColKeysShouldFail",
 	"input": {
 		"WHERE": {
 			"AND": [
@@ -17,9 +17,9 @@
 		},
 		"OPTIONS": {
 			"COLUMNS": [
-				"sections_instructor"
+				"ubc_avg"
 			],
-			"ORDER": "sections_avg"
+			"ORDER": "ubc_avg"
 		}
 	},
 	"errorExpected": true,

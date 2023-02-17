@@ -1,8 +1,8 @@
 {
-	"title": "Complex Query: fail due to improper MCOMPARISON (LT)",
+	"title": "Simple query should pass with no results AND",
 	"input": {
 		"WHERE": {
-			"OR": [
+			"AND": [
 				{
 					"AND": [
 						{
@@ -12,14 +12,14 @@
 						},
 						{
 							"IS": {
-								"sections_dept": "adhe"
+								"sections_dept": "cpsc"
 							}
 						}
 					]
 				},
 				{
-					"LTT": {
-						"sections_avg": 95
+					"IS": {
+						"sections_id": "418"
 					}
 				}
 			]
@@ -33,6 +33,6 @@
 			"ORDER": "sections_avg"
 		}
 	},
-	"errorExpected": true,
-	"expected": "InsightError"
+	"errorExpected": false,
+	"expected": []
 }

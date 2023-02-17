@@ -1,0 +1,79 @@
+{
+	"title": "andIsWildcardLeft",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"sections_avg": 95
+					}
+				},
+				{
+					"IS": {
+						"sections_dept": "p*"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			],
+			"ORDER": "sections_dept"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "pcth"
+		},
+		{
+			"sections_dept": "phar"
+		},
+		{
+			"sections_dept": "phil"
+		},
+		{
+			"sections_dept": "phth"
+		},
+		{
+			"sections_dept": "phth"
+		},
+		{
+			"sections_dept": "phys"
+		},
+		{
+			"sections_dept": "phys"
+		},
+		{
+			"sections_dept": "plan"
+		},
+		{
+			"sections_dept": "plan"
+		},
+		{
+			"sections_dept": "psyc"
+		},
+		{
+			"sections_dept": "psyc"
+		},
+		{
+			"sections_dept": "psyc"
+		},
+		{
+			"sections_dept": "psyc"
+		},
+		{
+			"sections_dept": "psyc"
+		},
+		{
+			"sections_dept": "psyc"
+		},
+		{
+			"sections_dept": "psyc"
+		},
+		{
+			"sections_dept": "psyc"
+		}
+	]
+}

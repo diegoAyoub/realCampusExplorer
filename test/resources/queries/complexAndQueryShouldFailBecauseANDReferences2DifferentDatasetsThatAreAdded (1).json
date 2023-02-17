@@ -1,0 +1,38 @@
+{
+	"title": "simple query should pass nested AND return []",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"AND": [
+						{
+							"GT": {
+								"classes_avg": 90
+							}
+						},
+						{
+							"IS": {
+								"classes_dept": "cpsc"
+							}
+						}
+					]
+				},
+				{
+					"IS": {
+						"classes_id": "418"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"classes_dept",
+				"classes_id",
+				"classes_avg"
+			],
+			"ORDER": "classes_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": []
+}

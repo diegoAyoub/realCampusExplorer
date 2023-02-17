@@ -7,10 +7,10 @@
  * promise.
  **/
 import * as fs from "fs-extra";
-import {InsightData, InsightDatasetSection} from "./IInsightFacade";
+import {InsightData, InsightDatasetSection, InsightError} from "./IInsightFacade";
 const REQUIRED_DATASET_SECTION_KEYS =
 	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-export function readLocal(path: string, insightDataList: InsightData[]): void {
+export function readLocal(path: string, insightDataList: InsightData[]): Promise<void> {
 	try {
 		let fileContent = fs.readJSONSync(path);
 		let insightDataSections: InsightDatasetSection[];
@@ -41,10 +41,21 @@ export function readLocal(path: string, insightDataList: InsightData[]): void {
 				));
 			}
 		}
+		return Promise.resolve();
 	} catch(Exception) {
-		// console.log("There was a problem reading from disk." + Exception);
+		return Promise.reject(new InsightError("There was an error reading from disk"));
 	}
 }
+
+export function writeLocal(path: string, insightDataList: InsightData[]): Promise<void> {
+	try {
+		fs.outputJsonSync(path,  insightDataList);
+		return Promise.resolve();
+	} catch(Exception) {
+		return Promise.reject(new InsightError("There was a problem saving data to disk"));
+	}
+}
+
 function isDuplicatedDataset(insightDataList: InsightData[], id: string): boolean {
 	for (const dataset of insightDataList) {
 		if (dataset.metaData.id === id) {

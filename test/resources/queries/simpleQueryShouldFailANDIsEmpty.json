@@ -1,15 +1,15 @@
 {
-	"title": "complex query should fail invalid type in IS dept (NOT STRING)",
+	"title": "simple query should fail AND is empty",
 	"input": {
 		"WHERE": {
-			"IS": {
-				"sections_dept": 5
-			}
+			"AND": []
 		},
 		"OPTIONS": {
 			"COLUMNS": [
 				"sections_dept",
-				"sections_avg"
+				"sections_avg",
+				"sections_instructor",
+				"sections_uuid"
 			],
 			"ORDER": "sections_dept"
 		}

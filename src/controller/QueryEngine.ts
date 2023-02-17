@@ -1,13 +1,11 @@
-//	This file will have a lot of the query helper functions, this file is essentially the query engine //
 import {
-	InsightData,
-	InsightDatasetSection,
-	InsightError,
+	InsightData, InsightDatasetSection,
 	InsightResult,
 	ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
-//	adding this jsut so i can commit
+import {writeLocal} from "./DiskUtil";
+import {PATH_TO_ROOT_DATA} from "./InsightFacade";
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
@@ -28,9 +26,13 @@ export class QueryEngine {
 		this.selectedColumns = [];
 		this.orderKey = "";
 	}
-	public doQuery(query: any): Promise<InsightResult[]> {
-		let results: InsightDatasetSection[] = this.handleFilter(query[WHERE]);
-		if(results.length > 5000) {
+	public async doQuery(query: any): Promise<InsightResult[]> {
+		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
+		if (results === null || results === undefined) {
+			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
+			return Promise.reject("Invalid Query");
+		} else if(results.length > 5000) {
+			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
 		} else {
 			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
@@ -38,15 +40,16 @@ export class QueryEngine {
 		}
 	}
 
-	public handleFilter(query: any): InsightDatasetSection[] {
-		if (Object.prototype.hasOwnProperty.call(query, AND)) {
+	public handleFilter(query: any): InsightDatasetSection[] | null {
+		if(query === null || query === undefined) {
+			return null;
+		} else if (Object.prototype.hasOwnProperty.call(query, AND)) {
 			return this.handleAnd(query[AND]);
 		} else if (Object.prototype.hasOwnProperty.call(query, OR)) {
 			return this.handleOr(query[OR]);
 		} else if (Object.prototype.hasOwnProperty.call(query, NOT)) {
 			return this.handleNot(query[NOT]);
 		} else if (Object.prototype.hasOwnProperty.call(query, LT)) {
-			// @TODO get/handle conditional info from lt key
 			return this.handleMComparator(LT, query);
 		} else if (Object.prototype.hasOwnProperty.call(query, GT)) {
 			return this.handleMComparator(GT, query);
@@ -55,7 +58,7 @@ export class QueryEngine {
 		} else if (Object.prototype.hasOwnProperty.call(query, EQ)) {
 			return this.handleMComparator(EQ, query);
 		}
-		return [] ;
+		return this.datasetSections;
 	}
 
 	public isValidQuery(): boolean {
@@ -64,10 +67,11 @@ export class QueryEngine {
 		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
 			return false; //	Promise.reject(new InsightError("Invalid query lang: WHERE"));
 		}
-		return this.isValidWhere(this.queryJson[WHERE]) && this.isValidOptions(this.queryJson[OPTIONS]);
+		let isValidWhere: boolean = this.isValidWhere(this.queryJson[WHERE]);
+		let isWhereEmpty: boolean = Object.keys(this.queryJson[WHERE]).length === 0;
+		let isValidOptions = this.isValidOptions(this.queryJson[OPTIONS]);
+		return (isWhereEmpty || isValidWhere) && isValidOptions;
 	}
-	// Recursion through where sub block, explores each layer of camparators until section ID and column is found. Then
-	//	returns true if valid. false otherwise
 	public isValidWhere(whereBlock: any): boolean {
 		let isValid = true;
 		if(Object.keys(whereBlock).length !== 1) {
@@ -77,7 +81,7 @@ export class QueryEngine {
 			let whereKey: string = key;
 			let whereVal = whereBlock[key] as any;
 			if (LOGIC.includes(whereKey)) {
-				if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats empty
+				if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
 					for(let filter of whereVal) {
 						isValid = isValid && this.isValidWhere(filter);
 					}
@@ -122,6 +126,7 @@ export class QueryEngine {
 			if (optionKeys[0] === COLUMNS) {
 				columnKeys = optionBlock[COLUMNS];
 				this.selectedColumns = this.getColumns(columnKeys);
+				this.isIdExist(this.qryID);
 				return this.selectedColumns.length === columnKeys.length;
 			}
 		} else if (optionKeys.length === 2) {
@@ -130,6 +135,7 @@ export class QueryEngine {
 				this.selectedColumns = this.getColumns(columnKeys);
 				if (this.isValidKey(optionBlock[ORDER]) && columnKeys.includes(optionBlock[ORDER])) {
 					this.orderKey = optionBlock[ORDER];
+					this.isIdExist(this.qryID);
 					return this.selectedColumns.length === columnKeys.length;
 				}
 			}
@@ -144,20 +150,27 @@ export class QueryEngine {
 	}
 	public getColumns(columnsBlock: any): string[] {
 		let columns: string[] = [];
+		let datasetId = "";
 		for (const colKey of columnsBlock) {
+			this.qryID = this.qryID === "" ? colKey.split("_")[0] : this.qryID;
 			if (this.isValidKey(colKey)) {
+				datasetId = colKey;
 				columns.push(colKey);
 			}
 		}
 		return columns;
 	}
 
-	public handleAnd(query: any): InsightDatasetSection[] {
+	public handleAnd(query: any): InsightDatasetSection[] | null {
 		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] = [];
+		let subResult: InsightDatasetSection[] | null = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			if (results.length === 0) {
+			if(subResult === null || subResult === undefined) {
+				return null;
+			} else if (subResult.length === 0) {
+				return subResult;
+			} else if (results.length === 0) {
 				results = subResult;
 			} else {
 				results = subResult.filter((section) => results.includes(section));
@@ -168,10 +181,10 @@ export class QueryEngine {
 
 	public handleOr(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] = [];
+		let subResult: InsightDatasetSection[] | null = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			for (const section of subResult) {
+			for (const section of (subResult as InsightDatasetSection[])) {
 				if(!results.includes(section)) {
 					results.push(section);
 				}
@@ -181,17 +194,14 @@ export class QueryEngine {
 	}
 
 	public handleNot(query: any): InsightDatasetSection[] {
-
 		let results: InsightDatasetSection[] = this.datasetSections;
-		let subResult: InsightDatasetSection[] = [];
-		let key = Object.keys(query);
-		console.log("keys: " + key);
-		if(key.length !== 1){
-			console.log("NOt has multiple elements inside");
-		}
+		let subResult: InsightDatasetSection[] | null = [];
 		subResult = this.handleFilter(query); //	does this actually work!?
-
-		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
+		if(subResult === null) {
+			return results;
+		} else {
+			results = results.filter((section) => !((subResult as InsightDatasetSection[]).includes(section))); // gets everythin in results thats not in subresult
+		}
 		return results;
 	}
 	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
@@ -215,7 +225,7 @@ export class QueryEngine {
 				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
-			case IS: { // jk add special handler function for aster
+			case IS: { // jk add special handler function for asterisk
 				if(value.includes("*")) {
 					if(this.isValidWildCard(value)) {
 						filteredList = sections.filter((section) => {
@@ -230,15 +240,12 @@ export class QueryEngine {
 		}
 		return filteredList;
 	}
-
 	public getColVal(section: any, colName: string): any {
 		if (COLUMN_NAMES.includes(colName)) {
 			return section[colName];
 		}
-		console.log("ERROR: Invalid Column Name");
 		return "ERROR";
 	}
-
 	public isIdExist(id: string): boolean {
 		for (const dataset of this.dataset) {
 			if (dataset.metaData.id === id) {
@@ -248,21 +255,20 @@ export class QueryEngine {
 		}
 		return false;
 	}
-
-	public isValidId(id: string): Promise<boolean> {
-		if (id.trim().length === 0) {
-			// blank id or id is all whitespace
-			return Promise.reject(new InsightError("The ID must contain non white space characters"));
-		} else if (id.includes("_")) {
-			// id has an underscore
-			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
+	public isValidId(id: string): boolean {
+		if (id.trim().length === 0) { // blank id or id is all whitespace
+			return false;
+		} else if (id.includes("_")) { // id has an underscore
+			return false;
 		}
-		return Promise.resolve(true);
+		return true;
 	}
-	public isWildCardMatched(value: string, pattern: string) {
+	public isWildCardMatched(value: string, pattern: string): boolean {
 		let wildArr = pattern.split("*");
-		if (wildArr.length === 2)	{
-			if(wildArr[0] === "" && wildArr[1] !== "") {
+		if (wildArr.length === 2) {
+			if (wildArr[0] === "" && wildArr[1] === "") {
+				return true;
+			} else if(wildArr[0] === "" && wildArr[1] !== "") {
 				let substring = wildArr[1];
 				let stringToMatch = value.substring(value.length - substring.length, value.length);
 				return substring === stringToMatch;
@@ -271,16 +277,19 @@ export class QueryEngine {
 				let stringToMatch = value.substring(0, substring.length);
 				return substring === stringToMatch;
 			}
+		} else if (value.includes(wildArr[1])) {
+			return true;
 		}
 		return false;
 	}
-
-	public isValidWildCard(pattern: string) { // we are considering no pattern to be a valid wildcard pattern
+	public isValidWildCard(pattern: string): boolean { // we are considering no pattern to be a valid wildcard pattern
 		if(pattern.includes("*")) {
 			let wildArr = pattern.split("*");
-			if(wildArr.length > 2) {
+			if(pattern[0] === "*" && pattern[pattern.length - 1] === "*" && wildArr.length === 3) { // *string*
+				return true;
+			} else if(wildArr.length > 2) { // more than one * should fail
 				return false;
-			} else if(wildArr[0] !== "" && wildArr[1] !== "") {
+			} else if(wildArr[0] !== "" && wildArr[1] !== "") { // st*ring
 				return false;
 			}
 		}

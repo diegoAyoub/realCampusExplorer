@@ -1,5 +1,5 @@
 {
-	"title": "orderKeyNotInColumnsShouldFail",
+	"title": "andDiffKeysShouldFail",
 	"input": {
 		"WHERE": {
 			"AND": [
@@ -10,14 +10,14 @@
 				},
 				{
 					"IS": {
-						"sections_dept": "adhe"
+						"ubc_dept": "adhe"
 					}
 				}
 			]
 		},
 		"OPTIONS": {
 			"COLUMNS": [
-				"sections_instructor"
+				"sections_avg"
 			],
 			"ORDER": "sections_avg"
 		}

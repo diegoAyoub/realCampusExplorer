@@ -1,5 +1,5 @@
 {
-	"title": "orderKeyNotInColumnsShouldFail",
+	"title": "emptyNestedAnd",
 	"input": {
 		"WHERE": {
 			"AND": [
@@ -12,12 +12,15 @@
 					"IS": {
 						"sections_dept": "adhe"
 					}
+				},
+				{
+					"AND": []
 				}
 			]
 		},
 		"OPTIONS": {
 			"COLUMNS": [
-				"sections_instructor"
+				"sections_avg"
 			],
 			"ORDER": "sections_avg"
 		}

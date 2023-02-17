@@ -1,25 +1,25 @@
 {
-	"title": "orderKeyNotInColumnsShouldFail",
+	"title": "invalidColName",
 	"input": {
 		"WHERE": {
 			"AND": [
 				{
 					"GT": {
-						"sections_avg": 90
+						"sections_agv": 95
 					}
 				},
 				{
 					"IS": {
-						"sections_dept": "adhe"
+						"sections_dept": "p*"
 					}
 				}
 			]
 		},
 		"OPTIONS": {
 			"COLUMNS": [
-				"sections_instructor"
+				"sections_dept"
 			],
-			"ORDER": "sections_avg"
+			"ORDER": "sections_dept"
 		}
 	},
 	"errorExpected": true,

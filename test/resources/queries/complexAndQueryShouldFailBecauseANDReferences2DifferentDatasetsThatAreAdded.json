@@ -1,8 +1,8 @@
 {
-	"title": "Complex Query: fail due to improper MCOMPARISON (LT)",
+	"title": "complex and query should fail because AND references 2 different  datasets that are added",
 	"input": {
 		"WHERE": {
-			"OR": [
+			"AND": [
 				{
 					"AND": [
 						{
@@ -18,8 +18,8 @@
 					]
 				},
 				{
-					"LTT": {
-						"sections_avg": 95
+					"IS": {
+						"classes_id": "330"
 					}
 				}
 			]

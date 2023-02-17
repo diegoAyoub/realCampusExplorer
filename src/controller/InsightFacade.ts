@@ -13,12 +13,18 @@ import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
-import {readLocal} from "./DiskUtil";
+import {readLocal, writeLocal} from "./DiskUtil";
 
 const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
-// const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
-const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
+
+// USE THIS WHEN RUNNING WITH MAIN
+// const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+// const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+
+// USE THIS WHEN RUNNING MOCHA
+export const PATH_TO_ROOT_DATA = "./data/data.json";
+export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -28,10 +34,12 @@ export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	private queryEng: QueryEngine | null = null;
 	constructor() {
-		// console.log("InsightFacadeImpl::init()");
-		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		if(fs.existsSync(PATH_TO_ROOT_DATA_FOLDER) && fs.existsSync(PATH_TO_ROOT_DATA)) {
+			readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		} else {
+			fs.mkdirSync(PATH_TO_ROOT_DATA_FOLDER);
+		}
 	}
-	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		let sections: InsightDatasetSection[] = [];
@@ -45,20 +53,20 @@ export default class InsightFacade implements IInsightFacade {
 				});
 			})
 			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, sections)))
-			.then(() => {
+			.then(async () => {
 				try {
 					if (sections.length !== 0) {
 						this.insightDataList.push(new InsightData(id, kind, sections.length, sections));
-						return fs.outputJson(PATH_TO_ROOT_DATA,  this.insightDataList)
-							.then(() =>  Promise.resolve(this.getAddedIds()))
-							.catch(() =>  Promise.reject(new InsightError("There was an error writing to disk")));
+						await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+						return Promise.resolve(this.getAddedIds());
 					}
 					return Promise.reject(new InsightError("No sections were found in the inputted file"));
 				} catch (Exception) {
 					return Promise.reject("An error occurred while writing to to disk");
 				}
 			})
-			.catch((err) => {
+			.catch(async (err) => {
+				await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(new InsightError(err));
 			});
 	}
@@ -119,7 +127,8 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		return this.isValidId(id)
+		return readLocal(PATH_TO_ROOT_DATA, this.insightDataList)
+			.then(() => this.isValidId(id))
 			.then(() => {
 				if (this.isIdExist(id)) {
 					return Promise.resolve(id);
@@ -130,17 +139,18 @@ export default class InsightFacade implements IInsightFacade {
 				for (const index in this.insightDataList) {
 					if (this.insightDataList[index].metaData.id === id) {
 						this.insightDataList.splice(Number(index), 1);
-						return fs
-							.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
+						return fs.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
 							.then(() => Promise.resolve(id))
-							.catch(() => {
+							.catch(async () => {
+								await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 								return Promise.reject(new InsightError("Error updating disk to reflect removal"));
 							});
 					}
 				}
 				return Promise.resolve(id);
 			})
-			.catch((err) => {
+			.catch(async (err) => {
+				await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(err);
 			});
 	}
@@ -152,70 +162,43 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.resolve(addedDatasets);
 	}
-	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
+	public async performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
-		//	let testin: InsightResult[] = [new InsightResult()]
-		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
-		if (this.queryEng.isValidQuery()) {
-			// console.log("yep its valid");
-			 return this.queryEng.doQuery(query);
+		this.queryEng = new QueryEngine(this.insightDataList, query);
+		if (inputQuery === null || inputQuery === undefined) {
+			await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+			return Promise.reject(new InsightError("The query doesn't exist"));
+		} else if(this.queryEng.isValidQuery()) {
+			await readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+			return this.queryEng.doQuery(query);
 		}
-		// console.log("yep its nah its invalid");
+		await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
 
+
 // let facade = new InsightFacade();
-// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
+// const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
+// const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
 // facade.listDatasets()
 // 	.then((results) => console.log(results));
-// facade.addDataset("sections", validDataset, InsightDatasetKind.Sections)
+//
+// facade.listDatasets()
 // 	.then(() => facade.listDatasets())
-// 	.then((addedDatasets) =>{
+// 	.then((addedDatasets) => {
+// 		console.log("THEY'RE BETTER BE SOMETHING THERE");
 // 		console.log(facade.insightDataList);
-// 		// console.log("hey");
-// 		// return facade.readLocal();
 // 		return Promise.resolve();
 // 	})
-// 	.then(() => {
-// 		return facade.performQuery(
-// 			{
-// 				WHERE: {
-// 					AND: [
-// 						{
-// 							NOT: {
-// 								AND: [
-// 									{
-// 										GT: {
-// 											sections_avg: 20
-// 										}
-// 									},
-// 									{
-// 										IS: {
-// 											sections_dept: "adhe"
-// 										}
-// 									}
-// 								]
-// 							}
-// 						},
-// 						{
-// 							IS: {
-// 								sections_dept: "cpsc"
-// 							}
-// 						}
-// 					]
-// 				},
-// 				OPTIONS: {
-// 					COLUMNS: [
-// 						"sections_dept",
-// 						"sections_id",
-// 						"sections_avg"
-// 					],
-// 					ORDER: "sections_avg"
-// 				}
-// 			}
-// 		);
-// 	})
-// 	.then((results) => console.log(results))
+// 	.then(() => facade.performQuery({hey: null}))
 // 	.catch((err) => console.log(err));
 
+// facade.listDatasets()
+// 	.then((results) => console.log(results))
+// 	.then((results) => console.log(results))
+// 	.then(() => facade.listDatasets())
+// 	.then((results) => console.log(results))
+// 	.then(() => facade.performQuery(null))
+// 	.catch((results) => console.log(results))
+// ;
