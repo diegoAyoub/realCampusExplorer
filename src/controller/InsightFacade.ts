@@ -13,9 +13,8 @@ import * as fs from "fs-extra";
 import * as zip from "jszip";
 import JSZip from "jszip";
 import {parseClasses} from "./Parser";
+import {readLocal, writeLocal} from "./DiskUtil";
 
-const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-const DATA = "pair.zip";
 // const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
 const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
 
@@ -27,7 +26,7 @@ export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	private queryEng: QueryEngine | null = null;
 	constructor() {
-		// console.log("InsightFacadeImpl::init()");
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 	}
 	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -47,9 +46,8 @@ export default class InsightFacade implements IInsightFacade {
 				try {
 					if (sections.length !== 0) {
 						this.insightDataList.push(new InsightData(id, kind, sections.length, sections));
-						return fs.outputJson(PATH_TO_ROOT_DATA,  this.insightDataList)
-							.then(() =>  Promise.resolve(this.getAddedIds()))
-							.catch(() =>  Promise.reject(new InsightError("There was an error writing to disk")));
+						writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+						return Promise.resolve(this.getAddedIds());
 					}
 					return Promise.reject(new InsightError("No sections were found in the inputted file"));
 				} catch (Exception) {
@@ -117,6 +115,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
+		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		return this.isValidId(id)
 			.then(() => {
 				if (this.isIdExist(id)) {
@@ -132,6 +131,7 @@ export default class InsightFacade implements IInsightFacade {
 							.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
 							.then(() => Promise.resolve(id))
 							.catch(() => {
+								writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 								return Promise.reject(new InsightError("Error updating disk to reflect removal"));
 							});
 					}
@@ -152,101 +152,44 @@ export default class InsightFacade implements IInsightFacade {
 	}
 	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
-		//	let testin: InsightResult[] = [new InsightResult()]
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
-		if (this.queryEng.isValidQuery()) {
-			// console.log("yep its valid");
+		if (inputQuery === null) {
+			return Promise.reject(new InsightError("The query doesn't exist"));
+		} else if (this.queryEng.isValidQuery()) {
 			 return this.queryEng.doQuery(query);
 		}
-		// console.log("yep its nah its invalid");
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
 
-// let facade = new InsightFacade();
-// const validDataset = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
-// const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
-// let query = {
-// 	WHERE: {
-// 		AND: [
-// 			{
-// 				AND: [
-// 					{
-// 						GT: {
-// 							sections_avg: 90
-// 						}
-// 					},
-// 					{
-// 						IS: {
-// 							sections_dept: "cpsc"
-// 						}
-// 					}
-// 				]
-// 			},
-// 			{
-// 				IS: {
-// 					sections_id: "418"
-// 				}
-// 			}
-// 		]
-// 	},
-// 	OPTIONS: {
-// 		COLUMNS: [
-// 			"sections_dept",
-// 			"sections_id",
-// 			"sections_avg"
-// 		],
-// 		ORDER: "sections_avg"
-// 	}
-// };
-//
-// let query2 = {
-// 	WHERE: {
-// 		AND: [
-// 			{
-// 				AND: [
-// 					{
-// 						GT: {
-// 							classes_avg: 90
-// 						}
-// 					},
-// 					{
-// 						IS: {
-// 							classes_dept: "cpsc"
-// 						}
-// 					}
-// 				]
-// 			},
-// 			{
-// 				IS: {
-// 					classes_id: "418"
-// 				}
-// 			}
-// 		]
-// 	},
-// 	OPTIONS: {
-// 		COLUMNS: [
-// 			"classes_dept",
-// 			"classes_id",
-// 			"classes_avg"
-// 		],
-// 		ORDER: "classes_avg"
-// 	}
-// };
-// facade.listDatasets()
-// 	.then((results) => console.log(results));
-// facade.addDataset("classes", validClass, InsightDatasetKind.Sections)
-// 	.then(() => facade.addDataset("sections", validDataset, InsightDatasetKind.Sections))
-// 	.then(() => facade.listDatasets())
-// 	.then((addedDatasets) =>{
-// 		console.log(facade.insightDataList);
-// 		// console.log("hey");
-// 		// return facade.readLocal();
-// 		return Promise.resolve();
-// 	})
-// 	.then(() => {
-// 		return facade.performQuery(query2);
-// 	})
-// 	.then((results) => console.log(results))
-// 	.catch((err) => console.log(err));
+/*
+let facade = new InsightFacade();
+const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
+const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
 
+let query = {
+	244444: "wer"
+};
+facade.listDatasets()
+	.then((results) => console.log(results));
+
+facade.addDataset("sections", validSection, InsightDatasetKind.Sections)
+	.then(() => facade.addDataset("class", validClass, InsightDatasetKind.Sections))
+	.then(() => facade.listDatasets())
+	.then((addedDatasets) =>{
+		console.log(facade.insightDataList);
+		return Promise.resolve();
+	})
+	.then(() => facade.removeDataset("sections"))
+	.then((results) => console.log(results))
+	.catch((err) => console.log(err));
+
+facade.listDatasets()
+	.then((results) => console.log(results))
+	.then((results) => console.log(results))
+	.then(() => facade.listDatasets())
+	.then((results) => console.log(results))
+	.then(() => facade.performQuery(null))
+	.catch((results) => console.log(results))
+;
+*/

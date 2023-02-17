@@ -1,0 +1,19 @@
+{
+	"title": "simple query should fail AND is empty",
+	"input": {
+		"WHERE": {
+			"AND": []
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_avg",
+				"sections_instructor",
+				"sections_uuid"
+			],
+			"ORDER": "sections_dept"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

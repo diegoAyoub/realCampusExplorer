@@ -266,8 +266,10 @@ export class QueryEngine {
 	}
 	public isWildCardMatched(value: string, pattern: string): boolean {
 		let wildArr = pattern.split("*");
-		if (wildArr.length === 2)	{
-			if(wildArr[0] === "" && wildArr[1] !== "") {
+		if (wildArr.length === 2) {
+			if (wildArr[0] === "" && wildArr[1] === "") {
+				return true;
+			} else if(wildArr[0] === "" && wildArr[1] !== "") {
 				let substring = wildArr[1];
 				let stringToMatch = value.substring(value.length - substring.length, value.length);
 				return substring === stringToMatch;
@@ -275,11 +277,9 @@ export class QueryEngine {
 				let substring = wildArr[0];
 				let stringToMatch = value.substring(0, substring.length);
 				return substring === stringToMatch;
-			} else if (wildArr[0] === "" && wildArr[1] === "") {
-				let substring = wildArr[0];
-				let stringToMatch = value.substring(0, substring.length);
-				return true;
 			}
+		} else if (value.includes(wildArr[1])) {
+			return true;
 		}
 		return false;
 	}
@@ -287,7 +287,9 @@ export class QueryEngine {
 	public isValidWildCard(pattern: string): boolean { // we are considering no pattern to be a valid wildcard pattern
 		if(pattern.includes("*")) {
 			let wildArr = pattern.split("*");
-			if(wildArr.length > 2) {
+			if(pattern[0] === "*" && pattern[pattern.length - 1] === "*" && wildArr.length === 3) {
+				return true;
+			} else if(wildArr.length > 2) {
 				return false;
 			} else if(wildArr[0] !== "" && wildArr[1] !== "") {
 				return false;
