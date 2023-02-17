@@ -153,7 +153,7 @@ export default class InsightFacade implements IInsightFacade {
 	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
 		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
-		if (inputQuery === null) {
+		if (inputQuery === null || inputQuery === undefined) {
 			return Promise.reject(new InsightError("The query doesn't exist"));
 		} else if (this.queryEng.isValidQuery()) {
 			 return this.queryEng.doQuery(query);

@@ -1,4 +1,3 @@
-//	This file will have a lot of the query helper functions, this file is essentially the query engine //
 import {
 	InsightData,
 	InsightDatasetSection,
@@ -7,12 +6,10 @@ import {
 	ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
-
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
 const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
-
 export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
 export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
@@ -29,26 +26,27 @@ export class QueryEngine {
 		this.orderKey = "";
 	}
 	public doQuery(query: any): Promise<InsightResult[]> {
-		let results: InsightDatasetSection[] = this.handleFilter(query[WHERE]);
-		if(results.length > 5000) {
+		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
+		if (results === null || results === undefined) {
+			return Promise.reject("Invalid Query");
+		} else if(results.length > 5000) {
 			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
 		} else {
 			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
 			return Promise.resolve(resultFormatter.getFormattedResult());
 		}
-		// let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
-		// return Promise.resolve(resultFormatter.getFormattedResult());
 	}
 
-	public handleFilter(query: any): InsightDatasetSection[] {
-		if (Object.prototype.hasOwnProperty.call(query, AND)) {
+	public handleFilter(query: any): InsightDatasetSection[] | null {
+		if(query === null || query === undefined) {
+			return null;
+		} else if (Object.prototype.hasOwnProperty.call(query, AND)) {
 			return this.handleAnd(query[AND]);
 		} else if (Object.prototype.hasOwnProperty.call(query, OR)) {
 			return this.handleOr(query[OR]);
 		} else if (Object.prototype.hasOwnProperty.call(query, NOT)) {
 			return this.handleNot(query[NOT]);
 		} else if (Object.prototype.hasOwnProperty.call(query, LT)) {
-			// @TODO get/handle conditional info from lt key
 			return this.handleMComparator(LT, query);
 		} else if (Object.prototype.hasOwnProperty.call(query, GT)) {
 			return this.handleMComparator(GT, query);
@@ -71,8 +69,6 @@ export class QueryEngine {
 		let isValidOptions = this.isValidOptions(this.queryJson[OPTIONS]);
 		return (isWhereEmpty || isValidWhere) && isValidOptions;
 	}
-	// Recursion through where sub block, explores each layer of camparators until section ID and column is found. Then
-	//	returns true if valid. false otherwise
 	public isValidWhere(whereBlock: any): boolean {
 		let isValid = true;
 		if(Object.keys(whereBlock).length !== 1) {
@@ -162,12 +158,14 @@ export class QueryEngine {
 		return columns;
 	}
 
-	public handleAnd(query: any): InsightDatasetSection[] {
+	public handleAnd(query: any): InsightDatasetSection[] | null {
 		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] = [];
+		let subResult: InsightDatasetSection[] | null = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			if(subResult.length === 0) {
+			if(subResult === null || subResult === undefined) {
+				return null;
+			} else if (subResult.length === 0) {
 				return subResult;
 			} else if (results.length === 0) {
 				results = subResult;
@@ -178,13 +176,15 @@ export class QueryEngine {
 		return results;
 	}
 
-	public handleOr(query: any): InsightDatasetSection[] {
+	public handleOr(query: any): InsightDatasetSection[] | null {
 		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] = [];
+		let subResult: InsightDatasetSection[] | null = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			for (const section of subResult) {
-				if(!results.includes(section)) {
+			for (const section of subResult as InsightDatasetSection[]) {
+				if (subResult === null || subResult === undefined) {
+					return null;
+				} else if(!results.includes(section)) {
 					results.push(section);
 				}
 			}
@@ -192,11 +192,16 @@ export class QueryEngine {
 		return results;
 	}
 
-	public handleNot(query: any): InsightDatasetSection[] {
+	public handleNot(query: any): InsightDatasetSection[] | null {
 		let results: InsightDatasetSection[] = this.datasetSections;
-		let subResult: InsightDatasetSection[] = [];
+		let subResult: InsightDatasetSection[] | null = [];
 		subResult = this.handleFilter(query); //	does this actually work!?
-		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
+		if(subResult === null || subResult === undefined) {
+			return null;
+		}
+		results = results.filter((section) => {
+			return !((subResult as InsightDatasetSection[]).includes(section));
+		}); // gets everythin in results thats not in subresult
 		return results;
 	}
 	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
@@ -235,15 +240,12 @@ export class QueryEngine {
 		}
 		return filteredList;
 	}
-
 	public getColVal(section: any, colName: string): any {
 		if (COLUMN_NAMES.includes(colName)) {
 			return section[colName];
 		}
-		console.log("ERROR: Invalid Column Name");
 		return "ERROR";
 	}
-
 	public isIdExist(id: string): boolean {
 		for (const dataset of this.dataset) {
 			if (dataset.metaData.id === id) {
@@ -253,13 +255,10 @@ export class QueryEngine {
 		}
 		return false;
 	}
-
 	public isValidId(id: string): Promise<boolean> {
-		if (id.trim().length === 0) {
-			// blank id or id is all whitespace
+		if (id.trim().length === 0) { // blank id or id is all whitespace
 			return Promise.reject(new InsightError("The ID must contain non white space characters"));
-		} else if (id.includes("_")) {
-			// id has an underscore
+		} else if (id.includes("_")) { // id has an underscore
 			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
 		return Promise.resolve(true);
@@ -283,7 +282,6 @@ export class QueryEngine {
 		}
 		return false;
 	}
-
 	public isValidWildCard(pattern: string): boolean { // we are considering no pattern to be a valid wildcard pattern
 		if(pattern.includes("*")) {
 			let wildArr = pattern.split("*");
