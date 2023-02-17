@@ -103,8 +103,7 @@ describe("InsightFacade", function () {
 					.catch(() => {
 						let newFacade = new InsightFacade();
 						return newFacade.listDatasets();
-					})
-					.then((results) => console.log(results));
+					});
 			});
 
 			it("should pass because it successfully added two datasets", function () {
@@ -263,7 +262,6 @@ describe("InsightFacade", function () {
 			expect(insightResult).to.have.length(3);
 			let facade2 = new InsightFacade();
 			insightResult = await facade2.listDatasets();
-			console.log(insightResult);
 			expect(insightResult).to.have.length(2);
 		});
 	});
