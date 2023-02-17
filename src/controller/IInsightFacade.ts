@@ -27,10 +27,10 @@ export class InsightDatasetSection {
 	public instructor: string;
 	public dept: string;
 	public year: number;
-	public avg: string;
-	public pass: string;
-	public fail: string;
-	public audit: string;
+	public avg: number;
+	public pass: number;
+	public fail: number;
+	public audit: number;
 	constructor(
 		// datasetID: string,
 		id: string,
@@ -50,11 +50,11 @@ export class InsightDatasetSection {
 		this.title = title;
 		this.instructor = professor;
 		this.dept = subject;
-		this.year = year;
-		this.avg = avg;
-		this.pass = pass;
-		this.fail = fail;
-		this.audit = audit;
+		this.year = Number(year);
+		this.avg = Number(avg);
+		this.pass = Number(pass);
+		this.fail = Number(fail);
+		this.audit = Number(audit);
 	}
 
 	public prefixJSON(datasetID: string): InsightResult {

@@ -133,7 +133,7 @@ export class QueryEngine {
 				return this.selectedColumns.length === columnKeys.length;
 			}
 		} else if (optionKeys.length === 2) {
-			if (optionKeys[0] === COLUMNS && optionKeys[1] === ORDER) {
+			if (optionKeys.includes(ORDER) && optionKeys.includes(COLUMNS)) {
 				columnKeys = optionBlock[COLUMNS];
 				this.selectedColumns = this.getColumns(columnKeys);
 				if (this.isValidKey(optionBlock[ORDER]) && columnKeys.includes(optionBlock[ORDER])) {
