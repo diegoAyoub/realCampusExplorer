@@ -15,8 +15,16 @@ import JSZip from "jszip";
 import {parseClasses} from "./Parser";
 import {readLocal, writeLocal} from "./DiskUtil";
 
-// const PATH_TO_ROOT_DATA = "../../../data/data.JSON"; // USE THIS WHEN RUNNING WITH MAIN
-const PATH_TO_ROOT_DATA = "./data/data.json"; // USE THIS WHEN RUNNING MOCHA
+const PATH_TO_ARCHIVES = "../../test/resources/archives/";
+const DATA = "pair.zip";
+
+// USE THIS WHEN RUNNING WITH MAIN
+// const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+// const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+
+// USE THIS WHEN RUNNING MOCHA
+export const PATH_TO_ROOT_DATA = "./data/data.json";
+export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -26,9 +34,12 @@ export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	private queryEng: QueryEngine | null = null;
 	constructor() {
-		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		if(fs.existsSync(PATH_TO_ROOT_DATA_FOLDER) && fs.existsSync(PATH_TO_ROOT_DATA)) {
+			readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		} else {
+			fs.mkdirSync(PATH_TO_ROOT_DATA_FOLDER);
+		}
 	}
-	// @todo: Go through spec for what needs to be done once a valid section is found (special cases)
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		let sections: InsightDatasetSection[] = [];
@@ -55,6 +66,7 @@ export default class InsightFacade implements IInsightFacade {
 				}
 			})
 			.catch((err) => {
+				writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(new InsightError(err));
 			});
 	}
@@ -115,8 +127,8 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
-		return this.isValidId(id)
+		return readLocal(PATH_TO_ROOT_DATA, this.insightDataList)
+			.then(() => this.isValidId(id))
 			.then(() => {
 				if (this.isIdExist(id)) {
 					return Promise.resolve(id);
@@ -127,18 +139,18 @@ export default class InsightFacade implements IInsightFacade {
 				for (const index in this.insightDataList) {
 					if (this.insightDataList[index].metaData.id === id) {
 						this.insightDataList.splice(Number(index), 1);
-						return fs
-							.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
+						return fs.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
 							.then(() => Promise.resolve(id))
-							.catch(() => {
-								writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+							.catch(async () => {
+								await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 								return Promise.reject(new InsightError("Error updating disk to reflect removal"));
 							});
 					}
 				}
 				return Promise.resolve(id);
 			})
-			.catch((err) => {
+			.catch(async (err) => {
+				await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(err);
 			});
 	}
@@ -150,46 +162,45 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.resolve(addedDatasets);
 	}
-	public performQuery(inputQuery: unknown): Promise<InsightResult[]> {
+	public async performQuery(inputQuery: unknown): Promise<InsightResult[]> {
 		let query = inputQuery as any; //	try any also
-		this.queryEng = new QueryEngine(this.insightDataList, inputQuery);
+		this.queryEng = new QueryEngine(this.insightDataList, query);
 		if (inputQuery === null || inputQuery === undefined) {
+			writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 			return Promise.reject(new InsightError("The query doesn't exist"));
-		} else if (this.queryEng.isValidQuery()) {
-			 return this.queryEng.doQuery(query);
+		} else if(this.queryEng.isValidQuery()) {
+			await readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+			return this.queryEng.doQuery(query);
 		}
+		writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
 
-/*
-let facade = new InsightFacade();
-const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
-const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
 
-let query = {
-	244444: "wer"
-};
-facade.listDatasets()
-	.then((results) => console.log(results));
+// let facade = new InsightFacade();
+// const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
+// const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
+// facade.listDatasets()
+// 	.then((results) => console.log(results));
+//
+// facade.addDataset("SEE", validSection, InsightDatasetKind.Sections)
+// 	.then(() => facade.addDataset("ss", validClass, InsightDatasetKind.Sections))
+// 	.then(() => facade.listDatasets())
+// 	.then((addedDatasets) => {
+// 		console.log("THEY'RE BETTER BE SOMETHING THERE");
+// 		console.log(facade.insightDataList);
+// 		return Promise.resolve();
+// 	})
+// 	.then(() => facade.removeDataset("sections"))
+// 	.then((results) => console.log(results))
+// 	.catch((err) => console.log(err));
 
-facade.addDataset("sections", validSection, InsightDatasetKind.Sections)
-	.then(() => facade.addDataset("class", validClass, InsightDatasetKind.Sections))
-	.then(() => facade.listDatasets())
-	.then((addedDatasets) =>{
-		console.log(facade.insightDataList);
-		return Promise.resolve();
-	})
-	.then(() => facade.removeDataset("sections"))
-	.then((results) => console.log(results))
-	.catch((err) => console.log(err));
-
-facade.listDatasets()
-	.then((results) => console.log(results))
-	.then((results) => console.log(results))
-	.then(() => facade.listDatasets())
-	.then((results) => console.log(results))
-	.then(() => facade.performQuery(null))
-	.catch((results) => console.log(results))
-;
-*/
+// facade.listDatasets()
+// 	.then((results) => console.log(results))
+// 	.then((results) => console.log(results))
+// 	.then(() => facade.listDatasets())
+// 	.then((results) => console.log(results))
+// 	.then(() => facade.performQuery(null))
+// 	.catch((results) => console.log(results))
+// ;

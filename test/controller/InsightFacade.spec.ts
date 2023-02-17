@@ -34,7 +34,6 @@ describe("InsightFacade", function () {
 	let validDataset: string;
 	let invalidDatasetNotZip: string;
 	let invalidDatasetNoValidSection: string;
-	// console.log("insight faced tests");
 	before(function () {
 		validSection = getContentFromArchives("valid_section.zip");
 		invalidSectionMissingQueryKeyAvg = getContentFromArchives("invalid_section_missing_query_key_avg.zip");
@@ -44,7 +43,6 @@ describe("InsightFacade", function () {
 		invalidClassNoValidSections = getContentFromArchives("invalid_class_no_valid_sections.zip");
 		invalidClassNotJsonFile = getContentFromArchives("invalid_class_not_json_file.zip");
 		invalidClassResultKeyError = getContentFromArchives("invalid_class_result_key_error.zip");
-		// console.log("we made it here");
 		validDataset = getContentFromArchives("pair.zip");
 		invalidDatasetNotZip = getContentFromArchives("invalid_dataset_not_zip.txt");
 		invalidDatasetNoValidSection = getContentFromArchives("invalid_dataset_no_valid_section.zip");

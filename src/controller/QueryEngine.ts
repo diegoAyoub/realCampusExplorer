@@ -1,15 +1,16 @@
 import {
-	InsightData,
-	InsightDatasetSection,
-	InsightError,
+	InsightData, InsightDatasetSection,
 	InsightResult,
 	ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
+import {writeLocal} from "./DiskUtil";
+import {PATH_TO_ROOT_DATA} from "./InsightFacade";
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
 const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
+
 export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
 export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
@@ -25,11 +26,13 @@ export class QueryEngine {
 		this.selectedColumns = [];
 		this.orderKey = "";
 	}
-	public doQuery(query: any): Promise<InsightResult[]> {
+	public async doQuery(query: any): Promise<InsightResult[]> {
 		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
+			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject("Invalid Query");
 		} else if(results.length > 5000) {
+			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
 		} else {
 			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
@@ -78,7 +81,7 @@ export class QueryEngine {
 			let whereKey: string = key;
 			let whereVal = whereBlock[key] as any;
 			if (LOGIC.includes(whereKey)) {
-				if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats empty
+				if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
 					for(let filter of whereVal) {
 						isValid = isValid && this.isValidWhere(filter);
 					}
@@ -176,15 +179,13 @@ export class QueryEngine {
 		return results;
 	}
 
-	public handleOr(query: any): InsightDatasetSection[] | null {
+	public handleOr(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = [];
 		let subResult: InsightDatasetSection[] | null = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			for (const section of subResult as InsightDatasetSection[]) {
-				if (subResult === null || subResult === undefined) {
-					return null;
-				} else if(!results.includes(section)) {
+			for (const section of (subResult as InsightDatasetSection[])) {
+				if(!results.includes(section)) {
 					results.push(section);
 				}
 			}
@@ -192,16 +193,15 @@ export class QueryEngine {
 		return results;
 	}
 
-	public handleNot(query: any): InsightDatasetSection[] | null {
+	public handleNot(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[] | null = [];
 		subResult = this.handleFilter(query); //	does this actually work!?
-		if(subResult === null || subResult === undefined) {
-			return null;
+		if(subResult === null) {
+			return results;
+		} else {
+			results = results.filter((section) => !((subResult as InsightDatasetSection[]).includes(section))); // gets everythin in results thats not in subresult
 		}
-		results = results.filter((section) => {
-			return !((subResult as InsightDatasetSection[]).includes(section));
-		}); // gets everythin in results thats not in subresult
 		return results;
 	}
 	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
@@ -225,7 +225,7 @@ export class QueryEngine {
 				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
 				break;
 			}
-			case IS: { // jk add special handler function for aster
+			case IS: { // jk add special handler function for asterisk
 				if(value.includes("*")) {
 					if(this.isValidWildCard(value)) {
 						filteredList = sections.filter((section) => {
@@ -255,13 +255,13 @@ export class QueryEngine {
 		}
 		return false;
 	}
-	public isValidId(id: string): Promise<boolean> {
+	public isValidId(id: string): boolean {
 		if (id.trim().length === 0) { // blank id or id is all whitespace
-			return Promise.reject(new InsightError("The ID must contain non white space characters"));
+			return false;
 		} else if (id.includes("_")) { // id has an underscore
-			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
+			return false;
 		}
-		return Promise.resolve(true);
+		return true;
 	}
 	public isWildCardMatched(value: string, pattern: string): boolean {
 		let wildArr = pattern.split("*");
@@ -285,11 +285,11 @@ export class QueryEngine {
 	public isValidWildCard(pattern: string): boolean { // we are considering no pattern to be a valid wildcard pattern
 		if(pattern.includes("*")) {
 			let wildArr = pattern.split("*");
-			if(pattern[0] === "*" && pattern[pattern.length - 1] === "*" && wildArr.length === 3) {
+			if(pattern[0] === "*" && pattern[pattern.length - 1] === "*" && wildArr.length === 3) { // *string*
 				return true;
-			} else if(wildArr.length > 2) {
+			} else if(wildArr.length > 2) { // more than one * should fail
 				return false;
-			} else if(wildArr[0] !== "" && wildArr[1] !== "") {
+			} else if(wildArr[0] !== "" && wildArr[1] !== "") { // st*ring
 				return false;
 			}
 		}
