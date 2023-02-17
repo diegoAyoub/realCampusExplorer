@@ -53,11 +53,11 @@ export default class InsightFacade implements IInsightFacade {
 				});
 			})
 			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, sections)))
-			.then(() => {
+			.then(async () => {
 				try {
 					if (sections.length !== 0) {
 						this.insightDataList.push(new InsightData(id, kind, sections.length, sections));
-						writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+						await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 						return Promise.resolve(this.getAddedIds());
 					}
 					return Promise.reject(new InsightError("No sections were found in the inputted file"));
@@ -65,8 +65,8 @@ export default class InsightFacade implements IInsightFacade {
 					return Promise.reject("An error occurred while writing to to disk");
 				}
 			})
-			.catch((err) => {
-				writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+			.catch(async (err) => {
+				await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(new InsightError(err));
 			});
 	}
@@ -166,13 +166,13 @@ export default class InsightFacade implements IInsightFacade {
 		let query = inputQuery as any; //	try any also
 		this.queryEng = new QueryEngine(this.insightDataList, query);
 		if (inputQuery === null || inputQuery === undefined) {
-			writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+			await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 			return Promise.reject(new InsightError("The query doesn't exist"));
 		} else if(this.queryEng.isValidQuery()) {
 			await readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 			return this.queryEng.doQuery(query);
 		}
-		writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
@@ -184,16 +184,14 @@ export default class InsightFacade implements IInsightFacade {
 // facade.listDatasets()
 // 	.then((results) => console.log(results));
 //
-// facade.addDataset("SEE", validSection, InsightDatasetKind.Sections)
-// 	.then(() => facade.addDataset("ss", validClass, InsightDatasetKind.Sections))
+// facade.listDatasets()
 // 	.then(() => facade.listDatasets())
 // 	.then((addedDatasets) => {
 // 		console.log("THEY'RE BETTER BE SOMETHING THERE");
 // 		console.log(facade.insightDataList);
 // 		return Promise.resolve();
 // 	})
-// 	.then(() => facade.removeDataset("sections"))
-// 	.then((results) => console.log(results))
+// 	.then(() => facade.performQuery({hey: null}))
 // 	.catch((err) => console.log(err));
 
 // facade.listDatasets()
