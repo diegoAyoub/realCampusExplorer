@@ -6,7 +6,7 @@ import {
 	InsightDatasetSection,
 	InsightError,
 	InsightResult,
-	NotFoundError,
+	NotFoundError
 } from "./IInsightFacade";
 import {QueryEngine} from "./QueryEngine";
 import * as fs from "fs-extra";
@@ -15,12 +15,12 @@ import JSZip from "jszip";
 import {parseClasses} from "./Parser";
 import {readLocal, writeLocal} from "./DiskUtil";
 
-const PATH_TO_ARCHIVES = "../../test/resources/archives/";
+export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 const DATA = "pair.zip";
 
 // USE THIS WHEN RUNNING WITH MAIN
-// const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
-// const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+// export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+// export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
 
 // USE THIS WHEN RUNNING MOCHA
 export const PATH_TO_ROOT_DATA = "./data/data.json";
@@ -34,7 +34,7 @@ export default class InsightFacade implements IInsightFacade {
 	public insightDataList: InsightData[] = [];
 	private queryEng: QueryEngine | null = null;
 	constructor() {
-		if (fs.existsSync(PATH_TO_ROOT_DATA_FOLDER) && fs.existsSync(PATH_TO_ROOT_DATA)) {
+		if(fs.existsSync(PATH_TO_ROOT_DATA_FOLDER) && fs.existsSync(PATH_TO_ROOT_DATA)) {
 			readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		} else {
 			fs.mkdirSync(PATH_TO_ROOT_DATA_FOLDER);
@@ -45,8 +45,8 @@ export default class InsightFacade implements IInsightFacade {
 		let sections: InsightDatasetSection[] = [];
 		return this.isValidInsightKind(kind) //
 			.then(() => this.isValidId(id))
-			.then(() => (this.isIdExist(id) ? Promise.reject("The ID already exists") : Promise.resolve()))
-			.then(() => zip.loadAsync(content, {base64: true}))
+			.then(() => this.isIdExist(id) ? Promise.reject("The ID already exists") : Promise.resolve())
+			.then(() =>  zip.loadAsync(content, {base64: true}))
 			.then((base64Data: JSZip) => {
 				base64Data.folder("courses")?.forEach((relativePath, file) => {
 					asyncJobs.push(file.async("string"));
@@ -66,7 +66,6 @@ export default class InsightFacade implements IInsightFacade {
 				}
 			})
 			.catch(async (err) => {
-				await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(new InsightError(err));
 			});
 	}
@@ -103,11 +102,9 @@ export default class InsightFacade implements IInsightFacade {
 	 * EFFECTS: Returns an array of the IDs that are currently added to this
 	 **/
 	public isValidId(id: string): Promise<string> {
-		if (id.trim().length === 0) {
-			// blank id or id is all whitespace
+		if (id.trim().length === 0) { // blank id or id is all whitespace
 			return Promise.reject(new InsightError("The ID must contain non white space characters"));
-		} else if (id.includes("_")) {
-			// id has an underscore
+		} else if (id.includes("_")) { // id has an underscore
 			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
 		}
 		return Promise.resolve("");
@@ -141,8 +138,7 @@ export default class InsightFacade implements IInsightFacade {
 				for (const index in this.insightDataList) {
 					if (this.insightDataList[index].metaData.id === id) {
 						this.insightDataList.splice(Number(index), 1);
-						return fs
-							.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
+						return fs.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
 							.then(() => Promise.resolve(id))
 							.catch(async () => {
 								await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
@@ -153,7 +149,7 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.resolve(id);
 			})
 			.catch(async (err) => {
-				await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+				// await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 				return Promise.reject(err);
 			});
 	}
@@ -169,16 +165,14 @@ export default class InsightFacade implements IInsightFacade {
 		let query = inputQuery as any; //	try any also
 		this.queryEng = new QueryEngine(this.insightDataList, query);
 		if (inputQuery === null || inputQuery === undefined) {
-			await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 			return Promise.reject(new InsightError("The query doesn't exist"));
-		} else if (this.queryEng.isValidQuery()) {
-			await readLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+		} else if(this.queryEng.isValidQuery()) {
 			return this.queryEng.doQuery(query);
 		}
-		await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
 		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
+// add performquery
 
 // let facade = new InsightFacade();
 // const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
@@ -193,7 +187,22 @@ export default class InsightFacade implements IInsightFacade {
 // 		console.log(facade.insightDataList);
 // 		return Promise.resolve();
 // 	})
-// 	.then(() => facade.performQuery({hey: null}))
+// 	.then(() => facade.performQuery({
+// 		WHERE: {
+// 			AND: [
+// 				{sections_dept: "cpsc"},
+// 				{sections_avg: 20},
+// 				{sections_fail: 1}
+// 			]
+// 		},
+// 		OPTIONS: {
+// 			COLUMNS: [
+// 				"sections_dept",
+// 				"sections_avg"
+// 			],
+// 			ORDER: "sections_avg"
+// 		}
+// 	}))
 // 	.catch((err) => console.log(err));
 
 // facade.listDatasets()

@@ -10,7 +10,6 @@ const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg"
 const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
 const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
 const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
-
 export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
 export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
@@ -67,46 +66,49 @@ export class QueryEngine {
 		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
 			return false; //	Promise.reject(new InsightError("Invalid query lang: WHERE"));
 		}
+		let isValidOptions = this.isValidOptions(this.queryJson[OPTIONS]);
 		let isValidWhere: boolean = this.isValidWhere(this.queryJson[WHERE]);
 		let isWhereEmpty: boolean = Object.keys(this.queryJson[WHERE]).length === 0;
-		let isValidOptions = this.isValidOptions(this.queryJson[OPTIONS]);
 		return (isWhereEmpty || isValidWhere) && isValidOptions;
 	}
-	public isValidWhere(whereBlock: any): boolean {
+	public isValidWhere(filter: any): boolean {
 		let isValid = true;
-		if(Object.keys(whereBlock).length !== 1) {
+		let keys: string[] = Object.keys(filter);
+		if(keys.length !== 1) {
 			return false;
 		}
-		for (let key in whereBlock) {
-			let whereKey: string = key;
-			let whereVal = whereBlock[key] as any;
-			if (LOGIC.includes(whereKey)) {
-				if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
-					for(let filter of whereVal) {
-						isValid = isValid && this.isValidWhere(filter);
+		let whereKey: string = keys[0];
+		let whereVal = filter[whereKey] as any;
+		if (LOGIC.includes(whereKey)) {
+			if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
+				for(let comparator of whereVal) {
+					let whereKeys = Object.keys(comparator);
+					console.log(whereKeys);
+					let goodKey = true;
+					for(const aKey of whereKeys) {
+						goodKey = goodKey && (COMPARATOR.includes(aKey) || LOGIC.includes(aKey));
 					}
-				} else {
-					return false;
+					isValid = goodKey && isValid && this.isValidWhere(comparator);
 				}
-			} else if (COMPARATOR.includes(whereKey)) {
-				isValid = isValid && this.isValidComparatorEntry(whereVal,key) && this.isValidWhere(whereVal);
 			} else {
-				//	GET ID
-				let keyArr = whereKey.split("_");
-				let queryID: string = keyArr[0];
-				let conditionCol: string = keyArr[1];
-				this.qryID = this.qryID === "" ? queryID : this.qryID;
-				if (!this.isIdExist(queryID) ||
-					!this.isValidId(queryID) ||
-					!COLUMN_NAMES.includes(conditionCol) ||
-					queryID !== this.qryID) {
-					// validID returns string and not boolean
-					return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
-				}
+				return false;
+			}
+		} else if (COMPARATOR.includes(whereKey)) {
+			isValid = isValid && this.isValidComparatorEntry(whereVal,whereKey) && this.isValidWhere(whereVal);
+		} else {
+			//	GET ID
+			let keyArr = whereKey.split("_");
+			let queryID: string = keyArr[0];
+			let conditionCol: string = keyArr[1];
+			// this.qryID = this.qryID === "" ? queryID : this.qryID;
+			if (!this.isIdExist(queryID) || !this.isValidId(queryID) || !COLUMN_NAMES.includes(conditionCol) ||
+				queryID !== this.qryID) { // validID returns string and not boolean
+				return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
 			}
 		}
 		return isValid;
 	}
+
 
 	public isValidComparatorEntry(object: any, comparator: string): boolean {
 		let key = Object.keys(object)[0];
@@ -211,9 +213,7 @@ export class QueryEngine {
 		let sections: InsightDatasetSection[] = this.datasetSections;
 		let inBlock = query[comparator];
 		let keys = Object.keys(query[comparator]);
-		let keyArr = keys[0].split("_");
-		let col = keyArr[1];
-		let value = inBlock[keys[0]];
+		let keyArr = keys[0].split("_"), col = keyArr[1], value = inBlock[keys[0]];
 		switch (comparator) {
 			case GT: {
 				filteredList = sections.filter((section) => this.getColVal(section, col) > value);
