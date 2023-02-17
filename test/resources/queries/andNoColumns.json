@@ -1,0 +1,34 @@
+{
+	"title": "andNoColumns",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"AND": [
+						{
+							"GT": {
+								"ubc_avg": 90
+							}
+						},
+						{
+							"IS": {
+								"ubc_dept": "adhe"
+							}
+						}
+					]
+				},
+				{
+					"EQ": {
+						"ubc_avg": 95
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [],
+			"ORDER": "ubc_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

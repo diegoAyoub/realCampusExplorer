@@ -264,7 +264,7 @@ export class QueryEngine {
 		}
 		return Promise.resolve(true);
 	}
-	public isWildCardMatched(value: string, pattern: string) {
+	public isWildCardMatched(value: string, pattern: string): boolean {
 		let wildArr = pattern.split("*");
 		if (wildArr.length === 2)	{
 			if(wildArr[0] === "" && wildArr[1] !== "") {
@@ -275,12 +275,16 @@ export class QueryEngine {
 				let substring = wildArr[0];
 				let stringToMatch = value.substring(0, substring.length);
 				return substring === stringToMatch;
+			} else if (wildArr[0] === "" && wildArr[1] === "") {
+				let substring = wildArr[0];
+				let stringToMatch = value.substring(0, substring.length);
+				return true;
 			}
 		}
 		return false;
 	}
 
-	public isValidWildCard(pattern: string) { // we are considering no pattern to be a valid wildcard pattern
+	public isValidWildCard(pattern: string): boolean { // we are considering no pattern to be a valid wildcard pattern
 		if(pattern.includes("*")) {
 			let wildArr = pattern.split("*");
 			if(wildArr.length > 2) {
