@@ -13,7 +13,7 @@ const REQUIRED_DATASET_SECTION_KEYS =
 export function readLocal(path: string, insightDataList: InsightData[]): Promise<void> {
 	try {
 		let fileContent = fs.readJSONSync(path);
-		console.log(fileContent);
+		//	console.log(fileContent);
 		let insightDataSections: InsightDatasetSection[];
 		for (const insightData of fileContent) {
 			insightDataSections = [];
