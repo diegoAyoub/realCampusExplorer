@@ -45,6 +45,15 @@ export function readLocal(path: string, insightDataList: InsightData[]): void {
 		// console.log("There was a problem reading from disk." + Exception);
 	}
 }
+
+export function writeLocal(path: string, insightDataList: InsightData[]): void {
+	try {
+		fs.outputJsonSync(path,  insightDataList);
+	} catch(Exception) {
+		console.log("hey");
+	}
+}
+
 function isDuplicatedDataset(insightDataList: InsightData[], id: string): boolean {
 	for (const dataset of insightDataList) {
 		if (dataset.metaData.id === id) {
