@@ -1,0 +1,21 @@
+{
+	"title": "Should fail because object has too many things",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{"sections_dept": "cpsc"},
+				{"sections_avg": 20},
+				{"sections_fail": 1}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_avg"
+			],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
