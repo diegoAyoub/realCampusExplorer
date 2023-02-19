@@ -17,7 +17,7 @@ import {readLocal, writeLocal} from "./DiskUtil";
 let objectConstructor = ({}).constructor;
 
 export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-const DATA = "pair.zip";
+// const DATA = "pair.zip";
 
 // USE THIS WHEN RUNNING WITH MAIN
 // export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
@@ -41,35 +41,30 @@ export default class InsightFacade implements IInsightFacade {
 			fs.ensureDirSync(PATH_TO_ROOT_DATA_FOLDER);
 		}
 	}
-	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
-		let sections: InsightDatasetSection[] = [];
-		return this.isValidInsightKind(kind) //
-			.then(() => this.isValidId(id))
-			.then(() => this.isIdExist(id) ? Promise.reject("The ID already exists") : Promise.resolve())
-			.then(() =>  zip.loadAsync(content, {base64: true}))
-			.then((base64Data: JSZip) => {
+		let dataset: InsightDatasetSection[] = [];
+		try {
+			if (this.isValidInsightKind(kind) && this.isValidId(id) && !this.isIdExist(id)) {
+				let base64Data: JSZip = await zip.loadAsync(content, {base64: true});
 				base64Data.folder("courses")?.forEach((relativePath, file) => {
 					asyncJobs.push(file.async("string"));
 				});
-			})
-			.then(() => Promise.all(asyncJobs).then((classes) => parseClasses(classes, sections)))
-			.then(async () => {
-				try {
-					if (sections.length !== 0) {
-						this.insightDataList.push(new InsightData(id, kind, sections.length, sections));
-						await writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
-						return Promise.resolve(this.getAddedIds());
-					}
-					return Promise.reject(new InsightError("No sections were found in the inputted file"));
-				} catch (Exception) {
-					return Promise.reject("An error occurred while writing to to disk");
+				await Promise.all(asyncJobs).then((classes) => parseClasses(classes, dataset));
+				if(dataset.length !== 0) {
+					this.insightDataList.push(new InsightData(id, kind, dataset.length, dataset));
+					writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+					return Promise.resolve(this.getAddedIds());
 				}
-			})
-			.catch(async (err) => {
-				return Promise.reject(new InsightError(err));
-			});
+			}
+			return Promise.reject(new InsightError("No sections were found in the inputted file"));
+		} catch (error: unknown) {
+			return Promise.reject(new InsightError((error as Error).message));
+		}
+
 	}
+
+
 	/**
 	 * Checks that the InsightKind is one that is currently supported
 	 * REQUIRES: kind be an enum from InsightDatasetKind
@@ -77,11 +72,11 @@ export default class InsightFacade implements IInsightFacade {
 	 * EFFECTS: Returns a Promise that resolves with void if it's supported, otherwise returns
 	 * a Promise that rejects with an InsightError
 	 **/
-	public isValidInsightKind(kind: InsightDatasetKind): Promise<void> {
+	public isValidInsightKind(kind: InsightDatasetKind): boolean {
 		if (kind === InsightDatasetKind.Sections) {
-			return Promise.resolve();
+			return true;
 		}
-		return Promise.reject(new InsightError("There is currently no support for that kind of dataset."));
+		throw new InsightError("The InsightDatasetKind is not supported");
 	}
 	/**
 	 * Gets the IDs of the datasets that are currently added to this.
@@ -102,13 +97,13 @@ export default class InsightFacade implements IInsightFacade {
 	 * MODIFIES: None
 	 * EFFECTS: Returns an array of the IDs that are currently added to this
 	 **/
-	public isValidId(id: string): Promise<string> {
+	public isValidId(id: string): boolean {
 		if (id.trim().length === 0) { // blank id or id is all whitespace
-			return Promise.reject(new InsightError("The ID must contain non white space characters"));
+			throw new InsightError("The inputted ID is invalid because it is composed only of whitespace.");
 		} else if (id.includes("_")) { // id has an underscore
-			return Promise.reject(new InsightError('The ID can\'t contain any underscores "_"'));
+			throw new InsightError("The inputted ID is invalid because it contains an underscore.");
 		}
-		return Promise.resolve("");
+		return true;
 	}
 	/**
 	 * Returns a boolean indicating whether the inputted id is one that corresponds to a dataset that's already
@@ -127,29 +122,20 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		return this.isValidId(id)
-			.then(() => {
-				if (this.isIdExist(id)) {
-					return Promise.resolve(id);
-				}
-				return Promise.reject(new NotFoundError("Can't remove the ID because it's not added"));
-			})
-			.then(() => {
+		try {
+			if(this.isValidId(id) && this.isIdExist(id)) {
 				for (const index in this.insightDataList) {
 					if (this.insightDataList[index].metaData.id === id) {
 						this.insightDataList.splice(Number(index), 1);
-						return fs.outputJson(PATH_TO_ROOT_DATA, this.insightDataList)
-							.then(() => Promise.resolve(id))
-							.catch(async () => {
-								return Promise.reject(new InsightError("Error updating disk to reflect removal"));
-							});
+						 writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+						 return Promise.resolve(id);
 					}
 				}
-				return Promise.resolve(id);
-			})
-			.catch(async (err) => {
-				return Promise.reject(err);
-			});
+			}
+			return Promise.reject(new NotFoundError("dataset with the id" + id  + " doesn't exist"));
+		} catch (error: unknown) {
+			return Promise.reject(new InsightError((error as Error).message));
+		}
 	}
 
 	public listDatasets(): Promise<InsightDataset[]> {

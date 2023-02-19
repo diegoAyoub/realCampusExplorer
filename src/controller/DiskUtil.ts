@@ -7,7 +7,7 @@
  * promise.
  **/
 import * as fs from "fs-extra";
-import {InsightData, InsightDatasetSection, InsightError} from "./IInsightFacade";
+import {InsightData, InsightDatasetSection} from "./IInsightFacade";
 const REQUIRED_DATASET_SECTION_KEYS =
 	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
 export function readLocal(path: string, insightDataList: InsightData[]) {
@@ -49,13 +49,13 @@ export function readLocal(path: string, insightDataList: InsightData[]) {
 	}
 }
 
-export function writeLocal(path: string, insightDataList: InsightData[]): Promise<void> {
+export function writeLocal(path: string, insightDataList: InsightData[]): boolean {
 	try {
 		// console.log(path);
 		fs.outputJsonSync(path, insightDataList);
-		return Promise.resolve();
+		return true;
 	} catch(Exception) {
-		return Promise.reject(new InsightError("There was a problem saving data to disk"));
+		return false;
 	}
 }
 
