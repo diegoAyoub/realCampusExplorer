@@ -3,7 +3,22 @@
  * A class called InsightFacade, this should be in a file called InsightFacade.ts.
  * You should not change this interface at all or the test suite will not work.
  */
-
+import {
+	ADDRESS,
+	AUDIT,
+	AVG,
+	DEPT,
+	FAIL,
+	FULLNAME, FURNITURE, HREF,
+	ID,
+	INSTRUCTOR, LAT, LON, NAME,
+	NUMBER,
+	PASS, SEATS,
+	SHORTNAME,
+	TITLE, TYPE,
+	UUID,
+	YEAR
+} from "./Constants";
 export enum InsightDatasetKind {
 	Sections = "sections",
 	Rooms = "rooms",
@@ -20,7 +35,6 @@ export class InsightData {
 	}
 }
 export class InsightDatasetSection {
-	// public datasetID: string;
 	public uuid: string;
 	public id: string;
 	public title: string;
@@ -32,7 +46,6 @@ export class InsightDatasetSection {
 	public fail: number;
 	public audit: number;
 	constructor(
-		// datasetID: string,
 		id: string,
 		course: string,
 		title: string,
@@ -44,7 +57,6 @@ export class InsightDatasetSection {
 		fail: string,
 		audit: string
 	) {
-		// this.datasetID = datasetID;
 		this.uuid = id;
 		this.id = course;
 		this.title = title;
@@ -56,33 +68,105 @@ export class InsightDatasetSection {
 		this.fail = Number(fail);
 		this.audit = Number(audit);
 	}
-
-	public prefixJSON(datasetID: string): InsightResult {
-    	let keyUUID = datasetID + "_" + "uuid";
-    	let keyCourse = datasetID + "_" + "id";
-    	let keyTitle = datasetID + "_" + "title";
-    	let keyProfessor = datasetID + "_" + "instructor";
-    	let keySubject = datasetID + "_" + "dept";
-    	let keyYear = datasetID + "_" + "year";
-    	let keyAvg = datasetID + "_" + "avg";
-    	let keyPass = datasetID + "_" + "pass";
-    	let keyFail = datasetID + "_" + "fail";
-    	let keyAudit = datasetID + "_" + "audit";
-
-    	return {
-    		[keyUUID]: this.uuid,
-    		[keyCourse]: this.id,
-    		[keyTitle]: this.title,
-    		[keyProfessor]: this.instructor,
-    		[keySubject]: this.dept,
-    		[keyYear]: this.year,
-    		[keyAvg]: this.avg,
-    		[keyPass]: this.pass,
-    		[keyFail]: this.fail,
-    		[keyAudit]: this.audit,
-    	};
+	public get(index: string): string | number {
+		let key: string = index.toLowerCase();
+		if(key === UUID) {
+			return this.uuid;
+		} else if(key === ID) {
+			return this.id;
+		} else if(key === TITLE) {
+			return this.title;
+		} else if (key === INSTRUCTOR) {
+			return this.instructor;
+		} else if (key === DEPT) {
+			return this.dept;
+		} else if (key === YEAR) {
+			return this.year;
+		} else if (key === AVG) {
+			return this.avg;
+		} else if (key === PASS) {
+			return this.pass;
+		} else if (key === FAIL) {
+			return this.fail;
+		} else if (key === AUDIT) {
+			return this.audit;
+		}
+		return "";
 	}
 }
+
+export class InsightDatasetRoom {
+	public fullname: string;
+	public shortname: string;
+	public number: string;
+	public name: string;
+	public address: string;
+	public lat: number;
+	public lon: number;
+	public seats: number;
+	public type: string;
+	public furniture: string;
+	public href: string;
+	constructor(
+		fullname: string,
+		shortname: string,
+		number: string,
+		name: string,
+		address: string,
+		lat: number,
+		lon: number,
+		seats: number,
+		type: string,
+		furniture: string,
+		href: string
+	) {
+		this.fullname = fullname;
+		this.shortname = shortname;
+		this.number = number;
+		this.name = name;
+		this.address = address;
+		this.lat = Number(lat);
+		this.lon = Number(lon);
+		this.seats = Number(seats);
+		this.type = type;
+		this.furniture = furniture;
+		this.href = href;
+	}
+	public get(index: string): string | number {
+		let key: string = index.toLowerCase();
+		if(key === FULLNAME) {
+			return this.fullname;
+		} else if(key === SHORTNAME) {
+			return this.shortname;
+		} else if(key === NUMBER) {
+			return this.number;
+		} else if (key === NAME) {
+			return this.name;
+		} else if (key === ADDRESS) {
+			return this.address;
+		} else if (key === LAT) {
+			return this.lat;
+		} else if (key === LON) {
+			return this.lon;
+		} else if (key === SEATS) {
+			return this.seats;
+		} else if (key === TYPE) {
+			return this.type;
+		} else if (key === FURNITURE) {
+			return this.furniture;
+		} else if (key === HREF) {
+			return this.href;
+		}
+		return "";
+	}
+	// public setLongitude(): void {
+	//
+	// }
+	// public setLatitude(): void {
+	//
+	// }
+}
+
 
 export interface InsightDataset {
 	id: string;

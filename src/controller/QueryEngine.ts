@@ -1,38 +1,45 @@
 import {
-	InsightData, InsightDatasetSection,
-	InsightResult,
+	InsightData, InsightDatasetSection, InsightResult,
 	ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
-import {writeLocal} from "./DiskUtil";
-import {PATH_TO_ROOT_DATA} from "./InsightFacade";
-const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
-const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
-const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
+import {
+	AND,
+	COLUMNS,
+	COMPARATOR,
+	EQ,
+	FIELD_NAMES,
+	GT,
+	IS, LOGIC,
+	LT,
+	NOT,
+	OPTION_KEYS,
+	OPTIONS,
+	OR,
+	ORDER,
+	WHERE,
+	COLUMN_NUMBERS,
+	COLUMN_STRINGS
+} from "./Constants";
 
-export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
-export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
 	public dataset: InsightData[];
-	public queryJson: any;
+	public query: any;
 	public qryID: string = "";
 	public datasetSections: InsightDatasetSection[] = [];
 	public orderKey: string;
 	public selectedColumns: string[];
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
-		this.queryJson = qryJson as any;
+		this.query = qryJson as any;
 		this.selectedColumns = [];
 		this.orderKey = "";
 	}
-	public async doQuery(query: any): Promise<InsightResult[]> {
-		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
+	public doQuery(query: any): Promise<InsightResult[]> {
+		let results: InsightDatasetSection[] = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
-			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject("Invalid Query");
 		} else if(results.length > 5000) {
-			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
 		} else {
 			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
@@ -40,10 +47,8 @@ export class QueryEngine {
 		}
 	}
 
-	public handleFilter(query: any): InsightDatasetSection[] | null {
-		if(query === null || query === undefined) {
-			return null;
-		} else if (Object.prototype.hasOwnProperty.call(query, AND)) {
+	public handleFilter(query: any): InsightDatasetSection[] {
+		if(Object.prototype.hasOwnProperty.call(query, AND)) {
 			return this.handleAnd(query[AND]);
 		} else if (Object.prototype.hasOwnProperty.call(query, OR)) {
 			return this.handleOr(query[OR]);
@@ -62,116 +67,111 @@ export class QueryEngine {
 	}
 
 	public isValidQuery(): boolean {
-		let hasWhere: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, WHERE);
-		let hasOptions: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, OPTIONS);
-		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
-			return false; //	Promise.reject(new InsightError("Invalid query lang: WHERE"));
+		let hasWhere: boolean = Object.prototype.hasOwnProperty.call(this.query, WHERE);
+		let hasOptions: boolean = Object.prototype.hasOwnProperty.call(this.query, OPTIONS);
+		if (hasWhere && hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
+			let isValidOptions = this.isValidOptionsBlock(this.query[OPTIONS]); // validate options first
+			this.setDataset(this.qryID); // maybe move this somewhere
+			let isWhereEmpty: boolean = Object.keys(this.query[WHERE]).length === 0;
+			let isValidWhere: boolean = this.isValidWhereBlock(this.query[WHERE]);
+			return (isWhereEmpty || isValidWhere) && isValidOptions;
 		}
-		let isValidOptions = this.isValidOptions(this.queryJson[OPTIONS]);
-		let isValidWhere: boolean = this.isValidWhere(this.queryJson[WHERE]);
-		let isWhereEmpty: boolean = Object.keys(this.queryJson[WHERE]).length === 0;
-		return (isWhereEmpty || isValidWhere) && isValidOptions;
+		return false;
 	}
-	public isValidWhere(filter: any): boolean {
+	public isValidWhereBlock(filter: any): boolean {
 		let isValid = true;
 		let keys: string[] = Object.keys(filter);
-		if(keys.length !== 1) {
+		let key = keys[0];
+		if(keys.length !== 1){
+			return false;
+		} else if(LOGIC.includes(key) && filter[key].length) { // IS {AND, OR}
+			for(const filterObject of filter[key]) {
+				isValid = isValid && this.isValidWhereBlock(filterObject);
+			}
+			return isValid;
+		} else if(COMPARATOR.includes(key)){ // IS {LT, GT, EQ, IS}
+			return isValid && this.isValidComparatorEntry(filter[key], key);
+		} else if(NOT === key) { // IS {NOT}
+			return this.isValidWhereBlock(filter[key]);
+		} else {
 			return false;
 		}
-		let whereKey: string = keys[0];
-		let whereVal = filter[whereKey] as any;
-		if (LOGIC.includes(whereKey)) {
-			if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
-				for(let comparator of whereVal) {
-					let whereKeys = Object.keys(comparator);
-					// console.log(whereKeys);
-					let goodKey = true;
-					for(const aKey of whereKeys) {
-						goodKey = goodKey && (COMPARATOR.includes(aKey) || LOGIC.includes(aKey));
-					}
-					isValid = goodKey && isValid && this.isValidWhere(comparator);
-				}
-			} else {
-				return false;
-			}
-		} else if (COMPARATOR.includes(whereKey)) {
-			isValid = isValid && this.isValidComparatorEntry(whereVal,whereKey) && this.isValidWhere(whereVal);
-		} else {
-			//	GET ID
-			let keyArr = whereKey.split("_");
-			let queryID: string = keyArr[0];
-			let conditionCol: string = keyArr[1];
-			// this.qryID = this.qryID === "" ? queryID : this.qryID;
-			if (!this.isIdExist(queryID) || !this.isValidId(queryID) || !COLUMN_NAMES.includes(conditionCol) ||
-				queryID !== this.qryID) { // validID returns string and not boolean
-				return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
-			}
-		}
-		return isValid;
 	}
-
 
 	public isValidComparatorEntry(object: any, comparator: string): boolean {
 		let key = Object.keys(object)[0];
 		let field = key.split("_")[1];
 		let value = object[key];
-
-		return comparator === NOT ||
-			(COLUMN_NUMBERS.includes(field) && COLUMN_NUMBERS.includes(comparator) && typeof value === "number") ||
-			(COLUMN_STRINGS.includes(field) && COLUMN_STRINGS.includes(comparator) && typeof value === "string" &&
-				this.isValidWildCard(value));
+		if(COLUMN_NUMBERS.includes(field) && COLUMN_NUMBERS.includes(comparator) && typeof value === "number") {
+			return this.isValidKey(key);
+		} else if(COLUMN_STRINGS.includes(field) && COLUMN_STRINGS.includes(comparator) && typeof value === "string") {
+			return this.isValidWildCard(value) && this.isValidKey(key);
+		} else {
+			return false;
+		}
 	}
-	public isValidOptions(optionBlock: any): boolean {
-		let optionKeys = Object.keys(optionBlock);
-		let columnKeys: string[] = [];
-
-		if (optionKeys.length === 1) {
-			if (optionKeys[0] === COLUMNS) {
-				columnKeys = optionBlock[COLUMNS];
-				this.selectedColumns = this.getColumns(columnKeys);
-				this.isIdExist(this.qryID);
-				return this.selectedColumns.length === columnKeys.length;
-			}
-		} else if (optionKeys.length === 2) {
-			if (optionKeys.includes(ORDER) && optionKeys.includes(COLUMNS)) {
-				columnKeys = optionBlock[COLUMNS];
-				this.selectedColumns = this.getColumns(columnKeys);
-				if (this.isValidKey(optionBlock[ORDER]) && columnKeys.includes(optionBlock[ORDER])) {
-					this.orderKey = optionBlock[ORDER];
-					this.isIdExist(this.qryID);
-					return this.selectedColumns.length === columnKeys.length;
-				}
+	public isValidOptionsBlock(optionBlock: any): boolean {
+		let optionKeys: string[] = Object.keys(optionBlock);
+		let optionsHasValidKeys: boolean = this.optionsHasValidKeys(optionBlock); // KEYS ARE IN THE SET COLUMN_KEYS
+		let optionsHasColumns: boolean = optionKeys.includes(COLUMNS); // HAS COLUMNS
+		let isValidColumns: boolean = this.isValidColumns(optionBlock[COLUMNS]); // COLUMNS IS AN ARRAY AND EACH ELEMENT IS A STRING, REFERENCES ONE DATASET
+		if(optionsHasValidKeys && optionsHasColumns && isValidColumns) {
+			this.setColumns(optionBlock[COLUMNS]);
+			this.setQueryId(this.selectedColumns[0]);
+			let optionsHasOrder = optionKeys.includes(ORDER);
+			if(optionsHasOrder && this.isValidKey(optionBlock[ORDER])) {
+				this.setOrderKey(optionBlock[ORDER]);
+				return this.selectedColumns.includes(optionBlock[ORDER]);
+			} else {
+				return true;
 			}
 		}
 		return false;
+
 	}
-	public isValidKey(key: string): boolean {
+	public setDataset(id: string): void {
+		for (const dataset of this.dataset) {
+			if (dataset.metaData.id === id) {
+				this.datasetSections = dataset.data; // keep track of all sections being looked at
+			}
+		}
+	}
+	public setQueryId(key: string) {
+		this.qryID = key.split("_")[0];
+	}
+	public setColumns(columns: string[]) {
+		this.selectedColumns = columns;
+	}
+	public setOrderKey(key: string) {
+		this.orderKey = key;
+	}
+	public optionsHasValidKeys(optionBlock: any): boolean {
+		let optionKeys = Object.keys(optionBlock);
+		return optionKeys.every((element: any) => OPTION_KEYS.includes(element));
+	}
+	public isValidColumns(columns: any): boolean {
+		let isArray = Array.isArray(columns); // is an array
+		if(isArray && columns.length > 0) {
+			let isStringArray = columns.every((element: any) => typeof element === "string"); // everything is a string
+			let referencedDataset = columns[0].split("_")[0];
+			let hasSameDatasetIds = columns.every((element: any) => element.split("_")[0] === referencedDataset); // EVERYTHING REFERENCES THE SAME DATASET
+			let isValidFieldsReferenced = columns.every((element: any) => FIELD_NAMES.includes(element.split("_")[1])); // FIELDS REFERENCED ARE ONES THAT ARE SUPPORTED
+			return isStringArray && hasSameDatasetIds && isValidFieldsReferenced;
+		}
+		return false;
+	}
+	public isValidKey(key: any): boolean {
 		let arr = key.split("_");
 		let setID = arr[0];
 		let col = arr[1];
-		return COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length === 2;
+		return typeof key === "string" && FIELD_NAMES.includes(col) && this.qryID === setID && arr.length === 2;
 	}
-	public getColumns(columnsBlock: any): string[] {
-		let columns: string[] = [];
-		let datasetId = "";
-		for (const colKey of columnsBlock) {
-			this.qryID = this.qryID === "" ? colKey.split("_")[0] : this.qryID;
-			if (this.isValidKey(colKey)) {
-				datasetId = colKey;
-				columns.push(colKey);
-			}
-		}
-		return columns;
-	}
-
-	public handleAnd(query: any): InsightDatasetSection[] | null {
+	public handleAnd(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] | null = [];
+		let subResult: InsightDatasetSection[];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			if(subResult === null || subResult === undefined) {
-				return null;
-			} else if (subResult.length === 0) {
+			if (subResult.length === 0) {
 				return subResult;
 			} else if (results.length === 0) {
 				results = subResult;
@@ -181,13 +181,12 @@ export class QueryEngine {
 		}
 		return results;
 	}
-
 	public handleOr(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] | null = [];
+		let subResult: InsightDatasetSection[] = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			for (const section of (subResult as InsightDatasetSection[])) {
+			for (const section of subResult) {
 				if(!results.includes(section)) {
 					results.push(section);
 				}
@@ -195,79 +194,41 @@ export class QueryEngine {
 		}
 		return results;
 	}
-
 	public handleNot(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = this.datasetSections;
-		let subResult: InsightDatasetSection[] | null = [];
-		subResult = this.handleFilter(query); //	does this actually work!?
-		if(subResult === null) {
-			return results;
-		} else {
-			results = results.filter((section) => !((subResult as InsightDatasetSection[]).includes(section))); // gets everythin in results thats not in subresult
-		}
+		let subResult: InsightDatasetSection[]  = this.handleFilter(query); //	does this actually work!?
+		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
 		return results;
 	}
 	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
-		let filteredList: InsightDatasetSection[] = [];
 		let sections: InsightDatasetSection[] = this.datasetSections;
-		let inBlock = query[comparator];
-		let keys = Object.keys(query[comparator]);
-		let keyArr = keys[0].split("_"), col = keyArr[1], value = inBlock[keys[0]];
+		let keyValueObject = query[comparator];
+		let key = Object.keys(keyValueObject)[0];
+		let value = keyValueObject[key];
+		let field = key.split("_")[1];
 		switch (comparator) {
 			case GT: {
-				filteredList = sections.filter((section) => this.getColVal(section, col) > value);
-				break;
+				return sections.filter((section) => section.get(field) > value);
 			}
 			case LT: {
-				filteredList = sections.filter((section) => this.getColVal(section, col) < value);
-				break;
+				return sections.filter((section) => section.get(field) < value);
 			}
 			case EQ: {
-				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
-				break;
+				return sections.filter((section) => section.get(field) === value);
 			}
-			case IS: { // jk add special handler function for asterisk
-				if(value.includes("*")) {
-					if(this.isValidWildCard(value)) {
-						filteredList = sections.filter((section) => {
-							return this.isWildCardMatched(this.getColVal(section, col), value);
-						});
-					}
-				} else {
-					filteredList = sections.filter((section) => this.getColVal(section, col) === value);
-				}
-				break;
+			case IS: {
+				return sections.filter((section) => this.isStringMatched(section.get(field), value));
 			}
 		}
-		return filteredList;
+		return [];
 	}
-	public getColVal(section: any, colName: string): any {
-		if (COLUMN_NAMES.includes(colName)) {
-			return section[colName];
-		}
-		return "ERROR";
-	}
-	public isIdExist(id: string): boolean {
-		for (const dataset of this.dataset) {
-			if (dataset.metaData.id === id) {
-				this.datasetSections = dataset.data; // keep track of all sections being looked at
-				return true;
-			}
-		}
-		return false;
-	}
-	public isValidId(id: string): boolean {
-		if (id.trim().length === 0) { // blank id or id is all whitespace
-			return false;
-		} else if (id.includes("_")) { // id has an underscore
-			return false;
-		}
-		return true;
-	}
-	public isWildCardMatched(value: string, pattern: string): boolean {
+	public isStringMatched(inputString: string | number, pattern: string): boolean {
 		let wildArr = pattern.split("*");
-		if (wildArr.length === 2) {
-			if (wildArr[0] === "" && wildArr[1] === "") {
+		let value: string = inputString as string;
+		if(pattern === value) {
+			return true;
+		} else if (wildArr.length === 2) {
+			if (pattern === "*") {
 				return true;
 			} else if(wildArr[0] === "" && wildArr[1] !== "") {
 				let substring = wildArr[1];

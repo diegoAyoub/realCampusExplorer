@@ -2,17 +2,14 @@ import {
 	InsightDatasetSection,
 	InsightResult,
 } from "./IInsightFacade";
-import {COLUMN_NUMBERS, COLUMN_STRINGS} from "./QueryEngine";
+import {COLUMN_NUMBERS, COLUMN_STRINGS} from "./Constants";
 
 export class QueryEngineHelper {
-
 	public wantedColumns: string[];
 	public orderBy: string;
 	public qryID: string;
 	public filteredSections: InsightDatasetSection[];
-	//	public
 	constructor(ID: string, filteredSections: InsightDatasetSection[], OrderCol: string, wantedColArr: string[]) {
-
 		this.qryID = ID;
 		this.orderBy = OrderCol;
 		this.wantedColumns = wantedColArr;
@@ -43,10 +40,10 @@ export class QueryEngineHelper {
 
 	public prefixJSON(datasetID: string, section: InsightDatasetSection): InsightResult {
 		let keyUUID = datasetID + "_" + "uuid";
-		let keyCourse = datasetID + "_" + "id";
+		let keyID = datasetID + "_" + "id";
 		let keyTitle = datasetID + "_" + "title";
-		let keyProfessor = datasetID + "_" + "instructor";
-		let keySubject = datasetID + "_" + "dept";
+		let keyInstructor = datasetID + "_" + "instructor";
+		let keyDept = datasetID + "_" + "dept";
 		let keyYear = datasetID + "_" + "year";
 		let keyAvg = datasetID + "_" + "avg";
 		let keyPass = datasetID + "_" + "pass";
@@ -55,10 +52,10 @@ export class QueryEngineHelper {
 
 		return {
 			[keyUUID]: section.uuid,
-			[keyCourse]: section.id,
+			[keyID]: section.id,
 			[keyTitle]: section.title,
-			[keyProfessor]: section.instructor,
-			[keySubject]: section.dept,
+			[keyInstructor]: section.instructor,
+			[keyDept]: section.dept,
 			[keyYear]: section.year,
 			[keyAvg]: section.avg,
 			[keyPass]: section.pass,

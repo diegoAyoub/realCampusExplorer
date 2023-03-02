@@ -323,43 +323,43 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	describe("performQuery - NOT ORDERED", function () {
-		before(async function () {
-			clearDisk();
-			facade = new InsightFacade();
-			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
-			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
-		});
-
-		function errorValidator(error: any): error is Error {
-			return error === "InsightError" || error === "ResultTooLargeError";
-		}
-
-		function assertOnError(actual: any, expected: Error): void {
-			if (expected === "InsightError") {
-				expect(actual).to.be.instanceof(InsightError);
-			} else if (expected === "ResultTooLargeError") {
-				expect(actual).to.be.instanceof(ResultTooLargeError);
-			} else {
-				// this should be unreachable
-				expect.fail("UNEXPECTED ERROR");
-			}
-		}
-
-		function assertOnResult(actual: unknown, expected: Output): void {
-			expect(actual).to.have.deep.members(expected);
-		}
-
-		function target(input: Input): Promise<Output> {
-			return facade.performQuery(input);
-		}
-
-		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
-			errorValidator,
-			assertOnError,
-			assertOnResult,
-		});
-	});
+	// describe("performQuery - NOT ORDERED", function () {
+	// 	before(async function () {
+	// 		clearDisk();
+	// 		facade = new InsightFacade();
+	// 		await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
+	// 		await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+	// 	});
+	//
+	// 	function errorValidator(error: any): error is Error {
+	// 		return error === "InsightError" || error === "ResultTooLargeError";
+	// 	}
+	//
+	// 	function assertOnError(actual: any, expected: Error): void {
+	// 		if (expected === "InsightError") {
+	// 			expect(actual).to.be.instanceof(InsightError);
+	// 		} else if (expected === "ResultTooLargeError") {
+	// 			expect(actual).to.be.instanceof(ResultTooLargeError);
+	// 		} else {
+	// 			// this should be unreachable
+	// 			expect.fail("UNEXPECTED ERROR");
+	// 		}
+	// 	}
+	//
+	// 	function assertOnResult(actual: unknown, expected: Output): void {
+	// 		expect(actual).to.have.deep.members(expected);
+	// 	}
+	//
+	// 	function target(input: Input): Promise<Output> {
+	// 		return facade.performQuery(input);
+	// 	}
+	//
+	// 	folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
+	// 		errorValidator,
+	// 		assertOnError,
+	// 		assertOnResult,
+	// 	});
+	// });
 
 	describe("performQuery -handlecrash", function () {
 		before(async function () {

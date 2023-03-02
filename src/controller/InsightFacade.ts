@@ -10,22 +10,13 @@ import {
 } from "./IInsightFacade";
 import {QueryEngine} from "./QueryEngine";
 import * as fs from "fs-extra";
-import * as zip from "jszip";
-import JSZip from "jszip";
-import {parseClasses} from "./Parser";
+import {handleReadingRooms, handleReadingSection} from "./ParseUtil";
 import {readLocal, writeLocal} from "./DiskUtil";
+
 let objectConstructor = ({}).constructor;
 
-export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-// const DATA = "pair.zip";
 
-// USE THIS WHEN RUNNING WITH MAIN
-// export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
-// export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
-
-// USE THIS WHEN RUNNING MOCHA
-export const PATH_TO_ROOT_DATA = "./data/data.json";
-export const PATH_TO_ROOT_DATA_FOLDER = "./data";
+const DATA = "pair.zip";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -45,17 +36,18 @@ export default class InsightFacade implements IInsightFacade {
 		let asyncJobs: any[] = [];
 		let dataset: InsightDatasetSection[] = [];
 		try {
-			if (this.isValidInsightKind(kind) && this.isValidId(id) && !this.isIdExist(id)) {
-				let base64Data: JSZip = await zip.loadAsync(content, {base64: true});
-				base64Data.folder("courses")?.forEach((relativePath, file) => {
-					asyncJobs.push(file.async("string"));
-				});
-				await Promise.all(asyncJobs).then((classes) => parseClasses(classes, dataset));
-				if(dataset.length !== 0) {
-					this.insightDataList.push(new InsightData(id, kind, dataset.length, dataset));
-					writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
-					return Promise.resolve(this.getAddedIds());
-				}
+			if(this.isIdExist(id)) {
+				throw new InsightError("The ID already exists");
+			}
+			if (kind === InsightDatasetKind.Sections && this.isValidId(id)) {
+				await handleReadingSection(content, dataset);
+			} else if(kind === InsightDatasetKind.Rooms && this.isValidId(id)) {
+				await handleReadingRooms(content, dataset);
+			}
+			if(dataset.length) { // can be problematic if dataset already has 1 dataset added and a subsequent add crashes (we'd want to reject but it wouldn't)
+				this.insightDataList.push(new InsightData(id, kind, dataset.length, dataset));
+				writeLocal(PATH_TO_ROOT_DATA, this.insightDataList);
+				return Promise.resolve(this.getAddedIds());
 			}
 			return Promise.reject(new InsightError("No sections were found in the inputted file"));
 		} catch (error: unknown) {
@@ -73,7 +65,7 @@ export default class InsightFacade implements IInsightFacade {
 	 * a Promise that rejects with an InsightError
 	 **/
 	public isValidInsightKind(kind: InsightDatasetKind): boolean {
-		if (kind === InsightDatasetKind.Sections) {
+		if (kind === InsightDatasetKind.Sections || kind === InsightDatasetKind.Rooms) {
 			return true;
 		}
 		throw new InsightError("The InsightDatasetKind is not supported");
@@ -145,41 +137,56 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.resolve(addedDatasets);
 	}
-	public async performQuery(inputQuery: unknown): Promise<InsightResult[]> {
-		if (inputQuery === null || inputQuery === undefined) {
-			return Promise.reject(new InsightError("The query doesn't exist"));
-		} else if (inputQuery.constructor === objectConstructor) {
-			let query = inputQuery as any; //	try any also
-			this.queryEng = new QueryEngine(this.insightDataList, query);
-			if(this.queryEng.isValidQuery()) {
-				return this.queryEng.doQuery(query);
+	public async performQuery(query: unknown): Promise<InsightResult[]> {
+		try {
+			if (query === null || query === undefined) {
+				return Promise.reject(new InsightError("The query doesn't exist"));
+			} else if (query.constructor === objectConstructor) {
+				this.queryEng = new QueryEngine(this.insightDataList, query);
+				if(this.queryEng.isValidQuery()) {
+					return this.queryEng.doQuery(query);
+				}
 			}
+			return Promise.reject(new InsightError("Invalid query syntax"));
+		} catch (error) {
+			return Promise.reject(new InsightError((error as Error).message));
 		}
-		return Promise.reject(new InsightError("Invalid query semantics/syntax"));
 	}
 }
-// add performquery
+export const PATH_TO_ROOT_DATA = "./data/data.json";
+export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 
-// let facade = new InsightFacade();
-// const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "pair.zip").toString("base64");
-// const validClass = fs.readFileSync(PATH_TO_ARCHIVES + "CPSC418.zip").toString("base64");
-// facade.addDataset("sections", validSection, InsightDatasetKind.Sections)
-// 	.then(() => facade.listDatasets())
-// 	.then((addedDatasets) => {
-// 		// console.log("THEY'RE BETTER BE SOMETHING THERE");
-// 		// console.log(facade.insightDataList);
-// 		return Promise.resolve();
-// 	})
-// 	.then(() => facade.performQuery({WHERE: {
-//
-// 	}}))
+/* UNCOMMENT FOR MAIN STUFF
+export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+
+// USE THIS WHEN RUNNING WITH MAIN
+
+// USE THIS WHEN RUNNING MOCHA
+export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
+
+let facade = new InsightFacade();
+const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "campus.zip").toString("base64");
+facade.addDataset("rooms", validSection, InsightDatasetKind.Rooms)
+	.then(() => facade.listDatasets())
+	.then((addedDatasets) => {
+		console.log(addedDatasets);
+		return Promise.resolve();
+	})
+
+
+// 	.then(() => facade.performQuery({
+// 		WHERE: {},
+// 		OPTIONS: {
+// 			COLUMNS: [
+// 				"sections_dept",
+// 				"sections_id",
+// 				"sections_avg"
+// 			],
+// 			ORDER: "sections_avg"
+// 		}
+// 	}))
 // 	.catch((err) => console.log(err));
 
-// facade.listDatasets()
-// 	.then((results) => console.log(results))
-// 	.then((results) => console.log(results))
-// 	.then(() => facade.listDatasets())
-// 	.then((results) => console.log(results))
-// 	.then(() => facade.performQuery(null))
-// 	.catch((results) => console.log(results))
 ;
+ */
