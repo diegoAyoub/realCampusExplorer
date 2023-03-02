@@ -35,6 +35,7 @@ export class QueryEngine {
 		this.selectedColumns = [];
 		this.orderKey = "";
 	}
+
 	public doQuery(query: any): Promise<InsightResult[]> {
 		let results: InsightDatasetSection[] = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
@@ -78,6 +79,7 @@ export class QueryEngine {
 		}
 		return false;
 	}
+
 	public isValidWhereBlock(filter: any): boolean {
 		let isValid = true;
 		let keys: string[] = Object.keys(filter);
@@ -110,6 +112,7 @@ export class QueryEngine {
 			return false;
 		}
 	}
+
 	public isValidOptionsBlock(optionBlock: any): boolean {
 		let optionKeys: string[] = Object.keys(optionBlock);
 		let optionsHasValidKeys: boolean = this.optionsHasValidKeys(optionBlock); // KEYS ARE IN THE SET COLUMN_KEYS
@@ -129,6 +132,7 @@ export class QueryEngine {
 		return false;
 
 	}
+
 	public setDataset(id: string): void {
 		for (const dataset of this.dataset) {
 			if (dataset.metaData.id === id) {
@@ -136,19 +140,24 @@ export class QueryEngine {
 			}
 		}
 	}
+
 	public setQueryId(key: string) {
 		this.qryID = key.split("_")[0];
 	}
+
 	public setColumns(columns: string[]) {
 		this.selectedColumns = columns;
 	}
+
 	public setOrderKey(key: string) {
 		this.orderKey = key;
 	}
+
 	public optionsHasValidKeys(optionBlock: any): boolean {
 		let optionKeys = Object.keys(optionBlock);
 		return optionKeys.every((element: any) => OPTION_KEYS.includes(element));
 	}
+
 	public isValidColumns(columns: any): boolean {
 		let isArray = Array.isArray(columns); // is an array
 		if(isArray && columns.length > 0) {
@@ -160,12 +169,14 @@ export class QueryEngine {
 		}
 		return false;
 	}
+
 	public isValidKey(key: any): boolean {
 		let arr = key.split("_");
 		let setID = arr[0];
 		let col = arr[1];
 		return typeof key === "string" && FIELD_NAMES.includes(col) && this.qryID === setID && arr.length === 2;
 	}
+
 	public handleAnd(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = [];
 		let subResult: InsightDatasetSection[];
@@ -181,6 +192,7 @@ export class QueryEngine {
 		}
 		return results;
 	}
+
 	public handleOr(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = [];
 		let subResult: InsightDatasetSection[] = [];
@@ -194,12 +206,14 @@ export class QueryEngine {
 		}
 		return results;
 	}
+
 	public handleNot(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[]  = this.handleFilter(query); //	does this actually work!?
 		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
 		return results;
 	}
+
 	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
 		let sections: InsightDatasetSection[] = this.datasetSections;
 		let keyValueObject = query[comparator];
@@ -222,6 +236,7 @@ export class QueryEngine {
 		}
 		return [];
 	}
+
 	public isStringMatched(inputString: string | number, pattern: string): boolean {
 		let wildArr = pattern.split("*");
 		let value: string = inputString as string;
@@ -244,6 +259,7 @@ export class QueryEngine {
 		}
 		return false;
 	}
+
 	public isValidWildCard(pattern: string): boolean { // we are considering no pattern to be a valid wildcard pattern
 		if(pattern.includes("*")) {
 			let wildArr = pattern.split("*");

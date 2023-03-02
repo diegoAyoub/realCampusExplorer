@@ -68,6 +68,7 @@ export class InsightDatasetSection {
 		this.fail = Number(fail);
 		this.audit = Number(audit);
 	}
+
 	public get(index: string): string | number {
 		let key: string = index.toLowerCase();
 		if(key === UUID) {
@@ -132,6 +133,7 @@ export class InsightDatasetRoom {
 		this.furniture = furniture;
 		this.href = href;
 	}
+
 	public get(index: string): string | number {
 		let key: string = index.toLowerCase();
 		if(key === FULLNAME) {
