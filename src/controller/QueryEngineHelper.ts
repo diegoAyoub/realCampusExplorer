@@ -15,6 +15,7 @@ export class QueryEngineHelper {
 		this.wantedColumns = wantedColArr;
 		this.filteredSections = filteredSections;
 	}
+
 	//	filters columns and orders them if required. Returns an insightResult Array.
 	public getFormattedResult(): InsightResult[] {
 		let result: InsightResult[] = this.filteredSections.map((section) => this.prefixJSON(this.qryID, section));

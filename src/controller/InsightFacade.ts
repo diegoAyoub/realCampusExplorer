@@ -32,6 +32,7 @@ export default class InsightFacade implements IInsightFacade {
 			fs.ensureDirSync(PATH_TO_ROOT_DATA_FOLDER);
 		}
 	}
+
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
 		let dataset: InsightDatasetSection[] = [];
@@ -70,6 +71,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		throw new InsightError("The InsightDatasetKind is not supported");
 	}
+
 	/**
 	 * Gets the IDs of the datasets that are currently added to this.
 	 * REQUIRES: None
@@ -83,6 +85,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return addedIDs;
 	}
+
 	/**
 	 * Checks that an ID is valid. An ID is invalid if it contains an underscore, if it's blank, or if it is composed
 	 * entirely of whitespace characters.
@@ -97,6 +100,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return true;
 	}
+
 	/**
 	 * Returns a boolean indicating whether the inputted id is one that corresponds to a dataset that's already
 	 * been added.
@@ -137,6 +141,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		return Promise.resolve(addedDatasets);
 	}
+
 	public async performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
 			if (query === null || query === undefined) {
