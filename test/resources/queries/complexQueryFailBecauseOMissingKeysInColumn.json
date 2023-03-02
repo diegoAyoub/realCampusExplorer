@@ -1,5 +1,5 @@
 {
-	"title": "Complex query fail because of invalid id string",
+	"title": "Complex query fail because of missing keys in columns",
 	"input": {
 		"WHERE": {
 			"AND": [

@@ -7,9 +7,8 @@
  * promise.
  **/
 import * as fs from "fs-extra";
-import {InsightData, InsightDatasetSection, InsightError} from "./IInsightFacade";
-const REQUIRED_DATASET_SECTION_KEYS =
-	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
+import {InsightData, InsightDatasetSection} from "./IInsightFacade";
+import {AUDIT, AVG, DEPT, FAIL, FIELD_NAMES, ID, INSTRUCTOR, PASS, TITLE, UUID, YEAR} from "./Constants";
 export function readLocal(path: string, insightDataList: InsightData[]) {
 	try {
 		console.log(path);
@@ -23,16 +22,16 @@ export function readLocal(path: string, insightDataList: InsightData[]) {
 					// console.log(persistedSection);
 					if(isValidDatasetSection(persistedSection)){
 						insightDataSections.push(new InsightDatasetSection(
-							persistedSection["uuid"],
-							persistedSection["id"],
-							persistedSection["title"],
-							persistedSection["instructor"],
-							persistedSection["dept"],
-							persistedSection["year"],
-							persistedSection["avg"],
-							persistedSection["pass"],
-							persistedSection["fail"],
-							persistedSection["audit"]
+							persistedSection[UUID],
+							persistedSection[ID],
+							persistedSection[TITLE],
+							persistedSection[INSTRUCTOR],
+							persistedSection[DEPT],
+							persistedSection[YEAR],
+							persistedSection[AVG],
+							persistedSection[PASS],
+							persistedSection[FAIL],
+							persistedSection[AUDIT]
 						));
 					}
 				}
@@ -49,13 +48,12 @@ export function readLocal(path: string, insightDataList: InsightData[]) {
 	}
 }
 
-export function writeLocal(path: string, insightDataList: InsightData[]): Promise<void> {
+export function writeLocal(path: string, insightDataList: InsightData[]): boolean {
 	try {
-		// console.log(path);
 		fs.outputJsonSync(path, insightDataList);
-		return Promise.resolve();
+		return true;
 	} catch(Exception) {
-		return Promise.reject(new InsightError("There was a problem saving data to disk"));
+		return false;
 	}
 }
 
@@ -70,7 +68,7 @@ function isDuplicatedDataset(insightDataList: InsightData[], id: string): boolea
 
 function isValidDatasetSection(section: any): boolean {
 	let isValid = true;
-	for(const requiredKey of REQUIRED_DATASET_SECTION_KEYS) {
+	for(const requiredKey of FIELD_NAMES) {
 		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey.toLowerCase());
 	}
 	return isValid;
