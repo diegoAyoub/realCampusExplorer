@@ -1,6 +1,0 @@
-{
-	"title": "objectNotAValidQueryShouldFail",
-	"input": {},
-	"errorExpected": true,
-	"expected": "InsightError"
-}

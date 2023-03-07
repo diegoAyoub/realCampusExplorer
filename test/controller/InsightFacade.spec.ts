@@ -33,6 +33,7 @@ describe("InsightFacade", function () {
 	let invalidClassNotJsonFile: string;
 	let invalidClassResultKeyError: string;
 	let validDataset: string;
+	let validRoomDataset: string;
 	let invalidDatasetNotZip: string;
 	let invalidDatasetNoValidSection: string;
 	before(function () {
@@ -45,6 +46,7 @@ describe("InsightFacade", function () {
 		invalidClassNotJsonFile = getContentFromArchives("invalid_class_not_json_file.zip");
 		invalidClassResultKeyError = getContentFromArchives("invalid_class_result_key_error.zip");
 		validDataset = getContentFromArchives("pair.zip");
+		validRoomDataset = getContentFromArchives("campus.zip");
 		invalidDatasetNotZip = getContentFromArchives("invalid_dataset_not_zip.txt");
 		invalidDatasetNoValidSection = getContentFromArchives("invalid_dataset_no_valid_section.zip");
 	});
@@ -323,50 +325,51 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	// describe("performQuery - NOT ORDERED", function () {
-	// 	before(async function () {
-	// 		clearDisk();
-	// 		facade = new InsightFacade();
-	// 		await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
-	// 		await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
-	// 	});
-	//
-	// 	function errorValidator(error: any): error is Error {
-	// 		return error === "InsightError" || error === "ResultTooLargeError";
-	// 	}
-	//
-	// 	function assertOnError(actual: any, expected: Error): void {
-	// 		if (expected === "InsightError") {
-	// 			expect(actual).to.be.instanceof(InsightError);
-	// 		} else if (expected === "ResultTooLargeError") {
-	// 			expect(actual).to.be.instanceof(ResultTooLargeError);
-	// 		} else {
-	// 			// this should be unreachable
-	// 			expect.fail("UNEXPECTED ERROR");
-	// 		}
-	// 	}
-	//
-	// 	function assertOnResult(actual: unknown, expected: Output): void {
-	// 		expect(actual).to.have.deep.members(expected);
-	// 	}
-	//
-	// 	function target(input: Input): Promise<Output> {
-	// 		return facade.performQuery(input);
-	// 	}
-	//
-	// 	folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
-	// 		errorValidator,
-	// 		assertOnError,
-	// 		assertOnResult,
-	// 	});
-	// });
-
-	describe("performQuery -handlecrash", function () {
+	describe("performQuery - section", function () {
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
 			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
 			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+		});
+
+		function errorValidator(error: any): error is Error {
+			return error === "InsightError" || error === "ResultTooLargeError";
+		}
+
+		function assertOnError(actual: any, expected: Error): void {
+			if (expected === "InsightError") {
+				expect(actual).to.be.instanceof(InsightError);
+			} else if (expected === "ResultTooLargeError") {
+				expect(actual).to.be.instanceof(ResultTooLargeError);
+			} else {
+				// this should be unreachable
+				expect.fail("UNEXPECTED ERROR");
+			}
+		}
+
+		function assertOnResult(actual: unknown, expected: Output): void {
+			expect(actual).to.have.deep.members(expected);
+		}
+
+		function target(input: Input): Promise<Output> {
+			return facade.performQuery(input);
+		}
+
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/sectionqueries", {
+			errorValidator,
+			assertOnError,
+			assertOnResult,
+		});
+	});
+
+	describe("performQuery - rooms", function () {
+		before(async function () {
+			clearDisk();
+			facade = new InsightFacade();
+			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+			await facade.addDataset("rooms", validRoomDataset, InsightDatasetKind.Rooms);
+			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
 			newFacade = new InsightFacade();
 		});
 
@@ -394,7 +397,7 @@ describe("InsightFacade", function () {
 			return newFacade.performQuery(input);
 		}
 
-		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/roomqueries", {
 			errorValidator,
 			assertOnError,
 			assertOnResult,

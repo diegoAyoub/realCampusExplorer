@@ -1,19 +1,18 @@
-import {InsightDataset, InsightDatasetRoom, InsightDatasetSection, InsightError, InsightResult} from "./IInsightFacade";
+import {InsightDatasetRoom, InsightDatasetSection, InsightError, IndexHtmRoomData} from "./IInsightFacade";
 import JSZip from "jszip";
 import * as zip from "jszip";
-import {parse, defaultTreeAdapter, DefaultTreeAdapterMap} from "parse5";
-import * as fs from "fs";
+import {parse, defaultTreeAdapter} from "parse5";
 import {ChildNode, Document, Element, ParentNode, TextNode} from "parse5/dist/tree-adapters/default";
-import {Attribute} from "parse5/dist/common/token";
 import {
 	ANCHOR_VALUES,
 	CLASS_ADDRESS,
 	CLASS_LINK,
 	CLASS_SHORTNAME,
 	TD_VALUES,
-	CLASS_FULLNAME
+	CLASS_FULLNAME, CLASS_ROOM_NUMBER, CLASS_ROOM_CAPACITY, CLASS_ROOM_TYPE, CLASS_ROOM_FURNITURE, BASE_URL_GEOLOCATION
 } from "./Constants";
-import base = Mocha.reporters.base;
+
+import http from "http";
 const REQUIRED_SECTION_KEYS = ["id", "Course", "Title", "Professor", "Subject", "Year", "Avg", "Pass", "Fail", "Audit"];
 /**
  * Reads a stringified version of an object (i.e. "{"avg": 50}") and converts it to an InsightDatasetSection
@@ -81,53 +80,94 @@ export async function handleReadingSection(content: string, dataset: InsightData
 	return Promise.all(asyncJobs).then((classes) => parseClasses(classes, dataset));
 }
 
-export async function handleReadingRooms(content: string, dataset: InsightDatasetSection[]): Promise<void>{
+export async function handleReadingRooms(content: string, dataset: InsightDatasetRoom[]): Promise<void>{
 	try {
-		// console.log("hey were here!");
-		let validBuildingsToParseList: string[] = [];
-		let asyncJobs: any[] = [];
+		let asyncFileReadJobs: any[] = [];
+		let asyncGetLotAndLatJobs: any[] = [];
 		let base64Data: JSZip = await zip.loadAsync(content, {base64: true});
 		let htmlContent = await base64Data.file("index.htm")?.async("string");
 		let document: Document = parse(htmlContent as string);
-		// let pathToBuildingFiles: Set<InsightDatasetRoom> = new Set<InsightDatasetRoom>();
-		let buildingData: Set<string[]> = new Set<string[]>();
-		// traverseDocumentForBuildings(defaultTreeAdapter.getChildNodes(document), buildingData, base64Data);
-		console.log(buildingData);
-		return Promise.resolve();
-
+		let buildingData: Set<IndexHtmRoomData> = new Set<IndexHtmRoomData>();
+		traverseIndexHtmForValidRooms(defaultTreeAdapter.getChildNodes(document), buildingData);
+		let buildingDataArray = Array.from(buildingData);
+		buildingData.forEach((validBuilding) => {
+			asyncGetLotAndLatJobs.push(getLonAndLat(validBuilding));
+		});
+		await Promise.all(asyncGetLotAndLatJobs);
+		let buildingsWithLonAndLat = buildingDataArray.filter((room) => room.lat);
+		buildingsWithLonAndLat.forEach( (validBuilding) => {
+			asyncFileReadJobs.push(readValidRooms(validBuilding, base64Data, dataset)); // does readValidRooms wait till the recursion is done tho
+		});
+		await Promise.all(asyncFileReadJobs);
 	} catch(error) {
 		return Promise.reject("there was an error");
 	}
 }
-/*
-async function traverseDocumentForBuildings(children: ChildNode[], buildingData: Set<string[]>, base64Data: JSZip): void {
-	let roomShortName: string = "";
-	let roomFullName: string = "";
-	let roomAddress: string = "";
-	let fileLink: string = "";
+
+async function readValidRooms(validBuilding: IndexHtmRoomData, base64Data: JSZip, dataset: InsightDatasetRoom[]) {
+	let htmlContent = await base64Data.file(validBuilding.relativeFileLink)?.async("string");
+	let document: Document = parse(htmlContent as string);
+	parseValidRooms(validBuilding, defaultTreeAdapter.getChildNodes(document), dataset);
+}
+function parseValidRooms(validRoomsData: IndexHtmRoomData, children: ChildNode[], dataset: InsightDatasetRoom[]): void {
+	// console.log("YESSS I\"M IN");
+	if(children) {
+		// console.log("PROGRESS");
+		for(let childnode of children) {
+			// console.log("LOOPING CHILD.NODENAME === " + childnode.nodeName);
+			if(childnode.nodeName === "tr" && childnode.parentNode?.nodeName === "tbody") {
+				let childNodes: ChildNode[] = defaultTreeAdapter.getChildNodes(childnode as ParentNode);
+				let roomNumber = traverseTableRow(childNodes, CLASS_ROOM_NUMBER);
+				let roomSeats = traverseTableRow(childNodes, CLASS_ROOM_CAPACITY);
+				let roomType = traverseTableRow(childNodes, CLASS_ROOM_TYPE);
+				let roomFurniture = traverseTableRow(childNodes, CLASS_ROOM_FURNITURE);
+				let roomHref = traverseTableRow(childNodes, CLASS_LINK);
+				// console.log("roomShortName = " + validRoomsData.shortname);
+				// console.log("roomFullName = " + validRoomsData.fullname);
+				// console.log("roomAddress = " + validRoomsData.address);
+				// console.log("roomNumber = " + roomNumber);
+				// console.log("capacity = " + roomSeats);
+				// console.log("room_type = " + roomType);
+				// console.log("furniture = " + roomFurniture);
+				// console.log("href = " + roomHref);
+				dataset.push(new InsightDatasetRoom(
+					validRoomsData.fullname,
+					validRoomsData.shortname,
+					validRoomsData.address,
+					validRoomsData.lat,
+					validRoomsData.lon,
+					roomNumber,
+					+roomSeats,
+					roomType,
+					roomFurniture,
+					roomHref
+				));
+			}
+			parseValidRooms(validRoomsData, defaultTreeAdapter.getChildNodes(childnode as ParentNode), dataset);
+		}
+	}
+}
+
+function traverseIndexHtmForValidRooms(children: ChildNode[], buildingData: Set<IndexHtmRoomData>): void {
+
 	if (children) {
 		for (let childnode of children) {
-			if (childnode.nodeName === "tr") {
+			if (childnode.nodeName === "tr" && childnode.parentNode?.nodeName === "tbody") {
 				let childNodes: ChildNode[] = defaultTreeAdapter.getChildNodes(childnode as ParentNode);
-				roomShortName = traverseTableRow(childNodes, CLASS_SHORTNAME);
-				roomFullName = traverseTableRow(childNodes, CLASS_FULLNAME);
-				roomAddress = traverseTableRow(childNodes, CLASS_ADDRESS);
-				fileLink = traverseTableRow(childNodes, CLASS_LINK);
-				console.log("roomShortName = " + roomShortName);
-				console.log("roomFullName = " + roomFullName);
-				console.log("roomAddress = " + roomAddress);
-				console.log("fileLink = " + fileLink);
-				let htmlContent = await base64Data.file(fileLink)?.async("string"); // maybe push promises that'll eventually resolve or something and map them to a insightdatasetroom
-				console.log();
+				let indexHtmData = {} as IndexHtmRoomData;
+				indexHtmData.fullname = traverseTableRow(childNodes, CLASS_FULLNAME);
+				indexHtmData.shortname = traverseTableRow(childNodes, CLASS_SHORTNAME);
+				indexHtmData.relativeFileLink = traverseTableRow(childNodes, CLASS_LINK).substring(2);
+				indexHtmData.address = traverseTableRow(childNodes, CLASS_ADDRESS);
+				buildingData.add(indexHtmData);
 			}
-			traverseDocumentForBuildings(defaultTreeAdapter.getChildNodes(childnode as ParentNode), buildingData);
+			traverseIndexHtmForValidRooms(defaultTreeAdapter.getChildNodes(childnode as ParentNode), buildingData);
 		}
 	}
 }
 
 function traverseTableRow(children: ChildNode[], classIdentifier: string): string {
 	if (children) {
-		let buildingInfoInIndex: string[] = [];
 		for(let childnode of children) {
 			if(childnode.nodeName === "td") {
 				let buildingInfoComponent = getValueFromTdTag(childnode, classIdentifier);
@@ -196,12 +236,34 @@ function parseAnchor(child: ChildNode, wantedVal: string): string {
 	return "";
 }
 
-//
-// function tableContainsBuildingInfo(children: ChildNode[]): boolean {
-// 	for(let childnode of children) {
-// 		if(childnode.nodeName === "#text") {
-// 			return (childnode as ParentNode).value
-// 		}
-// 	}
-// }
-*/
+async function getLonAndLat(roomData: IndexHtmRoomData): Promise<any> {
+	let addressComponents = roomData.address.split(" ");
+	let urlEncodedAddress = addressComponents.join("%20");
+	let endpoint = BASE_URL_GEOLOCATION + urlEncodedAddress;
+	let result = await waitForRequest(endpoint);
+	if(result.error) {
+		return Promise.resolve;
+	}
+	roomData.lon = result.lon;
+	roomData.lat = result.lat;
+	return Promise.resolve();
+}
+
+function waitForRequest(endpoint: string): Promise<any> {
+	return new Promise((resolve, reject) => {
+		http.get(endpoint, (result) => {
+			let rawData = "";
+			result.on("data", (chunk) => {
+				rawData += chunk;
+			});
+			result.on("end", () => {
+				const parsedData = JSON.parse(rawData);
+				resolve(parsedData);
+			});
+			result.on("error",() => {
+				reject();
+			});
+		});
+	});
+}
+

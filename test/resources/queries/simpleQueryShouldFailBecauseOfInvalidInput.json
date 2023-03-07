@@ -1,6 +1,0 @@
-{
-	"title": "simple query should fail because of invalid input",
-	"input": {},
-	"errorExpected": true,
-	"expected": "InsightError"
-}
