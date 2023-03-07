@@ -1,0 +1,47 @@
+{
+	"title": "complex query nested Ands should return nothing",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"AND": [
+						{
+							"GT": {
+								"sections_avg": 90
+							}
+						},
+						{
+							"IS": {
+								"sections_dept": "adhe"
+							}
+						},
+						{
+							"AND": [
+								{
+									"LT": {
+										"sections_fail": 40
+									}
+								},
+								{
+									"GT": {
+										"sections_audit": 2
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_id",
+				"sections_avg"
+			],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": []
+}

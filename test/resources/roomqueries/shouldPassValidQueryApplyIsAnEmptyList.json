@@ -1,0 +1,19 @@
+{
+	"title": "Should pass valid query apply is an empty list",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_title"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_title"
+			],
+			"APPLY": []
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

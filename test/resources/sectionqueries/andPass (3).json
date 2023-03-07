@@ -1,0 +1,6688 @@
+{
+	"title": "AndPass",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "*cps*"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_fail",
+				"sections_id",
+				"sections_year",
+				"sections_dept"
+			],
+			"ORDER": "sections_year"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "547",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "547",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "503",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "500",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "444",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "430",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "425",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "422",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "420",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "418",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "418",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "418",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "416",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "404",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "344",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "340",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 14,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "322",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 22,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 37,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 21,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 27,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 14,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 31,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "319",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 20,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "317",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "314",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 16,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 24,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "313",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "311",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "302",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "301",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 19,
+			"sections_id": "301",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "301",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "261",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "261",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "261",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "261",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "259",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "259",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "259",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "259",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "259",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 16,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 56,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 21,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 35,
+			"sections_id": "221",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 34,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 16,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 19,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 20,
+			"sections_id": "213",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 48,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 23,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 76,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 24,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 37,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 47,
+			"sections_id": "210",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 29,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 22,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 24,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 52,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 25,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 42,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 24,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 34,
+			"sections_id": "121",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 118,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 57,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 16,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 190,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 67,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 150,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 157,
+			"sections_id": "110",
+			"sections_year": 1900,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "449",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "422",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "421",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "420",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "416",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "415",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "411",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "410",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "404",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "404",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "344",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "340",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "322",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "322",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "320",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "320",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "317",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "313",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "313",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "311",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "310",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "310",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "304",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "304",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "303",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "221",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "221",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "221",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "213",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "213",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "121",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "121",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "121",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "121",
+			"sections_year": 2007,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "503",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "445",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "430",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "425",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "422",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "421",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "420",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "415",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "410",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "404",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "404",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "344",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "340",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "322",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "322",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "320",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 14,
+			"sections_id": "320",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "317",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "314",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "314",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "313",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "313",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "311",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "304",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "304",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "303",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "302",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "221",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "221",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "221",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "221",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "213",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "213",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "121",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "121",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "121",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "121",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "121",
+			"sections_year": 2008,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "513",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "500",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "445",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "425",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "422",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "420",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "416",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "415",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "404",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "404",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "340",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "322",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "322",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "320",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "320",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "320",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "319",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "317",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "314",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "313",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "313",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "313",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "311",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "310",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "304",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "304",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "303",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "221",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "221",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "221",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "221",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "213",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "213",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "210",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "121",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "121",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "121",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "121",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "121",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "110",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "110",
+			"sections_year": 2009,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "445",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "425",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "422",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "420",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "415",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "404",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "404",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "340",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "322",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "322",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "320",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "320",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "317",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "314",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "314",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "313",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "313",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "311",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "310",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "303",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "221",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "221",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "221",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "221",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "213",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "213",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "213",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "210",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "210",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "210",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "210",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "121",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "121",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "121",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "121",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "121",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "110",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "110",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "110",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "110",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "110",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 25,
+			"sections_id": "110",
+			"sections_year": 2010,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "513",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "422",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "420",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "415",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "404",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "404",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "344",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "340",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "322",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "322",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "320",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "320",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "317",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "314",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "314",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "313",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "313",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "313",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "312",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "311",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "310",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "304",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "303",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "302",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "259",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "221",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "221",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "221",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "221",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "213",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "213",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "210",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "210",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "210",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "210",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "210",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "210",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "121",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "121",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "121",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "121",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "121",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 19,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "110",
+			"sections_year": 2011,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "422",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "421",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "420",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "418",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "416",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "415",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "410",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "404",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "404",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "340",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "322",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "322",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "322",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "320",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "320",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "317",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "314",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "314",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "313",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "313",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "313",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "311",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "310",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "310",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "304",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "303",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "301",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "261",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "259",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "221",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "221",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "221",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "221",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 14,
+			"sections_id": "213",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "213",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "210",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "210",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "210",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "210",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "210",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "210",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "121",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "121",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "121",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "121",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "121",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "110",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 21,
+			"sections_id": "110",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "110",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 21,
+			"sections_id": "110",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "110",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 40,
+			"sections_id": "110",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "110",
+			"sections_year": 2012,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "444",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "430",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "425",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "422",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "421",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "420",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "418",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "416",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "415",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "411",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "404",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "404",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "344",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "344",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "340",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "322",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "322",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 14,
+			"sections_id": "320",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "320",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "317",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "317",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "314",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "313",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "313",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "313",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "311",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "310",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "303",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "302",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 19,
+			"sections_id": "301",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "261",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "259",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "221",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "221",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "221",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "221",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 19,
+			"sections_id": "213",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "213",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "210",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "210",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "210",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "210",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "210",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "210",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "121",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "121",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "121",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "121",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "121",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "110",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "110",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 28,
+			"sections_id": "110",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "110",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 29,
+			"sections_id": "110",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "110",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 59,
+			"sections_id": "110",
+			"sections_year": 2013,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "547",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "513",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "500",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "430",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "425",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "422",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "421",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "420",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "416",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "415",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "411",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "404",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "404",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "344",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "340",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "322",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "322",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "322",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "320",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "320",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "320",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "320",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "319",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "317",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "314",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "313",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "313",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "312",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "311",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "310",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "304",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "303",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "302",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "301",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "261",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "259",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "221",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "221",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "221",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 14,
+			"sections_id": "221",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "221",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "213",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "213",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "213",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "213",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "210",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "210",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "210",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "210",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 14,
+			"sections_id": "210",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "210",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "121",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "121",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "121",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 19,
+			"sections_id": "121",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "121",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "121",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 16,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 20,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 26,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 33,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 38,
+			"sections_id": "110",
+			"sections_year": 2014,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "547",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "544",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "543",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "540",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "522",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "521",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "507",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "503",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "490",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "445",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "444",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "430",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "425",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "422",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "421",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "420",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "418",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "416",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "415",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "410",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "404",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "404",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "344",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "340",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "322",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "322",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "320",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 10,
+			"sections_id": "320",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "320",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "319",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "317",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "317",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "314",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "314",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "313",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "313",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "311",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "310",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "310",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "304",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 4,
+			"sections_id": "304",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "303",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "302",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "301",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "261",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "259",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 19,
+			"sections_id": "221",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 18,
+			"sections_id": "221",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "221",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 11,
+			"sections_id": "221",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 9,
+			"sections_id": "213",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "213",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "213",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "210",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "210",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "210",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 21,
+			"sections_id": "210",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 12,
+			"sections_id": "210",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 15,
+			"sections_id": "210",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "121",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "121",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 13,
+			"sections_id": "121",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 17,
+			"sections_id": "121",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 5,
+			"sections_id": "121",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 8,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 6,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 1,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 42,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 25,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 22,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 46,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 40,
+			"sections_id": "110",
+			"sections_year": 2015,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 7,
+			"sections_id": "415",
+			"sections_year": 2016,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "340",
+			"sections_year": 2016,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 2,
+			"sections_id": "312",
+			"sections_year": 2016,
+			"sections_dept": "cpsc"
+		},
+		{
+			"sections_fail": 3,
+			"sections_id": "310",
+			"sections_year": 2016,
+			"sections_dept": "cpsc"
+		}
+	]
+}

@@ -1,0 +1,19 @@
+{
+	"title": "complex query should fail invalid type in EQ (NotNumber)",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"sections_avg": "hey"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_avg"
+			],
+			"ORDER": "sections_dept"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

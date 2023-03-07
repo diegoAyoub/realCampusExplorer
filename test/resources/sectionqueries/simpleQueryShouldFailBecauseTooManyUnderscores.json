@@ -1,0 +1,19 @@
+{
+	"title": "Simple query should fail because too many underscores",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections__avg": 97
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_avg"
+			],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

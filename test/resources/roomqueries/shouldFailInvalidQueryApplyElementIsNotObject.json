@@ -1,0 +1,28 @@
+{
+	"title": "should fail invalid query apply element is not object",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname",
+				"maxSeats"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"maxSeats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname"
+			],
+			"APPLY": [
+				"maxSeats"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
