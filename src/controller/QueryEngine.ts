@@ -4,6 +4,7 @@ import {
 	ResultTooLargeError,
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
+import {QueryValidator} from "./QueryValidator";
 import {writeLocal} from "./DiskUtil";
 import {PATH_TO_ROOT_DATA} from "./InsightFacade";
 const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
@@ -20,11 +21,13 @@ export class QueryEngine {
 	public datasetSections: InsightDatasetSection[] = [];
 	public orderKey: string;
 	public selectedColumns: string[];
+	public validator: QueryValidator;
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
 		this.queryJson = qryJson as any;
 		this.selectedColumns = [];
 		this.orderKey = "";
+		this.validator = new QueryValidator(qryJson, data);
 	}
 	public async doQuery(query: any): Promise<InsightResult[]> {
 		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
@@ -192,7 +195,6 @@ export class QueryEngine {
 		}
 		return results;
 	}
-
 	public handleNot(query: any): InsightDatasetSection[] {
 		let results: InsightDatasetSection[] = this.datasetSections;
 		let subResult: InsightDatasetSection[] | null = [];
