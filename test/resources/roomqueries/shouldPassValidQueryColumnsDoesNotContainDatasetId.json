@@ -1,0 +1,164 @@
+{
+	"title": "should pass valid query columns does not contain dataset id",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"maxSeats"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"maxSeats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname"
+			],
+			"APPLY": [
+				{
+					"maxSeats": {
+						"MAX": "rooms_seats"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"maxSeats": 503
+		},
+		{
+			"maxSeats": 442
+		},
+		{
+			"maxSeats": 426
+		},
+		{
+			"maxSeats": 375
+		},
+		{
+			"maxSeats": 350
+		},
+		{
+			"maxSeats": 350
+		},
+		{
+			"maxSeats": 325
+		},
+		{
+			"maxSeats": 299
+		},
+		{
+			"maxSeats": 280
+		},
+		{
+			"maxSeats": 275
+		},
+		{
+			"maxSeats": 265
+		},
+		{
+			"maxSeats": 260
+		},
+		{
+			"maxSeats": 257
+		},
+		{
+			"maxSeats": 250
+		},
+		{
+			"maxSeats": 236
+		},
+		{
+			"maxSeats": 228
+		},
+		{
+			"maxSeats": 225
+		},
+		{
+			"maxSeats": 224
+		},
+		{
+			"maxSeats": 205
+		},
+		{
+			"maxSeats": 200
+		},
+		{
+			"maxSeats": 200
+		},
+		{
+			"maxSeats": 190
+		},
+		{
+			"maxSeats": 160
+		},
+		{
+			"maxSeats": 160
+		},
+		{
+			"maxSeats": 154
+		},
+		{
+			"maxSeats": 144
+		},
+		{
+			"maxSeats": 136
+		},
+		{
+			"maxSeats": 106
+		},
+		{
+			"maxSeats": 100
+		},
+		{
+			"maxSeats": 100
+		},
+		{
+			"maxSeats": 99
+		},
+		{
+			"maxSeats": 94
+		},
+		{
+			"maxSeats": 94
+		},
+		{
+			"maxSeats": 90
+		},
+		{
+			"maxSeats": 72
+		},
+		{
+			"maxSeats": 70
+		},
+		{
+			"maxSeats": 68
+		},
+		{
+			"maxSeats": 66
+		},
+		{
+			"maxSeats": 63
+		},
+		{
+			"maxSeats": 55
+		},
+		{
+			"maxSeats": 50
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 40
+		},
+		{
+			"maxSeats": 21
+		}
+	]
+}

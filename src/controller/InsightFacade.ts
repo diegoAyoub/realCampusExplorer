@@ -2,7 +2,7 @@ import {
 	IInsightFacade,
 	InsightData,
 	InsightDataset,
-	InsightDatasetKind,
+	InsightDatasetKind, InsightDatasetRoom,
 	InsightDatasetSection,
 	InsightError,
 	InsightResult,
@@ -35,15 +35,15 @@ export default class InsightFacade implements IInsightFacade {
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let asyncJobs: any[] = [];
-		let dataset: InsightDatasetSection[] = [];
+		let dataset: InsightDatasetSection[] | InsightDatasetRoom[] = [];
 		try {
 			if(this.isIdExist(id)) {
 				throw new InsightError("The ID already exists");
 			}
 			if (kind === InsightDatasetKind.Sections && this.isValidId(id)) {
-				await handleReadingSection(content, dataset);
+				await handleReadingSection(content, dataset as InsightDatasetSection[]);
 			} else if(kind === InsightDatasetKind.Rooms && this.isValidId(id)) {
-				await handleReadingRooms(content, dataset);
+				await handleReadingRooms(content, dataset as InsightDatasetRoom[]);
 			}
 			if(dataset.length) { // can be problematic if dataset already has 1 dataset added and a subsequent add crashes (we'd want to reject but it wouldn't)
 				this.insightDataList.push(new InsightData(id, kind, dataset.length, dataset));
@@ -158,40 +158,43 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 }
+function runIt() {
+	let facade = new InsightFacade();
+
+	facade.listDatasets()
+		.then((addedDatasets) => {
+			console.log(addedDatasets);
+			return Promise.resolve();
+		})
+		.then(() => facade.performQuery(query))
+		.catch((err) => console.log(err));
+}
+
+// USE THIS WHEN RUNNING MOCHA
 export const PATH_TO_ROOT_DATA = "./data/data.json";
 export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 
-/* UNCOMMENT FOR MAIN STUFF
-export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
-export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
-
-// USE THIS WHEN RUNNING WITH MAIN
-
-// USE THIS WHEN RUNNING MOCHA
-export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-
-let facade = new InsightFacade();
-const validSection = fs.readFileSync(PATH_TO_ARCHIVES + "campus.zip").toString("base64");
-facade.addDataset("rooms", validSection, InsightDatasetKind.Rooms)
-	.then(() => facade.listDatasets())
-	.then((addedDatasets) => {
-		console.log(addedDatasets);
-		return Promise.resolve();
-	})
-
-
-// 	.then(() => facade.performQuery({
-// 		WHERE: {},
-// 		OPTIONS: {
-// 			COLUMNS: [
-// 				"sections_dept",
-// 				"sections_id",
-// 				"sections_avg"
-// 			],
-// 			ORDER: "sections_avg"
-// 		}
-// 	}))
-// 	.catch((err) => console.log(err));
-
-;
+/*
+	~~~~~~~ UNCOMMENT STUFF UNDER HERE FOR MAIN STUFF ~~~~~~~~~~~~
  */
+
+// export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+// export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+// export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
+// runIt();
+let query = {
+	WHERE: {
+		IS: {
+			sections_dept: "*e"
+		}
+	},
+	OPTIONS: {
+		COLUMNS: [
+			"sections_fail",
+			"sections_id",
+			"sections_year",
+			"sections_dept"
+		],
+		ORDER: "sections_year"
+	}
+};

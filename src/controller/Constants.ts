@@ -27,6 +27,16 @@ export const LT = "LT";
 export const EQ = "EQ";
 export const GT = "GT";
 export const WHERE = "WHERE";
+export const TRANSFORMATIONS = "TRANSFORMATIONS";
+export const GROUP = "GROUP";
+export const APPLY = "APPLY";
+export const MAX = "MAX";
+export const MIN = "MIN";
+export const APPLY_TOKEN_AVG = "AVG";
+export const COUNT = "COUNT";
+export const SUM = "SUM";
+export const APPLY_TOKENS = [MAX, MIN, APPLY_TOKEN_AVG, COUNT, SUM];
+
 export const OPTIONS = "OPTIONS";
 export const COLUMNS = "COLUMNS";
 export const ORDER = "ORDER";
@@ -38,12 +48,20 @@ export const CLASS_ADDRESS = "views-field-field-building-address";
 export const CLASS_ROOM_CAPACITY = "views-field-field-room-capacity";
 export const CLASS_ROOM_FURNITURE = "views-field-field-room-furniture";
 export const CLASS_ROOM_TYPE = "views-field-field-room-type";
+export const DIR = "dir";
+export const KEYS = "keys";
+export const UP = "UP";
+export const DOWN = "DOWN";
+export const DIRECTIONS = [UP, DOWN];
 export const TD_VALUES = [CLASS_SHORTNAME, CLASS_ADDRESS, CLASS_ROOM_CAPACITY, CLASS_ROOM_FURNITURE, CLASS_ROOM_TYPE];
 export const ANCHOR_VALUES = [CLASS_FULLNAME, CLASS_ROOM_NUMBER, CLASS_LINK];
-
-export const FIELD_NAMES = [UUID, ID, TITLE, INSTRUCTOR, DEPT, YEAR, AVG, PASS, FAIL, AUDIT];
+export const SECTION_FIELD_NAMES = [UUID, ID, TITLE, INSTRUCTOR, DEPT, YEAR, AVG, PASS, FAIL, AUDIT];
+export const ROOMS_FIELD_NAMES = [FULLNAME, SHORTNAME, NUMBER, NAME, ADDRESS, LAT, LON, SEATS, TYPE, FURNITURE, HREF];
 export const LOGIC = [AND, OR];
 export const COMPARATOR = [LT, GT, EQ, IS];
 export const OPTION_KEYS = [COLUMNS, ORDER];
-export const COLUMN_NUMBERS = [YEAR, AVG, PASS, FAIL, AUDIT, LT, GT, EQ];
-export const COLUMN_STRINGS = [UUID, ID, TITLE, INSTRUCTOR, DEPT, IS];
+export const NUMBER_FIELDS = [YEAR, AVG, PASS, FAIL, AUDIT, LT, GT, EQ, LAT, LON, SEATS, MAX,
+	MIN, APPLY_TOKEN_AVG, SUM, COUNT];
+export const STRING_FIELDS = [UUID, ID, TITLE, INSTRUCTOR, DEPT, IS, FULLNAME, SHORTNAME, NUMBER, NAME, ADDRESS,
+	TYPE, FURNITURE, HREF, COUNT];
+export const BASE_URL_GEOLOCATION = "http://cs310.students.cs.ubc.ca:11316/api/v1/project_team125/";
