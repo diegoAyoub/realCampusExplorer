@@ -3,6 +3,9 @@
  * A class called InsightFacade, this should be in a file called InsightFacade.ts.
  * You should not change this interface at all or the test suite will not work.
  */
+import {ADDRESS, AUDIT,	AVG, DEPT, FAIL, FULLNAME, FURNITURE, HREF,	ID,	INSTRUCTOR, LAT, LON, NAME,	NUMBER,	PASS,
+	SEATS, SHORTNAME, TITLE, TYPE, UUID, YEAR
+} from "./Constants";
 
 export enum InsightDatasetKind {
 	Sections = "sections",
@@ -10,8 +13,9 @@ export enum InsightDatasetKind {
 }
 export class InsightData {
 	public metaData: InsightDataset;
-	public data: InsightDatasetSection[]; // @todo: maybe make it any[] so that can use prefixjson or nah?
-	constructor(id: string, kind: InsightDatasetKind, numRows: number, data: InsightDatasetSection[]) {
+	public data: InsightDatasetSection[] | InsightDatasetRoom[]; // @todo: maybe make it any[] so that can use prefixjson or nah?
+	constructor(id: string, kind: InsightDatasetKind, numRows: number,
+		data: InsightDatasetSection[] | InsightDatasetRoom[]) {
 		this.metaData = {} as InsightDataset;
 		this.metaData.id = id;
 		this.metaData.kind = kind;
@@ -20,69 +24,164 @@ export class InsightData {
 	}
 }
 export class InsightDatasetSection {
-	// public datasetID: string;
 	public uuid: string;
 	public id: string;
 	public title: string;
 	public instructor: string;
 	public dept: string;
 	public year: number;
-	public avg: string;
-	public pass: string;
-	public fail: string;
-	public audit: string;
-	constructor(
-		// datasetID: string,
-		id: string,
-		course: string,
-		title: string,
-		professor: string,
-		subject: string,
-		year: number,
-		avg: string,
-		pass: string,
-		fail: string,
-		audit: string
-	) {
-		// this.datasetID = datasetID;
+	public avg: number;
+	public pass: number;
+	public fail: number;
+	public audit: number;
+	constructor(id: string,	course: string,	title: string,	professor: string, subject: string,	year: number,
+		avg: string, pass: string,	fail: string,	audit: string) {
 		this.uuid = id;
 		this.id = course;
 		this.title = title;
 		this.instructor = professor;
 		this.dept = subject;
-		this.year = year;
-		this.avg = avg;
-		this.pass = pass;
-		this.fail = fail;
-		this.audit = audit;
+		this.year = Number(year);
+		this.avg = Number(avg);
+		this.pass = Number(pass);
+		this.fail = Number(fail);
+		this.audit = Number(audit);
 	}
 
-	public prefixJSON(datasetID: string): InsightResult {
-    	let keyUUID = datasetID + "_" + "uuid";
-    	let keyCourse = datasetID + "_" + "id";
-    	let keyTitle = datasetID + "_" + "title";
-    	let keyProfessor = datasetID + "_" + "instructor";
-    	let keySubject = datasetID + "_" + "dept";
-    	let keyYear = datasetID + "_" + "year";
-    	let keyAvg = datasetID + "_" + "avg";
-    	let keyPass = datasetID + "_" + "pass";
-    	let keyFail = datasetID + "_" + "fail";
-    	let keyAudit = datasetID + "_" + "audit";
+	public get(index: string): string | number {
+		let key: string = index.toLowerCase();
+		if(key === UUID) {
+			return this.uuid;
+		} else if(key === ID) {
+			return this.id;
+		} else if(key === TITLE) {
+			return this.title;
+		} else if (key === INSTRUCTOR) {
+			return this.instructor;
+		} else if (key === DEPT) {
+			return this.dept;
+		} else if (key === YEAR) {
+			return this.year;
+		} else if (key === AVG) {
+			return this.avg;
+		} else if (key === PASS) {
+			return this.pass;
+		} else if (key === FAIL) {
+			return this.fail;
+		} else if (key === AUDIT) {
+			return this.audit;
+		}
+		return "";
+	}
 
-    	return {
-    		[keyUUID]: this.uuid,
-    		[keyCourse]: this.id,
-    		[keyTitle]: this.title,
-    		[keyProfessor]: this.instructor,
-    		[keySubject]: this.dept,
-    		[keyYear]: this.year,
-    		[keyAvg]: this.avg,
-    		[keyPass]: this.pass,
-    		[keyFail]: this.fail,
-    		[keyAudit]: this.audit,
-    	};
+	public prefixJson(datasetID: string): InsightResult {
+		let keyUUID = datasetID + "_" + "uuid";
+		let keyID = datasetID + "_" + "id";
+		let keyTitle = datasetID + "_" + "title";
+		let keyInstructor = datasetID + "_" + "instructor";
+		let keyDept = datasetID + "_" + "dept";
+		let keyYear = datasetID + "_" + "year";
+		let keyAvg = datasetID + "_" + "avg";
+		let keyPass = datasetID + "_" + "pass";
+		let keyFail = datasetID + "_" + "fail";
+		let keyAudit = datasetID + "_" + "audit";
+
+		return {
+			[keyUUID]: this.uuid,
+			[keyID]: this.id,
+			[keyTitle]: this.title,
+			[keyInstructor]: this.instructor,
+			[keyDept]: this.dept,
+			[keyYear]: this.year,
+			[keyAvg]: this.avg,
+			[keyPass]: this.pass,
+			[keyFail]: this.fail,
+			[keyAudit]: this.audit,
+		};
 	}
 }
+
+export class InsightDatasetRoom {
+	public fullname: string;
+	public shortname: string;
+	public number: string;
+	public name: string;
+	public address: string;
+	public lat: number;
+	public lon: number;
+	public seats: number;
+	public type: string;
+	public furniture: string;
+	public href: string;
+
+	constructor(fullname: string, shortname: string, address: string, lat: number, lon: number,	number: string,
+		seats: number, type: string, furniture: string, href: string ) {
+		this.fullname = fullname;
+		this.shortname = shortname;
+		this.number = number;
+		this.address = address;
+		this.lat = lat;
+		this.lon = lon;
+		this.seats = Number(seats);
+		this.type = type;
+		this.furniture = furniture;
+		this.href = href;
+		this.name = this.setName();
+	}
+
+	public get(index: string): string | number {
+		let key: string = index.toLowerCase();
+		if (key === FULLNAME) {
+			return this.fullname;
+		} else if (key === SHORTNAME) {
+			return this.shortname;
+		} else if (key === NUMBER) {
+			return this.number;
+		} else if (key === NAME) {
+			return this.name;
+		} else if (key === ADDRESS) {
+			return this.address;
+		} else if (key === LAT) {
+			return this.lat;
+		} else if (key === LON) {
+			return this.lon;
+		} else if (key === SEATS) {
+			return this.seats;
+		} else if (key === TYPE) {
+			return this.type;
+		} else if (key === FURNITURE) {
+			return this.furniture;
+		} else if (key === HREF) {
+			return this.href;
+		}
+		return "";
+	}
+
+	private setName(): string {
+		return this.shortname + "_" + this.number;
+	}
+
+	public prefixJson(datasetID: string): InsightResult {
+		let keyFullName = datasetID + "_" + "fullname";
+		let keyShortName = datasetID + "_" + "shortname";
+		let keyNumber = datasetID + "_" + "number";
+		let keyName = datasetID + "_" + "name";
+		let keyAddress = datasetID + "_" + "address";
+		let keyLat = datasetID + "_" + "lat";
+		let keyLon = datasetID + "_" + "lon";
+		let keySeats = datasetID + "_" + "seats";
+		let keyType = datasetID + "_" + "type";
+		let keyFurniture = datasetID + "_" + "furniture";
+		let keyHref = datasetID + "_" + "href";
+
+		return {
+			[keyFullName]: this.fullname, [keyShortName]: this.shortname, [keyNumber]: this.number,
+			[keyName]: this.name, [keyAddress]: this.address, [keyLat]: this.lat, [keyLon]: this.lon,
+			[keySeats]: this.seats, [keyType]: this.type, [keyFurniture]: this.furniture, [keyHref]: this.href,
+		};
+	}
+}
+
 
 export interface InsightDataset {
 	id: string;
@@ -90,8 +189,18 @@ export interface InsightDataset {
 	numRows: number;
 }
 
+
 export interface InsightResult {
 	[key: string]: string | number;
+}
+
+export interface IndexHtmRoomData {
+	shortname: string;
+	fullname: string;
+	address: string;
+	relativeFileLink: string;
+	lat: number;
+	lon: number;
 }
 
 export class InsightError extends Error {

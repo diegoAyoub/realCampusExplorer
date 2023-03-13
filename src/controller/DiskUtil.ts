@@ -1,4 +1,3 @@
-
 /**
  * Reads from disk a json file of InsightData objects
  * REQUIRES: memory to have persisted data
@@ -7,52 +6,102 @@
  * promise.
  **/
 import * as fs from "fs-extra";
-import {InsightData, InsightDatasetSection, InsightError} from "./IInsightFacade";
-const REQUIRED_DATASET_SECTION_KEYS =
-	["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-export function readLocal(path: string, insightDataList: InsightData[]): Promise<void> {
+import {InsightData, InsightDatasetKind, InsightDatasetRoom, InsightDatasetSection} from "./IInsightFacade";
+import {
+	ADDRESS,
+	AUDIT,
+	AVG,
+	DEPT,
+	FAIL, FULLNAME, FURNITURE, HREF,
+	ID,
+	INSTRUCTOR, LAT, LON, NUMBER,
+	PASS,
+	ROOMS_FIELD_NAMES, SEATS,
+	SECTION_FIELD_NAMES, SHORTNAME,
+	TITLE, TYPE,
+	UUID,
+	YEAR
+} from "./Constants";
+
+export function readLocal(path: string, insightDataList: InsightData[]) {
 	try {
+		console.log(path);
 		let fileContent = fs.readJSONSync(path);
-		let insightDataSections: InsightDatasetSection[];
+		// console.log(fileContent);
 		for (const insightData of fileContent) {
-			insightDataSections = [];
-			if(!isDuplicatedDataset(insightDataList, insightData.metaData.id)) {
-				for (const persistedSection of insightData.data) {
-					if(isValidDatasetSection(persistedSection)){
-						insightDataSections.push(new InsightDatasetSection(
-							persistedSection.id,
-							persistedSection.course,
-							persistedSection.title,
-							persistedSection.professor,
-							persistedSection.subject,
-							persistedSection.year,
-							persistedSection.avg,
-							persistedSection.pass,
-							persistedSection.fail,
-							persistedSection.audit
-						));
-					}
-				}
-				insightDataList.push(new InsightData(
-					insightData.metaData.id,
-					insightData.metaData.kind,
-					insightData.metaData.numRows,
-					insightDataSections
-				));
+			if(insightData.metaData.kind === InsightDatasetKind.Sections) {
+				readSections(insightData, insightDataList);
+			} else if(insightData.metaData.kind === InsightDatasetKind.Rooms) {
+				readRooms(insightData, insightDataList);
 			}
 		}
-		return Promise.resolve();
 	} catch(Exception) {
-		return Promise.reject(new InsightError("There was an error reading from disk"));
+		return ("There was an error reading from disk");
 	}
 }
 
-export function writeLocal(path: string, insightDataList: InsightData[]): Promise<void> {
+function readSections(insightData: any, insightDataList: InsightData[]) {
+	let insightDataSections: InsightDatasetSection[] = [];
+	if (!isDuplicatedDataset(insightDataList, insightData.metaData.id)) {
+		for (const persistedSection of insightData.data) {
+			if (isValidDatasetSection(persistedSection)) {
+				insightDataSections.push(new InsightDatasetSection(
+					persistedSection[UUID],
+					persistedSection[ID],
+					persistedSection[TITLE],
+					persistedSection[INSTRUCTOR],
+					persistedSection[DEPT],
+					persistedSection[YEAR],
+					persistedSection[AVG],
+					persistedSection[PASS],
+					persistedSection[FAIL],
+					persistedSection[AUDIT]
+				));
+			}
+		}
+		insightDataList.push(new InsightData(
+			insightData.metaData.id,
+			insightData.metaData.kind,
+			insightData.metaData.numRows,
+			insightDataSections
+		));
+	}
+}
+
+function readRooms(insightData: any, insightDataList: InsightData[]) {
+	let insightDataRooms: InsightDatasetRoom[] = [];
+	if (!isDuplicatedDataset(insightDataList, insightData.metaData.id)) {
+		for (const persistedRoom of insightData.data) {
+			if (isValidRoom(persistedRoom)) {
+				insightDataRooms.push(new InsightDatasetRoom(
+					persistedRoom[FULLNAME],
+					persistedRoom[SHORTNAME],
+					persistedRoom[ADDRESS],
+					persistedRoom[LAT],
+					persistedRoom[LON],
+					persistedRoom[NUMBER],
+					persistedRoom[SEATS],
+					persistedRoom[TYPE],
+					persistedRoom[FURNITURE],
+					persistedRoom[HREF],
+				));
+			}
+		}
+		insightDataList.push(new InsightData(
+			insightData.metaData.id,
+			insightData.metaData.kind,
+			insightData.metaData.numRows,
+			insightDataRooms
+		));
+	}
+}
+
+export function writeLocal(path: string, insightDataList: InsightData[]): boolean {
 	try {
-		fs.outputJsonSync(path,  insightDataList);
-		return Promise.resolve();
+		fs.outputJsonSync(path, insightDataList);
+		return true;
 	} catch(Exception) {
-		return Promise.reject(new InsightError("There was a problem saving data to disk"));
+		return false;
 	}
 }
 
@@ -67,8 +116,16 @@ function isDuplicatedDataset(insightDataList: InsightData[], id: string): boolea
 
 function isValidDatasetSection(section: any): boolean {
 	let isValid = true;
-	for(const requiredKey of REQUIRED_DATASET_SECTION_KEYS) {
+	for(const requiredKey of SECTION_FIELD_NAMES) {
 		isValid = isValid && Object.prototype.hasOwnProperty.call(section,requiredKey.toLowerCase());
+	}
+	return isValid;
+}
+
+function isValidRoom(room: any): boolean {
+	let isValid = true;
+	for(const requiredKey of ROOMS_FIELD_NAMES) {
+		isValid = isValid && Object.prototype.hasOwnProperty.call(room, requiredKey.toLowerCase());
 	}
 	return isValid;
 }

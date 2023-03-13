@@ -1,0 +1,1408 @@
+{
+	"title": "AndPass",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_fail",
+				"sections_id",
+				"sections_year",
+				"sections_instructor"
+			],
+			"ORDER": "sections_year"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_fail": 0,
+			"sections_id": "350",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "545",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "518",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "300",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "200",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "505",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "505",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "549",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "541",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "537",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "595",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "508",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "566",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "549",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "591",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "591",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "559",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "506",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "564",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "553",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "393",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "101",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "589",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "545",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "541",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "534",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "532",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "525",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "516",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "510",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "575",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "565",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "565",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "357",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "357",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "562",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "333",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "533",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "533",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "596",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "592",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "568",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "553",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "534",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "528",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "526",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "520",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "519",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "516",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "436",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "432",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "432",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "415",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "408",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "320",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "303",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "541",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "520",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "505",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "377",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "530",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "584",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "574",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "514",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "504",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "508",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "553",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "551",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "568",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "550",
+			"sections_year": 1900,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "541",
+			"sections_year": 2007,
+			"sections_instructor": "wagner, john"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "534",
+			"sections_year": 2007,
+			"sections_instructor": "gordon, julia yulia"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "606",
+			"sections_year": 2007,
+			"sections_instructor": "porath, marion"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "596",
+			"sections_year": 2007,
+			"sections_instructor": "kishor, nand"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "482",
+			"sections_year": 2007,
+			"sections_instructor": "kishor, nand"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "279",
+			"sections_year": 2007,
+			"sections_instructor": "wassink, berend"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "520",
+			"sections_year": 2008,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "320",
+			"sections_year": 2008,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "550",
+			"sections_year": 2008,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "545",
+			"sections_year": 2009,
+			"sections_instructor": "frankish, charles james"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2009,
+			"sections_instructor": "sobolev, boris"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "553",
+			"sections_year": 2009,
+			"sections_instructor": "dunbar, w scott"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "527",
+			"sections_year": 2009,
+			"sections_instructor": "gomez, jose"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "502",
+			"sections_year": 2009,
+			"sections_instructor": "karu, kalle"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "534",
+			"sections_year": 2009,
+			"sections_instructor": "amaral, deborah;ford, laurie"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "534",
+			"sections_year": 2009,
+			"sections_instructor": "amaral, deborah;ford, laurie"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "505",
+			"sections_year": 2009,
+			"sections_instructor": "porath, marion"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 2009,
+			"sections_instructor": "cole, kenneth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 2009,
+			"sections_instructor": "cole, kenneth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 2009,
+			"sections_instructor": "cole, kenneth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "408",
+			"sections_year": 2009,
+			"sections_instructor": "porath, marion"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "303",
+			"sections_year": 2009,
+			"sections_instructor": "porath, marion"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "541",
+			"sections_year": 2009,
+			"sections_instructor": "coria, lino"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "574",
+			"sections_year": 2009,
+			"sections_instructor": "neault, roberta a"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "279",
+			"sections_year": 2009,
+			"sections_instructor": "wassink, berend"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "515",
+			"sections_year": 2010,
+			"sections_instructor": "kishchenko, svetlana"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "120",
+			"sections_year": 2010,
+			"sections_instructor": "jackson, howard"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "591",
+			"sections_year": 2010,
+			"sections_instructor": "brew, nancy"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 2010,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2010,
+			"sections_instructor": "brew, nancy"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "541",
+			"sections_year": 2010,
+			"sections_instructor": "laba, izabella"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "532",
+			"sections_year": 2010,
+			"sections_instructor": "karu, kalle"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "553",
+			"sections_year": 2010,
+			"sections_instructor": "ford, laurie"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "516",
+			"sections_year": 2010,
+			"sections_instructor": "porath, marion"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "432",
+			"sections_year": 2010,
+			"sections_instructor": "smith, gillian"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "421",
+			"sections_year": 2010,
+			"sections_instructor": "cole, kenneth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "505",
+			"sections_year": 2010,
+			"sections_instructor": "marker, michael"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "279",
+			"sections_year": 2010,
+			"sections_instructor": "wassink, berend"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "279",
+			"sections_year": 2010,
+			"sections_instructor": "wassink, berend"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "350",
+			"sections_year": 2011,
+			"sections_instructor": "mclean, jayson"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "595",
+			"sections_year": 2011,
+			"sections_instructor": "dorcey, anthony h j"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2011,
+			"sections_instructor": "brew, nancy"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "564",
+			"sections_year": 2011,
+			"sections_instructor": "dixon, david"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "545",
+			"sections_year": 2011,
+			"sections_instructor": "nachmias, asaf"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2011,
+			"sections_instructor": "marker, michael"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "528",
+			"sections_year": 2011,
+			"sections_instructor": "chan, eric"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "528",
+			"sections_year": 2011,
+			"sections_instructor": "kishor, nand"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "519",
+			"sections_year": 2011,
+			"sections_instructor": "cannon, joanna"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2011,
+			"sections_instructor": "wilk, diana"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 2011,
+			"sections_instructor": "romero, amber"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "514",
+			"sections_year": 2011,
+			"sections_instructor": "weinberg, mark"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "505",
+			"sections_year": 2012,
+			"sections_instructor": "bryson, stephanie;o'connor, deborah;stainton, timothy;sullivan, t richard;tester, frank"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "549",
+			"sections_year": 2012,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 2012,
+			"sections_instructor": "krist, jennifer"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "559",
+			"sections_year": 2012,
+			"sections_instructor": "girard, jonathan"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "393",
+			"sections_year": 2012,
+			"sections_instructor": "veiga, marcello"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "101",
+			"sections_year": 2012,
+			"sections_instructor": "mcrae, lorna"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2012,
+			"sections_instructor": "marker, michael"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "592",
+			"sections_year": 2012,
+			"sections_instructor": "kishor, nand"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "528",
+			"sections_year": 2012,
+			"sections_instructor": "kishor, nand"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2012,
+			"sections_instructor": "grow, laura"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2012,
+			"sections_instructor": "grow, laura"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "377",
+			"sections_year": 2012,
+			"sections_instructor": "magee, theresa"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2012,
+			"sections_instructor": "maillard, keith"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "530",
+			"sections_year": 2012,
+			"sections_instructor": "campbell, deborah"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "586",
+			"sections_year": 2012,
+			"sections_instructor": "munteanu, mircea"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "574",
+			"sections_year": 2012,
+			"sections_instructor": "cox, daniel"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "508",
+			"sections_year": 2012,
+			"sections_instructor": "ventura, carlos estuardo"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2012,
+			"sections_instructor": "hodgson, antony"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "568",
+			"sections_year": 2012,
+			"sections_instructor": "adelman, sharon"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "518",
+			"sections_year": 2013,
+			"sections_instructor": "pourbohloul, babak"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "566",
+			"sections_year": 2013,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 2013,
+			"sections_instructor": "burrows, marlene;harding, jillian;krist, jennifer;mccuaig, fairleth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2013,
+			"sections_instructor": "krist, jennifer;mccuaig, fairleth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "553",
+			"sections_year": 2013,
+			"sections_instructor": "dunbar, w scott"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "565",
+			"sections_year": 2013,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "499",
+			"sections_year": 2013,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "533",
+			"sections_year": 2013,
+			"sections_instructor": "milner-bolotin, marina"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "531",
+			"sections_year": 2013,
+			"sections_instructor": "petrina, stephen"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "531",
+			"sections_year": 2013,
+			"sections_instructor": "feng, francis"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "596",
+			"sections_year": 2013,
+			"sections_instructor": "kishor, nand"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "568",
+			"sections_year": 2013,
+			"sections_instructor": "weber, rachel"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "549",
+			"sections_year": 2013,
+			"sections_instructor": "grow, laura"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2013,
+			"sections_instructor": "grow, laura"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "436",
+			"sections_year": 2013,
+			"sections_instructor": "champion, kathleen"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 2013,
+			"sections_instructor": "stockman, james"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2013,
+			"sections_instructor": "adler, james douglas;scott, sandra"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "520",
+			"sections_year": 2013,
+			"sections_instructor": "vanwynsberghe, robert"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2013,
+			"sections_instructor": "grady, albert wayne"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2013,
+			"sections_instructor": "galloway, steve"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2013,
+			"sections_instructor": "maillard, keith"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "584",
+			"sections_year": 2013,
+			"sections_instructor": "carter, john"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "584",
+			"sections_year": 2013,
+			"sections_instructor": "cox, daniel"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "551",
+			"sections_year": 2013,
+			"sections_instructor": "gopaluni, bhushan"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "551",
+			"sections_year": 2014,
+			"sections_instructor": "gill, deana"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "505",
+			"sections_year": 2014,
+			"sections_instructor": "gill, deana"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "403",
+			"sections_year": 2014,
+			"sections_instructor": "lalji, fawziah;seto, katherine"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2014,
+			"sections_instructor": "harding, jillian"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "565",
+			"sections_year": 2014,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "357",
+			"sections_year": 2014,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "533",
+			"sections_year": 2014,
+			"sections_instructor": "milner-bolotin, marina"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "592",
+			"sections_year": 2014,
+			"sections_instructor": "wu, amery"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "526",
+			"sections_year": 2014,
+			"sections_instructor": "mcquarrie, maureen"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2014,
+			"sections_instructor": "grow, laura"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "449",
+			"sections_year": 2014,
+			"sections_instructor": "grow, laura"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "312",
+			"sections_year": 2014,
+			"sections_instructor": "gaster, sean"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2014,
+			"sections_instructor": "maillard, keith"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2014,
+			"sections_instructor": "taylor, timothy"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2014,
+			"sections_instructor": "campbell, deborah"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "599",
+			"sections_year": 2014,
+			"sections_instructor": "medved, maureen"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "300",
+			"sections_year": 2015,
+			"sections_instructor": "frank, erica"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "200",
+			"sections_year": 2015,
+			"sections_instructor": "frankish, charles james"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "537",
+			"sections_year": 2015,
+			"sections_instructor": "sochting, ingrid"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "501",
+			"sections_year": 2015,
+			"sections_instructor": "de longis, anita"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "508",
+			"sections_year": 2015,
+			"sections_instructor": "stamp, philip c"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "578",
+			"sections_year": 2015,
+			"sections_instructor": "burrows, marlene;harding, jillian;krist, jennifer;mccuaig, fairleth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "509",
+			"sections_year": 2015,
+			"sections_instructor": "krist, jennifer"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "506",
+			"sections_year": 2015,
+			"sections_instructor": "girard, jonathan"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "516",
+			"sections_year": 2015,
+			"sections_instructor": "wei, juncheng"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "510",
+			"sections_year": 2015,
+			"sections_instructor": "murugan, mathav"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "575",
+			"sections_year": 2015,
+			"sections_instructor": "farrell, adam"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "562",
+			"sections_year": 2015,
+			"sections_instructor": "timko, joleen"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "333",
+			"sections_year": 2015,
+			"sections_instructor": "wenzek, rob"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "432",
+			"sections_year": 2015,
+			"sections_instructor": "ervin, ruth"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "415",
+			"sections_year": 2015,
+			"sections_instructor": "levinson, tami"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "411",
+			"sections_year": 2015,
+			"sections_instructor": "mceachern hughes, tammy"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "500",
+			"sections_year": 2015,
+			"sections_instructor": "morgan, tannis"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "504",
+			"sections_year": 2015,
+			"sections_instructor": "owens, rhea"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "553",
+			"sections_year": 2015,
+			"sections_instructor": "gopaluni, bhushan"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "329",
+			"sections_year": 2015,
+			"sections_instructor": "bishundayal, deonarine"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "591",
+			"sections_year": 2016,
+			"sections_instructor": "burrows, marlene"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "525",
+			"sections_year": 2016,
+			"sections_instructor": "fraser, ailana"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "357",
+			"sections_year": 2016,
+			"sections_instructor": ""
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "521",
+			"sections_year": 2016,
+			"sections_instructor": "marker, michael"
+		},
+		{
+			"sections_fail": 0,
+			"sections_id": "592",
+			"sections_year": 2016,
+			"sections_instructor": "wu, amery"
+		}
+	]
+}
