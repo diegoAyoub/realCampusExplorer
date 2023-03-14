@@ -37,13 +37,6 @@ export class QueryEngineHelper {
 				});
 			}
 		}
-		for(let section of result){
-			for(let key in section) {
-				if(!this.wantedColumns.includes(key)) {
-					delete section[key];
-				}
-			}
-		}
 
 		if(Object.prototype.hasOwnProperty.call(this.query, "TRANSFORMATION")){
 			let newResult: InsightResult[][] = this.handleTransformation(result, this.query);
@@ -51,6 +44,13 @@ export class QueryEngineHelper {
 			for(let group of newResult){
 				for(let section of group){
 					result.push(section);
+				}
+			}
+		}
+		for(let section of result){
+			for(let key in section) {
+				if(!this.wantedColumns.includes(key)) {
+					delete section[key];
 				}
 			}
 		}
@@ -63,13 +63,10 @@ export class QueryEngineHelper {
 		let groupKeyList: string[] = groupBlock;
 		let currResult: InsightResult[] = qryResult;
 		let groups: InsightResult[][] = [];
-		while(groupKeyList.length !== 0) {
-			let hGroupResult = this.handleGroup(groupKeyList[0],qryResult, groups);
-			groups.push(...this.handleGroup(groupKeyList[0], qryResult, groups));
-			groupKeyList.shift();
-				 //	@todo figure out this logic of 2d arrays and 1d array of groups
-		}
-
+		let hGroupResult = this.handleGroup(groupKeyList[0],qryResult, groups);
+		groups.push(...this.handleGroup(groupKeyList[0], qryResult, groups));
+		groupKeyList.shift();
+		//	@todo figure out this logic of 2d arrays and 1d array of groups
 		let applyBlock = transformationBlock["APPLY"];
 		groups = this.handleApply(groups, applyBlock);
 		return groups;
@@ -99,7 +96,7 @@ export class QueryEngineHelper {
 			}
 		} else{
 			for(let res of currResult){
-				for (let section of res){
+				for (let section of res){				// [ [GROUP1], [GROUP 2]]
 					if(!visitedGroups.includes(section[key] as string)) {
 						visitedGroups.push(section[key] as string);
 						groups.push(this.getGroup(key, section[key], result));
