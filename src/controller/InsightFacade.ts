@@ -183,18 +183,29 @@ export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 // export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 // runIt();
 let query = {
-	WHERE: {
-		IS: {
-			sections_dept: "*e"
-		}
-	},
+	WHERE: {},
 	OPTIONS: {
 		COLUMNS: [
-			"sections_fail",
-			"sections_id",
-			"sections_year",
-			"sections_dept"
+			"rooms_shortname",
+			"maxSeats"
 		],
-		ORDER: "sections_year"
+		ORDER: {
+			dir: "DOWN",
+			keys: [
+				"maxSeats"
+			]
+		}
+	},
+	TRANSFORMATIONS: {
+		GROUP: [
+			"rooms_shortname"
+		],
+		APPLY: [
+			{
+				maxSeats: {
+					MAX: "rooms_seats"
+				}
+			}
+		]
 	}
 };
