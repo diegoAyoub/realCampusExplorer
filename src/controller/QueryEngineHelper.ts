@@ -186,7 +186,15 @@ export class QueryEngineHelper {
 	}
 
 	public findCOUNT(sections: InsightResult[], col: string): number {
-		return sections.length;
+		let seenField: any[] = [];
+		let count = 0;
+		for(let section of sections) {
+			if(!seenField.includes(section[col])) {
+				seenField.push(section[col]);
+				count++;
+			}
+		}
+		return count;
 	}
 }
 
