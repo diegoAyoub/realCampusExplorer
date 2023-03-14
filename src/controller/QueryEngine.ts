@@ -41,12 +41,9 @@ export class QueryEngine {
 		let results: any[] = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
 			return Promise.reject("Invalid Query");
-		} else if(results.length > 5000) {
-			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
 		} else {
-			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey,
-				this.selectedColumns, this.query);
-			return Promise.resolve(resultFormatter.getFormattedResult());
+			let result = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns, this.query);
+			return result.getFormattedResult();
 		}
 	}
 

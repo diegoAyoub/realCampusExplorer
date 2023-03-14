@@ -1,7 +1,7 @@
 import {
 	InsightDatasetRoom,
 	InsightDatasetSection,
-	InsightResult,
+	InsightResult, ResultTooLargeError,
 } from "./IInsightFacade";
 import {APPLY, AVG, COUNT, GROUP, MAX, MIN, NUMBER_FIELDS, STRING_FIELDS, SUM, TRANSFORMATIONS} from "./Constants";
 import Decimal from "decimal.js";
@@ -26,7 +26,7 @@ export class QueryEngineHelper {
 	}
 
 	//	filters columns and orders them if required. Returns an insightResult Array.
-	public getFormattedResult(): InsightResult[] {
+	public getFormattedResult(): Promise<InsightResult[]> {
 		let result: InsightResult[] = this.filteredSections.map((section) => section.prefixJson(this.qryID));
 		if(this.orderBy !== ""){
 			if(NUMBER_FIELDS.includes(this.orderBy.split("_")[1])) {
@@ -42,6 +42,9 @@ export class QueryEngineHelper {
 			result = this.handleTransformation(result, this.query);
 			// console.log(newResult);
 		}
+		if(result.length > 5000) {
+			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
+		}
 		for(let section of result){
 			for(let key in section) {
 				if(!this.wantedColumns.includes(key)) {
@@ -50,7 +53,7 @@ export class QueryEngineHelper {
 			}
 		}
 
-		return result;
+		return Promise.resolve(result);
 	}
 
 	public handleTransformation(qryResult: InsightResult[], qry: any): InsightResult[] {

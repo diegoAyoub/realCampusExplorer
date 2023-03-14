@@ -1,0 +1,984 @@
+{
+	"title": "should pass query non trivial transformation query on sections",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"justaKey",
+				"maxSeats"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"maxSeats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept"
+			],
+			"APPLY": [
+				{
+					"maxSeats": {
+						"MAX": "sections_pass"
+					}
+				},
+				{
+					"justaKey": {
+						"COUNT": "sections_instructor"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "engl",
+			"justaKey": 151,
+			"maxSeats": 2994
+		},
+		{
+			"sections_dept": "econ",
+			"justaKey": 125,
+			"maxSeats": 2438
+		},
+		{
+			"sections_dept": "psyc",
+			"justaKey": 147,
+			"maxSeats": 2289
+		},
+		{
+			"sections_dept": "eosc",
+			"justaKey": 219,
+			"maxSeats": 2016
+		},
+		{
+			"sections_dept": "wrds",
+			"justaKey": 22,
+			"maxSeats": 1856
+		},
+		{
+			"sections_dept": "biol",
+			"justaKey": 289,
+			"maxSeats": 1817
+		},
+		{
+			"sections_dept": "chem",
+			"justaKey": 171,
+			"maxSeats": 1762
+		},
+		{
+			"sections_dept": "phys",
+			"justaKey": 143,
+			"maxSeats": 1558
+		},
+		{
+			"sections_dept": "math",
+			"justaKey": 390,
+			"maxSeats": 1390
+		},
+		{
+			"sections_dept": "comm",
+			"justaKey": 339,
+			"maxSeats": 1367
+		},
+		{
+			"sections_dept": "phil",
+			"justaKey": 58,
+			"maxSeats": 1245
+		},
+		{
+			"sections_dept": "crwr",
+			"justaKey": 32,
+			"maxSeats": 1111
+		},
+		{
+			"sections_dept": "cpsc",
+			"justaKey": 89,
+			"maxSeats": 966
+		},
+		{
+			"sections_dept": "poli",
+			"justaKey": 64,
+			"maxSeats": 917
+		},
+		{
+			"sections_dept": "stat",
+			"justaKey": 37,
+			"maxSeats": 827
+		},
+		{
+			"sections_dept": "apsc",
+			"justaKey": 85,
+			"maxSeats": 810
+		},
+		{
+			"sections_dept": "micb",
+			"justaKey": 53,
+			"maxSeats": 740
+		},
+		{
+			"sections_dept": "clst",
+			"justaKey": 38,
+			"maxSeats": 730
+		},
+		{
+			"sections_dept": "ling",
+			"justaKey": 42,
+			"maxSeats": 641
+		},
+		{
+			"sections_dept": "germ",
+			"justaKey": 57,
+			"maxSeats": 597
+		},
+		{
+			"sections_dept": "caps",
+			"justaKey": 23,
+			"maxSeats": 583
+		},
+		{
+			"sections_dept": "fmst",
+			"justaKey": 16,
+			"maxSeats": 566
+		},
+		{
+			"sections_dept": "geob",
+			"justaKey": 66,
+			"maxSeats": 565
+		},
+		{
+			"sections_dept": "bioc",
+			"justaKey": 50,
+			"maxSeats": 542
+		},
+		{
+			"sections_dept": "span",
+			"justaKey": 70,
+			"maxSeats": 534
+		},
+		{
+			"sections_dept": "fnh",
+			"justaKey": 1,
+			"maxSeats": 518
+		},
+		{
+			"sections_dept": "japn",
+			"justaKey": 30,
+			"maxSeats": 500
+		},
+		{
+			"sections_dept": "geog",
+			"justaKey": 104,
+			"maxSeats": 472
+		},
+		{
+			"sections_dept": "scie",
+			"justaKey": 92,
+			"maxSeats": 472
+		},
+		{
+			"sections_dept": "astr",
+			"justaKey": 25,
+			"maxSeats": 462
+		},
+		{
+			"sections_dept": "soci",
+			"justaKey": 45,
+			"maxSeats": 450
+		},
+		{
+			"sections_dept": "visa",
+			"justaKey": 35,
+			"maxSeats": 442
+		},
+		{
+			"sections_dept": "chin",
+			"justaKey": 26,
+			"maxSeats": 436
+		},
+		{
+			"sections_dept": "fren",
+			"justaKey": 133,
+			"maxSeats": 435
+		},
+		{
+			"sections_dept": "asia",
+			"justaKey": 59,
+			"maxSeats": 409
+		},
+		{
+			"sections_dept": "lfs",
+			"justaKey": 1,
+			"maxSeats": 360
+		},
+		{
+			"sections_dept": "hist",
+			"justaKey": 104,
+			"maxSeats": 353
+		},
+		{
+			"sections_dept": "busi",
+			"justaKey": 50,
+			"maxSeats": 321
+		},
+		{
+			"sections_dept": "elec",
+			"justaKey": 47,
+			"maxSeats": 307
+		},
+		{
+			"sections_dept": "lled",
+			"justaKey": 72,
+			"maxSeats": 304
+		},
+		{
+			"sections_dept": "civl",
+			"justaKey": 115,
+			"maxSeats": 285
+		},
+		{
+			"sections_dept": "cons",
+			"justaKey": 23,
+			"maxSeats": 284
+		},
+		{
+			"sections_dept": "cens",
+			"justaKey": 25,
+			"maxSeats": 279
+		},
+		{
+			"sections_dept": "ital",
+			"justaKey": 20,
+			"maxSeats": 272
+		},
+		{
+			"sections_dept": "fist",
+			"justaKey": 17,
+			"maxSeats": 270
+		},
+		{
+			"sections_dept": "cogs",
+			"justaKey": 35,
+			"maxSeats": 262
+		},
+		{
+			"sections_dept": "kin",
+			"justaKey": 1,
+			"maxSeats": 258
+		},
+		{
+			"sections_dept": "cpen",
+			"justaKey": 18,
+			"maxSeats": 256
+		},
+		{
+			"sections_dept": "frst",
+			"justaKey": 84,
+			"maxSeats": 245
+		},
+		{
+			"sections_dept": "mech",
+			"justaKey": 127,
+			"maxSeats": 240
+		},
+		{
+			"sections_dept": "grsj",
+			"justaKey": 33,
+			"maxSeats": 238
+		},
+		{
+			"sections_dept": "phar",
+			"justaKey": 90,
+			"maxSeats": 234
+		},
+		{
+			"sections_dept": "apbi",
+			"justaKey": 55,
+			"maxSeats": 233
+		},
+		{
+			"sections_dept": "bafi",
+			"justaKey": 25,
+			"maxSeats": 233
+		},
+		{
+			"sections_dept": "bahr",
+			"justaKey": 14,
+			"maxSeats": 222
+		},
+		{
+			"sections_dept": "phrm",
+			"justaKey": 6,
+			"maxSeats": 218
+		},
+		{
+			"sections_dept": "cnps",
+			"justaKey": 100,
+			"maxSeats": 214
+		},
+		{
+			"sections_dept": "anth",
+			"justaKey": 41,
+			"maxSeats": 212
+		},
+		{
+			"sections_dept": "ba",
+			"justaKey": 1,
+			"maxSeats": 209
+		},
+		{
+			"sections_dept": "chbe",
+			"justaKey": 64,
+			"maxSeats": 208
+		},
+		{
+			"sections_dept": "pcth",
+			"justaKey": 27,
+			"maxSeats": 208
+		},
+		{
+			"sections_dept": "bapa",
+			"justaKey": 8,
+			"maxSeats": 205
+		},
+		{
+			"sections_dept": "bama",
+			"justaKey": 20,
+			"maxSeats": 203
+		},
+		{
+			"sections_dept": "vant",
+			"justaKey": 14,
+			"maxSeats": 203
+		},
+		{
+			"sections_dept": "educ",
+			"justaKey": 61,
+			"maxSeats": 202
+		},
+		{
+			"sections_dept": "baac",
+			"justaKey": 15,
+			"maxSeats": 201
+		},
+		{
+			"sections_dept": "adhe",
+			"justaKey": 15,
+			"maxSeats": 193
+		},
+		{
+			"sections_dept": "thtr",
+			"justaKey": 66,
+			"maxSeats": 191
+		},
+		{
+			"sections_dept": "law",
+			"justaKey": 1,
+			"maxSeats": 190
+		},
+		{
+			"sections_dept": "basm",
+			"justaKey": 15,
+			"maxSeats": 188
+		},
+		{
+			"sections_dept": "epse",
+			"justaKey": 124,
+			"maxSeats": 185
+		},
+		{
+			"sections_dept": "arcl",
+			"justaKey": 7,
+			"maxSeats": 184
+		},
+		{
+			"sections_dept": "ends",
+			"justaKey": 30,
+			"maxSeats": 160
+		},
+		{
+			"sections_dept": "coec",
+			"justaKey": 6,
+			"maxSeats": 156
+		},
+		{
+			"sections_dept": "basc",
+			"justaKey": 8,
+			"maxSeats": 153
+		},
+		{
+			"sections_dept": "musc",
+			"justaKey": 76,
+			"maxSeats": 148
+		},
+		{
+			"sections_dept": "path",
+			"justaKey": 84,
+			"maxSeats": 148
+		},
+		{
+			"sections_dept": "babs",
+			"justaKey": 12,
+			"maxSeats": 140
+		},
+		{
+			"sections_dept": "latn",
+			"justaKey": 9,
+			"maxSeats": 135
+		},
+		{
+			"sections_dept": "arth",
+			"justaKey": 47,
+			"maxSeats": 131
+		},
+		{
+			"sections_dept": "astu",
+			"justaKey": 8,
+			"maxSeats": 121
+		},
+		{
+			"sections_dept": "fre",
+			"justaKey": 1,
+			"maxSeats": 121
+		},
+		{
+			"sections_dept": "nurs",
+			"justaKey": 125,
+			"maxSeats": 120
+		},
+		{
+			"sections_dept": "sowk",
+			"justaKey": 77,
+			"maxSeats": 116
+		},
+		{
+			"sections_dept": "spph",
+			"justaKey": 90,
+			"maxSeats": 113
+		},
+		{
+			"sections_dept": "nest",
+			"justaKey": 9,
+			"maxSeats": 111
+		},
+		{
+			"sections_dept": "mine",
+			"justaKey": 39,
+			"maxSeats": 109
+		},
+		{
+			"sections_dept": "etec",
+			"justaKey": 39,
+			"maxSeats": 107
+		},
+		{
+			"sections_dept": "russ",
+			"justaKey": 10,
+			"maxSeats": 105
+		},
+		{
+			"sections_dept": "relg",
+			"justaKey": 18,
+			"maxSeats": 104
+		},
+		{
+			"sections_dept": "edcp",
+			"justaKey": 48,
+			"maxSeats": 102
+		},
+		{
+			"sections_dept": "atsc",
+			"justaKey": 14,
+			"maxSeats": 101
+		},
+		{
+			"sections_dept": "mtrl",
+			"justaKey": 78,
+			"maxSeats": 95
+		},
+		{
+			"sections_dept": "bait",
+			"justaKey": 15,
+			"maxSeats": 94
+		},
+		{
+			"sections_dept": "fipr",
+			"justaKey": 30,
+			"maxSeats": 94
+		},
+		{
+			"sections_dept": "envr",
+			"justaKey": 27,
+			"maxSeats": 92
+		},
+		{
+			"sections_dept": "fnis",
+			"justaKey": 8,
+			"maxSeats": 92
+		},
+		{
+			"sections_dept": "wood",
+			"justaKey": 30,
+			"maxSeats": 91
+		},
+		{
+			"sections_dept": "laso",
+			"justaKey": 6,
+			"maxSeats": 89
+		},
+		{
+			"sections_dept": "audi",
+			"justaKey": 52,
+			"maxSeats": 87
+		},
+		{
+			"sections_dept": "asic",
+			"justaKey": 3,
+			"maxSeats": 86
+		},
+		{
+			"sections_dept": "anat",
+			"justaKey": 5,
+			"maxSeats": 83
+		},
+		{
+			"sections_dept": "phth",
+			"justaKey": 14,
+			"maxSeats": 83
+		},
+		{
+			"sections_dept": "rhsc",
+			"justaKey": 22,
+			"maxSeats": 81
+		},
+		{
+			"sections_dept": "scan",
+			"justaKey": 5,
+			"maxSeats": 78
+		},
+		{
+			"sections_dept": "dhyg",
+			"justaKey": 30,
+			"maxSeats": 75
+		},
+		{
+			"sections_dept": "libr",
+			"justaKey": 45,
+			"maxSeats": 75
+		},
+		{
+			"sections_dept": "urst",
+			"justaKey": 5,
+			"maxSeats": 75
+		},
+		{
+			"sections_dept": "eced",
+			"justaKey": 19,
+			"maxSeats": 72
+		},
+		{
+			"sections_dept": "libe",
+			"justaKey": 17,
+			"maxSeats": 71
+		},
+		{
+			"sections_dept": "appp",
+			"justaKey": 5,
+			"maxSeats": 70
+		},
+		{
+			"sections_dept": "baen",
+			"justaKey": 18,
+			"maxSeats": 69
+		},
+		{
+			"sections_dept": "bams",
+			"justaKey": 18,
+			"maxSeats": 69
+		},
+		{
+			"sections_dept": "korn",
+			"justaKey": 8,
+			"maxSeats": 67
+		},
+		{
+			"sections_dept": "plan",
+			"justaKey": 26,
+			"maxSeats": 65
+		},
+		{
+			"sections_dept": "edst",
+			"justaKey": 51,
+			"maxSeats": 64
+		},
+		{
+			"sections_dept": "enph",
+			"justaKey": 12,
+			"maxSeats": 64
+		},
+		{
+			"sections_dept": "arch",
+			"justaKey": 85,
+			"maxSeats": 62
+		},
+		{
+			"sections_dept": "cnrs",
+			"justaKey": 7,
+			"maxSeats": 60
+		},
+		{
+			"sections_dept": "dent",
+			"justaKey": 30,
+			"maxSeats": 59
+		},
+		{
+			"sections_dept": "igen",
+			"justaKey": 13,
+			"maxSeats": 59
+		},
+		{
+			"sections_dept": "fopr",
+			"justaKey": 6,
+			"maxSeats": 58
+		},
+		{
+			"sections_dept": "bala",
+			"justaKey": 3,
+			"maxSeats": 57
+		},
+		{
+			"sections_dept": "swed",
+			"justaKey": 2,
+			"maxSeats": 57
+		},
+		{
+			"sections_dept": "jrnl",
+			"justaKey": 7,
+			"maxSeats": 56
+		},
+		{
+			"sections_dept": "eece",
+			"justaKey": 47,
+			"maxSeats": 55
+		},
+		{
+			"sections_dept": "isci",
+			"justaKey": 20,
+			"maxSeats": 54
+		},
+		{
+			"sections_dept": "rsot",
+			"justaKey": 9,
+			"maxSeats": 54
+		},
+		{
+			"sections_dept": "ufor",
+			"justaKey": 3,
+			"maxSeats": 54
+		},
+		{
+			"sections_dept": "mdvl",
+			"justaKey": 6,
+			"maxSeats": 51
+		},
+		{
+			"sections_dept": "punj",
+			"justaKey": 4,
+			"maxSeats": 51
+		},
+		{
+			"sections_dept": "medi",
+			"justaKey": 10,
+			"maxSeats": 49
+		},
+		{
+			"sections_dept": "cohr",
+			"justaKey": 23,
+			"maxSeats": 47
+		},
+		{
+			"sections_dept": "last",
+			"justaKey": 9,
+			"maxSeats": 47
+		},
+		{
+			"sections_dept": "baul",
+			"justaKey": 3,
+			"maxSeats": 46
+		},
+		{
+			"sections_dept": "bmeg",
+			"justaKey": 17,
+			"maxSeats": 44
+		},
+		{
+			"sections_dept": "spha",
+			"justaKey": 38,
+			"maxSeats": 44
+		},
+		{
+			"sections_dept": "arbc",
+			"justaKey": 2,
+			"maxSeats": 40
+		},
+		{
+			"sections_dept": "info",
+			"justaKey": 2,
+			"maxSeats": 40
+		},
+		{
+			"sections_dept": "fnel",
+			"justaKey": 8,
+			"maxSeats": 38
+		},
+		{
+			"sections_dept": "rmst",
+			"justaKey": 3,
+			"maxSeats": 38
+		},
+		{
+			"sections_dept": "medg",
+			"justaKey": 37,
+			"maxSeats": 37
+		},
+		{
+			"sections_dept": "itst",
+			"justaKey": 7,
+			"maxSeats": 36
+		},
+		{
+			"sections_dept": "larc",
+			"justaKey": 47,
+			"maxSeats": 36
+		},
+		{
+			"sections_dept": "nrsc",
+			"justaKey": 2,
+			"maxSeats": 36
+		},
+		{
+			"sections_dept": "pols",
+			"justaKey": 3,
+			"maxSeats": 36
+		},
+		{
+			"sections_dept": "port",
+			"justaKey": 5,
+			"maxSeats": 36
+		},
+		{
+			"sections_dept": "arst",
+			"justaKey": 32,
+			"maxSeats": 35
+		},
+		{
+			"sections_dept": "cics",
+			"justaKey": 6,
+			"maxSeats": 35
+		},
+		{
+			"sections_dept": "food",
+			"justaKey": 21,
+			"maxSeats": 31
+		},
+		{
+			"sections_dept": "ceen",
+			"justaKey": 7,
+			"maxSeats": 30
+		},
+		{
+			"sections_dept": "gpp",
+			"justaKey": 1,
+			"maxSeats": 28
+		},
+		{
+			"sections_dept": "surg",
+			"justaKey": 5,
+			"maxSeats": 28
+		},
+		{
+			"sections_dept": "grek",
+			"justaKey": 6,
+			"maxSeats": 27
+		},
+		{
+			"sections_dept": "hinu",
+			"justaKey": 4,
+			"maxSeats": 25
+		},
+		{
+			"sections_dept": "rgla",
+			"justaKey": 3,
+			"maxSeats": 25
+		},
+		{
+			"sections_dept": "hebr",
+			"justaKey": 4,
+			"maxSeats": 24
+		},
+		{
+			"sections_dept": "pers",
+			"justaKey": 2,
+			"maxSeats": 24
+		},
+		{
+			"sections_dept": "rmes",
+			"justaKey": 27,
+			"maxSeats": 24
+		},
+		{
+			"sections_dept": "bota",
+			"justaKey": 10,
+			"maxSeats": 23
+		},
+		{
+			"sections_dept": "iwme",
+			"justaKey": 2,
+			"maxSeats": 23
+		},
+		{
+			"sections_dept": "onco",
+			"justaKey": 4,
+			"maxSeats": 23
+		},
+		{
+			"sections_dept": "dani",
+			"justaKey": 2,
+			"maxSeats": 22
+		},
+		{
+			"sections_dept": "hgse",
+			"justaKey": 2,
+			"maxSeats": 21
+		},
+		{
+			"sections_dept": "midw",
+			"justaKey": 26,
+			"maxSeats": 21
+		},
+		{
+			"sections_dept": "cnto",
+			"justaKey": 2,
+			"maxSeats": 20
+		},
+		{
+			"sections_dept": "cell",
+			"justaKey": 12,
+			"maxSeats": 19
+		},
+		{
+			"sections_dept": "gsat",
+			"justaKey": 7,
+			"maxSeats": 18
+		},
+		{
+			"sections_dept": "biof",
+			"justaKey": 6,
+			"maxSeats": 16
+		},
+		{
+			"sections_dept": "clch",
+			"justaKey": 4,
+			"maxSeats": 16
+		},
+		{
+			"sections_dept": "name",
+			"justaKey": 11,
+			"maxSeats": 16
+		},
+		{
+			"sections_dept": "soil",
+			"justaKey": 11,
+			"maxSeats": 16
+		},
+		{
+			"sections_dept": "udes",
+			"justaKey": 6,
+			"maxSeats": 16
+		},
+		{
+			"sections_dept": "fhis",
+			"justaKey": 2,
+			"maxSeats": 15
+		},
+		{
+			"sections_dept": "ccst",
+			"justaKey": 12,
+			"maxSeats": 13
+		},
+		{
+			"sections_dept": "zool",
+			"justaKey": 6,
+			"maxSeats": 13
+		},
+		{
+			"sections_dept": "obst",
+			"justaKey": 10,
+			"maxSeats": 12
+		},
+		{
+			"sections_dept": "ursy",
+			"justaKey": 3,
+			"maxSeats": 12
+		},
+		{
+			"sections_dept": "hunu",
+			"justaKey": 6,
+			"maxSeats": 11
+		},
+		{
+			"sections_dept": "sans",
+			"justaKey": 4,
+			"maxSeats": 11
+		},
+		{
+			"sections_dept": "fish",
+			"justaKey": 9,
+			"maxSeats": 10
+		},
+		{
+			"sections_dept": "aanb",
+			"justaKey": 1,
+			"maxSeats": 9
+		},
+		{
+			"sections_dept": "chil",
+			"justaKey": 1,
+			"maxSeats": 8
+		},
+		{
+			"sections_dept": "gbpr",
+			"justaKey": 2,
+			"maxSeats": 8
+		},
+		{
+			"sections_dept": "sts",
+			"justaKey": 1,
+			"maxSeats": 8
+		},
+		{
+			"sections_dept": "lais",
+			"justaKey": 2,
+			"maxSeats": 7
+		},
+		{
+			"sections_dept": "mrne",
+			"justaKey": 2,
+			"maxSeats": 7
+		},
+		{
+			"sections_dept": "iar",
+			"justaKey": 1,
+			"maxSeats": 5
+		},
+		{
+			"sections_dept": "test",
+			"justaKey": 1,
+			"maxSeats": 3
+		}
+	]
+}
