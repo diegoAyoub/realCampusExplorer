@@ -183,18 +183,18 @@ export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 // export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 // runIt();
 let query = {
-	WHERE: {
-		IS: {
-			sections_dept: "*e"
-		}
-	},
+	WHERE: {},
 	OPTIONS: {
 		COLUMNS: [
-			"sections_fail",
-			"sections_id",
-			"sections_year",
-			"sections_dept"
+			"rooms_fullname",
+			"rooms_shortname",
+			"rooms_address",
+			"rooms_href",
+			"rooms_seats",
+			"rooms_furniture",
+			"rooms_type",
+			"rooms_name"
 		],
-		ORDER: "sections_year"
+		ORDER: "rooms_href"
 	}
 };
