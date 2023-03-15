@@ -216,7 +216,6 @@ export class QueryValidator {
 
 	private isValidOrder(orderValue: any) {
 		if(typeof orderValue === "string") {
-			this.queryEngine.setOrderKeys([orderValue]);
 			return this.isValidKey(orderValue);
 		} else {
 			let hasTwoKeys = Object.keys(orderValue).length === 2;
@@ -230,7 +229,6 @@ export class QueryValidator {
 				let isValidDirection = DIRECTIONS.includes(orderValue[DIR]);
 				let isKeysAnArrayOfStrings = orderValue[KEYS].every((key: any) => typeof key === "string");
 				let isKeyAColumnKey = orderValue[KEYS].every((key: any) => this.isValidOrderKeyListEntry(key));
-				this.queryEngine.setOrderKeys(orderValue[KEYS]);
 				this.queryEngine.setOrderDir(orderValue[DIR]);
 				return hasKeys && isValidDirection && isKeysAnArray && isKeysAnArrayOfStrings && isKeyAColumnKey;
 			}

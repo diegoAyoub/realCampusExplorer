@@ -186,26 +186,15 @@ let query = {
 	WHERE: {},
 	OPTIONS: {
 		COLUMNS: [
+			"rooms_fullname",
 			"rooms_shortname",
-			"maxSeats"
+			"rooms_address",
+			"rooms_href",
+			"rooms_seats",
+			"rooms_furniture",
+			"rooms_type",
+			"rooms_name"
 		],
-		ORDER: {
-			dir: "DOWN",
-			keys: [
-				"maxSeats"
-			]
-		}
-	},
-	TRANSFORMATIONS: {
-		GROUP: [
-			"rooms_shortname"
-		],
-		APPLY: [
-			{
-				maxSeats: {
-					MAX: "rooms_seats"
-				}
-			}
-		]
+		ORDER: "rooms_href"
 	}
 };

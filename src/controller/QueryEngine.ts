@@ -44,8 +44,7 @@ export class QueryEngine {
 		if (results === null || results === undefined) {
 			return Promise.reject("Invalid Query");
 		} else {
-			let result = new QueryEngineHelper(this.qryID, results, this.orderKey,
-				this.selectedColumns, this.query, this.orderKeys, this.orderDir);
+			let result = new QueryEngineHelper(results, this.query, this);
 			return result.getFormattedResult();
 		}
 	}
@@ -106,6 +105,10 @@ export class QueryEngine {
 
 	public setOrderDir(orderDir: string){
 		this.orderDir = orderDir;
+	}
+
+	public getOrderDir(): string {
+		return this.orderDir;
 	}
 
 	public getOrderKeys(): string[] {

@@ -389,7 +389,7 @@ describe("InsightFacade", function () {
 		}
 
 		function assertOnResult(actual: unknown, expected: Output): void {
-			expect(actual).to.have.deep.members(expected);
+			expect(actual).to.have.deep.equal(expected);
 		}
 
 		function target(input: Input): Promise<Output> {
@@ -398,6 +398,47 @@ describe("InsightFacade", function () {
 		}
 
 		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/roomqueries", {
+			errorValidator,
+			assertOnError,
+			assertOnResult,
+		});
+	});
+
+	describe("performQuery - FAILING TESTS", function () {
+		before(async function () {
+			clearDisk();
+			facade = new InsightFacade();
+			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+			await facade.addDataset("rooms", validRoomDataset, InsightDatasetKind.Rooms);
+			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
+			newFacade = new InsightFacade();
+		});
+
+		function errorValidator(error: any): error is Error {
+			return error === "InsightError" || error === "ResultTooLargeError";
+		}
+
+		function assertOnError(actual: any, expected: Error): void {
+			if (expected === "InsightError") {
+				expect(actual).to.be.instanceof(InsightError);
+			} else if (expected === "ResultTooLargeError") {
+				expect(actual).to.be.instanceof(ResultTooLargeError);
+			} else {
+				// this should be unreachable
+				expect.fail("UNEXPECTED ERROR");
+			}
+		}
+
+		function assertOnResult(actual: unknown, expected: Output): void {
+			expect(actual).to.have.deep.equal(expected);
+		}
+
+		function target(input: Input): Promise<Output> {
+			// console.log(input);
+			return newFacade.performQuery(input);
+		}
+
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/mismatchingtypesqueries", {
 			errorValidator,
 			assertOnError,
 			assertOnResult,
