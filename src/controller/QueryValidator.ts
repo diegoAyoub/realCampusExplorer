@@ -231,6 +231,7 @@ export class QueryValidator {
 				let isKeysAnArrayOfStrings = orderValue[KEYS].every((key: any) => typeof key === "string");
 				let isKeyAColumnKey = orderValue[KEYS].every((key: any) => this.isValidOrderKeyListEntry(key));
 				this.queryEngine.setOrderKeys(orderValue[KEYS]);
+				this.queryEngine.setOrderDir(orderValue[DIR]);
 				return hasKeys && isValidDirection && isKeysAnArray && isKeysAnArrayOfStrings && isKeyAColumnKey;
 			}
 		}
