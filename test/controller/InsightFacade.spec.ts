@@ -325,7 +325,7 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	describe("performQuery - section", function () {
+	describe("performQuery - c1", function () {
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
@@ -363,7 +363,7 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	describe("performQuery - rooms", function () {
+	describe("performQuery - c2", function () {
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
