@@ -3,7 +3,7 @@ import {
 	InsightDatasetSection,
 	InsightResult, ResultTooLargeError,
 } from "./IInsightFacade";
-import {APPLY, AVG, COUNT, GROUP, MAX,
+import {APPLY, APPLY_TOKEN_AVG, COUNT, GROUP, MAX,
 	MIN, NUMBER_FIELDS, STRING_FIELDS, SUM, TRANSFORMATIONS,UP,DOWN} from "./Constants";
 import Decimal from "decimal.js";
 import {QueryEngine} from "./QueryEngine";
@@ -99,6 +99,7 @@ export class QueryEngineHelper {
 		for (let applyOperation of applyBlock) {
 			let column = Object.keys(applyOperation)[0];
 			appliedGroups[column] = this.apply(groups, applyOperation[column]);
+			//	console.log(appliedGroups);
 		}
 		return appliedGroups;
 	}
@@ -107,39 +108,31 @@ export class QueryEngineHelper {
 		let applySubBlock = applyBlock;
 		let operation = Object.keys(applySubBlock)[0];
 		let col = applySubBlock[operation];
-		switch (operation) {
-			case AVG : {
-				return this.findAVG(group, col);
+		//	console.log(operation);
+		switch(operation) {
+			case APPLY_TOKEN_AVG : {
+				return this.findAVG(group,col);
 			}
 			case MIN : {
-				return this.findMIN(group, col) as number;
+				return this.findMIN(group,col) as number;
 			}
 			case MAX : {
-				return this.findMAX(group, col);
+				return this.findMAX(group,col);
 			}
 			case SUM : {
-				return this.findSUM(group, col);
+				return this.findSUM(group,col);
 			}
 			case COUNT : {
-				return this.findCOUNT(group, col);
+				return this.findCOUNT(group,col);
 			}
 		}
 		return 0;
 
 	}
 
-	public rename(section: any, oldCol: string, newCol: string): InsightResult {
-		//	@todo CHECK IF THIS WORKS???
-		Object.keys(section).forEach(function (key) {
-			let newkey = newCol;
-			section[newkey] = section[key];
-			delete section[key];
-		});
-		return section;
-	}
-
 	public handleSort(results: InsightResult[]): InsightResult[] {
 		if (this.orderDir === UP) {
+			//	console.log("up executed");
 			return this.handleSortUP(results);
 		}
 		return this.handleSortDOWN(results);
@@ -160,7 +153,7 @@ export class QueryEngineHelper {
 		let total: Decimal = new Decimal(0);
 		let len = sections.length;
 		for (let section of sections) {
-			total.add(new Decimal(section[col]));
+			total = Decimal.add(new Decimal(section[col]),total);
 		}
 		return Number((total.toNumber() / len).toFixed(2));
 	}
@@ -190,7 +183,7 @@ export class QueryEngineHelper {
 
 		let total: Decimal = new Decimal(0);
 		for (let section of sections) {
-			total.add(new Decimal(section[col]));
+			total = Decimal.add(new Decimal(section[col]), total);
 		}
 		return Number((total.toNumber()).toFixed(2));
 	}
