@@ -1,6 +1,6 @@
 import {
 	InsightData, InsightResult,
-	ResultTooLargeError,
+
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
 import {
@@ -25,6 +25,7 @@ export class QueryEngine {
 	public selectedColumns: string[];
 	public applyKeys: string[];
 	public groups: string[];
+	public orderDir: string;
 
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
@@ -35,17 +36,16 @@ export class QueryEngine {
 		this.orderKeys = [];
 		this.groups = [];
 		this.orderKey = "";
+		this.orderDir = "";
 	}
 
 	public doQuery(query: any): Promise<InsightResult[]> {
 		let results: any[] = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
 			return Promise.reject("Invalid Query");
-		} else if(results.length > 5000) {
-			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
 		} else {
-			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
-			return Promise.resolve(resultFormatter.getFormattedResult());
+			let result = new QueryEngineHelper(results, this.query, this);
+			return result.getFormattedResult();
 		}
 	}
 
@@ -101,6 +101,14 @@ export class QueryEngine {
 
 	public setOrderKeys(keys: string[]) {
 		this.orderKeys = keys;
+	}
+
+	public setOrderDir(orderDir: string){
+		this.orderDir = orderDir;
+	}
+
+	public getOrderDir(): string {
+		return this.orderDir;
 	}
 
 	public getOrderKeys(): string[] {
