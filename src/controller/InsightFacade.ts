@@ -166,34 +166,54 @@ function runIt() {
 			return Promise.resolve();
 		})
 		.then(() => facade.performQuery(query))
+		.then((result) => console.log(result))
 		.catch((err) => console.log(err));
 }
 
 // USE THIS WHEN RUNNING MOCHA
-export const PATH_TO_ROOT_DATA = "./data/data.json";
-export const PATH_TO_ROOT_DATA_FOLDER = "./data";
+// export const PATH_TO_ROOT_DATA = "./data/data.json";
+// export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 
 /*
 	~~~~~~~ UNCOMMENT STUFF UNDER HERE FOR MAIN STUFF ~~~~~~~~~~~~
  */
 
-// export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
-// export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
-// export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-// runIt();
+export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
+runIt();
 let query = {
 	WHERE: {},
 	OPTIONS: {
 		COLUMNS: [
 			"rooms_fullname",
-			"rooms_shortname",
-			"rooms_address",
-			"rooms_href",
 			"rooms_seats",
-			"rooms_furniture",
-			"rooms_type",
-			"rooms_name"
+			"SUM"
 		],
-		ORDER: "rooms_href"
+		ORDER: {
+			dir: "UP",
+			keys: [
+				"rooms_fullname",
+				"rooms_seats"
+			]
+		}
+	},
+	TRANSFORMATIONS: {
+		GROUP: [
+			"rooms_fullname",
+			"rooms_seats"
+		],
+		APPLY: [
+			{
+				SUM: {
+					SUM: "rooms_seats"
+				}
+			},
+			{
+				overaller: {
+					MAX: "rooms_seats"
+				}
+			}
+		]
 	}
 };
