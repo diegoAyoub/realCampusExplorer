@@ -114,7 +114,7 @@ export class QueryEngineHelper {
 				return this.findMIN(group, col) as number;
 			}
 			case MAX : {
-				return this.findMAX(group, col);
+				return this.findMAX(group, col) as number;
 			}
 			case SUM : {
 				return this.findSUM(group, col);
@@ -158,10 +158,10 @@ export class QueryEngineHelper {
 
 	}
 
-	public findMAX(sections: InsightResult[], col: string): number {
-		let max: number = 0;
+	public findMAX(sections: InsightResult[], col: string): number | null {
+		let max: number | null = null;
 		for (let section of sections) {
-			if (max < (section[col] as number)) {
+			if (max === null || max < (section[col] as number)) {
 				max = section[col] as number;
 			}
 		}

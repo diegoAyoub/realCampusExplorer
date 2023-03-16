@@ -180,6 +180,23 @@ describe("InsightFacade", function () {
 
 		});
 
+		describe("Content argument tests for rooms", function () {
+			it("should pass because the dataset is a zip file containing one or more valid sections", function () {
+				const result = facade.addDataset("course", validDataset, InsightDatasetKind.Sections);
+				return expect(result).to.eventually.have.members(["course"]);
+			});
+
+			it(
+				"should pass because the class (from the content argument) is a JSON formatted file that contain " +
+				"one or more valid sections in a directory called courses/ in the root directory",
+				function () {
+					const result = facade.addDataset("courses", validClass, InsightDatasetKind.Sections);
+					return expect(result).to.eventually.have.members(["courses"]);
+				}
+			);
+
+		});
+
 		describe("Kind argument tests", function () {
 			it("should reject because the kind(from the kind argument) is room, it is not supported yet", function () {
 				const result = facade.addDataset("ubc", validDataset, InsightDatasetKind.Rooms);
