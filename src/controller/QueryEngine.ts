@@ -44,7 +44,7 @@ export class QueryEngine {
 		if (results === null || results === undefined) {
 			return Promise.reject("Invalid Query");
 		} else {
-			let result = new QueryEngineHelper(results, this.query, this);
+			let result = new QueryEngineHelper(results, this);
 			return result.getFormattedResult();
 		}
 	}
