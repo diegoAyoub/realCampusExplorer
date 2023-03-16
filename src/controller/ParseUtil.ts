@@ -100,6 +100,7 @@ export async function handleReadingRooms(content: string, dataset: InsightDatase
 		});
 		await Promise.all(asyncFileReadJobs);
 	} catch(error) {
+		console.log(error);
 		return Promise.reject("there was an error");
 	}
 }

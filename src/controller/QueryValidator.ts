@@ -13,11 +13,13 @@ export class QueryValidator {
 	public queryEngine: QueryEngine;
 	public query: any;
 	public datasetId: string;
+	public hasValidTransformations: boolean;
 
 	constructor(queryEngine: QueryEngine, query: any) {
 		this.queryEngine = queryEngine;
 		this.query = query;
 		this.datasetId = "";
+		this.hasValidTransformations = false;
 	}
 
 	public isValidQuery(): boolean {
@@ -216,7 +218,7 @@ export class QueryValidator {
 
 	private isValidOrder(orderValue: any) {
 		if(typeof orderValue === "string") {
-			return this.isValidKey(orderValue);
+			return this.isValidKey(orderValue) || this.queryEngine.getColumns().includes(orderValue);
 		} else {
 			let hasTwoKeys = Object.keys(orderValue).length === 2;
 			let isKeysStrings = Object.keys(orderValue).every((key: any) => typeof key === "string");
