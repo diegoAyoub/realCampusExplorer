@@ -3,7 +3,7 @@ import {
 	InsightDatasetSection,
 	InsightResult, ResultTooLargeError,
 } from "./IInsightFacade";
-import {APPLY, AVG, COUNT, GROUP, MAX,
+import {APPLY, APPLY_TOKEN_AVG, COUNT, GROUP, MAX,
 	MIN, STRING_FIELDS, SUM, TRANSFORMATIONS,DOWN} from "./Constants";
 import Decimal from "decimal.js";
 import {QueryEngine} from "./QueryEngine";
@@ -42,14 +42,16 @@ export class QueryEngineHelper {
 		} else if(this.orderKeys) {
 			result = this.handleSortUP(result);
 		}
-		for (let section of result) {
-			for (let key in section) {
-				if (!this.wantedColumns.includes(key)) {
-					delete section[key];
+
+		let newResults = result.map((insightResult: any) => {
+			for(let key in insightResult) {
+				if(!this.wantedColumns.includes(key)) {
+					delete insightResult[key];
 				}
 			}
-		}
-		return Promise.resolve(result);
+			return insightResult;
+		});
+		return Promise.resolve(newResults);
 	}
 
 	public handleTransformation(qryResult: InsightResult[], qry: any): InsightResult[] {
@@ -59,34 +61,33 @@ export class QueryEngineHelper {
 		let groups = this.handleGroup(groupKeyList, qryResult);
 
 		let applyBlock = transformationBlock[APPLY];
-		currResult = groups.map((group) => this.handleApply(group, applyBlock));
+		currResult = [...groups.values()].map((group) => this.handleApply(group, applyBlock));
 		return currResult;
 
 	}
 
-	public getGroup(keys: string[], section: InsightResult, qryResults: InsightResult[]): InsightResult[] {
-		let group: InsightResult[] = [];
-		let temp = qryResults;
-		for (let key of keys) {
-			group = temp.filter((result) => result[key] === section[key]);
-			temp = group;
-		}
-		return group;
-	}
-
-	public handleGroup(keys: string[], result: InsightResult[]): InsightResult[][] {
-		let groups: InsightResult[][] = [];
-		// let key: string = "sections_instructor";
+	public handleGroup(keys: string[], result: InsightResult[]): Map<string, InsightResult[]> {
+		new Map<InsightResult, string>();
+		let keyToGroup = new Map<string, InsightResult[]>();
 		for (let section of result) {
-			if (this.resultIsNotGrouped(groups, section)) {
-				groups.push(this.getGroup(keys, section, result)); // change to check on array of keys
+			let mapKey = this.createGroupKey(keys, section);
+			if(!keyToGroup.has(mapKey)) {
+				keyToGroup.set(mapKey, [section]);
+			} else {
+				keyToGroup.get(mapKey)?.push(section);
 			}
 		}
-		return groups;
+		return keyToGroup;
 	}
 
-	public resultIsNotGrouped(madeGroups: InsightResult[][], section: InsightResult): boolean {
-		return madeGroups.every((group) => !group.includes(section));
+
+	private createGroupKey(keys: string[], result: InsightResult): string {
+		let mapKey: string;
+		mapKey = "";
+		for(let key of keys) {
+			mapKey += result[key];
+		}
+		return mapKey;
 	}
 
 	public handleApply(groups: InsightResult[], applyBlock: any): InsightResult {
@@ -105,9 +106,9 @@ export class QueryEngineHelper {
 		let applySubBlock = applyBlock;
 		let operation = Object.keys(applySubBlock)[0];
 		let col = applySubBlock[operation];
-		switch (operation) {
-			case AVG : {
-				return this.findAVG(group, col);
+		switch(operation) {
+			case APPLY_TOKEN_AVG : {
+				return this.findAVG(group,col);
 			}
 			case MIN : {
 				return this.findMIN(group, col) as number;
@@ -141,7 +142,7 @@ export class QueryEngineHelper {
 		let total: Decimal = new Decimal(0);
 		let len = sections.length;
 		for (let section of sections) {
-			total.add(new Decimal(section[col]));
+			total = Decimal.add(new Decimal(section[col]),total);
 		}
 		return Number((total.toNumber() / len).toFixed(2));
 	}
@@ -171,7 +172,7 @@ export class QueryEngineHelper {
 
 		let total: Decimal = new Decimal(0);
 		for (let section of sections) {
-			total.add(new Decimal(section[col]));
+			total = Decimal.add(new Decimal(section[col]), total);
 		}
 		return Number((total.toNumber()).toFixed(2));
 	}

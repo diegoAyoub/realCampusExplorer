@@ -3,7 +3,7 @@
     "input": {
         "WHERE": {
             "IS": {
-                "sections_dept": "CPSC"
+                "sections_dept": "cpsc"
             }
         },
         "OPTIONS": {

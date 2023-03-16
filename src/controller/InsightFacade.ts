@@ -171,47 +171,40 @@ function runIt() {
 }
 
 // USE THIS WHEN RUNNING MOCHA
-// export const PATH_TO_ROOT_DATA = "./data/data.json";
-// export const PATH_TO_ROOT_DATA_FOLDER = "./data";
+export const PATH_TO_ROOT_DATA = "./data/data.json";
+export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 
 /*
 	~~~~~~~ UNCOMMENT STUFF UNDER HERE FOR MAIN STUFF ~~~~~~~~~~~~
  */
 
-export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
-export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
-export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
-runIt();
+// export const PATH_TO_ROOT_DATA = "../../../data/data.JSON";
+// export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
+// export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
+// runIt();
 let query = {
 	WHERE: {},
 	OPTIONS: {
 		COLUMNS: [
-			"rooms_fullname",
-			"rooms_seats",
-			"SUM"
+			"sections_dept",
+			"max"
 		],
 		ORDER: {
 			dir: "UP",
 			keys: [
-				"rooms_fullname",
-				"rooms_seats"
+				"max"
 			]
 		}
 	},
 	TRANSFORMATIONS: {
 		GROUP: [
-			"rooms_fullname",
-			"rooms_seats"
+			"sections_dept",
+			"sections_title"
 		],
 		APPLY: [
 			{
-				SUM: {
-					SUM: "rooms_seats"
-				}
-			},
-			{
-				overaller: {
-					MAX: "rooms_seats"
+				max: {
+					MAX: "sections_avg"
 				}
 			}
 		]
