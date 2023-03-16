@@ -438,7 +438,7 @@ describe("InsightFacade", function () {
 			return newFacade.performQuery(input);
 		}
 
-		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/mismatchingtypesqueries", {
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/failingTests", {
 			errorValidator,
 			assertOnError,
 			assertOnResult,

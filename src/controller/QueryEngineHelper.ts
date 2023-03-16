@@ -17,9 +17,8 @@ export class QueryEngineHelper {
 	public orderDir: string;
 
 	constructor(filteredSections: InsightDatasetSection[] | InsightDatasetRoom[],
-		query: any,
 		queryEngine: QueryEngine) {
-		this.query = query;
+		this.query = queryEngine.query;
 		this.filteredSections = filteredSections;
 		this.qryID = queryEngine.getQueryId();
 		this.wantedColumns = queryEngine.getColumns();
@@ -96,11 +95,15 @@ export class QueryEngineHelper {
 		if (applyBlock.length === 0) {
 			return groups[0];
 		}
+		//	console.log("applying timer starting: ");
+		//	console.time();
 		for (let applyOperation of applyBlock) {
 			let column = Object.keys(applyOperation)[0];
 			appliedGroups[column] = this.apply(groups, applyOperation[column]);
 			//	console.log(appliedGroups);
 		}
+		//	console.log("applied timer ending...");
+		//	console.timeEnd();
 		return appliedGroups;
 	}
 
@@ -108,7 +111,6 @@ export class QueryEngineHelper {
 		let applySubBlock = applyBlock;
 		let operation = Object.keys(applySubBlock)[0];
 		let col = applySubBlock[operation];
-		//	console.log(operation);
 		switch(operation) {
 			case APPLY_TOKEN_AVG : {
 				return this.findAVG(group,col);
@@ -170,7 +172,7 @@ export class QueryEngineHelper {
 	}
 
 	public findMAX(sections: InsightResult[], col: string): number {
-		let max: number = 0;
+		let max: number = sections[0][col] as number ;
 		for (let section of sections) {
 			if (max < (section[col] as number)) {
 				max = section[col] as number;
