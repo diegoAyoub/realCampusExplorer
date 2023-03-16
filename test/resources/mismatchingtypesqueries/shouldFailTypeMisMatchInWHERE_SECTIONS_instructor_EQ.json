@@ -1,0 +1,24 @@
+{
+    "title": "WHERE Key is calling a numeric operation on a string",
+    "input": {
+        "WHERE": {
+            "EQ": {
+                "sections_instructor": "template string for tests just needs to match type"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "sections_title"
+            ],
+            "ORDER": "sections_title"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "sections_title"
+            ],
+            "APPLY": []
+        }
+    },
+    "errorExpected": true,
+    "expected": "InsightError"
+}

@@ -282,15 +282,15 @@ export class QueryValidator {
 		this.queryEngine.setColumns(columns);
 	}
 
-	private isColumnKeysInGroupOrApply(columns: string[]): boolean {
-		let groups = this.queryEngine.getGroups();
-		let applyKeys = this.queryEngine.getApplyKeys();
-		let hasGroups = groups.length > 0;
-		let hasApply = applyKeys.length > 0;
-		if(hasGroups && hasApply) {
-			return columns.every((element) => groups.includes(element) || applyKeys.includes(element));
-		} else {
-			return true;
-		}
-	}
+	// private isColumnKeysInGroupOrApply(columns: string[]): boolean {
+	// 	let groups = this.queryEngine.getGroups();
+	// 	let applyKeys = this.queryEngine.getApplyKeys();
+	// 	let hasGroups = groups.length > 0;
+	// 	let hasApply = applyKeys.length > 0;
+	// 	if(hasGroups && hasApply) {
+	// 		return columns.every((element) => groups.includes(element) || applyKeys.includes(element));
+	// 	} else {
+	// 		return true;
+	// 	}
+	// }
 }

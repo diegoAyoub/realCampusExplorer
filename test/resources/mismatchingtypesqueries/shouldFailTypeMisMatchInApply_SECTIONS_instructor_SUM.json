@@ -1,0 +1,32 @@
+{
+    "title": "Apply Key is calling a numeric operation on a string",
+    "input": {
+        "WHERE": {
+            "IS": {
+                "sections_dept": "cpsc"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "sections_title",
+                "sections_instructor"
+            ],
+            "ORDER": "sections_title"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "sections_title",
+                "sections_instructor"
+            ],
+            "APPLY": [
+                {
+                    "SUM$$$key": {
+                        "SUM": "sections_instructor"
+                    }
+                }
+            ]
+        }
+    },
+    "errorExpected": true,
+    "expected": "InsightError"
+}
