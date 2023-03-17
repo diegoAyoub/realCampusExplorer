@@ -95,7 +95,7 @@ export async function handleReadingRooms(content: string, dataset: InsightDatase
 			asyncGetLotAndLatJobs.push(getLonAndLat(validBuilding));
 		});
 		await Promise.all(asyncGetLotAndLatJobs);
-		let buildingsWithLonAndLat = buildingDataArray.filter((room) => room.lat);
+		let buildingsWithLonAndLat = buildingDataArray.filter((room) => room.lat && room.lon);
 		buildingsWithLonAndLat.forEach( (validBuilding) => {
 			asyncFileReadJobs.push(readValidRooms(validBuilding, base64Data, dataset)); // does readValidRooms wait till the recursion is done tho
 		});
