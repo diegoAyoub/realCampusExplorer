@@ -44,6 +44,7 @@ describe("InsightFacade", function () {
 	let invalidRoomsNoRooms: string;
 	let invalidRoomsZipNoIndexHtm: string;
 	let validRoomOneRoomFound: string;
+	let diego: string;
 
 	before(function () {
 		validSection = getContentFromArchives("valid_section.zip");
@@ -65,6 +66,7 @@ describe("InsightFacade", function () {
 		invalidRoomsNoRooms = getContentFromArchives("campus_index_does_not_map_to_one_valid_roon.zip");
 		invalidRoomsZipNoIndexHtm = getContentFromArchives("campus_no_index_htm.zip");
 		validRoomOneRoomFound = getContentFromArchives("campus_has_one_room.zip");
+		diego = getContentFromArchives("campus_diego.zip");
 	});
 
 	describe("addDatasetTests", function () {
@@ -213,7 +215,7 @@ describe("InsightFacade", function () {
 			});
 
 			// it("should pass because it contains one valid room", function() {
-			// 	const result = facade.addDataset("rooms", validRoomOneRoomFound, InsightDatasetKind.Rooms);
+			// 	const result = facade.addDataset("rooms", diego, InsightDatasetKind.Rooms);
 			// 	return expect(result).to.eventually.eventually.have.members(["rooms"]);
 			// });
 
@@ -231,8 +233,6 @@ describe("InsightFacade", function () {
 				const result = facade.addDataset("rooms", invalidRoomFileHasNoRooms, InsightDatasetKind.Rooms);
 				return expect(result).to.rejectedWith(InsightError);
 			});
-
-
 		});
 
 		describe("Kind argument tests", function () {
