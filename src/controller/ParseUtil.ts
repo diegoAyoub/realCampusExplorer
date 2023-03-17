@@ -104,15 +104,18 @@ export async function handleReadingRooms(content: string, dataset: InsightDatase
 			return Promise.reject(new InsightError("NO room datasets"));
 		}
 	} catch(error) {
-		// console.log(error);
-		return Promise.reject("there was an error");
+		return Promise.reject(new InsightError("there was an error"));
 	}
 }
 
 async function readValidRooms(validBuilding: IndexHtmRoomData, base64Data: JSZip, dataset: InsightDatasetRoom[]) {
-	let htmlContent = await base64Data.file(validBuilding.relativeFileLink)?.async("string");
-	let document: Document = parse(htmlContent as string);
-	parseValidRooms(validBuilding, defaultTreeAdapter.getChildNodes(document), dataset);
+	try {
+		let htmlContent = await base64Data.file(validBuilding.relativeFileLink)?.async("string");
+		let document: Document = parse(htmlContent as string);
+		parseValidRooms(validBuilding, defaultTreeAdapter.getChildNodes(document), dataset);
+	} catch(e) {
+		return;
+	}
 }
 function parseValidRooms(validRoomsData: IndexHtmRoomData, children: ChildNode[], dataset: InsightDatasetRoom[]): void {
 	// console.log("YESSS I\"M IN");
@@ -257,7 +260,7 @@ function waitForRequest(endpoint: string): Promise<any> {
 				resolve(parsedData);
 			});
 			result.on("error",() => {
-				reject();
+				reject(new InsightError("Error getting lon and lat..."));
 			});
 		});
 	});
