@@ -1,6 +1,6 @@
 import {
 	InsightData, InsightResult,
-	ResultTooLargeError,
+
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
 import {

@@ -1,0 +1,41 @@
+{
+	"title": "should pass ordering with tie breaks order (AVG)",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_fullname",
+				"rooms_seats",
+				"overallAvg",
+				"rooms_shortname"
+			],
+			"ORDER": {
+				"dir": "UP",
+				"keys": [
+					"rooms_fullname",
+					"rooms_seats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_fullname",
+				"rooms_seats"
+			],
+			"APPLY": [
+				{
+					"overallAvg": {
+						"AVG": "rooms_seats"
+					}
+				},
+				{
+					"overaller": {
+						"MAX": "rooms_seats"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

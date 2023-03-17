@@ -34,7 +34,6 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		let asyncJobs: any[] = [];
 		let dataset: InsightDatasetSection[] | InsightDatasetRoom[] = [];
 		try {
 			if(this.isIdExist(id)) {
@@ -167,6 +166,7 @@ function runIt() {
 			return Promise.resolve();
 		})
 		.then(() => facade.performQuery(query))
+		.then((result) => console.log(result))
 		.catch((err) => console.log(err));
 }
 
@@ -186,15 +186,27 @@ let query = {
 	WHERE: {},
 	OPTIONS: {
 		COLUMNS: [
-			"rooms_fullname",
-			"rooms_shortname",
-			"rooms_address",
-			"rooms_href",
-			"rooms_seats",
-			"rooms_furniture",
-			"rooms_type",
-			"rooms_name"
+			"sections_dept",
+			"max"
 		],
-		ORDER: "rooms_href"
+		ORDER: {
+			dir: "UP",
+			keys: [
+				"max"
+			]
+		}
+	},
+	TRANSFORMATIONS: {
+		GROUP: [
+			"sections_dept",
+			"sections_title"
+		],
+		APPLY: [
+			{
+				max: {
+					MAX: "sections_avg"
+				}
+			}
+		]
 	}
 };

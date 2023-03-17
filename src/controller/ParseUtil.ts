@@ -114,7 +114,6 @@ function parseValidRooms(validRoomsData: IndexHtmRoomData, children: ChildNode[]
 	if(children) {
 		// console.log("PROGRESS");
 		for(let childnode of children) {
-			// console.log("LOOPING CHILD.NODENAME === " + childnode.nodeName);
 			if(childnode.nodeName === "tr" && childnode.parentNode?.nodeName === "tbody") {
 				let childNodes: ChildNode[] = defaultTreeAdapter.getChildNodes(childnode as ParentNode);
 				let roomNumber = traverseTableRow(childNodes, CLASS_ROOM_NUMBER);
@@ -122,14 +121,6 @@ function parseValidRooms(validRoomsData: IndexHtmRoomData, children: ChildNode[]
 				let roomType = traverseTableRow(childNodes, CLASS_ROOM_TYPE);
 				let roomFurniture = traverseTableRow(childNodes, CLASS_ROOM_FURNITURE);
 				let roomHref = traverseTableRow(childNodes, CLASS_LINK);
-				// console.log("roomShortName = " + validRoomsData.shortname);
-				// console.log("roomFullName = " + validRoomsData.fullname);
-				// console.log("roomAddress = " + validRoomsData.address);
-				// console.log("roomNumber = " + roomNumber);
-				// console.log("capacity = " + roomSeats);
-				// console.log("room_type = " + roomType);
-				// console.log("furniture = " + roomFurniture);
-				// console.log("href = " + roomHref);
 				dataset.push(new InsightDatasetRoom(
 					validRoomsData.fullname,
 					validRoomsData.shortname,
@@ -237,8 +228,8 @@ function parseAnchor(child: ChildNode, wantedVal: string): string {
 }
 
 async function getLonAndLat(roomData: IndexHtmRoomData): Promise<any> {
-	let addressComponents = roomData.address.split(" ");
-	let urlEncodedAddress = addressComponents.join("%20");
+	// let addressComponents = roomData.address.split(" ");
+	let urlEncodedAddress = encodeURIComponent(roomData.address);
 	let endpoint = BASE_URL_GEOLOCATION + urlEncodedAddress;
 	let result = await waitForRequest(endpoint);
 	if(result.error) {

@@ -4,7 +4,7 @@ import {
 	InsightResult, ResultTooLargeError,
 } from "./IInsightFacade";
 import {APPLY, APPLY_TOKEN_AVG, COUNT, GROUP, MAX,
-	MIN, NUMBER_FIELDS, STRING_FIELDS, SUM, TRANSFORMATIONS,UP,DOWN} from "./Constants";
+	MIN, STRING_FIELDS, SUM, TRANSFORMATIONS,DOWN} from "./Constants";
 import Decimal from "decimal.js";
 import {QueryEngine} from "./QueryEngine";
 
@@ -41,53 +41,52 @@ export class QueryEngineHelper {
 		} else if(this.orderKeys) {
 			result = this.handleSortUP(result);
 		}
-		for (let section of result) {
-			for (let key in section) {
-				if (!this.wantedColumns.includes(key)) {
-					delete section[key];
+
+		let newResults = result.map((insightResult: any) => {
+			for(let key in insightResult) {
+				if(!this.wantedColumns.includes(key)) {
+					delete insightResult[key];
 				}
 			}
-		}
-		return Promise.resolve(result);
+			return insightResult;
+		});
+		return Promise.resolve(newResults);
 	}
 
 	public handleTransformation(qryResult: InsightResult[], qry: any): InsightResult[] {
 		let transformationBlock = qry[TRANSFORMATIONS];
-		let groupBlock = transformationBlock[GROUP];
-		let groupKeyList: string[] = groupBlock;
+		let groupKeyList: string[] = transformationBlock[GROUP];
 		let currResult: InsightResult[];
 		let groups = this.handleGroup(groupKeyList, qryResult);
 
 		let applyBlock = transformationBlock[APPLY];
-		currResult = groups.map((group) => this.handleApply(group, applyBlock));
+		currResult = [...groups.values()].map((group) => this.handleApply(group, applyBlock));
 		return currResult;
 
 	}
 
-	public getGroup(keys: string[], section: InsightResult, qryResults: InsightResult[]): InsightResult[] {
-		let group: InsightResult[] = [];
-		let temp = qryResults;
-		for (let key of keys) {
-			group = temp.filter((result) => result[key] === section[key]);
-			temp = group;
-		}
-		return group;
-	}
-
-	public handleGroup(keys: string[], result: InsightResult[]): InsightResult[][] {
-		let visitedGroups: string[] = [];
-		let groups: InsightResult[][] = [];
-		// let key: string = "sections_instructor";
+	public handleGroup(keys: string[], result: InsightResult[]): Map<string, InsightResult[]> {
+		new Map<InsightResult, string>();
+		let keyToGroup = new Map<string, InsightResult[]>();
 		for (let section of result) {
-			if (this.resultIsNotGrouped(groups, section)) {
-				groups.push(this.getGroup(keys, section, result)); // change to check on array of keys
+			let mapKey = this.createGroupKey(keys, section);
+			if(!keyToGroup.has(mapKey)) {
+				keyToGroup.set(mapKey, [section]);
+			} else {
+				keyToGroup.get(mapKey)?.push(section);
 			}
 		}
-		return groups;
+		return keyToGroup;
 	}
 
-	public resultIsNotGrouped(madeGroups: InsightResult[][], section: InsightResult): boolean {
-		return madeGroups.every((group) => !group.includes(section));
+
+	private createGroupKey(keys: string[], result: InsightResult): string {
+		let mapKey: string;
+		mapKey = "";
+		for(let key of keys) {
+			mapKey += result[key];
+		}
+		return mapKey;
 	}
 
 	public handleApply(groups: InsightResult[], applyBlock: any): InsightResult {
@@ -100,7 +99,6 @@ export class QueryEngineHelper {
 		for (let applyOperation of applyBlock) {
 			let column = Object.keys(applyOperation)[0];
 			appliedGroups[column] = this.apply(groups, applyOperation[column]);
-			//	console.log(appliedGroups);
 		}
 		//	console.log("applied timer ending...");
 		//	console.timeEnd();
@@ -116,28 +114,20 @@ export class QueryEngineHelper {
 				return this.findAVG(group,col);
 			}
 			case MIN : {
-				return this.findMIN(group,col) as number;
+				return this.findMIN(group, col) as number;
 			}
 			case MAX : {
-				return this.findMAX(group,col);
+				return this.findMAX(group, col);
 			}
 			case SUM : {
-				return this.findSUM(group,col);
+				return this.findSUM(group, col);
 			}
 			case COUNT : {
-				return this.findCOUNT(group,col);
+				return this.findCOUNT(group, col);
 			}
 		}
 		return 0;
 
-	}
-
-	public handleSort(results: InsightResult[]): InsightResult[] {
-		if (this.orderDir === UP) {
-			//	console.log("up executed");
-			return this.handleSortUP(results);
-		}
-		return this.handleSortDOWN(results);
 	}
 
 	public handleSortUP(results: InsightResult[]): InsightResult[] {
