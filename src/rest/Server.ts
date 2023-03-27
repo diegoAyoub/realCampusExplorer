@@ -1,17 +1,22 @@
 import express, {Application, Request, Response} from "express";
+
 import * as http from "http";
 import cors from "cors";
+import InsightFacade from "../controller/InsightFacade";
+import {getContentFromArchives} from "../../test/TestUtil";
+import {InsightDatasetKind, NotFoundError} from "../controller/IInsightFacade";
 
 export default class Server {
 	private readonly port: number;
 	private express: Application;
 	private server: http.Server | undefined;
+	private static insightFacade: null | InsightFacade;
 
 	constructor(port: number) {
 		console.info(`Server::<init>( ${port} )`);
 		this.port = port;
 		this.express = express();
-
+		Server.insightFacade = null;
 		this.registerMiddleware();
 		this.registerRoutes();
 
@@ -38,6 +43,7 @@ export default class Server {
 			} else {
 				this.server = this.express.listen(this.port, () => {
 					console.info(`Server::start() - server listening on port: ${this.port}`);
+					Server.insightFacade = new InsightFacade();
 					resolve();
 				}).on("error", (err: Error) => {
 					// catches errors in server start
@@ -83,9 +89,15 @@ export default class Server {
 	private registerRoutes() {
 		// This is an example endpoint this you can invoke by accessing this URL in your browser:
 		// http://localhost:4321/echo/hello
+		let id: string, kind: string;
 		this.express.get("/echo/:msg", Server.echo);
 
 		// TODO: your other endpoints should go here
+		this.express.put("/dataset/:id/:kind", Server.performPutDataset);
+		this.express.delete("/dataset/:id", Server.performDeleteDataset);
+		this.express.post("/query", Server.performPostDataset);
+		this.express.get("/datasets", Server.performGetDataset);
+
 
 	}
 
@@ -110,5 +122,51 @@ export default class Server {
 		} else {
 			return "Message not provided";
 		}
+	}
+
+	private static async performPutDataset(req: Request, res: Response) {
+		let id = req.params.id;
+		let kind = req.params.kind as InsightDatasetKind;
+		let base64Content = Buffer.from(req.body).toString("base64");
+		console.log(`this is the body ${req.body}`);
+		// console.log(`the id is ${id}`);
+		// console.log(`the kind is ${kind}`);
+		// console.log("the body is:");
+		// console.log(req.body);
+		try {
+			let result = await Server.insightFacade?.addDataset(id, base64Content, kind);
+			res.status(200).json({result: req.body});
+		} catch (err) {
+			res.status(400).json({error: err});
+		}
+	}
+
+	private static async performDeleteDataset(req: Request, res: Response) {
+		let id = req.params.id;
+		try {
+			let result = await Server.insightFacade?.removeDataset(id);
+			res.status(200).json({result: result});
+		} catch (err) {
+			if (err instanceof NotFoundError) {
+				res.status(400).json({error: err.message});
+			} else {
+				res.status(404).json({error: err});
+			}
+		}
+	}
+
+	private static async performPostDataset(req: Request, res: Response) {
+		let query = req.body;
+		try {
+			let result = await Server.insightFacade?.performQuery(query);
+			res.status(200).json({result: result});
+		} catch (err) {
+			res.status(400).json({error: err});
+		}
+	}
+
+	private static async performGetDataset(req: Request, res: Response) {
+		let result = await Server.insightFacade?.listDatasets();
+		res.status(200).json({result: result});
 	}
 }
