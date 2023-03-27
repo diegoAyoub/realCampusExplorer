@@ -1,0 +1,34 @@
+{
+    "title": "Apply Key is calling a numeric operation on a string",
+    "input": {
+        "WHERE": {},
+        "OPTIONS": {
+            "COLUMNS": [
+                "rooms_fullname",
+                "rooms_shortname",
+                "rooms_address",
+                "rooms_href",
+                "rooms_fullname"
+            ],
+            "ORDER": "rooms_href"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "rooms_fullname",
+                "rooms_shortname",
+                "rooms_address",
+                "rooms_href",
+                "rooms_fullname"
+            ],
+            "APPLY": [
+                {
+                    "MIN$$$key": {
+                        "MIN": "rooms_fullname"
+                    }
+                }
+            ]
+        }
+    },
+    "errorExpected": true,
+    "expected": "InsightError"
+}

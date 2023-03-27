@@ -1,0 +1,31 @@
+{
+	"title": "should fail invalid query apply key has underscore",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"rooms_shortname"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname"
+			],
+			"APPLY": [
+				{
+					"word_hey": {
+						"MAX": "rooms_seats"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

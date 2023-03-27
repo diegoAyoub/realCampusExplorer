@@ -1,0 +1,40 @@
+{
+    "title": "Apply Key is calling appropriate operation on field",
+    "input": {
+        "WHERE": {
+            "IS": {
+                "sections_dept": "cpsc"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "sections_title",
+                "sections_audit"
+            ],
+            "ORDER": "sections_title"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "sections_title",
+                "sections_audit"
+            ],
+            "APPLY": [
+                {
+                    "MAX$$$key": {
+                        "MAX": "sections_audit"
+                    }
+                }
+            ]
+        }
+    },
+    "errorExpected": false,
+    "expected": {
+        "rooms_fullname": "Aquatic Ecosystems Research Laboratory",
+        "rooms_shortname": "AERL",
+        "rooms_address": "2202 Main Mall",
+        "rooms_href": "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/AERL-120",
+        "rooms_seats": 144,
+        "rooms_furniture": "Classroom-Fixed Tablets",
+        "rooms_type": "Tiered Large Group"
+    }
+}

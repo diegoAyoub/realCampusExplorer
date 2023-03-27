@@ -1,49 +1,56 @@
 import {
-	InsightData, InsightDatasetSection,
-	InsightResult,
-	ResultTooLargeError,
+	InsightData, InsightResult,
+
 } from "./IInsightFacade";
 import {QueryEngineHelper} from "./QueryEngineHelper";
-import {writeLocal} from "./DiskUtil";
-import {PATH_TO_ROOT_DATA} from "./InsightFacade";
-const COLUMN_NAMES = ["uuid", "id", "title", "instructor", "dept", "year", "avg", "pass", "fail", "audit"];
-const NOT = "NOT", AND = "AND", OR = "OR", IS = "IS", LT = "LT", EQ = "EQ", GT = "GT";
-const WHERE = "WHERE", OPTIONS = "OPTIONS", COLUMNS = "COLUMNS", ORDER = "ORDER";
-const LOGIC = [AND, OR], COMPARATOR = [LT, GT, EQ, IS, NOT];
+import {
+	AND,
+	EQ,
+	GT,
+	IS, LT,
+	NOT,
+	OR,
+	WHERE,
+} from "./Constants";
+import {QueryValidator} from "./QueryValidator";
 
-export const COLUMN_STRINGS = ["uuid", "id", "title", "instructor", "dept", IS];
-export const COLUMN_NUMBERS = ["year", "avg", "pass", "fail", "audit", LT, GT, EQ];
 export class QueryEngine {
 	public dataset: InsightData[];
-	public queryJson: any;
+	public datasetKind: string;
+	public query: any;
 	public qryID: string = "";
-	public datasetSections: InsightDatasetSection[] = [];
+	public datasetSections: any[] = [];
 	public orderKey: string;
+	public orderKeys: string[];
 	public selectedColumns: string[];
+	public applyKeys: string[];
+	public groups: string[];
+	public orderDir: string;
+
 	constructor(data: InsightData[], qryJson: unknown) {
 		this.dataset = data;
-		this.queryJson = qryJson as any;
+		this.query = qryJson as any;
+		this.datasetKind = "";
 		this.selectedColumns = [];
+		this.applyKeys = [];
+		this.orderKeys = [];
+		this.groups = [];
 		this.orderKey = "";
+		this.orderDir = "";
 	}
-	public async doQuery(query: any): Promise<InsightResult[]> {
-		let results: InsightDatasetSection[] | null = this.handleFilter(query[WHERE]);
+
+	public doQuery(query: any): Promise<InsightResult[]> {
+		let results: any[] = this.handleFilter(query[WHERE]);
 		if (results === null || results === undefined) {
-			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
 			return Promise.reject("Invalid Query");
-		} else if(results.length > 5000) {
-			await writeLocal(PATH_TO_ROOT_DATA, this.dataset);
-			return Promise.reject(new ResultTooLargeError("Way too many results sir"));
 		} else {
-			let resultFormatter = new QueryEngineHelper(this.qryID, results, this.orderKey, this.selectedColumns);
-			return Promise.resolve(resultFormatter.getFormattedResult());
+			let result = new QueryEngineHelper(results, this.query, this);
+			return result.getFormattedResult();
 		}
 	}
 
-	public handleFilter(query: any): InsightDatasetSection[] | null {
-		if(query === null || query === undefined) {
-			return null;
-		} else if (Object.prototype.hasOwnProperty.call(query, AND)) {
+	public handleFilter(query: any): any[] {
+		if(Object.prototype.hasOwnProperty.call(query, AND)) {
 			return this.handleAnd(query[AND]);
 		} else if (Object.prototype.hasOwnProperty.call(query, OR)) {
 			return this.handleOr(query[OR]);
@@ -62,116 +69,89 @@ export class QueryEngine {
 	}
 
 	public isValidQuery(): boolean {
-		let hasWhere: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, WHERE);
-		let hasOptions: boolean = Object.prototype.hasOwnProperty.call(this.queryJson, OPTIONS);
-		if (!hasWhere || !hasOptions) { // WHERE KEY NOT FOUND OR OPTIONS KEY NOT FOUND
-			return false; //	Promise.reject(new InsightError("Invalid query lang: WHERE"));
-		}
-		let isValidOptions = this.isValidOptions(this.queryJson[OPTIONS]);
-		let isValidWhere: boolean = this.isValidWhere(this.queryJson[WHERE]);
-		let isWhereEmpty: boolean = Object.keys(this.queryJson[WHERE]).length === 0;
-		return (isWhereEmpty || isValidWhere) && isValidOptions;
-	}
-	public isValidWhere(filter: any): boolean {
-		let isValid = true;
-		let keys: string[] = Object.keys(filter);
-		if(keys.length !== 1) {
-			return false;
-		}
-		let whereKey: string = keys[0];
-		let whereVal = filter[whereKey] as any;
-		if (LOGIC.includes(whereKey)) {
-			if(whereVal.length !== 0) { // AND/OR key must not correspond to a list thats not empty
-				for(let comparator of whereVal) {
-					let whereKeys = Object.keys(comparator);
-					// console.log(whereKeys);
-					let goodKey = true;
-					for(const aKey of whereKeys) {
-						goodKey = goodKey && (COMPARATOR.includes(aKey) || LOGIC.includes(aKey));
-					}
-					isValid = goodKey && isValid && this.isValidWhere(comparator);
-				}
-			} else {
-				return false;
-			}
-		} else if (COMPARATOR.includes(whereKey)) {
-			isValid = isValid && this.isValidComparatorEntry(whereVal,whereKey) && this.isValidWhere(whereVal);
-		} else {
-			//	GET ID
-			let keyArr = whereKey.split("_");
-			let queryID: string = keyArr[0];
-			let conditionCol: string = keyArr[1];
-			// this.qryID = this.qryID === "" ? queryID : this.qryID;
-			if (!this.isIdExist(queryID) || !this.isValidId(queryID) || !COLUMN_NAMES.includes(conditionCol) ||
-				queryID !== this.qryID) { // validID returns string and not boolean
-				return false; // Promise.reject(new InsightError("Query ID is not valid or does not exist"));
-			}
-		}
-		return isValid;
+		let queryValidator = new QueryValidator(this, this.query);
+		return queryValidator.isValidQuery();
 	}
 
-
-	public isValidComparatorEntry(object: any, comparator: string): boolean {
-		let key = Object.keys(object)[0];
-		let field = key.split("_")[1];
-		let value = object[key];
-
-		return comparator === NOT ||
-			(COLUMN_NUMBERS.includes(field) && COLUMN_NUMBERS.includes(comparator) && typeof value === "number") ||
-			(COLUMN_STRINGS.includes(field) && COLUMN_STRINGS.includes(comparator) && typeof value === "string" &&
-				this.isValidWildCard(value));
-	}
-	public isValidOptions(optionBlock: any): boolean {
-		let optionKeys = Object.keys(optionBlock);
-		let columnKeys: string[] = [];
-
-		if (optionKeys.length === 1) {
-			if (optionKeys[0] === COLUMNS) {
-				columnKeys = optionBlock[COLUMNS];
-				this.selectedColumns = this.getColumns(columnKeys);
-				this.isIdExist(this.qryID);
-				return this.selectedColumns.length === columnKeys.length;
+	public setDataset(id: string): void {
+		for (const dataset of this.dataset) {
+			if (dataset.metaData.id === id) {
+				this.datasetSections = dataset.data; // keep track of all sections being looked at
+				this.datasetKind = dataset.metaData.kind;
+				return;
 			}
-		} else if (optionKeys.length === 2) {
-			if (optionKeys[0] === COLUMNS && optionKeys[1] === ORDER) {
-				columnKeys = optionBlock[COLUMNS];
-				this.selectedColumns = this.getColumns(columnKeys);
-				if (this.isValidKey(optionBlock[ORDER]) && columnKeys.includes(optionBlock[ORDER])) {
-					this.orderKey = optionBlock[ORDER];
-					this.isIdExist(this.qryID);
-					return this.selectedColumns.length === columnKeys.length;
-				}
+		}
+	}
+
+	public setQueryId(key: string) {
+		this.qryID = key;
+	}
+
+	public getQueryId(): string {
+		return this.qryID;
+	}
+
+	public setColumns(columns: string[]) {
+		this.selectedColumns = columns;
+	}
+
+	public getColumns(): string[] {
+		return this.selectedColumns;
+	}
+
+	public setOrderKeys(keys: string[]) {
+		this.orderKeys = keys;
+	}
+
+	public setOrderDir(orderDir: string){
+		this.orderDir = orderDir;
+	}
+
+	public getOrderDir(): string {
+		return this.orderDir;
+	}
+
+	public getOrderKeys(): string[] {
+		return this.orderKeys;
+	}
+
+	public getApplyKeys(): string[] {
+		return this.applyKeys;
+	}
+
+	public addApplyKey(applyKey: string): void {
+		this.applyKeys.push(applyKey);
+	}
+
+	public getGroups(): string[] {
+		return this.groups;
+	}
+
+	public setGroups(group: string[]): void {
+		this.groups = group;
+	}
+
+	public isDatasetAdded(datasetId: string): boolean {
+		for (const dataset of this.dataset) {
+			if (dataset.metaData.id === datasetId) {
+				this.datasetSections = dataset.data; // keep track of all sections being looked at
+				this.datasetKind = dataset.metaData.kind;
+				return true;
 			}
 		}
 		return false;
 	}
-	public isValidKey(key: string): boolean {
-		let arr = key.split("_");
-		let setID = arr[0];
-		let col = arr[1];
-		return COLUMN_NAMES.includes(col) && this.qryID === setID && arr.length === 2;
-	}
-	public getColumns(columnsBlock: any): string[] {
-		let columns: string[] = [];
-		let datasetId = "";
-		for (const colKey of columnsBlock) {
-			this.qryID = this.qryID === "" ? colKey.split("_")[0] : this.qryID;
-			if (this.isValidKey(colKey)) {
-				datasetId = colKey;
-				columns.push(colKey);
-			}
-		}
-		return columns;
+
+	public getDatasetKind(): string {
+		return this.datasetKind;
 	}
 
-	public handleAnd(query: any): InsightDatasetSection[] | null {
-		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] | null = [];
+	public handleAnd(query: any): any[] {
+		let results: any[] = [];
+		let subResult: any[];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			if(subResult === null || subResult === undefined) {
-				return null;
-			} else if (subResult.length === 0) {
+			if (subResult.length === 0) {
 				return subResult;
 			} else if (results.length === 0) {
 				results = subResult;
@@ -182,12 +162,12 @@ export class QueryEngine {
 		return results;
 	}
 
-	public handleOr(query: any): InsightDatasetSection[] {
-		let results: InsightDatasetSection[] = [];
-		let subResult: InsightDatasetSection[] | null = [];
+	public handleOr(query: any): any[] {
+		let results: any[] = [];
+		let subResult: any[] = [];
 		for (const operator of query) {
 			subResult = this.handleFilter(operator);
-			for (const section of (subResult as InsightDatasetSection[])) {
+			for (const section of subResult) {
 				if(!results.includes(section)) {
 					results.push(section);
 				}
@@ -196,78 +176,43 @@ export class QueryEngine {
 		return results;
 	}
 
-	public handleNot(query: any): InsightDatasetSection[] {
-		let results: InsightDatasetSection[] = this.datasetSections;
-		let subResult: InsightDatasetSection[] | null = [];
-		subResult = this.handleFilter(query); //	does this actually work!?
-		if(subResult === null) {
-			return results;
-		} else {
-			results = results.filter((section) => !((subResult as InsightDatasetSection[]).includes(section))); // gets everythin in results thats not in subresult
-		}
+	public handleNot(query: any): any[]  {
+		let results: any[] = this.datasetSections;
+		let subResult: any[] = this.handleFilter(query); //	does this actually work!?
+		results = results.filter((section) => !subResult.includes(section)); // gets everythin in results thats not in subresult
 		return results;
 	}
-	public handleMComparator(comparator: string, query: any): InsightDatasetSection[] {
-		let filteredList: InsightDatasetSection[] = [];
-		let sections: InsightDatasetSection[] = this.datasetSections;
-		let inBlock = query[comparator];
-		let keys = Object.keys(query[comparator]);
-		let keyArr = keys[0].split("_"), col = keyArr[1], value = inBlock[keys[0]];
+
+	public handleMComparator(comparator: string, query: any): any[] {
+		let sections: any[] = this.datasetSections;
+		let keyValueObject = query[comparator];
+		let key = Object.keys(keyValueObject)[0];
+		let value = keyValueObject[key];
+		let field = key.split("_")[1];
 		switch (comparator) {
 			case GT: {
-				filteredList = sections.filter((section) => this.getColVal(section, col) > value);
-				break;
+				return sections.filter((section) => section.get(field) > value);
 			}
 			case LT: {
-				filteredList = sections.filter((section) => this.getColVal(section, col) < value);
-				break;
+				return sections.filter((section) => section.get(field) < value);
 			}
 			case EQ: {
-				filteredList = sections.filter((section) => this.getColVal(section, col) === value);
-				break;
+				return sections.filter((section) => section.get(field) === value);
 			}
-			case IS: { // jk add special handler function for asterisk
-				if(value.includes("*")) {
-					if(this.isValidWildCard(value)) {
-						filteredList = sections.filter((section) => {
-							return this.isWildCardMatched(this.getColVal(section, col), value);
-						});
-					}
-				} else {
-					filteredList = sections.filter((section) => this.getColVal(section, col) === value);
-				}
-				break;
+			case IS: {
+				return sections.filter((section) => this.isStringMatched(section.get(field), value));
 			}
 		}
-		return filteredList;
+		return [];
 	}
-	public getColVal(section: any, colName: string): any {
-		if (COLUMN_NAMES.includes(colName)) {
-			return section[colName];
-		}
-		return "ERROR";
-	}
-	public isIdExist(id: string): boolean {
-		for (const dataset of this.dataset) {
-			if (dataset.metaData.id === id) {
-				this.datasetSections = dataset.data; // keep track of all sections being looked at
-				return true;
-			}
-		}
-		return false;
-	}
-	public isValidId(id: string): boolean {
-		if (id.trim().length === 0) { // blank id or id is all whitespace
-			return false;
-		} else if (id.includes("_")) { // id has an underscore
-			return false;
-		}
-		return true;
-	}
-	public isWildCardMatched(value: string, pattern: string): boolean {
+
+	public isStringMatched(inputString: string | number, pattern: string): boolean {
 		let wildArr = pattern.split("*");
-		if (wildArr.length === 2) {
-			if (wildArr[0] === "" && wildArr[1] === "") {
+		let value: string = inputString as string;
+		if(pattern === value) {
+			return true;
+		} else if (wildArr.length === 2) {
+			if (pattern === "*") {
 				return true;
 			} else if(wildArr[0] === "" && wildArr[1] !== "") {
 				let substring = wildArr[1];
@@ -282,18 +227,5 @@ export class QueryEngine {
 			return true;
 		}
 		return false;
-	}
-	public isValidWildCard(pattern: string): boolean { // we are considering no pattern to be a valid wildcard pattern
-		if(pattern.includes("*")) {
-			let wildArr = pattern.split("*");
-			if(pattern[0] === "*" && pattern[pattern.length - 1] === "*" && wildArr.length === 3) { // *string*
-				return true;
-			} else if(wildArr.length > 2) { // more than one * should fail
-				return false;
-			} else if(wildArr[0] !== "" && wildArr[1] !== "") { // st*ring
-				return false;
-			}
-		}
-		return true;
 	}
 }

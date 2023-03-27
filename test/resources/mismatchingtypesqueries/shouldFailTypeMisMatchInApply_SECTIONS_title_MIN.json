@@ -1,0 +1,32 @@
+{
+    "title": "Apply Key is calling a numeric operation on a string",
+    "input": {
+        "WHERE": {
+            "IS": {
+                "sections_dept": "cpsc"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "sections_title",
+                "sections_title"
+            ],
+            "ORDER": "sections_title"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "sections_title",
+                "sections_title"
+            ],
+            "APPLY": [
+                {
+                    "MIN$$$key": {
+                        "MIN": "sections_title"
+                    }
+                }
+            ]
+        }
+    },
+    "errorExpected": true,
+    "expected": "InsightError"
+}

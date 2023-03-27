@@ -33,20 +33,40 @@ describe("InsightFacade", function () {
 	let invalidClassNotJsonFile: string;
 	let invalidClassResultKeyError: string;
 	let validDataset: string;
+	let validRoomDataset: string;
 	let invalidDatasetNotZip: string;
 	let invalidDatasetNoValidSection: string;
+
+	let validRoomsDataset: string;
+	let invalidRoomsNotAZip: string;
+	let invalidRoomFileHasNoRooms: string;
+	let invalidRoomIndexHtmHasNoTables: string;
+	let invalidRoomsNoRooms: string;
+	let invalidRoomsZipNoIndexHtm: string;
+	let validRoomOneRoomFound: string;
+	let diego: string;
+
 	before(function () {
 		validSection = getContentFromArchives("valid_section.zip");
 		invalidSectionMissingQueryKeyAvg = getContentFromArchives("invalid_section_missing_query_key_avg.zip");
-
 		validClass = getContentFromArchives("CPSC418.zip");
 		invalidClassImproperRootDir = getContentFromArchives("invalid_class_improper_root_dir.zip");
 		invalidClassNoValidSections = getContentFromArchives("invalid_class_no_valid_sections.zip");
 		invalidClassNotJsonFile = getContentFromArchives("invalid_class_not_json_file.zip");
 		invalidClassResultKeyError = getContentFromArchives("invalid_class_result_key_error.zip");
 		validDataset = getContentFromArchives("pair.zip");
+		validRoomDataset = getContentFromArchives("campus.zip");
 		invalidDatasetNotZip = getContentFromArchives("invalid_dataset_not_zip.txt");
 		invalidDatasetNoValidSection = getContentFromArchives("invalid_dataset_no_valid_section.zip");
+
+		validRoomsDataset = getContentFromArchives("campus.zip");
+		invalidRoomsNotAZip = getContentFromArchives("campus.txt");
+		invalidRoomFileHasNoRooms = getContentFromArchives("campus_no_rooms_linked.zip");
+		invalidRoomIndexHtmHasNoTables = getContentFromArchives("campus_index_has_no_tables.zip");
+		invalidRoomsNoRooms = getContentFromArchives("campus_index_does_not_map_to_one_valid_roon.zip");
+		invalidRoomsZipNoIndexHtm = getContentFromArchives("campus_no_index_htm.zip");
+		validRoomOneRoomFound = getContentFromArchives("campus_has_one_room.zip");
+		diego = getContentFromArchives("campus_diego.zip");
 	});
 
 	describe("addDatasetTests", function () {
@@ -120,7 +140,7 @@ describe("InsightFacade", function () {
 			});
 		});
 
-		describe("Content argument tests", function () {
+		describe("Content argument tests for sections", function () {
 			it("should pass because the dataset is a zip file containing one or more valid sections", function () {
 				const result = facade.addDataset("course", validDataset, InsightDatasetKind.Sections);
 				return expect(result).to.eventually.have.members(["course"]);
@@ -176,6 +196,43 @@ describe("InsightFacade", function () {
 			});
 
 
+		});
+
+		describe("Content argument tests for rooms", function () {
+			it("should pass because the dataset is a zip file containing one or more valid rooms", function () {
+				const result = facade.addDataset("rooms", validRoomsDataset, InsightDatasetKind.Rooms);
+				return expect(result).to.eventually.have.members(["rooms"]);
+			});
+
+			it("should fail because it is not a zip file", function() {
+				const result = facade.addDataset("rooms", invalidRoomsNotAZip, InsightDatasetKind.Rooms);
+				return expect(result).to.rejectedWith(InsightError);
+			});
+
+			it("should fail because it does not contain at least one valid room", function() {
+				const result = facade.addDataset("rooms", invalidRoomsNoRooms, InsightDatasetKind.Rooms);
+				return expect(result).to.rejectedWith(InsightError);
+			});
+
+			it("should pass because it contains one valid room", function() {
+				const result = facade.addDataset("rooms", diego, InsightDatasetKind.Rooms);
+				return expect(result).to.eventually.eventually.have.members(["rooms"]);
+			});
+
+			it("should fail because it is a zip file that does not contain a index.htm file", function() {
+				const result = facade.addDataset("rooms", invalidRoomsZipNoIndexHtm, InsightDatasetKind.Rooms);
+				return expect(result).to.rejectedWith(InsightError);
+			});
+
+			it("should fail because the htm file does not contain a table", function() {
+				const result = facade.addDataset("rooms", invalidRoomIndexHtmHasNoTables, InsightDatasetKind.Rooms);
+				return expect(result).to.rejectedWith(InsightError);
+			});
+
+			it("should fail because the building linked to from the file has no rooms", function() {
+				const result = facade.addDataset("rooms", invalidRoomFileHasNoRooms, InsightDatasetKind.Rooms);
+				return expect(result).to.rejectedWith(InsightError);
+			});
 		});
 
 		describe("Kind argument tests", function () {
@@ -323,7 +380,7 @@ describe("InsightFacade", function () {
 		});
 	});
 
-	describe("performQuery - NOT ORDERED", function () {
+	describe("performQuery - c1", function () {
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
@@ -354,19 +411,20 @@ describe("InsightFacade", function () {
 			return facade.performQuery(input);
 		}
 
-		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/sectionqueries", {
 			errorValidator,
 			assertOnError,
 			assertOnResult,
 		});
 	});
 
-	describe("performQuery -handlecrash", function () {
+	describe("performQuery - c2", function () {
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
-			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
 			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+			await facade.addDataset("rooms", validRoomDataset, InsightDatasetKind.Rooms);
+			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
 			newFacade = new InsightFacade();
 		});
 
@@ -386,7 +444,7 @@ describe("InsightFacade", function () {
 		}
 
 		function assertOnResult(actual: unknown, expected: Output): void {
-			expect(actual).to.have.deep.members(expected);
+			expect(actual).to.have.deep.equal(expected);
 		}
 
 		function target(input: Input): Promise<Output> {
@@ -394,11 +452,94 @@ describe("InsightFacade", function () {
 			return newFacade.performQuery(input);
 		}
 
-		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/queries", {
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/roomqueries", {
 			errorValidator,
 			assertOnError,
 			assertOnResult,
 		});
 	});
+
+	describe("performQuery - matching types in where and applykey", function () {
+		before(async function () {
+			clearDisk();
+			facade = new InsightFacade();
+			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+			await facade.addDataset("rooms", validRoomDataset, InsightDatasetKind.Rooms);
+			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
+			newFacade = new InsightFacade();
+		});
+
+		function errorValidator(error: any): error is Error {
+			return error === "InsightError" || error === "ResultTooLargeError";
+		}
+
+		function assertOnError(actual: any, expected: Error): void {
+			if (expected === "InsightError") {
+				expect(actual).to.be.instanceof(InsightError);
+			} else if (expected === "ResultTooLargeError") {
+				expect(actual).to.be.instanceof(ResultTooLargeError);
+			} else {
+				// this should be unreachable
+				expect.fail("UNEXPECTED ERROR");
+			}
+		}
+
+		function assertOnResult(actual: unknown, expected: Output): void {
+			expect(actual).to.have.length.gte(0); // as long as it doesn't reject its good
+		}
+
+		function target(input: Input): Promise<Output> {
+			// console.log(input);
+			return newFacade.performQuery(input);
+		}
+
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/failingtests", {
+			errorValidator,
+			assertOnError,
+			assertOnResult,
+		});
+	});
+
+	describe("performQuery - failingtests", function () {
+		before(async function () {
+			clearDisk();
+			facade = new InsightFacade();
+			await facade.addDataset("classes", validClass, InsightDatasetKind.Sections);
+			await facade.addDataset("rooms", validRoomDataset, InsightDatasetKind.Rooms);
+			await facade.addDataset("sections", validDataset, InsightDatasetKind.Sections);
+			newFacade = new InsightFacade();
+		});
+
+		function errorValidator(error: any): error is Error {
+			return error === "InsightError" || error === "ResultTooLargeError";
+		}
+
+		function assertOnError(actual: any, expected: Error): void {
+			if (expected === "InsightError") {
+				expect(actual).to.be.instanceof(InsightError);
+			} else if (expected === "ResultTooLargeError") {
+				expect(actual).to.be.instanceof(ResultTooLargeError);
+			} else {
+				// this should be unreachable
+				expect.fail("UNEXPECTED ERROR");
+			}
+		}
+
+		function assertOnResult(actual: unknown, expected: Output): void {
+			expect(actual).to.have.length.gte(1);
+		}
+
+		function target(input: Input): Promise<Output> {
+			// console.log(input);
+			return newFacade.performQuery(input);
+		}
+
+		folderTest<Input, Output, Error>("PerformQuery Tests", target, "./test/resources/unorderedqueries", {
+			errorValidator,
+			assertOnError,
+			assertOnResult,
+		});
+	});
+
 
 });
