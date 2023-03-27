@@ -128,7 +128,7 @@ export default class Server {
 		let id = req.params.id;
 		let kind = req.params.kind as InsightDatasetKind;
 		let base64Content = Buffer.from(req.body).toString("base64");
-		console.log(`this is the body ${req.body}`);
+		// console.log(`this is the body ${req.body}`);
 		// console.log(`the id is ${id}`);
 		// console.log(`the kind is ${kind}`);
 		// console.log("the body is:");
