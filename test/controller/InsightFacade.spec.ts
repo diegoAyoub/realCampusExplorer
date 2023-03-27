@@ -214,10 +214,10 @@ describe("InsightFacade", function () {
 				return expect(result).to.rejectedWith(InsightError);
 			});
 
-			// it("should pass because it contains one valid room", function() {
-			// 	const result = facade.addDataset("rooms", diego, InsightDatasetKind.Rooms);
-			// 	return expect(result).to.eventually.eventually.have.members(["rooms"]);
-			// });
+			it("should pass because it contains one valid room", function() {
+				const result = facade.addDataset("rooms", diego, InsightDatasetKind.Rooms);
+				return expect(result).to.eventually.eventually.have.members(["rooms"]);
+			});
 
 			it("should fail because it is a zip file that does not contain a index.htm file", function() {
 				const result = facade.addDataset("rooms", invalidRoomsZipNoIndexHtm, InsightDatasetKind.Rooms);
