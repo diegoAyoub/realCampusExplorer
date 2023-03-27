@@ -135,7 +135,7 @@ export default class Server {
 		// console.log(req.body);
 		try {
 			let result = await Server.insightFacade?.addDataset(id, base64Content, kind);
-			res.status(200).json({result: req.body});
+			res.status(200).json({result: result});
 		} catch (err) {
 			res.status(400).json({error: err});
 		}
