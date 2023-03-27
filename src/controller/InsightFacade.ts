@@ -182,29 +182,27 @@ export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 // export const PATH_TO_ROOT_DATA_FOLDER = "../../../data";
 // export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 // runIt();
+
 let query = {
 	WHERE: {},
 	OPTIONS: {
 		COLUMNS: [
-			"sections_dept",
-			"max"
+			"rooms_fullname",
+			"MAX$$$key"
 		],
-		ORDER: {
-			dir: "UP",
-			keys: [
-				"max"
-			]
-		}
+		ORDER: "MAX$$$key"
 	},
 	TRANSFORMATIONS: {
 		GROUP: [
-			"sections_dept",
-			"sections_title"
+			"rooms_fullname",
+			"rooms_shortname",
+			"rooms_address",
+			"rooms_href"
 		],
 		APPLY: [
 			{
-				max: {
-					MAX: "sections_avg"
+				MAX$$$key: {
+					MAX: "rooms_lat"
 				}
 			}
 		]

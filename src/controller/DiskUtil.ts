@@ -25,9 +25,7 @@ import {
 
 export function readLocal(path: string, insightDataList: InsightData[]) {
 	try {
-		console.log(path);
 		let fileContent = fs.readJSONSync(path);
-		// console.log(fileContent);
 		for (const insightData of fileContent) {
 			if(insightData.metaData.kind === InsightDatasetKind.Sections) {
 				readSections(insightData, insightDataList);

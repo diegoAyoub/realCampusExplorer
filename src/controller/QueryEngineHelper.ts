@@ -17,8 +17,9 @@ export class QueryEngineHelper {
 	public orderDir: string;
 
 	constructor(filteredSections: InsightDatasetSection[] | InsightDatasetRoom[],
+		query: any,
 		queryEngine: QueryEngine) {
-		this.query = queryEngine.query;
+		this.query = query;
 		this.filteredSections = filteredSections;
 		this.qryID = queryEngine.getQueryId();
 		this.wantedColumns = queryEngine.getColumns();
@@ -94,14 +95,10 @@ export class QueryEngineHelper {
 		if (applyBlock.length === 0) {
 			return groups[0];
 		}
-		//	console.log("applying timer starting: ");
-		//	console.time();
 		for (let applyOperation of applyBlock) {
 			let column = Object.keys(applyOperation)[0];
 			appliedGroups[column] = this.apply(groups, applyOperation[column]);
 		}
-		//	console.log("applied timer ending...");
-		//	console.timeEnd();
 		return appliedGroups;
 	}
 
@@ -117,7 +114,7 @@ export class QueryEngineHelper {
 				return this.findMIN(group, col) as number;
 			}
 			case MAX : {
-				return this.findMAX(group, col);
+				return this.findMAX(group, col) as number;
 			}
 			case SUM : {
 				return this.findSUM(group, col);
@@ -161,10 +158,10 @@ export class QueryEngineHelper {
 
 	}
 
-	public findMAX(sections: InsightResult[], col: string): number {
-		let max: number = sections[0][col] as number ;
+	public findMAX(sections: InsightResult[], col: string): number | null {
+		let max: number | null = null;
 		for (let section of sections) {
-			if (max < (section[col] as number)) {
+			if (max === null || max < (section[col] as number)) {
 				max = section[col] as number;
 			}
 		}

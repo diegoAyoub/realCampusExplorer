@@ -87,6 +87,7 @@ export async function handleReadingRooms(content: string, dataset: InsightDatase
 		let base64Data: JSZip = await zip.loadAsync(content, {base64: true});
 		let htmlContent = await base64Data.file("index.htm")?.async("string");
 		let document: Document = parse(htmlContent as string);
+
 		let buildingData: Set<IndexHtmRoomData> = new Set<IndexHtmRoomData>();
 		traverseIndexHtmForValidRooms(defaultTreeAdapter.getChildNodes(document), buildingData);
 		let buildingDataArray = Array.from(buildingData);
@@ -99,7 +100,11 @@ export async function handleReadingRooms(content: string, dataset: InsightDatase
 			asyncFileReadJobs.push(readValidRooms(validBuilding, base64Data, dataset)); // does readValidRooms wait till the recursion is done tho
 		});
 		await Promise.all(asyncFileReadJobs);
+		if(dataset.length < 1) {
+			return Promise.reject(new InsightError("NO room datasets"));
+		}
 	} catch(error) {
+		// console.log(error);
 		return Promise.reject("there was an error");
 	}
 }
