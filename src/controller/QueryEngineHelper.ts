@@ -3,8 +3,10 @@ import {
 	InsightDatasetSection,
 	InsightResult, ResultTooLargeError,
 } from "./IInsightFacade";
-import {APPLY, APPLY_TOKEN_AVG, COUNT, GROUP, MAX,
-	MIN, STRING_FIELDS, SUM, TRANSFORMATIONS,DOWN} from "./Constants";
+import {
+	APPLY, APPLY_TOKEN_AVG, COUNT, GROUP, MAX,
+	MIN, STRING_FIELDS, SUM, TRANSFORMATIONS, DOWN, WHERE, OPTIONS, ORDER, COLUMNS
+} from "./Constants";
 import Decimal from "decimal.js";
 import {QueryEngine} from "./QueryEngine";
 
@@ -211,4 +213,41 @@ export class QueryEngineHelper {
 		}
 		return 0;
 	}
+
+	//	SCRAP CODING ZONE
+	public convertToJSON(): any{
+		let jsonQry: any = {};
+		jsonQry[WHERE] = this.convertWHERE();
+		jsonQry[OPTIONS] = this.convertOPTIONS();
+		// if ( there is a transformation block)
+		//	jsonQry[TRANSFORMATION] = this.convertTRANSFORMATION();
+	}
+
+	public convertWHERE(): any {
+		let whereBlockQry: any = {};
+		//	CONVERT FILTERS
+	}
+
+	public convertOPTIONS(): any {
+		let optionsBlockQry: any = {};
+		optionsBlockQry[ORDER] = "function";
+		optionsBlockQry[COLUMNS] = "function";
+		return optionsBlockQry;
+	}
+
+	public convertORDER(): any {
+		let orderBlockQry: any = {};
+		// if order has Dir then get Dir and Keys if not then proceed
+		// let orderBlockQry = getOrderColumn;
+		return orderBlockQry;
+	}
+
+	public convertCOLUMNS(): any {
+		let colArr: any = {}; //	GET COLUMNS FROM FRONTEND
+		return colArr;
+	}
+
+	/*	public convertTRANSFORMATION(): any{
+
+	}*/
 }
