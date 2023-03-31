@@ -4,14 +4,16 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import {ButtonGroup, Row, ToggleButton} from "react-bootstrap";
 import * as radios from "react-bootstrap/ElementChildren";
 import styled from "styled-components";
+import Form from "react-bootstrap/Form";
 
-const RowWrapper = styled(Row)`
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-`
 const StyledButtonGroup = styled(ButtonGroup)`
-	padding-left: 0px;
-	padding-right: 0px;
+	width: 100%;
+	margin: 0em 0em 2em 0;
+`
+
+const FirstRowWrapper = styled.div`
+	width: 100%;
+	padding-top: 1em;
 `
 
 const SelectorComponent = (props) => {
@@ -23,11 +25,12 @@ const SelectorComponent = (props) => {
 	];
 
 	return (
-		<RowWrapper>
+		<FirstRowWrapper>
 			{/*<DropdownButton id="dropdown-basic-button" title="Choose Dataset">*/}
 			{/*	<Dropdown.Item href="#/action-1">Sections</Dropdown.Item>*/}
 			{/*	<Dropdown.Item href="#/action-3">Rooms</Dropdown.Item>*/}
 			{/*</DropdownButton>*/}
+			<Form.Label htmlFor="disabledSelect">Choose a dataset:</Form.Label>
 			<StyledButtonGroup>
 				{radios.map((radio, idx) => (
 					<ToggleButton
@@ -44,7 +47,7 @@ const SelectorComponent = (props) => {
 					</ToggleButton>
 				))}
 			</StyledButtonGroup>
-		</RowWrapper>
+		</FirstRowWrapper>
 	)
 }
 export default SelectorComponent
