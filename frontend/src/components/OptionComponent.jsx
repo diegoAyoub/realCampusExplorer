@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SECTION_FIELD_NAMES} from "../util/Constants";
 import {ButtonGroup, Col, Row, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import styled from "styled-components";
 import Form from "react-bootstrap/Form";
+import {getDatasetFields} from "../util/Functions";
 
 const ToggleButtonWrapper = styled(ToggleButton)`
 	width: 8em;
@@ -24,46 +25,50 @@ const Wrapper = styled.div`
 
 let colArr =[];
 
-function getSelectedColumns() {
+export function getSelectedColumns(){
 	return colArr;
 }
 const handleColChange = (event) => {
 	// alert(Object.keys(event));
 	if(event.currentTarget.checked){
-		// console.log("you checked:" + event.target.defaultValue);
 		if(!getSelectedColumns().includes(event.target.defaultValue)){
 			colArr.push(event.target.defaultValue);
 		}
 	} else{
 		let index = colArr.indexOf(event.target.defaultValue)
 		if(index !== -1){
-			// console.log("you unchecked: " + event.target.defaultValue);
 			colArr.splice(index,1);
 		}
 	}
-	console.log(colArr);
-
 }
-const OptionComponent = () => {
+const OptionComponent = (props) => { // <OptionComponent setColumns={setColumns} columns={columns} dataset={dataset}></OptionComponent>
 	//some sort've setter or usestate that decides between rooms_field_names depending on what's selected
-	const [value, setValue] = useState([]);
+	const [value, setValue] = useState(getDatasetFields(props.dataset).map((element) => false));
+	useEffect(() => {
+		// console.log(props.columns);
+		setValue(props.columns.map((element) => false));
+		// console.log("value is " + value);
+	}, [props.dataset]);
+
 	const handleChange = (val, index) => {
-		console.log(`val = ${val}`);
-		console.log(`index = ${index}`);
-		handleColChange(val);
-		let updatedValue = value.map(element => element);
-		updatedValue[index] = !value[index];
-		setValue(updatedValue);
+		colArr = [...props.columns];
+		handleColChange(val); //addds to the array
+		let updatedValue = [...value]; //records whether the field has een selected
+		updatedValue[index] = !value[index]; //sets it to the opposite
+		// console.log("WE ARE SETTING IT TO " + updatedValue);
+		setValue(updatedValue); //
+		// console.log("THE COL ARR IS " + colArr);
+		props.setColumns(colArr);
+		// console.log(props.dataset);
 	};
 
 	return (
-		// <ButtonToolbarWrapper>
 		<Wrapper>
 			<Row>
 				<Form.Label htmlFor="disabledSelect">Choose the Fields to Include in the result:</Form.Label>
 			</Row>
 			<ButtonGroupWrapper>
-				{SECTION_FIELD_NAMES.map((fieldName,index) => {
+				{getDatasetFields(props.dataset).map((fieldName,index) => {
 					return<>
 							<ToggleButtonWrapper
 								type="checkbox"
@@ -80,7 +85,6 @@ const OptionComponent = () => {
 				})}
 			</ButtonGroupWrapper>
 		</Wrapper>
-		// </ButtonToolbarWrapper>
 	);
 };
 
