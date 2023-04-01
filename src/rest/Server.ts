@@ -161,7 +161,7 @@ export default class Server {
 			let result = await Server.insightFacade?.performQuery(query);
 			res.status(200).json({result: result});
 		} catch (err) {
-			res.status(400).send({error: err});
+			res.status(400).send({error: (err as Error).message});
 		}
 	}
 

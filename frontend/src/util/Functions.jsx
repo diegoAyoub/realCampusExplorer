@@ -28,3 +28,7 @@ export function getMatchingInputType(field) {
 		return "text";
 	}
 }
+
+export function formatTableHeadings(heading) {
+	return capitalize(heading.split("_")[1]);
+}

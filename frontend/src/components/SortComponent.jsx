@@ -17,8 +17,16 @@ const SortComponent = (props) => {
 		order[DIR] = selectedDirection
 		order[KEYS] = [selectedField];
 		props.setSort(order);
+		// setSelectedField(props.dataset + "_" + selectedField);
+	}, [selectedField, selectedDirection]);
+
+	useEffect(() => {
+		let order = {}
+		order[DIR] = selectedDirection
+		order[KEYS] = [selectedField];
+		props.setSort(order);
 		setSelectedField(props.dataset + "_" + props.columns[0]);
-	}, [selectedField, selectedDirection, props.columns]);
+	}, [props.columns]);
 
 	return (
 		<RowWrapper>

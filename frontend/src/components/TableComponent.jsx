@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Row, Table} from "react-bootstrap";
 import {RowWrapper} from "./SelectorComponent";
 import styled from "styled-components";
-import {capitalize} from "../util/Functions";
+import {capitalize, formatTableHeadings} from "../util/Functions";
 
 const TableWrapper = styled(Table)`
 	margin: 2em 0em 2em 0em;
@@ -21,7 +21,7 @@ const TableComponent = (props) => {
 					<tr>
 						{
 							(result?.length > 0) && Object.keys(result?.[0]).map((fieldname, index) => {
-								return <th key={index}>{fieldname}</th>
+								return <th key={index + "heading"}>{formatTableHeadings(fieldname)}</th>
 							})
 						}
 					</tr>
