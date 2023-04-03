@@ -3,6 +3,7 @@ import InsightFacade from "../../src/controller/InsightFacade";
 import {expect} from "chai";
 import request, {Response} from "supertest";
 import * as fs from "fs";
+import {clearDisk} from "../TestUtil";
 
 describe("PUT Server Tests", () => {
 
@@ -11,17 +12,12 @@ describe("PUT Server Tests", () => {
 	const ZIP_FILE_DATA = "test/resources/archives/pair.zip";
 
 	before( async () => {
+		clearDisk();
 		console.log("we made it inside before hook");
 		facade = new InsightFacade();
 		server = new Server(4321);
 		// TODO: start server here once and handle errors properly
-		server.start().then(() => {
-			console.info("TEST::initServer() - started");
-			// Promise.resolve();
-		}).catch((err: Error) => {
-			console.error(`TEST::initServer() - ERROR: ${err.message}`);
-			// Promise.reject();
-		});
+		await server.start();
 
 	});
 
@@ -44,13 +40,13 @@ describe("PUT Server Tests", () => {
 		 expect(fs.existsSync(ZIP_FILE_DATA)).to.be.true;
 		try {
 			return request("http://localhost:4321/")
-				.put("http://localhost:4321/dataset/sections/sections")
-				.send(fs.readFileSync("test/resources/archives/pair.zip"))
+				.put("dataset/sections/sections")
+				.send(fs.readFileSync(ZIP_FILE_DATA))
 				.set("Content-Type", "application/x-zip-compressed")
 				.then((res: Response) => {
 					console.log("res is: " + res.body);
 					expect(res.status).to.be.equal(200);
-					expect(Object.prototype.hasOwnProperty.call(res,"results")).to.be.true;
+					expect(Object.prototype.hasOwnProperty.call(res.body,"result")).to.be.true;
 					// more assertions here
 				})
 				.catch((err) => {
