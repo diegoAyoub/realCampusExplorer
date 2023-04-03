@@ -37,7 +37,7 @@ const WhereComponents = (props) => {
 
 	useEffect(() => {
 		setSelectedField(props.columns[0]? props.columns[0]: "");
-		setSelectedFilter(NUMBER_FIELDS.includes(selectedField)? LT : IS);
+		setSelectedFilter(NUMBER_FIELDS.includes(selectedField)? LT : IS); //@TODO CUMMMMMM
 		setSelectedValue("");
 	}, [props.columns])
 
