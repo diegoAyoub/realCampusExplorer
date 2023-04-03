@@ -149,9 +149,9 @@ export default class Server {
 			res.status(200).json({result: result});
 		} catch (err) {
 			if (err instanceof NotFoundError) {
-				res.status(400).json({error: (err as Error).message});
-			} else {
 				res.status(404).json({error: (err as Error).message});
+			} else {
+				res.status(400).json({error: (err as Error).message});
 			}
 		}
 	}
