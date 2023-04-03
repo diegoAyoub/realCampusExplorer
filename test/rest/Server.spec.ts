@@ -2,24 +2,33 @@ import Server from "../../src/rest/Server";
 import InsightFacade from "../../src/controller/InsightFacade";
 import {expect} from "chai";
 import request, {Response} from "supertest";
+import * as fs from "fs";
+import {clearDisk} from "../TestUtil";
 
-describe("Server", () => {
+describe("PUT Server Tests", () => {
 
 	let facade: InsightFacade;
 	let server: Server;
+	const ZIP_FILE_DATA = "test/resources/archives/pair.zip";
 
-	before(async () => {
+	before( async () => {
+		clearDisk();
+		console.log("we made it inside before hook");
 		facade = new InsightFacade();
 		server = new Server(4321);
 		// TODO: start server here once and handle errors properly
+		await server.start();
+
 	});
 
 	after(async () => {
 		// TODO: stop server here once!
+		await server.stop();
 	});
 
 	beforeEach(() => {
 		// might want to add some process logging here to keep track of what's going on
+		console.log("we are in beforeEach");
 	});
 
 	afterEach(() => {
@@ -27,26 +36,32 @@ describe("Server", () => {
 	});
 
 	// Sample on how to format PUT requests
-	/*
-	it("PUT test for courses dataset", async () => {
+	 it("PUT test for courses section dataset", async () => {
+		 expect(fs.existsSync(ZIP_FILE_DATA)).to.be.true;
 		try {
-			return request(SERVER_URL)
-				.put(ENDPOINT_URL)
-				.send(ZIP_FILE_DATA)
+			return request("http://localhost:4321/")
+				.put("dataset/sections/sections")
+				.send(fs.readFileSync(ZIP_FILE_DATA))
 				.set("Content-Type", "application/x-zip-compressed")
 				.then((res: Response) => {
+					console.log("res is: " + res.body);
 					expect(res.status).to.be.equal(200);
+					expect(Object.prototype.hasOwnProperty.call(res.body,"result")).to.be.true;
 					// more assertions here
 				})
 				.catch((err) => {
 					// some logging here please!
+					console.log("error!!: " + err);
 					expect.fail();
 				});
 		} catch (err) {
 			// and some more logging here!
+			console.log("outer catch error: " + err);
+			expect.fail();
+
 		}
 	});
-	 */
+
 
 	// The other endpoints work similarly. You should be able to find all instructions at the chai-http documentation
 });

@@ -15,6 +15,7 @@ export default class Server {
 	constructor(port: number) {
 		console.info(`Server::<init>( ${port} )`);
 		this.port = port;
+		console.log("port is: " + port);
 		this.express = express();
 		Server.insightFacade = null;
 		this.registerMiddleware();
@@ -112,7 +113,7 @@ export default class Server {
 			const response = Server.performEcho(req.params.msg);
 			res.status(200).json({result: response});
 		} catch (err) {
-			res.status(400).json({error: err});
+			res.status(400).json({error: (err as Error).message});
 		}
 	}
 
@@ -137,7 +138,7 @@ export default class Server {
 			let result = await Server.insightFacade?.addDataset(id, base64Content, kind);
 			res.status(200).json({result: result});
 		} catch (err) {
-			res.status(400).json({error: err});
+			res.status(400).json({error: (err as Error).message});
 		}
 	}
 
@@ -148,9 +149,9 @@ export default class Server {
 			res.status(200).json({result: result});
 		} catch (err) {
 			if (err instanceof NotFoundError) {
-				res.status(400).json({error: err.message});
+				res.status(400).json({error: (err as Error).message});
 			} else {
-				res.status(404).json({error: err});
+				res.status(404).json({error: (err as Error).message});
 			}
 		}
 	}
@@ -161,7 +162,7 @@ export default class Server {
 			let result = await Server.insightFacade?.performQuery(query);
 			res.status(200).json({result: result});
 		} catch (err) {
-			res.status(400).json({error: err});
+			res.status(400).send({error: (err as Error).message});
 		}
 	}
 
