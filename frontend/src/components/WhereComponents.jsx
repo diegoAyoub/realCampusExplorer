@@ -26,19 +26,24 @@ const WhereComponents = (props) => {
 	useEffect(() => {
 		let filter = selectedFilter;
 		let dataset = props.dataset.toLowerCase();
+		console.log("selected field is: "+selectedField);
 		let key = dataset + "_" + selectedField
 		let value = selectedValue;
-
+		(NUMBER_FIELDS.includes(selectedField) && filter === IS)?setSelectedFilter(LT): filter = selectedFilter;
 		let where = {};
 		where[filter] = {};
 		where[filter][key] = NUMBER_FIELDS.includes(selectedField)? Number(value) : value;
+		console.log("where check: " + where);
 		props.setWhere(where);
 	}, [selectedField, selectedFilter, selectedValue]);
 
 	useEffect(() => {
-		setSelectedField(props.columns[0]? props.columns[0]: "");
+		const x = setSelectedField(props.columns[0]? props.columns[0]: "");
+		//	const x = 	setSelectedField(props.columns[0]);
+		console.log("whereComponent Cols: " + props.columns[0] + " , selected field: " + selectedField);
 		setSelectedFilter(NUMBER_FIELDS.includes(selectedField)? LT : IS); //@TODO CUMMMMMM
 		setSelectedValue("");
+
 	}, [props.columns])
 
 	return (
