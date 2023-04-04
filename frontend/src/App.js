@@ -7,8 +7,7 @@ import TableComponent from "./components/TableComponent";
 import WhereComponents, {RowWrapper} from "./components/WhereComponents";
 import SortComponent from "./components/SortComponent";
 import {useEffect, useState} from "react";
-import {COLUMNS, KEYS, OPTIONS, ORDER, ROOMS_FIELD_NAMES, SECTION_FIELD_NAMES, WHERE} from "./util/Constants";
-import {capitalize} from "./util/Functions";
+import {COLUMNS, KEYS, OPTIONS, ORDER, SECTION_FIELD_NAMES, WHERE} from "./util/Constants";
 
 export const Wrapper = styled(Col)`
 	margin: 2em 3em 2em 3em;
