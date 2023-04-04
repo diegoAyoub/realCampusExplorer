@@ -113,7 +113,7 @@ export default class Server {
 			const response = Server.performEcho(req.params.msg);
 			res.status(200).json({result: response});
 		} catch (err) {
-			res.status(400).json({error: (err as Error).message});
+			res.status(400).json({error: err});
 		}
 	}
 
@@ -126,15 +126,15 @@ export default class Server {
 	}
 
 	private static async performPutDataset(req: Request, res: Response) {
-		let id = req.params.id;
-		let kind = req.params.kind as InsightDatasetKind;
-		let base64Content = Buffer.from(req.body).toString("base64");
 		// console.log(`this is the body ${req.body}`);
 		// console.log(`the id is ${id}`);
 		// console.log(`the kind is ${kind}`);
 		// console.log("the body is:");
 		// console.log(req.body);
 		try {
+			let id = req?.params.id;
+			let kind = req?.params.kind as InsightDatasetKind;
+			let base64Content = Buffer.from(req?.body).toString("base64");
 			let result = await Server.insightFacade?.addDataset(id, base64Content, kind);
 			res.status(200).json({result: result});
 		} catch (err) {
@@ -143,22 +143,22 @@ export default class Server {
 	}
 
 	private static async performDeleteDataset(req: Request, res: Response) {
-		let id = req.params.id;
 		try {
+			let id = req?.params.id;
 			let result = await Server.insightFacade?.removeDataset(id);
 			res.status(200).json({result: result});
 		} catch (err) {
 			if (err instanceof NotFoundError) {
-				res.status(400).json({error: (err as Error).message});
-			} else {
 				res.status(404).json({error: (err as Error).message});
+			} else {
+				res.status(400).json({error: (err as Error).message});
 			}
 		}
 	}
 
 	private static async performPostDataset(req: Request, res: Response) {
-		let query = req.body;
 		try {
+			let query = req?.body;
 			let result = await Server.insightFacade?.performQuery(query);
 			res.status(200).json({result: result});
 		} catch (err) {
