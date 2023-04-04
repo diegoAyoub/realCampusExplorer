@@ -15,6 +15,7 @@ export default class Server {
 	constructor(port: number) {
 		console.info(`Server::<init>( ${port} )`);
 		this.port = port;
+		console.log("port is: " + port);
 		this.express = express();
 		Server.insightFacade = null;
 		this.registerMiddleware();
@@ -112,7 +113,7 @@ export default class Server {
 			const response = Server.performEcho(req.params.msg);
 			res.status(200).json({result: response});
 		} catch (err) {
-			res.status(400).json({error: (err as Error).message});
+			res.status(400).json({error: err});
 		}
 	}
 

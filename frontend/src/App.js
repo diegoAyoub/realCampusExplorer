@@ -1,12 +1,16 @@
 import './App.css';
-import {Button, Col, Row} from "react-bootstrap";
+import {Button, Col, Row, Alert} from "react-bootstrap";
 import styled from 'styled-components'
 import OptionComponent from "./components/OptionComponent";
 import SelectorComponent from "./components/SelectorComponent";
 import TableComponent from "./components/TableComponent";
 import WhereComponents, {RowWrapper} from "./components/WhereComponents";
 import SortComponent from "./components/SortComponent";
+import ErrorComponent from "./components/ErrorComponent";
 import {useEffect, useState} from "react";
+import {COLUMNS, KEYS, OPTIONS, ORDER, ROOMS_FIELD_NAMES, SECTION_FIELD_NAMES, WHERE} from "./util/Constants";
+import {capitalize} from "./util/Functions";
+import {render} from "@testing-library/react";
 import {COLUMNS, KEYS, OPTIONS, ORDER, SECTION_FIELD_NAMES, WHERE} from "./util/Constants";
 
 export const Wrapper = styled(Col)`
@@ -44,6 +48,7 @@ function App() {
 	const [columns, setColumns] = useState([]); // array of strings that are columns we want in result
 	const [sortOptions, setSortOptions] = useState({}); // query sort options. i.e. {"dir": "DOWN", "keys": ["sections_dept]}
 	const [queryResult, setQueryResult] = useState([]); // a list of InsightResult
+	const [errorMSG, setErrorMSG] = useState("");
 	const [where, setWhere] = useState({}); // an object that is the content of the where {"IS": {"sections_dept": "CPSC"}}
 
 	useEffect(() => {
@@ -69,7 +74,12 @@ function App() {
 		console.log("the query = " + JSON.stringify(userQuery));
 	}
 
+
+
+
+
 	function submitQuery() {
+		setErrorMSG("");
 		fetch('http://localhost:4321/query', {
 			method: "POST",
 			headers: {
@@ -79,7 +89,8 @@ function App() {
 		}).then((response) => {
 			console.log("The response is: " + JSON.stringify(response));
 			console.log("The response has type: " + typeof response);
-			return response.json();
+			//@TODO add error message for invalid query
+			return Promise.resolve(response.json());
 		}).then((data) => {
 			if(data.error) {
 				console.log("ERROR The data is: " + JSON.stringify(data)); //data.result is an array of insight result
@@ -90,11 +101,15 @@ function App() {
 			console.log("The data has type: " + typeof data);
 			setQueryResult(data.result);
 		}).catch((error) => {
-			alert("ERROR");
+			//	alert("ERROR: "+ error);
+			setErrorMSG(error);
 			console.log(error);
 		});
 	}
 
+	/*if(errorFound){
+		return(ErrorComponent blah blah blah );
+	}*/
   return (
 
 	<Wrapper>
@@ -109,7 +124,10 @@ function App() {
 			</QueryBuilderDiv>
 
 			<QueryBuilderDiv md={7}>
-				<TableComponent queryResult={queryResult}></TableComponent>
+				{
+					(errorMSG !== "")? <ErrorComponent errorType = {errorMSG}/>:
+						<TableComponent queryResult={queryResult}></TableComponent>
+				}
 			</QueryBuilderDiv>
 	</Wrapper>
   );
