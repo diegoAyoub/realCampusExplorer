@@ -242,11 +242,11 @@ async function getLonAndLat(roomData: IndexHtmRoomData): Promise<any> {
 	let endpoint = BASE_URL_GEOLOCATION + urlEncodedAddress;
 	let result = await waitForRequest(endpoint);
 	if(result.error) {
-		return Promise.resolve;
+		return;
 	}
 	roomData.lon = result.lon;
 	roomData.lat = result.lat;
-	return Promise.resolve();
+	return;
 }
 
 function waitForRequest(endpoint: string): Promise<any> {
