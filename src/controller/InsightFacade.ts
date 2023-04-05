@@ -43,6 +43,8 @@ export default class InsightFacade implements IInsightFacade {
 				await handleReadingSection(content, dataset as InsightDatasetSection[]);
 			} else if(kind === InsightDatasetKind.Rooms && this.isValidId(id)) {
 				await handleReadingRooms(content, dataset as InsightDatasetRoom[]);
+			} else {
+				return Promise.reject(new InsightError("Invalid insight dataset kind requested"));
 			}
 			if(dataset.length) { // can be problematic if dataset already has 1 dataset added and a subsequent add crashes (we'd want to reject but it wouldn't)
 				this.insightDataList.push(new InsightData(id, kind, dataset.length, dataset));
@@ -50,7 +52,7 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.resolve(this.getAddedIds());
 			}
 			return Promise.reject(new InsightError("No sections were found in the inputted file"));
-		} catch (error: unknown) {
+		} catch (error: unknown){
 			return Promise.reject(new InsightError((error as Error).message));
 		}
 
@@ -157,18 +159,18 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 }
-function runIt() {
-	let facade = new InsightFacade();
-
-	facade.listDatasets()
-		.then((addedDatasets) => {
-			console.log(addedDatasets);
-			return Promise.resolve();
-		})
-		.then(() => facade.performQuery(query))
-		.then((result) => console.log(result))
-		.catch((err) => console.log(err));
-}
+// function runIt() {
+// 	let facade = new InsightFacade();
+//
+// 	facade.listDatasets()
+// 		.then((addedDatasets) => {
+// 			console.log(addedDatasets);
+// 			return Promise.resolve();
+// 		})
+// 		.then(() => facade.performQuery(query))
+// 		.then((result) => console.log(result))
+// 		.catch((err) => console.log(err));
+// }
 
 // USE THIS WHEN RUNNING MOCHA
 export const PATH_TO_ROOT_DATA = "./data/data.json";
@@ -183,28 +185,28 @@ export const PATH_TO_ROOT_DATA_FOLDER = "./data";
 // export const PATH_TO_ARCHIVES = "../../test/resources/archives/";
 // runIt();
 
-let query = {
-	WHERE: {},
-	OPTIONS: {
-		COLUMNS: [
-			"rooms_fullname",
-			"MAX$$$key"
-		],
-		ORDER: "MAX$$$key"
-	},
-	TRANSFORMATIONS: {
-		GROUP: [
-			"rooms_fullname",
-			"rooms_shortname",
-			"rooms_address",
-			"rooms_href"
-		],
-		APPLY: [
-			{
-				MAX$$$key: {
-					MAX: "rooms_lat"
-				}
-			}
-		]
-	}
-};
+// let query = {
+// 	WHERE: {},
+// 	OPTIONS: {
+// 		COLUMNS: [
+// 			"rooms_fullname",
+// 			"MAX$$$key"
+// 		],
+// 		ORDER: "MAX$$$key"
+// 	},
+// 	TRANSFORMATIONS: {
+// 		GROUP: [
+// 			"rooms_fullname",
+// 			"rooms_shortname",
+// 			"rooms_address",
+// 			"rooms_href"
+// 		],
+// 		APPLY: [
+// 			{
+// 				MAX$$$key: {
+// 					MAX: "rooms_lat"
+// 				}
+// 			}
+// 		]
+// 	}
+// };
