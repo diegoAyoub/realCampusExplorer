@@ -103,6 +103,7 @@ export async function handleReadingRooms(content: string, dataset: InsightDatase
 		if(dataset.length < 1) {
 			return Promise.reject(new InsightError("NO room datasets"));
 		}
+		return Promise.resolve();
 	} catch(error) {
 		return Promise.reject(new InsightError("there was an error"));
 	}
