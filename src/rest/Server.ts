@@ -3,8 +3,7 @@ import express, {Application, Request, Response} from "express";
 import * as http from "http";
 import cors from "cors";
 import InsightFacade from "../controller/InsightFacade";
-import {getContentFromArchives} from "../../test/TestUtil";
-import {InsightDatasetKind, NotFoundError} from "../controller/IInsightFacade";
+import {InsightDatasetKind, InsightError, NotFoundError} from "../controller/IInsightFacade";
 
 export default class Server {
 	private readonly port: number;
@@ -132,6 +131,11 @@ export default class Server {
 		// console.log("the body is:");
 		// console.log(req.body);
 		try {
+			if(req === null || req === undefined) {
+				throw new InsightError("Request does not exist");
+			} else if (Server.insightFacade === null || Server.insightFacade === undefined) {
+				throw new InsightError("Insight facade does not exist");
+			}
 			let id = req?.params.id;
 			let kind = req?.params.kind as InsightDatasetKind;
 			let base64Content = Buffer.from(req?.body).toString("base64");
@@ -144,6 +148,11 @@ export default class Server {
 
 	private static async performDeleteDataset(req: Request, res: Response) {
 		try {
+			if(req === null || req === undefined) {
+				throw new InsightError("Request does not exist");
+			} else if (Server.insightFacade === null || Server.insightFacade === undefined) {
+				throw new InsightError("Insight facade does not exist");
+			}
 			let id = req?.params.id;
 			let result = await Server.insightFacade?.removeDataset(id);
 			res.status(200).json({result: result});
@@ -158,6 +167,11 @@ export default class Server {
 
 	private static async performPostDataset(req: Request, res: Response) {
 		try {
+			if(req === null || req === undefined) {
+				throw new InsightError("Request does not exist");
+			} else if (Server.insightFacade === null || Server.insightFacade === undefined) {
+				throw new InsightError("Insight facade does not exist");
+			}
 			let query = req?.body;
 			let result = await Server.insightFacade?.performQuery(query);
 			res.status(200).json({result: result});
@@ -167,7 +181,16 @@ export default class Server {
 	}
 
 	private static async performGetDataset(req: Request, res: Response) {
-		let result = await Server.insightFacade?.listDatasets();
-		res.status(200).json({result: result});
+		try {
+			if(req === null || req === undefined) {
+				throw new InsightError("Request does not exist");
+			} else if (Server.insightFacade === null || Server.insightFacade === undefined) {
+				throw new InsightError("Insight facade does not exist");
+			}
+			let result = await Server.insightFacade?.listDatasets();
+			res.status(200).json({result: result});
+		} catch (err) {
+			res.status(200).json({result: "Insight Facade is null"});
+		}
 	}
 }

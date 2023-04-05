@@ -103,6 +103,7 @@ export async function handleReadingRooms(content: string, dataset: InsightDatase
 		if(dataset.length < 1) {
 			return Promise.reject(new InsightError("NO room datasets"));
 		}
+		return Promise.resolve();
 	} catch(error) {
 		return Promise.reject(new InsightError("there was an error"));
 	}
@@ -256,9 +257,14 @@ function waitForRequest(endpoint: string): Promise<any> {
 				rawData += chunk;
 			});
 			result.on("end", () => {
-				const parsedData = JSON.parse(rawData);
-				resolve(parsedData);
+				try {
+					const parsedData = JSON.parse(rawData);
+					resolve(parsedData);
+				} catch (e) {
+					reject(new InsightError("Error getting lon and lat"));
+				}
 			});
+
 			result.on("error",() => {
 				reject(new InsightError("Error getting lon and lat..."));
 			});
