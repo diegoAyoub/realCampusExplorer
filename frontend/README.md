@@ -1,3 +1,5 @@
+# USER STORY VIDEO LINK: 
+https://youtu.be/-JTYTVHD5NU
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
