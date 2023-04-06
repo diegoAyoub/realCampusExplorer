@@ -1,4 +1,4 @@
-# USER STORY VIDEO LINK: 
+# Frontend Demo/User Story Video: 
 https://youtu.be/-JTYTVHD5NU
 # Getting Started with Create React App
 
