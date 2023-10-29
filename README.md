@@ -1,9 +1,5 @@
-# CPSC 310 Project Repository
-
-This repository contains starter code for the class project.
-Please keep your repository private.
-
-For information about the project, autotest, and the checkpoints, see the course webpage.
+# Project Description
+This project contains a web application able to parse through 70,000 course sections and rooms to retrieve information. 
 
 ## Configuring your environment
 
